@@ -40,10 +40,7 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script
-        src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-        crossorigin="anonymous"></script>
+    <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body class="Blogger">
@@ -107,7 +104,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categorias.php" class="Blogger">
+                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
                                 </li>
@@ -247,7 +244,7 @@ require_once('../../config/security.php');
                             <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
-                                    <a href="Reportes.php" class="Blogger">
+                                    <a href="../Reporte/Reportes.php" class="Blogger">
                                         <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
                                     </a>
                                 </li>
@@ -290,111 +287,67 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                    <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
                 </h3>
                 <p class="text-justify">
-                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+                    En el módulo PRODUCTOS podrá agregar nuevos productos al sistema, actualizar datos de los productos, eliminar o actualizar la imagen de los productos, imprimir códigos de barras o SKU de cada producto, buscar productos en el sistema, ver todos los productos en almacén, ver los productos más vendido y filtrar productos por categoría.
                 </p>
             </div>
 
             <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
-                        <a class="active Gagalin" href="Categoria.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                        <a href="../Producto/Productos.php">
+                            <i class="fas fa-box fa-fw"></i> &nbsp; Nuevo producto
                         </a>
                     </li>
                     <li>
-                        <a href="listaCategorias.php" class="Gagalin">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
+                        <a href="../Producto/listaProductos.php">
+                            <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                         </a>
                     </li>
                     <li>
-                        <a href="" class="Gagalin">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
+                        <a href="../Producto/Producto-Categorias.php">
+                            <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Producto/Producto-Vencimiento.php">
+                            <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Producto/Producto-Stock.php">
+                            <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
+                        </a>
+                    </li>
+                    <li>
+                        <a class="active" href="../Producto/BuscarProducto.php">
+                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
                         </a>
                     </li>
                 </ul>
             </div>
-
             <div class="container-fluid">
-         <form id="frmAjax" class="form-neon FormularioAjax" method="POST" autocomplete="off">
-
-            <fieldset>
-                <legend><i class="far fa-address-card"></i> &nbsp; Información de la categoría</legend>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Codigo de Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="number"  class="form-control" name="cod_cate" id="cod_cate" maxlength="40">
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Nombre de la categoría &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="text" class="form-control" name="categoria_nombre" id="categoria_nombre" maxlength="40">
-                            </div>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <label for="categoria_nombre" class="bmd-label-floating">Estado De la Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="1" checked>
-                                                <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="0" >
-                                                <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-<!--                             <div class="col-12 col-md-6">
+                <form class="form-neon FormularioAjax" action="http://systems.designlopers.com/SVI/ajax/buscadorAjax.php" data-form="default" method="POST" autocomplete="off">
+                    <input type="hidden" name="modulo" value="producto">
+                    <div class="container-fluid">
+                        <div class="row justify-content-md-center">
+                            <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="categoria_estado" class="bmd-label-floating">Estado de la categoría</label>
-                                    <select class="form-control" name="categoria_estado_reg" id="categoria_estado">
-                                        <option value="1" selected="" >Habilitada</option>
-                                        <option value="0">Deshabilitada</option>
-                                    </select>
+                                    <label for="inputSearch" class="bmd-label-floating">¿Qué producto estas buscando?</label>
+                                    <input type="text" class="form-control" name="busqueda_inicial" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}" id="inputSearch" maxlength="30">
                                 </div>
-                            </div> -->
+                            </div>
+                            <div class="col-12">
+                                <p class="text-center" style="margin-top: 40px;">
+                                    <button type="submit" class="btn btn-raised btn-info"><i class="fas fa-search"></i> &nbsp; BUSCAR</button>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <button id="btnSave">
-                        <i>
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </fieldset>
-              <!--   <p class="text-center" style="margin-top: 40px;">
-                    <button type="reset" class="btn btn-raised btn-secondary btn-sm">
-                        <i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR
-                    </button>
-                    &nbsp; &nbsp;
-                    <button type="submit" class="btn btn-raised btn-info btn-sm">
-                        <i class="far fa-save">
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </p>
-                <p class="text-center">
-                    <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
-                </p> -->
-            </form>
-        </div>
+                </form>
+            </div>
         </section>
     </main>
     <script>
@@ -456,11 +409,10 @@ require_once('../../config/security.php');
     </script>
 
     <!-- printThis  -->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-<script src="../resources/functions.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>  -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
 
 </html>

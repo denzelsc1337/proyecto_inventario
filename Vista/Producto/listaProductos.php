@@ -1,4 +1,5 @@
 <?php
+include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
 
 /*if(isset($_SESSION['user'])){
@@ -40,10 +41,7 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script
-        src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-        crossorigin="anonymous"></script>
+    <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body class="Blogger">
@@ -247,7 +245,7 @@ require_once('../../config/security.php');
                             <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
-                                    <a href="Reportes.php" class="Blogger">
+                                    <a href="../Reporte/Reportes.php" class="Blogger">
                                         <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
                                     </a>
                                 </li>
@@ -288,113 +286,163 @@ require_once('../../config/security.php');
             </nav>
 
             <!-- Page header -->
+
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                    <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                 </h3>
                 <p class="text-justify">
-                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+                    En el módulo PRODUCTOS podrá agregar nuevos productos al sistema, actualizar datos de los productos, eliminar o actualizar la imagen de los productos, imprimir códigos de barras o SKU de cada producto, buscar productos en el sistema, ver todos los productos en almacén, ver los productos más vendido y filtrar productos por categoría.
                 </p>
             </div>
 
             <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
-                        <a class="active Gagalin" href="Categoria.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                        <a href="../Producto/Productos.php">
+                            <i class="fas fa-box fa-fw"></i> &nbsp; Nuevo producto
                         </a>
                     </li>
                     <li>
-                        <a href="listaCategorias.php" class="Gagalin">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
+                        <a class="active" href="../Producto/listaProductos.php">
+                            <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                         </a>
                     </li>
                     <li>
-                        <a href="" class="Gagalin">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
+                        <a href="../Producto/Producto-Categorias.php">
+                            <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Producto/Producto-Vencimiento.php">
+                            <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Producto/Producto-Stock.php">
+                            <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Producto/BuscarProducto.php">
+                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="container-fluid">
-         <form id="frmAjax" class="form-neon FormularioAjax" method="POST" autocomplete="off">
+            <div class="container-fluid" style="background-color: #FFF; padding-bottom: 20px;">
 
-            <fieldset>
-                <legend><i class="far fa-address-card"></i> &nbsp; Información de la categoría</legend>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Codigo de Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="number"  class="form-control" name="cod_cate" id="cod_cate" maxlength="40">
-                            </div>
-                        </div>
+                <div class="table-responsive">
+                    <?php
+                    require_once('../../Controlador/controladorListar.php');
+                    ?>
+                    <table class="table table-dark table-sm">
+                        <thead>
+                            <tr class="text-center roboto-medium">
+                                <th>№ Almacen</th>
+                                <th>Proveedor</th>
+                                <th>Categoria</th>
+                                <th>Marca</th>
+                                <th>Producto</th>
+                                <th>Cantidades</th>
+                                <th>F. Ingreso</th>
+                                <th>Descripción</th>
+                                <th>Remisión</th>
+                                <th>№ Orden</th>
+                                <th>Pecosa</th>
+                                <th>Enable/Disable</th>
+                                <!-- <button id="btnEnble">Enable</button> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($listaProducto as $vistaProd) {
+                            ?>
+                                <tr class="text-center">
+                                    <td><?php echo $vistaProd[0] ?></td>
+                                    <td><?php echo $vistaProd[1] ?></td>
+                                    <td><?php echo $vistaProd[2] ?></td>
+                                    <td><?php echo $vistaProd[3] ?></td>
+                                    <td><?php echo $vistaProd[4] ?></td>
+                                    <td><?php echo $vistaProd[5] ?></td>
+                                    <td><?php echo $vistaProd[6] ?></td>
+                                    <td><?php echo $vistaProd[7] ?></td>
+                                    <td><?php echo $vistaProd[8] ?></td>
+                                    <td><?php echo $vistaProd[9] ?></td>
+                                    <td><?php echo $vistaProd[10] ?></td>
 
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Nombre de la categoría &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="text" class="form-control" name="categoria_nombre" id="categoria_nombre" maxlength="40">
-                            </div>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <label for="categoria_nombre" class="bmd-label-floating">Estado De la Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="1" checked>
-                                                <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="0" >
-                                                <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-<!--                             <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label for="categoria_estado" class="bmd-label-floating">Estado de la categoría</label>
-                                    <select class="form-control" name="categoria_estado_reg" id="categoria_estado">
-                                        <option value="1" selected="" >Habilitada</option>
-                                        <option value="0">Deshabilitada</option>
-                                    </select>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                    <button id="btnSave">
-                        <i>
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </fieldset>
-              <!--   <p class="text-center" style="margin-top: 40px;">
-                    <button type="reset" class="btn btn-raised btn-secondary btn-sm">
-                        <i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR
-                    </button>
-                    &nbsp; &nbsp;
-                    <button type="submit" class="btn btn-raised btn-info btn-sm">
-                        <i class="far fa-save">
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </p>
-                <p class="text-center">
-                    <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
-                </p> -->
-            </form>
-        </div>
+                                    <td>
+                                        <?php
+                                        $hide = "";
+                                        if ($_SESSION['id_rol'] == '2') {
+                                            $hide = "style='display:none;'";
+                                        }
+                                        if ($vistaProd[11] == 1) {
+                                        ?>
+                                            <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <!-- <button name="btnUpdt"disabled>Update</button> -->
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
+                                                Update
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Dar de Baja</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ...
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <input type="checkbox" name="categoria_estado" value="0" disabled>
+                                        <?php
+                                        }
+                                        ?>
+                                    </td>
+
+                                </tr>
+                        </tbody>
+                    <?php
+                            }
+                    ?>
+                    </table>
+                </div>
+
+
+                <p class="text-right">Mostrando productos <strong>1</strong> al <strong>15</strong> de un <strong>total de 101</strong></p>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+                        <li class="page-item"><a class="page-link active" href="http://systems.designlopers.com/SVI/product-list/1/">1</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/2/">2</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/3/">3</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/4/">4</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/5/">5</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/6/">6</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/7/">7</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/2/">Siguiente</a></li>
+                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/7/"><i class="fas fa-angle-double-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
         </section>
     </main>
     <script>
@@ -456,11 +504,10 @@ require_once('../../config/security.php');
     </script>
 
     <!-- printThis  -->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-<script src="../resources/functions.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>  -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
 
 </html>

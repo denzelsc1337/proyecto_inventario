@@ -53,8 +53,8 @@
 				<div class="full-box nav-lateral-content scroll">
 					<figure class="full-box nav-lateral-avatar">
 						<i class="far fa-times-circle show-nav-lateral"></i>
-						<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-						<figcaption class="text-center Blogger">
+						<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_4.png" class="img-fluid" alt="Avatar">
+						<figcaption class="text-center Blogger" style="font-size: 22px;">
 							<?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
 						</figcaption>
 					</figure>
@@ -79,13 +79,13 @@
 										</a>
 									</li>
 									<li>
-										<a href="Categoria/Proveedor.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
 										</a>
 									</li>
 
 									<li>
-										<a href="Categoria/Usuario.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
 										</a>
 									</li>
@@ -96,32 +96,32 @@
 								<a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
 								<ul>
 									<li>
-										<a href="Producto/Productos.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-box fa-fw"></i> &nbsp; Nuevo producto
 										</a>
 									</li>
 									<li>
-										<a href="Producto/listaProductos.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
 										</a>
 									</li>
 									<li>
-										<a href="Producto/Producto-Categoria.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
 										</a>
 									</li>
 									<li>
-										<a href="Producto/Producto-Vencimiento.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
 										</a>
 									</li>
 									<li>
-										<a href="Producto/Producto-Stock.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
 										</a>
 									</li>
 									<li>
-										<a href="Producto/BuscarProducto.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
 										</a>
 									</li>
@@ -246,7 +246,7 @@
 								<a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
 								<ul>
 									<li>
-										<a href="Reporte/Reportes.php" class="Blogger">
+										<a href="#" class="Blogger">
 											<i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
 										</a>
 									</li>
@@ -284,8 +284,7 @@
 					<a href="../config/logout.php" class="Blogger">Cerrar Sesión
 						<i class="fa fa-power-off"></i>
 					</a>
-				</nav>
-				<!-- Page header -->
+				</nav><!-- Page header -->
 				<div class="full-box page-header">
 					<h3 class="text-left Gagalin">
 						<i class="fab fa-dashcube fa-fw"></i> &nbsp; DASHBOARD
@@ -307,11 +306,11 @@
 						<p> - Registradas</p>
 					</div>
 				</a> -->
-						<?php
-						$hide = "";
-						if ($_SESSION['id_rol'] == '2') {
-							$hide = "style='display:none;'";
-						} ?>
+				<?php
+				$hide = "";
+				if($_SESSION['id_rol']=='2'){
+				    $hide = "style='display:none;'";
+				}?>
 						<a href="#" class="tile">
 							<div class="tile-tittle Gagalin">Proveedores</div>
 							<div class="tile-icon">
@@ -319,17 +318,14 @@
 								<p class="Blogger"> - Registrados</p>
 							</div>
 						</a>
-						<a href="Categoria/Categoria.php" class="tile">
+						<a href="#" class="tile">
 							<div class="tile-tittle Gagalin">Categorías</div>
 							<div class="tile-icon">
 								<i class="fa fa-tags fa-fw"></i>
-								<?php
-
-								?>
 								<p class="Blogger"> - Registradas</p>
 							</div>
 						</a>
-						<a href="#" class="tile" <?php echo $hide; ?>>
+						<a href="#" class="tile" <?php echo $hide;?>>
 							<div class="tile-tittle Gagalin">Usuarios</div>
 							<div class="tile-icon">
 								<i class="fa fa-user-tie fa-fw"></i>

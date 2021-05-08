@@ -25,6 +25,66 @@
 
 /* END FONTS */
 
+/* START CUSTOMIZE */
+
+.page-content {
+  position: relative;
+  padding-left: 250px !important;
+  transition: all .2s ease-in-out;
+  padding-bottom: 20px;
+}
+
+.nav-lateral-content {
+  max-width: 250px !important;
+  height: 100%;
+  background-color: var(--color-two);
+  background-color: rgba(36, 41, 46, .94);
+  overflow-y: scroll;
+  padding-bottom: 50px;
+}
+
+.nav-lateral {
+  width: 250px !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: all .2s ease-in-out;
+  background-image: url(../assets/img/nav-font.jpg);
+  background-position: center center;
+  background-size: cover;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem !important;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+/* END CUSTOMIZE */
+
+
+
+
 .fa,
 .fas,
 .far,

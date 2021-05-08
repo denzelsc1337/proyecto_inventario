@@ -40,10 +40,7 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script
-        src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-        crossorigin="anonymous"></script>
+    <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body class="Blogger">
@@ -107,7 +104,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categorias.php" class="Blogger">
+                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
                                 </li>
@@ -247,7 +244,7 @@ require_once('../../config/security.php');
                             <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
-                                    <a href="Reportes.php" class="Blogger">
+                                    <a href="../Reporte/Reportes.php" class="Blogger">
                                         <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
                                     </a>
                                 </li>
@@ -290,111 +287,119 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                    <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
                 </h3>
                 <p class="text-justify">
-                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+                    En el módulo PROVEEDORES usted podrá registrar los proveedores de productos a los cuales usted les compra productos o mercancía. Además, podrá actualizar los datos de los proveedores, ver todos los proveedores registrados en el sistema, buscar proveedores en el sistema o eliminarlos si así lo desea.
                 </p>
             </div>
 
             <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
-                        <a class="active Gagalin" href="Categoria.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                        <a class="active" href="">
+                            <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
                         </a>
                     </li>
                     <li>
-                        <a href="listaCategorias.php" class="Gagalin">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
+                        <a href="">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de proveedores
                         </a>
                     </li>
                     <li>
-                        <a href="" class="Gagalin">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
+                        <a href="">
+                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveedor
                         </a>
                     </li>
                 </ul>
             </div>
 
             <div class="container-fluid">
-         <form id="frmAjax" class="form-neon FormularioAjax" method="POST" autocomplete="off">
-
-            <fieldset>
-                <legend><i class="far fa-address-card"></i> &nbsp; Información de la categoría</legend>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Codigo de Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="number"  class="form-control" name="cod_cate" id="cod_cate" maxlength="40">
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Nombre de la categoría &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="text" class="form-control" name="categoria_nombre" id="categoria_nombre" maxlength="40">
-                            </div>
-                        </div>
+                <form class="form-neon FormularioAjax" action="http://systems.designlopers.com/SVI/ajax/proveedorAjax.php" method="POST" data-form="save" autocomplete="off">
+                    <input type="hidden" name="modulo_proveedor" value="registrar">
+                    <fieldset>
+                        <legend  class="Gagalin"><i class="far fa-address-card"></i> &nbsp; Datos del proveedor</legend>
                         <div class="container-fluid">
                             <div class="row">
-                                <label for="categoria_nombre" class="bmd-label-floating">Estado De la Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="1" checked>
-                                                <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="0" >
-                                                <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
-                                            </label>
-                                        </div>
+                                        <label for="proveedor_tipo_documento" class="bmd-label-floating">Tipo de documento &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <select class="form-control" name="proveedor_tipo_documento_reg" id="proveedor_tipo_documento">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <option value="DNI">1 - DNI</option>
+                                            <option value="Cedula">2 - Cedula</option>
+                                            <option value="NIT">3 - NIT</option>
+                                            <option value="RUC">4 - RUC</option>
+                                            <option value="Otro">5 - Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="proveedor_numero_documento" class="bmd-label-floating">Numero de documento &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="text" pattern="[a-zA-Z0-9-]{7,30}" class="form-control" name="proveedor_numero_documento_reg" id="proveedor_numero_documento" maxlength="30">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="proveedor_nombre" class="bmd-label-floating">Nombre &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ., ]{4,75}" class="form-control" name="proveedor_nombre_reg" id="proveedor_nombre" maxlength="75">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="proveedor_direccion" class="bmd-label-floating">Dirección</label>
+                                        <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{4,97}" class="form-control" name="proveedor_direccion_reg" id="proveedor_direccion" maxlength="97">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="proveedor_estado" class="bmd-label-floating">Estado &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <select class="form-control" name="proveedor_estado_reg" id="proveedor_estado">
+                                            <option value="Habilitado" selected="">1 - Habilitado</option>
+                                            <option value="Deshabilitado">2 - Deshabilitado</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-<!--                             <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label for="categoria_estado" class="bmd-label-floating">Estado de la categoría</label>
-                                    <select class="form-control" name="categoria_estado_reg" id="categoria_estado">
-                                        <option value="1" selected="" >Habilitada</option>
-                                        <option value="0">Deshabilitada</option>
-                                    </select>
+                    </fieldset>
+                    <br><br><br>
+                    <fieldset>
+                        <legend  class="Gagalin"><i class="fas fa-phone-volume"></i> &nbsp; Información de contacto</legend>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="proveedor_encargado" class="bmd-label-floating">Nombre del encargado</label>
+                                        <input type="text" pattern="[a-zA-Z ]{4,70}" class="form-control" name="proveedor_encargado_reg" id="proveedor_encargado" maxlength="70">
+                                    </div>
                                 </div>
-                            </div> -->
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="proveedor_telefono" class="bmd-label-floating">Teléfono</label>
+                                        <input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="proveedor_telefono_reg" id="proveedor_telefono" maxlength="20">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="proveedor_email" class="bmd-label-floating">Email</label>
+                                        <input type="email" class="form-control" name="proveedor_email_reg" id="proveedor_email" maxlength="50">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <button id="btnSave">
-                        <i>
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </fieldset>
-              <!--   <p class="text-center" style="margin-top: 40px;">
-                    <button type="reset" class="btn btn-raised btn-secondary btn-sm">
-                        <i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR
-                    </button>
-                    &nbsp; &nbsp;
-                    <button type="submit" class="btn btn-raised btn-info btn-sm">
-                        <i class="far fa-save">
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </p>
-                <p class="text-center">
-                    <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
-                </p> -->
-            </form>
-        </div>
+                    </fieldset>
+                    <p class="text-center" style="margin-top: 40px;">
+                        <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+                        &nbsp; &nbsp;
+                        <button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+                    </p>
+                    <p class="text-center">
+                        <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
+                    </p>
+                </form>
+            </div>
         </section>
     </main>
     <script>
@@ -456,11 +461,10 @@ require_once('../../config/security.php');
     </script>
 
     <!-- printThis  -->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-<script src="../resources/functions.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>  -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
 
 </html>

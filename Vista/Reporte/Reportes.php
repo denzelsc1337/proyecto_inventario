@@ -40,10 +40,7 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script
-        src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-        crossorigin="anonymous"></script>
+    <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body class="Blogger">
@@ -290,111 +287,90 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                    <i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
                 </h3>
                 <p class="text-justify">
-                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+                    En el módulo REPORTES podrá ver, generar e imprimir reportes de ventas en formato PDF.
                 </p>
             </div>
 
             <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
-                    <li>
-                        <a class="active Gagalin" href="Categoria.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
-                        </a>
-                    </li>
-                    <li>
-                        <a href="listaCategorias.php" class="Gagalin">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="Gagalin">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="container-fluid">
-         <form id="frmAjax" class="form-neon FormularioAjax" method="POST" autocomplete="off">
-
-            <fieldset>
-                <legend><i class="far fa-address-card"></i> &nbsp; Información de la categoría</legend>
+                <div id="today-sales">
+                    <h4 class="text-center Gagalin">Estadísticas de ventas de hoy (07-05-2021)</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-dashboard">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Ventas realizadas</th>
+                                    <th scope="col">Total en ventas</th>
+                                    <th scope="col">Costo de ventas</th>
+                                    <th scope="col">Ganancias</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center">
+                                    <td>1</td>
+                                    <td>$11.87 USD</td>
+                                    <td>$9.80 USD</td>
+                                    <td>$2.07 USD</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <a href="#" class="btn btn-outline-info print-barcode" data-id="#today-sales"><i class="fas fa-print"></i> &nbsp; Imprimir</a>
+                </p>
+                <hr>
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Codigo de Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="number"  class="form-control" name="cod_cate" id="cod_cate" maxlength="40">
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="categoria_nombre" class="bmd-label-floating">Nombre de la categoría &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <input type="text" class="form-control" name="categoria_nombre" id="categoria_nombre" maxlength="40">
-                            </div>
-                        </div>
+                    <h4 class="text-center Gagalin">Generar reporte personalizado</h4>
+                    <div class="form-neon">
                         <div class="container-fluid">
-                            <div class="row">
-                                <label for="categoria_nombre" class="bmd-label-floating">Estado De la Categoria &nbsp;
-                                    <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                </label>
-                                <div class="col-12 col-md-6">
+                            <div class="row justify-content-md-center">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="1" checked>
-                                                <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="categoria_estado" value="0" >
-                                                <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
-                                            </label>
-                                        </div>
+                                        <label for="fecha_inicio">Fecha inicial (día/mes/año)</label>
+                                        <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" maxlength="30">
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="fecha_final">Fecha final (día/mes/año)</label>
+                                        <input type="date" class="form-control" name="fecha_final" id="fecha_final" maxlength="30">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="text-center" style="margin-top: 40px;">
+                                        <button type="button" class="btn btn-raised btn-info" onclick="generar_reporte()"><i class="far fa-file-pdf"></i> &nbsp; GENERAR REPORTE</button>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-<!--                             <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label for="categoria_estado" class="bmd-label-floating">Estado de la categoría</label>
-                                    <select class="form-control" name="categoria_estado_reg" id="categoria_estado">
-                                        <option value="1" selected="" >Habilitada</option>
-                                        <option value="0">Deshabilitada</option>
-                                    </select>
-                                </div>
-                            </div> -->
-                        </div>
                     </div>
-                    <button id="btnSave">
-                        <i>
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </fieldset>
-              <!--   <p class="text-center" style="margin-top: 40px;">
-                    <button type="reset" class="btn btn-raised btn-secondary btn-sm">
-                        <i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR
-                    </button>
-                    &nbsp; &nbsp;
-                    <button type="submit" class="btn btn-raised btn-info btn-sm">
-                        <i class="far fa-save">
-                        </i> &nbsp; GUARDAR
-                    </button>
-                </p>
-                <p class="text-center">
-                    <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
-                </p> -->
-            </form>
-        </div>
+                </div>
+            </div>
+
+            <script>
+                function generar_reporte() {
+                    let fecha_inicio = document.querySelector('#fecha_inicio').value;
+                    let fecha_final = document.querySelector('#fecha_final').value;
+
+                    fecha_inicio.trim();
+                    fecha_final.trim();
+
+                    if (fecha_inicio != "" && fecha_final != "") {
+                        url = "http://systems.designlopers.com/SVI/pdf/report-sales.php?fi=" + fecha_inicio + "&&ff=" + fecha_final;
+                        window.open(url, 'Imprimir reporte de ventas', 'width=820,height=720,top=0,left=100,menubar=YES,toolbar=YES');
+                    } else {
+                        Swal.fire({
+                            title: 'Ocurrió un error inesperado',
+                            text: 'Debe de ingresar la fecha de inicio y final para generar el reporte.',
+                            type: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                }
+            </script>
         </section>
     </main>
     <script>
@@ -456,11 +432,10 @@ require_once('../../config/security.php');
     </script>
 
     <!-- printThis  -->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-<script src="../resources/functions.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>  -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
 
 </html>

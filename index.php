@@ -39,7 +39,7 @@
             <i class="fas fa-user-circle fa-5x"></i>
         </p>
         <p class="text-center Blogger">
-        Inicia sesión con tu cuenta
+        Inicia
         </p>
         <form method="POST" autocomplete="off" action = "Controlador/loginTest.php">
             <div class="form-group Blogger">
