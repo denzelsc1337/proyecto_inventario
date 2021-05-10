@@ -88,15 +88,19 @@ DROP TABLE IF EXISTS productos;
 CREATE TABLE productos
 (
     secuence_prod INT auto_increment PRIMARY KEY NOT NULL,
-    SKU_producto INT NOT NULL,
-    id_proveedor INT (6) NOT NULL,
+    -- SKU_producto INT NOT NULL,
+    -- id_proveedor INT (6) NOT NULL,
     id_categoria INT (6) NOT NULL,
     id_marca INT (6) NOT NULL,
     nom_producto VARCHAR (30) NOT NULL,
     cantidades INT NOT NULL,
     fecha_entrada DATE NOT NULL,
-    presentacion VARCHAR(50),
-    estado_producto BOOLEAN
+    fecha_vencimento DATE,
+    descripcion VARCHAR(50),
+    guia_remision VARCHAR (30)  NOT NULL,
+    num_orden int,
+    num_pecosa int  NOT NULL,
+    estado_producto BOOLEAN  NOT NULL
 );
 
 DROP TABLE IF EXISTS movimientos;
@@ -123,6 +127,8 @@ CREATE TABLE detalle_ingreso
     guia_movi INT NOT NULL,
     cant_prod_ing INT NOT NULL,
     fecha_ing DATE,
+    RUC CHAR (11) NOT NULL,
+    razon_social VARCHAR (40) NOT NULL,
     comentario VARCHAR (50),
     estado_deta_desp BOOLEAN
 );
@@ -138,7 +144,7 @@ CREATE TABLE detalle_despacho
     cant_prod_des INT NOT NULL,
     fecha_des DATE,
     id_movimiento INT NOT NULL,
-    nom_director VARCHAR (40) NOT NULL,
+    -- nom_director VARCHAR (40) NOT NULL,
     comentario VARCHAR (50),
     estado_deta_desp BOOLEAN
 );
@@ -196,14 +202,14 @@ CREATE TABLE detalle_despacho
 
     ALTER TABLE detalle_despacho
     ADD CONSTRAINT fk_mov_a_ddes
-    FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);
+    FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);  
 
 
     -- PRODUCTO A ->
 
     ALTER TABLE detalle_ingreso
     ADD CONSTRAINT fk_prod_a_ding
-    FOREIGN KEY (SKU_producto) REFERENCES productos (secuence_prod);
+    FOREIGN KEY (SKU_producto) REFERENCES productos (secuence_prod);  
 
     -- MARCA A ->
 
@@ -249,13 +255,24 @@ CREATE TABLE detalle_despacho
 
     -- TIPO USUARIO
 
-INSERT INTO `tipo_usuario` (`secuence_tipo_usu`, `id_tipo_usuario`, `detalle_tipo_usuario`) VALUES (NULL, '001', 'admin');
+    -- INSERT INTO tipo_usuario VALUES ('',1,"administrador");
+    -- INSERT INTO tipo_usuario VALUES ('',2,"operador");
 
     -- USUARIO
-INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`)
-VALUES (NULL, '001', 'ivan', 'leon', '1', 'ileonhilario', '123456', 'ivanleonhilario@gmail.com', '987654321', NULL);
-select * from tipo_usuario;
-select * from usuario;
 
-select * from usuario where cod_usuario = "ileonhilario" and pass_usuario = 123456
+    -- INSERT INTO usuario
+    -- VALUES (null,001,'Test','Admin', 1,'arroshi','arroshi',null,'942394243',1);
 
+
+
+    -- INSERT INTO `categorias`(`secuence_cat`, `id_categoria`, `nom_categoria`, `estado_categoria`) 
+    -- VALUES (null,1,'viveres',1)
+
+    -- INSERT INTO `proveedor`(`secuence_prov`, `id_proveedor`, `RUC`, `razon_social`, `tlf_proveedor`, `mail_proveedor`, `estado_proveedor`) 
+    -- VALUES (null,1,'10738918300','Arroshi','942394243','nel@gmail.com',1)
+
+    -- INSERT INTO `marca`(`secuence_mar`, `id_marca`, `nom_marca`, `estado_marca`) 
+    -- VALUES (null,1,'Arroshis',1)
+
+    -- INSERT INTO `productos`(`secuence_prod`, `id_proveedor`, `id_categoria`, `id_marca`, `nom_producto`, `cantidades`, `fecha_entrada`, `descripcion`, `guia_remision`, `num_orden`, `num_pecosa`, `estado_producto`) 
+    -- VALUES (null,1,1,1,'Primer_Producto',100,'2021-05-07','1ra prueba','ni idea',1,11,1)

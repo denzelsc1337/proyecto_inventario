@@ -1,8 +1,7 @@
 <?php
-// include_once('../config/Conexion.php');
+//require_once('../../config/Conexion.php');
 
 $listCategoria;
-
 class cCategoria
 {
 
@@ -14,6 +13,7 @@ class cCategoria
 
 	public function obtenerCategoria()
 	{
+		include_once('../../config/Conexion.php');
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 

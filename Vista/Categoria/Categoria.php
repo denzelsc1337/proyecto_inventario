@@ -1,4 +1,5 @@
 <?php
+//include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
 
 /*if(isset($_SESSION['user'])){
@@ -326,7 +327,7 @@ require_once('../../config/security.php');
                                         <label for="categoria_nombre" class="bmd-label-floating">Codigo de Categoria &nbsp;
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
-                                        <input type="number" class="form-control" name="cod_cate" id="cod_cate" maxlength="40">
+                                        <input type="number" class="form-control" name="cod_cate" id="cod_cate" maxlength="6" required="">
                                     </div>
                                 </div>
 
@@ -335,7 +336,7 @@ require_once('../../config/security.php');
                                         <label for="categoria_nombre" class="bmd-label-floating">Nombre de la categoría &nbsp;
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
-                                        <input type="text" class="form-control" name="categoria_nombre" id="categoria_nombre" maxlength="40">
+                                        <input type="text" class="form-control" name="categoria_nombre" id="categoria_nombre" maxlength="40" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6" style="margin-top: 30px;">

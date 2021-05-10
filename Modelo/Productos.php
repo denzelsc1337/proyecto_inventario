@@ -39,10 +39,21 @@ class pProductos
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$Query = "INSERT INTO `productos`(`secuence_prod`, `id_proveedor`, `id_categoria`, `id_marca`, `nom_producto`, `cantidades`, `fecha_entrada`, `descripcion`, `guia_remision`, `num_orden`, `num_pecosa`, `estado_producto`)
-		VALUES  (null,'" . $data[1] . "','" . $data[2] . "','" . $data[3] . "','" . $data[4] . "','" . $data[5] . "','" . $data[6] . "','" . $data[7] . "','" . $data[8] . "','" . $data[9] . "','" . $data[10] . "','" . $data[11] . "');";
+		$Query = "INSERT INTO `productos`(`secuence_prod`,
+										  `id_categoria`,
+										  `id_marca`,
+										  `nom_producto`,
+										  `cantidades`,
+										  `fecha_entrada`,
+										  `fecha_vencimento`,
+										  `descripcion`,
+										  `guia_remision`,
+										  `num_orden`,
+										  `num_pecosa`,
+										  `estado_producto`)
+		VALUES (null,'" . $data[1] . "','" . $data[2] . "','" . $data[3] . "','" . $data[4] . "','" . $data[5] . "','" . $data[6] . "','" . $data[7] . "','" . $data[8] . "','" . $data[9] . "','" . $data[10] . "','" . $data[11] . "')";
 
-		$result = mysqli_query($cadena, $Query);
+		echo mysqli_query($cadena, $Query);
 
 		$cnx->cerrarConexion($cadena);
 
