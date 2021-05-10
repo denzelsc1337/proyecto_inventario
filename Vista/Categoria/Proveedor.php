@@ -287,7 +287,7 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                    <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Proveedores
                 </h3>
                 <p class="text-justify">
                     En el módulo PROVEEDORES usted podrá registrar los proveedores de productos a los cuales usted les compra productos o mercancía. Además, podrá actualizar los datos de los proveedores, ver todos los proveedores registrados en el sistema, buscar proveedores en el sistema o eliminarlos si así lo desea.
@@ -297,20 +297,20 @@ require_once('../../config/security.php');
             <div class="container-fluid">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
-                        <a class="active" href="">
+                        <a class="active" href="../Categoria/Proveedor.php">
                             <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="../Categoria/listaProveedor.php">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de proveedores
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveedor
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 

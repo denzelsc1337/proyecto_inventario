@@ -288,7 +288,7 @@ require_once('../../config/security.php');
 
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
+                    <i class="fas fa-user-tie fa-fw"></i> &nbsp; Usuarios
                 </h3>
                 <p class="text-justify">
                     En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un cajero, también podrá ver la lista de usuarios registrados, buscar usuarios en el sistema, actualizar datos de otros usuarios y los suyos.
@@ -303,15 +303,15 @@ require_once('../../config/security.php');
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="../Categoria/listaUsuario.php">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de usuarios
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar usuario
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
@@ -394,7 +394,7 @@ require_once('../../config/security.php');
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <!-- <div class="col-12 col-md-6">
                                     <legend class="Gagalin"><i class="fas fa-barcode"></i> &nbsp; Configuración de lector de código de barras</legend>
                                     <div class="container-fluid">
                                         <div class="row">
@@ -432,12 +432,11 @@ require_once('../../config/security.php');
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </fieldset>
-                    <br><br><br>
-                    <fieldset>
+                    <!-- <fieldset>
                         <legend class="Gagalin"><i class="fas fa-cash-register"></i> &nbsp; Caja de ventas</legend>
                         <div class="container-fluid">
                             <div class="row">
@@ -445,52 +444,13 @@ require_once('../../config/security.php');
                                     <div class="form-group">
                                         <select class="form-control" name="usuario_caja_reg">
                                             <option value="" selected="">Seleccione una opción</option>
-                                            <option value="2">Caja No.2 (luz02)</option>
-                                            <option value="3">Caja No.3 (qwerty)</option>
-                                            <option value="5">Caja No.7 (Caja Secundaria)</option>
-                                            <option value="6">Caja No.4201 (Erik)</option>
-                                            <option value="8">Caja No.56 (paracetamol)</option>
-                                            <option value="9">Caja No.132 (003pedro)</option>
-                                            <option value="10">Caja No.9 (REYMOND)</option>
-                                            <option value="12">Caja No.21 (2004032)</option>
-                                            <option value="13">Caja No.9187 (jesus)</option>
-                                            <option value="14">Caja No.56654 (holiiiiii)</option>
-                                            <option value="16">Caja No.16 (1605)</option>
-                                            <option value="17">Caja No.101 (CAJA 101)</option>
-                                            <option value="18">Caja No.1997 (1997)</option>
-                                            <option value="19">Caja No.1010 (nuevo)</option>
-                                            <option value="20">Caja No.1000 (HELAMIMOS)</option>
-                                            <option value="21">Caja No.7253 (Chicus)</option>
-                                            <option value="23">Caja No.243 (2246)</option>
-                                            <option value="26">Caja No.2020 (ZONA1)</option>
-                                            <option value="27">Caja No.32021 (JV VENTAS MAYORISTA)</option>
-                                            <option value="28">Caja No.1111 (jolllll)</option>
-                                            <option value="29">Caja No.123 (test)</option>
-                                            <option value="30">Caja No.12 (caja 01)</option>
-                                            <option value="31">Caja No.105 (iver)</option>
-                                            <option value="32">Caja No.12122 (4545)</option>
-                                            <option value="33">Caja No.12312 (asd)</option>
-                                            <option value="34">Caja No.1542 (1542)</option>
-                                            <option value="35">Caja No.778 (Seg)</option>
-                                            <option value="36">Caja No.60 (3312)</option>
-                                            <option value="37">Caja No.55 (Pedro Saint)</option>
-                                            <option value="38">Caja No.1223 (123)</option>
-                                            <option value="39">Caja No.100 (5645)</option>
-                                            <option value="40">Caja No.6 (21221)</option>
-                                            <option value="41">Caja No.1001 (1eut42)</option>
-                                            <option value="42">Caja No.999 (abcd)</option>
-                                            <option value="43">Caja No.1222 (cajajefa)</option>
-                                            <option value="45">Caja No.4578 (Multiservicios Rojas)</option>
-                                            <option value="46">Caja No.1833 (hola)</option>
-                                            <option value="47">Caja No.1234 (1010)</option>
-                                            <option value="49">Caja No.51710 (051710sp)</option>
-                                            <option value="50">Caja No.99 (caja 9)</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
                     <br><br><br>
                     <fieldset>
                         <legend class="Gagalin"><i class="fas fa-user-lock"></i> &nbsp; Información de la cuenta</legend>

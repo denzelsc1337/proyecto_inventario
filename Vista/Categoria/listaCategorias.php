@@ -300,7 +300,7 @@ require_once('../../config/security.php');
 
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
+                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Categorías
                 </h3>
                 <p class="text-justify">
                     En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
@@ -331,7 +331,7 @@ require_once('../../config/security.php');
 
                 <div class="table-responsive">
                     <?php
-                    require_once('../../Controlador/controladorListarCategorias.php');
+                    require_once('../../Controlador/controladorListar.php');
                     ?>
                     <table class="table table-dark table-sm">
                         <thead>
