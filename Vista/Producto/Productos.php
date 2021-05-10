@@ -1,6 +1,6 @@
 <?php
+include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
-
 
 /*if(isset($_SESSION['user'])){
         header('Location:Main.php');
@@ -347,25 +347,18 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_categoria" class="bmd-label-floating">Categoría &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+
                                         <select class="form-control" name="producto_categoria" id="producto_categoria">
                                             <option value="" selected="">Seleccione una opción</option>
-                                            <option value="1">1 - Baños y Plomeria</option>
-                                            <option value="2">2 - Herramientas</option>
-                                            <option value="3">3 - Hogar y Jardin</option>
-                                            <option value="4">4 - Material Electrico</option>
-                                            <option value="5">5 - MERCADO</option>
-                                            <option value="6">6 - Tornillos</option>
-                                            <option value="7">7 - Lácteos</option>
-                                            <option value="8">8 - Chocolates</option>
-                                            <option value="10">9 - Nueva</option>
-                                            <option value="12">10 - ropa</option>
-                                            <option value="13">11 - ssds</option>
-                                            <option value="14">12 - CATEGORIA2</option>
-                                            <option value="15">13 - electricidad</option>
-                                            <option value="16">14 - Repuwstos</option>
-                                            <option value="18">15 - Juguete para sorpresa</option>
-                                            <option value="20">16 - Peliculas Disney</option>
-                                            <option value="21">17 - bebidasa</option>
+                                            <?php
+                                            foreach ($selectorCateg as $cboCate) {
+                                            ?>
+                                            <option value="<?php echo $cboCate[1]; ?>"><?php echo $cboCate[2]; ?></option>
+                                            <?php }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>

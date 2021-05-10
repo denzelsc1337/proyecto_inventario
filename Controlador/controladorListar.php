@@ -1,7 +1,8 @@
-<?php
-require_once('../../Modelo/Categorias.php');
+<?php require_once('../../Modelo/Categorias.php');
 $oCategoria = new cCategoria();
 $listaCategoria = $oCategoria->obtenerCategoria();
+$selectorCateg = $oCategoria->selectorCategorias();
+
 
 require_once('../../Modelo/Productos.php');
 $oProducto = new pProductos();

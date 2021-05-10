@@ -9,6 +9,7 @@ class cCategoria
 	function __construct()
 	{
 		$this->listCategoria = array();
+		$this->selectorCateg = array();
 	}
 
 	public function obtenerCategoria()
@@ -22,6 +23,24 @@ class cCategoria
 
 		while ($fila = mysqli_fetch_row($resultado)) {
 			$this->listCategoria[] = $fila;
+		}
+
+		$cnx->cerrarConexion($cadena);
+
+		return $this->listCategoria;
+	}
+
+	public function selectorCategorias()
+	{
+		$cnx = new conexion();
+		$cadena = $cnx->abrirConexion();
+
+		$query = 'select id_categoria, nom_categoria from categorias';
+
+		$resultado = mysqli_query($cadena, $query);
+
+		while ($fila = mysqli_fetch_row($resultado)) {
+			$this->selectorCateg[] = $fila;
 		}
 
 		$cnx->cerrarConexion($cadena);
