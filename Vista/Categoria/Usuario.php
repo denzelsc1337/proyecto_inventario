@@ -345,10 +345,17 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
                                         <select class="form-control" name="usuario_cargo_reg" id="usuario_cargo">
                                             <option value="" selected="">Seleccione una opción</option>
-                                            <option value="Administrador">1 - Administrador</option>
-                                            <option value="Cajero">2 - Cajero</option>
+                                            <?php
+                                            foreach ($selectorTusu as $cboTusu) {
+                                            ?>
+                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
+                                            <?php }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -373,8 +380,8 @@ require_once('../../config/security.php');
                             </div>
                         </div>
                     </fieldset>
-                    <br><br><br>
-                    <fieldset>
+                    <!-- <br><br><br> -->
+                    <!-- <fieldset>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 col-md-6">
@@ -394,7 +401,7 @@ require_once('../../config/security.php');
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-6">
                                     <legend class="Gagalin"><i class="fas fa-barcode"></i> &nbsp; Configuración de lector de código de barras</legend>
                                     <div class="container-fluid">
                                         <div class="row">
@@ -432,10 +439,10 @@ require_once('../../config/security.php');
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div> 
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset>-->
                     <!-- <fieldset>
                         <legend class="Gagalin"><i class="fas fa-cash-register"></i> &nbsp; Caja de ventas</legend>
                         <div class="container-fluid">
@@ -493,7 +500,7 @@ require_once('../../config/security.php');
                         </div>
                     </fieldset>
                     <br><br><br>
-                    <fieldset>
+                    <!-- <fieldset>
                         <div class="container-fluid">
                             <legend><i class="fas fa-portrait"></i> &nbsp; Avatar</legend>
                             <div class="row">
@@ -607,7 +614,7 @@ require_once('../../config/security.php');
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
                     <p class="text-center" style="margin-top: 40px;">
                         <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
                         &nbsp; &nbsp;
