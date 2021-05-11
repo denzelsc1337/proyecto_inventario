@@ -1,38 +1,59 @@
 <?php
 // require_once('../config/conection.php');
 
-$listaUsuarios;
+$listUsuarios;
 
 class usuario
 {
 
 	function __CONSTRUCT()
 	{
-		$this->listaUsuarios = array();
+		$this->listUsuarios = array();
+		$this->selectorTusu = array();
 	}
 
 	public function obtenerUsuario()
 	{
-		$cnx = new conexion();
+		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'select * from usuario';
+		$query = 'SELECT id_usuario, nom_usuario, ape_usuario, UPPER(tusu.detalle_tipo_usuario), cod_usuario, pass_usuario, mail_usuario, tlf_usuario, estado_usuario
+					FROM usuario usu
+					INNER JOIN tipo_usuario tusu ON usu.id_tipo_usuario = tusu.id_tipo_usuario';
 
 		$resultado = mysqli_query($cadena, $query);
 
 		while ($fila = mysqli_fetch_row($resultado)) {
-			$this->listaUsuarios[] = $fila;
+			$this->listUsuarios[] = $fila;
 		}
 
 		$cnx->cerrarConexion($cadena);
 
-		return $this->listaUsuarios;
+		return $this->listUsuarios;
+	}
+
+	public function selectorTipoUsuario()
+	{
+		$cnx = new conexion();
+		$cadena = $cnx->abrirConexion();
+
+		$query = 'SELECT id_tipo_usuario, detalle_tipo_usuario FROM tipo_usuario';
+
+		$resultado = mysqli_query($cadena, $query);
+
+		while ($fila = mysqli_fetch_row($resultado)) {
+			$this->selectorTusu[] = $fila;
+		}
+
+		$cnx->cerrarConexion($cadena);
+
+		return $this->selectorTusu;
 	}
 
 	function agregarUsuarios($data)
 	{
 		include_once('../config/Conexion.php');
-		$cnx = new conexion();
+		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
 		$Query = "INSERT INTO `usuario`(`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`)
