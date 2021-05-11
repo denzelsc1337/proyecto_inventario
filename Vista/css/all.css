@@ -80,6 +80,15 @@
   border-color: #007bff !important;
 }
 
+@media(min-width: 993px){
+	.nav-lateral.active{
+		transform: translateX(-420px) !important;
+	}
+	.page-content.active{
+		padding-left: 0 !important;
+	}
+}
+
 /* END CUSTOMIZE */
 
 
