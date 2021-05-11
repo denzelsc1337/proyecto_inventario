@@ -75,18 +75,18 @@
 								<ul>
 									<li>
 										<a href="Categoria/Categoria.php" class="Blogger">
-											<i class="fa fa-tags fa-fw"></i> &nbsp; Nueva categoría
+											<i class="fa fa-tags fa-fw"></i> &nbsp; Categorías
 										</a>
 									</li>
 									<li>
-										<a href="Categoria/Proveedor.php" class="Blogger">
-											<i class="fa fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+										<a href="Categoria/listaColegios.php" class="Blogger">
+											<i class="fa fa-school fa-fw"></i> &nbsp; Colegios
 										</a>
 									</li>
 
 									<li>
 										<a href="Categoria/Usuario.php" class="Blogger">
-											<i class="fa fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
+											<i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
 										</a>
 									</li>
 								</ul>
@@ -127,121 +127,6 @@
 									</li>
 								</ul>
 							</li>
-
-							<!-- <li>
-									<a href="#" class="nav-btn-submenu"><i class="fa fa-shopping-basket fa-fw"></i> &nbsp; Compras <i class="fa fa-chevron-down"></i></a>
-									<ul>
-										<li>
-											<a href="#">
-												<i class="fa fa-shopping-bag fa-fw"></i> &nbsp; Nueva compra
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-file-invoice-dollar fa-fw"></i> &nbsp; Compras realizadas
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar compra
-											</a>
-										</li>
-									</ul>
-								</li> -->
-
-							<!-- <li>
-	                    <a href="#" class="nav-btn-submenu"><i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Ventas <i class="fa fa-chevron-down"></i></a>
-	                    <ul>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/sale-new/">
-	                                <i class="fa fa-cart-plus fa-fw"></i> &nbsp; Nueva venta
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/sale-new/wholesale/">
-	                                <i class="fa fa-parachute-box fa-fw"></i> &nbsp; Venta por mayoreo
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/sale-list/">
-	                                <i class="fa fa-coins fa-fw"></i> &nbsp; Ventas realizadas
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/sale-pending/">
-	                                <i class="fab fa-creative-commons-nc fa-fw"></i> &nbsp; Ventas pendientes
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/sale-search-date/">
-	                                <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar venta (Fecha)
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/sale-search-code/">
-	                                <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar venta (Código)
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </li> -->
-
-							<!-- <li>
-	                    <a href="#" class="nav-btn-submenu"><i class="fa fa-wallet fa-fw"></i> &nbsp; Movimientos en cajas <i class="fa fa-chevron-down"></i></a>
-	                    <ul>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/movement-new/">
-	                                <i class="far fa-money-bill-alt fa-fw"></i> &nbsp; Nuevo movimiento
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/movement-list/">
-	                                <i class="fa fa-money-check-alt fa-fw"></i> &nbsp; Movimientos realizados
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/movement-search/">
-	                                <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar movimientos
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </li> -->
-
-							<!--                 <li>
-	                    <a href="#" class="nav-btn-submenu"><i class="fa fa-truck-loading fa-fw"></i> &nbsp; Devoluciones <i class="fa fa-chevron-down"></i></a>
-	                    <ul>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/return-list/">
-	                                <i class="fa fa-people-carry fa-fw"></i> &nbsp; Devoluciones realizadas
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/return-search/">
-	                                <i class="fa fa-dolly-flatbed fa-fw"></i> &nbsp; Buscar devoluciones
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </li> -->
-
-							<!--                 <li>
-	                    <a href="#" class="nav-btn-submenu"><i class="fa fa-warehouse fa-fw"></i> &nbsp; Kardex <i class="fa fa-chevron-down"></i></a>
-	                    <ul>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/kardex/">
-	                                <i class="fa fa-pallet fa-fw"></i> &nbsp; Kardex general
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/kardex-search/">
-	                                <i class="fa fa-search fa-fw"></i> &nbsp; Buscar kardex
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="http://systems.designlopers.com/SVI/kardex-product/">
-	                                <i class="fa fa-luggage-cart fa-fw"></i> &nbsp; Kardex por producto
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </li> -->
 							<li>
 								<a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
 								<ul>
@@ -252,22 +137,6 @@
 									</li>
 								</ul>
 							</li>
-
-							<!-- <li>
-	                    <a href="#" class="nav-btn-submenu"><i class="fa fa-cogs fa-fw"></i> &nbsp; Configuraciones <i class="fa fa-chevron-down"></i></a>
-	                    <ul>
-	                                                    <li>
-	                                <a href="http://systems.designlopers.com/SVI/company/">
-	                                    <i class="fa fa-store-alt fa-fw"></i> &nbsp; Datos de la empresa
-	                                </a>
-	                            </li>
-	                                                <li>
-	                            <a href="http://systems.designlopers.com/SVI/user-update/dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09/">
-	                                <i class="fa fa-sync fa-fw"></i> &nbsp; Actualizar cuenta
-	                            </a>
-	                        </li>
-	                    </ul>
-	                </li> -->
 						</ul>
 					</nav>
 				</div>
