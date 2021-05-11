@@ -1,4 +1,5 @@
-<?php require_once('../../Modelo/Categorias.php');
+<?php 
+require_once('../../Modelo/Categorias.php');
 $oCategoria = new cCategoria();
 $listaCategoria = $oCategoria->obtenerCategoria();
 $selectorCateg = $oCategoria->selectorCategorias();
@@ -11,4 +12,5 @@ $listaProducto = $oProducto->obtenerProducto();
 require_once('../../Modelo/Usuario.php');
 $oUsuario1 = new usuario();
 $listaUsuario = $oUsuario1->obtenerUsuario();
+$selectorTusu = $oUsuario1->selectorTipoUsuario();
 ?>
