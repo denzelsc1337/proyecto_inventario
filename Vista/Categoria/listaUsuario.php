@@ -339,7 +339,7 @@ require_once('../../config/security.php');
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($listaUsuarios as $vistaUsu) {
+                            foreach ($listaUsuario as $vistaUsu) {
                             ?>
                                 <tr class="text-center">
                                     <td><?php echo $vistaUsu[0] ?></td>
@@ -350,7 +350,6 @@ require_once('../../config/security.php');
                                     <td><?php echo $vistaUsu[5] ?></td>
                                     <td><?php echo $vistaUsu[6] ?></td>
                                     <td><?php echo $vistaUsu[7] ?></td>
-                                    <td><?php echo $vistaUsu[8] ?></td>
                                     <!-- <td>
                                         <a class="btn btn-info" href="http://systems.designlopers.com/SVI/product-category/1/">
                                             <i class="fab fa-shopify fa-fw"></i>
@@ -362,7 +361,7 @@ require_once('../../config/security.php');
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaUsu[9] == 1) {
+                                        if ($vistaUsu[8] == 1) {
                                         ?>
                                             <input type="checkbox" name="usuario_estado" value="1" checked="" disabled="">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
