@@ -1,4 +1,5 @@
 <?php
+include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
 
 /*if(isset($_SESSION['user'])){
@@ -323,17 +324,15 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Almacen</th>
-                                <th>№ Categoria</th>
-                                <th>Categoria</th>
-                                <th>Ver Productos</th>
-                                <th>Enable/</th>
-                                <th>Enable/</th>
-                                <th>Enable/</th>
-                                <th>Enable/</th>
-                                <th>Enable/</th>
-                                <th>Enable/</th>
-                                <th>Enable/</th>
+                                <th>Cod. Usuario</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Tipo Usuario</th>
+                                <th>Usuario</th>
+                                <th>Contraseña</th>
+                                <th>E-mail</th>
+                                <th>Celular</th>
+                                <th>Estado</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
