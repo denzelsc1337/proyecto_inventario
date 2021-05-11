@@ -13,4 +13,8 @@ require_once('../../Modelo/Usuario.php');
 $oUsuario1 = new usuario();
 $listaUsuario = $oUsuario1->obtenerUsuario();
 $selectorTusu = $oUsuario1->selectorTipoUsuario();
+
+require_once('../../Modelo/Colegio.php');
+$oColegio = new cColegios();
+$listaColegio = $oColegio->obtenerColegios();
 ?>
