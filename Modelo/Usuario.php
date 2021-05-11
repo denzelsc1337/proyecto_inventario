@@ -37,7 +37,7 @@ class usuario
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'SELECT id_tipo_usuario, detalle_tipo_usuario FROM tipo_usuario';
+		$query = 'SELECT id_tipo_usuario, UPPER(detalle_tipo_usuario) FROM tipo_usuario';
 
 		$resultado = mysqli_query($cadena, $query);
 
