@@ -1,3 +1,4 @@
+
 DROP DATABASE IF EXISTS inventario;
 CREATE DATABASE inventario;
 
@@ -97,9 +98,7 @@ CREATE TABLE productos
     fecha_entrada DATE NOT NULL,
     fecha_vencimento DATE,
     descripcion VARCHAR(50),
-    guia_remision VARCHAR (30)  NOT NULL,
     num_orden int,
-    num_pecosa int  NOT NULL,
     estado_producto BOOLEAN  NOT NULL
 );
 

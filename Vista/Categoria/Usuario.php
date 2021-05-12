@@ -40,7 +40,7 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 </head>
 
 <body class="Blogger">
@@ -73,18 +73,18 @@ require_once('../../config/security.php');
                             <ul>
                                 <li>
                                     <a href="../Categoria/Categoria.php" class="Blogger">
-                                        <i class="fa fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                                        <i class="fa fa-tags fa-fw"></i> &nbsp; Categorías
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Categoria/Proveedor.php" class="Blogger">
-                                        <i class="fa fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                                    <a href="../Categoria/listaColegios.php" class="Blogger">
+                                        <i class="fa fa-school fa-fw"></i> &nbsp; Colegios
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
-                                        <i class="fa fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
+                                        <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
                             </ul>
@@ -104,7 +104,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categorias.php" class="Blogger">
+                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
                                 </li>
@@ -125,121 +125,6 @@ require_once('../../config/security.php');
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- <li>
-                                    <a href="#" class="nav-btn-submenu"><i class="fa fa-shopping-basket fa-fw"></i> &nbsp; Compras <i class="fa fa-chevron-down"></i></a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-shopping-bag fa-fw"></i> &nbsp; Nueva compra
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file-invoice-dollar fa-fw"></i> &nbsp; Compras realizadas
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar compra
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li> -->
-
-                        <!-- <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Ventas <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-new/">
-                                    <i class="fa fa-cart-plus fa-fw"></i> &nbsp; Nueva venta
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-new/wholesale/">
-                                    <i class="fa fa-parachute-box fa-fw"></i> &nbsp; Venta por mayoreo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-list/">
-                                    <i class="fa fa-coins fa-fw"></i> &nbsp; Ventas realizadas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-pending/">
-                                    <i class="fab fa-creative-commons-nc fa-fw"></i> &nbsp; Ventas pendientes
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-search-date/">
-                                    <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar venta (Fecha)
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-search-code/">
-                                    <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar venta (Código)
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-
-                        <!-- <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-wallet fa-fw"></i> &nbsp; Movimientos en cajas <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/movement-new/">
-                                    <i class="far fa-money-bill-alt fa-fw"></i> &nbsp; Nuevo movimiento
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/movement-list/">
-                                    <i class="fa fa-money-check-alt fa-fw"></i> &nbsp; Movimientos realizados
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/movement-search/">
-                                    <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar movimientos
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-
-                        <!--                 <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-truck-loading fa-fw"></i> &nbsp; Devoluciones <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/return-list/">
-                                    <i class="fa fa-people-carry fa-fw"></i> &nbsp; Devoluciones realizadas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/return-search/">
-                                    <i class="fa fa-dolly-flatbed fa-fw"></i> &nbsp; Buscar devoluciones
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-
-                        <!--                 <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-warehouse fa-fw"></i> &nbsp; Kardex <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/kardex/">
-                                    <i class="fa fa-pallet fa-fw"></i> &nbsp; Kardex general
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/kardex-search/">
-                                    <i class="fa fa-search fa-fw"></i> &nbsp; Buscar kardex
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/kardex-product/">
-                                    <i class="fa fa-luggage-cart fa-fw"></i> &nbsp; Kardex por producto
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
                         <li>
                             <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
@@ -250,22 +135,6 @@ require_once('../../config/security.php');
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- <li>
-                            <a href="#" class="nav-btn-submenu"><i class="fa fa-cogs fa-fw"></i> &nbsp; Configuraciones <i class="fa fa-chevron-down"></i></a>
-                            <ul>
-                                                            <li>
-                                        <a href="http://systems.designlopers.com/SVI/company/">
-                                            <i class="fa fa-store-alt fa-fw"></i> &nbsp; Datos de la empresa
-                                        </a>
-                                    </li>
-                                                        <li>
-                                    <a href="http://systems.designlopers.com/SVI/user-update/dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09/">
-                                        <i class="fa fa-sync fa-fw"></i> &nbsp; Actualizar cuenta
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
                     </ul>
                 </nav>
             </div>
@@ -316,7 +185,7 @@ require_once('../../config/security.php');
             </div>
 
             <div class="container-fluid">
-                <form class="form-neon FormularioAjax" action="http://systems.designlopers.com/SVI/ajax/usuarioAjax.php" method="POST" data-form="save" autocomplete="off">
+                <form class="form-neon FormularioAjax" id="frmUser" autocomplete="off">
                     <input type="hidden" name="modulo_usuario" value="registrar">
                     <fieldset>
                         <legend class="Gagalin"><i class="far fa-address-card"></i> &nbsp; Información personal</legend>
@@ -325,7 +194,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_tipo_documento" class="bmd-label-floating">Tipo de documento &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <select class="form-control" name="usuario_tipo_documento_reg" id="usuario_tipo_documento">
+                                        <select class="form-control" name="usuario_tipo_documento" id="usuario_tipo_documento">
                                             <option value="" selected="">Seleccione una opción</option>
                                             <option value="DUI">1 - DUI</option>
                                             <option value="DNI">2 - DNI</option>
@@ -336,19 +205,19 @@ require_once('../../config/security.php');
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
+                            <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_numero_documento" class="bmd-label-floating">Numero de documento &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[a-zA-Z0-9-]{7,30}" class="form-control" name="usuario_numero_documento_reg" id="usuario_numero_documento" maxlength="30">
+                                        <input type="text"  class="form-control" name="iduser" id="iduser" maxlength="8">
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                        <select class="form-control" name="usuario_cargo_reg" id="usuario_cargo">
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
                                             <option value="" selected="">Seleccione una opción</option>
                                             <?php
                                             foreach ($selectorTusu as $cboTusu) {
@@ -362,19 +231,19 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_nombre" class="bmd-label-floating">Nombres &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,35}" class="form-control" name="usuario_nombre_reg" id="usuario_nombre" maxlength="35">
+                                        <input type="text"  class="form-control" name="nomuser" id="nomuser" maxlength="35">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_apellido" class="bmd-label-floating">Apellidos &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,35}" class="form-control" name="usuario_apellido_reg" id="usuario_apellido" maxlength="35">
+                                        <input type="text"  class="form-control" name="usuario_apellido" id="usuario_apellido" maxlength="35">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_telefono" class="bmd-label-floating">Teléfono</label>
-                                        <input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="usuario_telefono_reg" id="usuario_telefono" maxlength="20">
+                                        <input type="text"  class="form-control" name="usuario_telefono" id="usuario_telefono" maxlength="20">
                                     </div>
                                 </div>
                             </div>
@@ -466,34 +335,55 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_usuario" class="bmd-label-floating">Nombre de usuario &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[a-zA-Z0-9]{4,25}" class="form-control" name="usuario_usuario_reg" id="usuario_usuario" maxlength="25">
+                                        <input type="text"class="form-control" name="username" id="username" maxlength="25">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_email" class="bmd-label-floating">Email</label>
-                                        <input type="email" class="form-control" name="usuario_email_reg" id="usuario_email" maxlength="50">
+                                        <input type="email" class="form-control" name="usuario_email" id="usuario_email" maxlength="50">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_clave_1" class="bmd-label-floating">Contraseña &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="password" class="form-control" name="usuario_clave_1_reg" id="usuario_clave_1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100">
+                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="100">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_clave_2" class="bmd-label-floating">Repetir contraseña &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="password" class="form-control" name="usuario_clave_2_reg" id="usuario_clave_2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100">
+                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="100">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <!-- <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_estado" class="bmd-label-floating">Estado de la cuenta &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <select class="form-control" name="usuario_estado_reg" id="usuario_estado">
                                             <option value="Activa" selected="">1 - Activa</option>
                                             <option value="Deshabilitada">2 - Deshabilitada</option>
                                         </select>
+                                    </div>
+                                </div> -->
+                                <div class="col-12 col-md-6" style="margin-top: 30px;">
+                                    <label for="" class="bmd-label-floating">Estado De la Cuenta &nbsp;
+                                        <i class="fab fa-font-awesome-alt"></i> &nbsp;
+                                    </label>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_estado" value="1" checked>
+                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_estado" value="0">
+                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -618,7 +508,8 @@ require_once('../../config/security.php');
                     <p class="text-center" style="margin-top: 40px;">
                         <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
                         &nbsp; &nbsp;
-                        <button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+                        <button id="btnSave_usr" type="submit" class="btn btn-raised btn-info btn-sm">
+                        <i class="far fa-save"></i> &nbsp; GUARDAR</button>
                     </p>
                     <p class="text-center">
                         <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
@@ -686,10 +577,11 @@ require_once('../../config/security.php');
     </script>
 
     <!-- printThis  -->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
+    <script src="../resources/functions.js"></script>
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>  -->
 </body>
 
 </html>

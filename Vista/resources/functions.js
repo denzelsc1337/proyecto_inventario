@@ -12,7 +12,7 @@
                     document.getElementById("categoria_nombre").value = "";
                     document.getElementById("cod_cate").value = "";
                 }else{
-                    alert("Debe Ingresar Datos.");
+                    alert("Error en el servidor.");
                 }
             }
         });
@@ -21,6 +21,9 @@
 
     $('#btnSaveProd').click(function(){
         var _data_prd=$('#frmProd').serialize();
+        //alert(_data_prd);
+        //return false;
+    
         $.ajax({
             type:"POST",
             url:"../../Controlador/AddProducto.php",
@@ -28,17 +31,33 @@
             success:function(r){
                 if (r==1) {
                     alert("Add successfully");
-                    /*event.returnValue=false;
-                    document.getElementById("categoria_nombre").value = "";
-                    document.getElementById("cod_cate").value = "";*/
+                    event.returnValue=false;
+                    
                 }else{
-                    alert("Debe Ingresar Datos.");
+                    alert("Error en el servidor.");
                 }
             }
         });
         return false;
     });
+    $('#btnSave_usr').click(function(){
+        var _data_usr=$('#frmUser').serialize();
 
-
+        $.ajax({
+            type:"POST",
+            url:"../../Controlador/AddUser.php",
+            data: _data_usr,
+            success:function(r){
+                if (r==1) {
+                    alert("Add successfully");
+                    event.returnValue=false;
+                    
+                }else{
+                    alert("Error en el servidor.");
+                }
+            }
+        });
+        return false;
+    });
 });
 

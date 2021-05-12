@@ -41,12 +41,13 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 </head>
 
 <body class="Blogger">
     <!-- Main container -->
     <main class="full-box main-container">
+        <!-- Nav lateral -->
         <!-- Nav lateral -->
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
@@ -72,20 +73,20 @@ require_once('../../config/security.php');
                                 <i class="fas fa-briefcase fa-fw"></i> &nbsp; Administración <i class="fa fa-chevron-down"></i>
                             </a>
                             <ul>
-                                <li>
+                               <li>
                                     <a href="../Categoria/Categoria.php" class="Blogger">
-                                        <i class="fa fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                                        <i class="fa fa-tags fa-fw"></i> &nbsp; Categorías
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Categoria/Proveedor.php" class="Blogger">
-                                        <i class="fa fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                                    <a href="../Categoria/listaColegios.php" class="Blogger">
+                                        <i class="fa fa-school fa-fw"></i> &nbsp; Colegios
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
-                                        <i class="fa fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
+                                        <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
                             </ul>
@@ -105,7 +106,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categorias.php" class="Blogger">
+                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
                                 </li>
@@ -126,121 +127,6 @@ require_once('../../config/security.php');
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- <li>
-                                    <a href="#" class="nav-btn-submenu"><i class="fa fa-shopping-basket fa-fw"></i> &nbsp; Compras <i class="fa fa-chevron-down"></i></a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-shopping-bag fa-fw"></i> &nbsp; Nueva compra
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-file-invoice-dollar fa-fw"></i> &nbsp; Compras realizadas
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar compra
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li> -->
-
-                        <!-- <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Ventas <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-new/">
-                                    <i class="fa fa-cart-plus fa-fw"></i> &nbsp; Nueva venta
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-new/wholesale/">
-                                    <i class="fa fa-parachute-box fa-fw"></i> &nbsp; Venta por mayoreo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-list/">
-                                    <i class="fa fa-coins fa-fw"></i> &nbsp; Ventas realizadas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-pending/">
-                                    <i class="fab fa-creative-commons-nc fa-fw"></i> &nbsp; Ventas pendientes
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-search-date/">
-                                    <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar venta (Fecha)
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/sale-search-code/">
-                                    <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar venta (Código)
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-
-                        <!-- <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-wallet fa-fw"></i> &nbsp; Movimientos en cajas <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/movement-new/">
-                                    <i class="far fa-money-bill-alt fa-fw"></i> &nbsp; Nuevo movimiento
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/movement-list/">
-                                    <i class="fa fa-money-check-alt fa-fw"></i> &nbsp; Movimientos realizados
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/movement-search/">
-                                    <i class="fa fa-search-dollar fa-fw"></i> &nbsp; Buscar movimientos
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-
-                        <!--                 <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-truck-loading fa-fw"></i> &nbsp; Devoluciones <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/return-list/">
-                                    <i class="fa fa-people-carry fa-fw"></i> &nbsp; Devoluciones realizadas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/return-search/">
-                                    <i class="fa fa-dolly-flatbed fa-fw"></i> &nbsp; Buscar devoluciones
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-
-                        <!--                 <li>
-                        <a href="#" class="nav-btn-submenu"><i class="fa fa-warehouse fa-fw"></i> &nbsp; Kardex <i class="fa fa-chevron-down"></i></a>
-                        <ul>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/kardex/">
-                                    <i class="fa fa-pallet fa-fw"></i> &nbsp; Kardex general
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/kardex-search/">
-                                    <i class="fa fa-search fa-fw"></i> &nbsp; Buscar kardex
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://systems.designlopers.com/SVI/kardex-product/">
-                                    <i class="fa fa-luggage-cart fa-fw"></i> &nbsp; Kardex por producto
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
                         <li>
                             <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
@@ -251,22 +137,6 @@ require_once('../../config/security.php');
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- <li>
-                            <a href="#" class="nav-btn-submenu"><i class="fa fa-cogs fa-fw"></i> &nbsp; Configuraciones <i class="fa fa-chevron-down"></i></a>
-                            <ul>
-                                                            <li>
-                                        <a href="http://systems.designlopers.com/SVI/company/">
-                                            <i class="fa fa-store-alt fa-fw"></i> &nbsp; Datos de la empresa
-                                        </a>
-                                    </li>
-                                                        <li>
-                                    <a href="http://systems.designlopers.com/SVI/user-update/dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09/">
-                                        <i class="fa fa-sync fa-fw"></i> &nbsp; Actualizar cuenta
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
                     </ul>
                 </nav>
             </div>
@@ -330,20 +200,20 @@ require_once('../../config/security.php');
             </div>
 
             <div class="container-fluid">
-                <form class="form-neon FormularioAjax" action="../../Controlador/AddProducto.php" method="POST" data-form="save" autocomplete="off">
-                    <input type="hidden" name="modulo_producto" value="registrar">
+                <form id="frmProd" class="form-neon FormularioAjax" method="POST" autocomplete="off">
+                    <!-- <input type="hidden" name="modulo_producto" value="registrar"> -->
                     <fieldset>
-                        <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Proveedor, categoría & estado</legend>
+                        <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Categoría & estado</legend>
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-12 col-md-4">
+                                <!-- <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="" class="bmd-label-floating">Proveedor</label>
                                         <select class="form-control" name="proovslct" id="proovslct">
                                             <option value="1">proveedor test</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_categoria" class="bmd-label-floating">Categoría &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
@@ -365,26 +235,19 @@ require_once('../../config/security.php');
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="producto_categoria" class="bmd-label-floating">Marca &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <select class="form-control" name="_producto_categ" id="_producto_categ">
-                                            <option value="" selected="">Seleccione una opción</option>
-                                            <option value="1">1 - Baños y Plomeria</option>
-                                            <option value="2">2 - Herramientas</option>
-                                            <option value="3">3 - Hogar y Jardin</option>
-                                            <option value="4">4 - Material Electrico</option>
-                                            <option value="5">5 - MERCADO</option>
-                                            <option value="6">6 - Tornillos</option>
-                                            <option value="7">7 - Lácteos</option>
-                                            <option value="8">8 - Chocolates</option>
-                                            <option value="10">9 - Nueva</option>
-                                            <option value="12">10 - ropa</option>
-                                            <option value="13">11 - ssds</option>
-                                            <option value="14">12 - CATEGORIA2</option>
-                                            <option value="15">13 - electricidad</option>
-                                            <option value="16">14 - Repuwstos</option>
-                                            <option value="18">15 - Juguete para sorpresa</option>
-                                            <option value="20">16 - Peliculas Disney</option>
-                                            <option value="21">17 - bebidasa</option>
+                                        <label for="producto_marca" class="bmd-label-floating">Marca &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="marca_id" id="marca_id">
+                                            <option value="" selected="">Selecciona una marca </option>
+                                            <?php
+                                            foreach($selectorMarca as $cboMarca){
+                                            ?>
+                                            <option value="<?php echo $cboMarca[0];?>"><?php echo $cboMarca[1];?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -430,19 +293,25 @@ require_once('../../config/security.php');
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Nombre del Producto &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\- ]{1,97}" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="97">
+                                        <input type="text" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="97">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_stock_total" class="bmd-label-floating">Stock o existencias &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[0-9]{1,20}" class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="20">
+                                        <input type="number"  class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="20">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="producto_fecha_vencimiento">Fecha de ingreso</label>
-                                        <input type="date" class="form-control" name="producto_fecha_vencimiento" id="producto_fecha_vencimiento" maxlength="30" value="2021-05-06">
+                                        <label for="producto_fecha_ingreso">Fecha de ingreso</label>
+                                        <input type="date" class="form-control" name="date_in" id="date_in">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="producto_fecha_vencimiento">Fecha de vencimiento</label>
+                                        <input type="date" class="form-control" name="date_out" id="date_out" >
                                     </div>
                                 </div>
                                 <!-- <div class="col-12 col-md-4">
@@ -500,21 +369,27 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Descripción</label>
-                                        <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,30}" class="form-control input-barcode" name="desc" id="desc" maxlength="30">
+                                        <input type="text"  class="form-control input-barcode" name="desc" id="desc" maxlength="30">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-lg-4">
+                                <!-- <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Guía Remisión</label>
-                                        <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,30}" class="form-control input-barcode" name="_gremision" id="_gremision" maxlength="30">
+                                        <input type="number"class="form-control input-barcode" name="_gremision" id="_gremision" maxlength="30">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
-                                        <label for="producto_marca" class="bmd-label-floating">N° Pecosa</label>
-                                        <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,30}" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="30">
+                                        <label for="producto_marca" class="bmd-label-floating">N° Orden</label>
+                                        <input type="number"  class="form-control input-barcode" name="_norden" id="_norden" maxlength="30">
                                     </div>
                                 </div>
+                                <!-- <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="producto_marca" class="bmd-label-floating">N° Pecosa</label>
+                                        <input type="number"  class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="30">
+                                    </div>
+                                </div> -->
                                 <!-- <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_modelo" class="bmd-label-floating">Modelo</label>
@@ -548,7 +423,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="producto_fecha_vencimiento">Fecha de vencimiento (día/mes/año)</label>
-                                        <input type="date" class="form-control" name="producto_fecha_vencimiento_reg" id="producto_fecha_vencimiento" maxlength="30" value="2021-05-06">
+                                        <input type="date" class="form-control" name="producto_fecha_vencimiento_reg" id="producto_fecha_vencimiento" maxlength="30" >
                                     </div>
                                 </div>
                             </div>
@@ -607,13 +482,13 @@ require_once('../../config/security.php');
                                 <div class="form-group">
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="categoria_estado" value="1" checked>
+                                            <input type="radio" name="prod_status" value="1" checked>
                                             <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="categoria_estado" value="0">
+                                            <input type="radio" name="prod_status" value="0">
                                             <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
                                         </label>
                                     </div>
@@ -630,7 +505,7 @@ require_once('../../config/security.php');
                         <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
                     </p> -->
                     <p class="text-center">
-                        <button type="submit" class="btn btn-raised btn-info btn-sm">
+                        <button id="btnSaveProd" type="submit" class="btn btn-raised btn-info btn-sm">
                             <i class="far fa-save">
                             </i> &nbsp; GUARDAR
                         </button>
@@ -680,7 +555,7 @@ require_once('../../config/security.php');
     <!--=============================================
 =            Include JavaScript files           =
 ==============================================-->
-    <!-- popper -->
+     <!-- popper -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/popper.min.js"></script>
 
     <!-- Bootstrap V4.3 -->
@@ -698,10 +573,10 @@ require_once('../../config/security.php');
     </script>
 
     <!-- printThis  -->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
+    <script src="../resources/functions.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,4 @@
 <?php
-include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
 
 /*if(isset($_SESSION['user'])){
@@ -156,51 +155,36 @@ require_once('../../config/security.php');
 
             <!-- Page header -->
 
-            <div class="full-box page-header">
+            <div class="full-box page-header ">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
+                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Colegios
                 </h3>
                 <p class="text-justify">
-                    En el módulo PRODUCTOS podrá agregar nuevos productos al sistema, actualizar datos de los productos, eliminar o actualizar la imagen de los productos, imprimir códigos de barras o SKU de cada producto, buscar productos en el sistema, ver todos los productos en almacén, ver los productos más vendido y filtrar productos por categoría.
+                    En el módulo COLEGIOS usted podrá actualizar los datos de los colegios, ver todos los colegios registrados en el sistema o eliminarlos si así lo desea.
                 </p>
             </div>
 
-            <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
+            <div class="container-fluid Gagalin">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+                    <!-- <li>
+                        <a href="../Categoria/Proveedor.php">
+                            <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                        </a>
+                    </li> -->
                     <li>
-                        <a href="../Producto/Productos.php">
-                            <i class="fas fa-box fa-fw"></i> &nbsp; Nuevo producto
+                        <a class="active" href="../Categoria/listaColegios.php">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
                         </a>
                     </li>
-                    <li>
-                        <a class="active" href="../Producto/listaProductos.php">
-                            <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
+                    <!-- <li>
+                        <a href="http://systems.designlopers.com/SVI/provider-search/">
+                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveedor
                         </a>
-                    </li>
-                    <li>
-                        <a href="../Producto/Producto-Categorias.php">
-                            <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../Producto/Producto-Vencimiento.php">
-                            <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../Producto/Producto-Stock.php">
-                            <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../Producto/BuscarProducto.php">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
-                        </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
-            <div class="container-fluid" style="background-color: #FFF; padding-bottom: 20px;">
+            <div class="container-fluid">
 
                 <div class="table-responsive">
                     <?php
@@ -209,39 +193,43 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Almacen</th>
-                                <th>Categoria</th>
-                                <th>Marca</th>
-                                <th>Producto</th>
-                                <th>Cantidades</th>
-                                <th>F. Ingreso</th>
-                                <th>Descripción</th>
-                                <th>№ Orden</th>
-                                <th>Enable/Disable</th>
+                                <th>№ Colegio</th>
+                                <th>Cod Colegio</th>
+                                <th>Dirección</th>
+                                <th>Telefono</th>
+                                <th>E-mail</th>
+                                <th>Código Modular</th>
+                                <th>Departamento</th>
+                                <th>Distrito</th>
+                                <th>Localidad</th>
+                                <th>Director</th>
+                                <th>Estado</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($listaProducto as $vistaProd) {
+                            foreach ($listaColegio as $vistaCole) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaProd[0] ?></td>
-                                    <td><?php echo $vistaProd[1] ?></td>
-                                    <td><?php echo $vistaProd[2] ?></td>
-                                    <td><?php echo $vistaProd[3] ?></td>
-                                    <td><?php echo $vistaProd[4] ?></td>
-                                    <td><?php echo $vistaProd[5] ?></td>
-                                    <td><?php echo $vistaProd[6] ?></td>
-                                    <td><?php echo $vistaProd[7] ?></td>
-
+                                    <td><?php echo $vistaCole[0] ?></td>
+                                    <td><?php echo $vistaCole[1] ?></td>
+                                    <td><?php echo $vistaCole[2] ?></td>
+                                    <td><?php echo $vistaCole[3] ?></td>
+                                    <td><?php echo $vistaCole[4] ?></td>
+                                    <td><?php echo $vistaCole[5] ?></td>
+                                    <td><?php echo $vistaCole[6] ?></td>
+                                    <td><?php echo $vistaCole[7] ?></td>
+                                    <td><?php echo $vistaCole[8] ?></td>
+                                    <td><?php echo $vistaCole[9] ?></td>
+                                    
                                     <td>
                                         <?php
                                         $hide = "";
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaProd[8] == 1) {
+                                        if ($vistaCole[10] == 1) {
                                         ?>
                                             <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -288,24 +276,6 @@ require_once('../../config/security.php');
                     ?>
                     </table>
                 </div>
-
-
-                <p class="text-right">Mostrando productos <strong>1</strong> al <strong>15</strong> de un <strong>total de 101</strong></p>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
-                        <li class="page-item"><a class="page-link active" href="http://systems.designlopers.com/SVI/product-list/1/">1</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/2/">2</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/3/">3</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/4/">4</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/5/">5</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/6/">6</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/7/">7</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/2/">Siguiente</a></li>
-                        <li class="page-item"><a class="page-link" href="http://systems.designlopers.com/SVI/product-list/7/"><i class="fas fa-angle-double-right"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
         </section>
     </main>
     <script>
@@ -326,7 +296,7 @@ require_once('../../config/security.php');
                 if (result.value) {
 
                     let url = 'http://systems.designlopers.com/SVI/ajax/loginAjax.php';
-                    let token = 'OHgwZ3RyMVNDQzZYb3l3VjFaZFlCVXN4KzRXZ0FyTXFyREhwTFZQaUpEV21mbEY1ekw1UDgwMU4rRk1rRm5sLzNUTlJPRWxmallMNkVKMUtCWXBnVkREZW9CbHBjNE5wek5UenZDYUEwWlRxekJwb09MZkpxNG5DWjQyWFVvVm4=';
+                    let token = 'bSsxZkJVUGRrRS8yRnJsMXY5cG95NGtzWjh3bDVWVTg3N1ZkRloxN1YyRUVYT2g4bUZUNmNiSVlYT2paWHRaNi9LU1hCbFIrQW9LdERsVlJXdjA5eldwOFBPbXdUcEVWTFpIeFpSY1VQSGl1S1lVRXFOankwTHpqNisvNkJzZms=';
                     let usuario = 'OFh3MUpva29KdER0ZHNqc0pkTGlmdz09';
 
                     let datos = new FormData();
@@ -346,6 +316,7 @@ require_once('../../config/security.php');
             });
         });
     </script>
+
     <!--=============================================
 =            Include JavaScript files           =
 ==============================================-->

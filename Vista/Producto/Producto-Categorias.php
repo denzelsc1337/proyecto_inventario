@@ -77,8 +77,8 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Categoria/Proveedor.php" class="Blogger">
-                                        <i class="fa fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                                    <a href="../Categoria/listaColegios.php" class="Blogger">
+                                        <i class="fa fa-school fa-fw"></i> &nbsp; Colegios
                                     </a>
                                 </li>
 
