@@ -30,4 +30,5 @@ $oReporte = new rReporte();
 $listaRxStock = $oReporte->RxStock();
 $listaRxCategoria = $oReporte->RxCategoria();
 $listaRxVencimiento = $oReporte->RxVencimiento();
+$listaRxEntrada = $oReporte->RxEntrada();
 ?>
