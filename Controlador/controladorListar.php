@@ -21,4 +21,13 @@ $listaColegio = $oColegio->obtenerColegios();
 require_once('../../Modelo/Marca.php');
 $oMarca = new cMarca();
 $selectorMarca = $oMarca->selectorMarca();
+
+
+
+// REPORTES
+require_once('../../Modelo/Reportes.php');
+$oReporte = new rReporte();
+$listaRxStock = $oReporte->RxStock();
+$listaRxCategoria = $oReporte->RxCategoria();
+$listaRxVencimiento = $oReporte->RxVencimiento();
 ?>
