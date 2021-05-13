@@ -11,6 +11,7 @@ class rReporte
         $this->listRxStock = array();
         $this->listRxCategoria = array();
         $this->listRxVencimiento = array();
+        $this->listRxEntrada = array();
     }
 
     public function RxStock()
@@ -84,4 +85,34 @@ class rReporte
 
         return $this->listRxVencimiento;
     }
+
+    public function RxEntrada()
+    {
+        include_once('../../config/Conexion.php');
+        $cnx = new conexion();
+        $cadena = $cnx->abrirConexion();
+
+        $query = 'SELECT prov.razon_social, guia_remision, num_orden, num_pecosa, CONCAT(usu.nom_usuario," ",usu.ape_usuario), cat.nom_categoria, nom_producto, mar.nom_marca, cantidades, fecha_entrada
+                    FROM productos prod
+                    INNER JOIN proveedor prov ON prod.id_proveedor = prov.id_proveedor
+                    INNER JOIN categorias cat ON prod.id_categoria = cat.id_categoria
+                    INNER JOIN marca mar ON prod.id_marca = mar.id_marca
+                    INNER JOIN usuario usu ON prod.id_usuario = usu.id_usuario';
+
+        $resultado = mysqli_query($cadena, $query);
+
+        while ($fila = mysqli_fetch_row($resultado)) {
+            $this->listRxEntrada[] = $fila;
+        }
+
+        $cnx->cerrarConexion($cadena);
+
+        return $this->listRxEntrada;
+    }
+
+
+
+
+
+
 }
