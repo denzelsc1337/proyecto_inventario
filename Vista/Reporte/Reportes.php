@@ -126,11 +126,11 @@ require_once('../../config/security.php');
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Reporte/Reportes.php" class="Blogger">
-                                        <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                                        <i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes
                                     </a>
                                 </li>
                             </ul>
@@ -156,10 +156,10 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                    <i class="fas fa-file-invoice fa-fw"></i> &nbsp; Reportes
                 </h3>
                 <p class="text-justify">
-                    En el módulo REPORTES podrá ver, generar e imprimir reportes de ventas en formato PDF.
+                    En el módulo REPORTES podrá ver, generar e imprimir reportes.
                 </p>
             </div>
 
@@ -171,60 +171,15 @@ require_once('../../config/security.php');
                             <div class="row justify-content-md-center">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="orden_reporte_inventario" class="bmd-label-floating">Ordenar por</label>
+                                        <label for="orden_reporte_inventario" class="bmd-label-floating">Reportes por &nbsp;<i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <select class="form-control" name="orden_reporte_inventario" id="orden_reporte_inventario">
                                             <option value="RxStock" selected="">Por Stock</option>
                                             <option value="RxCategoria">Por Categoria</option>
                                             <option value="RxVencimiento">Por Vencimiento</option>
-                                            <option value="sdesc">Stock (mayor - menor)</option>
+                                            <option value="RxEntrada">Por Ingresos</option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <!-- <div class="col-12 col-md-6" style="margin-top: 30px;">
-                                    <label for="" class="bmd-label-floating">Estado De la Categoria &nbsp;
-                                        <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                    </label>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="categoria_estado" value="1" checked>
-                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="categoria_estado" value="0">
-                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6" style="margin-top: 30px;">
-                                    <label for="" class="bmd-label-floating">Estado De la Categoria &nbsp;
-                                        <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                    </label>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <div class="radio">
-                                                <label >
-                                                    <input type="radio" id="orden_reporte_inventario" name="orden_reporte_inventario" value="RxStock">
-                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Por Stock
-                                                </label>
-
-                                                <label>
-                                                    <input type="radio" id="orden_reporte_inventario1" name="orden_reporte_inventario1" value="RxCategoria">
-                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; Por Categoria
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-
-
                                 <div class="col-12">
                                     <p class="text-center" style="margin-top: 40px;">
                                         <button type="button" class="btn btn-raised btn-info" onclick="generar_reporte_inventario()"><i class="far fa-file-pdf"></i> &nbsp; GENERAR REPORTE</button>
