@@ -83,16 +83,16 @@ require_once('../../config/security.php');
             </thead>
             <tbody>
                 <?php
-                foreach ($listaRxStock as $vistaRxStock) {
+                foreach ($listaRxStock as $vistaRepo) {
                 ?>
                     <tr class="text-center">
-                        <td><?php echo $vistaRxStock[0] ?></td>
-                        <td><?php echo $vistaRxStock[1] ?></td>
-                        <td><?php echo $vistaRxStock[2] ?></td>
-                        <td><?php echo $vistaRxStock[3] ?></td>
-                        <td><?php echo $vistaRxStock[4] ?></td>
-                        <td><?php echo $vistaRxStock[5] ?></td>
-                        <td><?php echo $vistaRxStock[6] ?></td>
+                        <td><?php echo $vistaRepo[0] ?></td>
+                        <td><?php echo $vistaRepo[1] ?></td>
+                        <td><?php echo $vistaRepo[2] ?></td>
+                        <td><?php echo $vistaRepo[3] ?></td>
+                        <td><?php echo $vistaRepo[4] ?></td>
+                        <td><?php echo $vistaRepo[5] ?></td>
+                        <td><?php echo $vistaRepo[6] ?></td>
                     </tr>
             </tbody>
         <?php
