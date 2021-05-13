@@ -16,11 +16,12 @@ class pProductos
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'SELECT secuence_prod, /* prov.razon_social ,*/ cat.nom_categoria, mar.nom_marca, nom_producto, cantidades, fecha_entrada, descripcion, num_orden, estado_producto
+		$query = 'SELECT secuence_prod, SKU_producto, prov.razon_social, cat.nom_categoria, mar.nom_marca, nom_producto, cantidades, fecha_entrada, fecha_vencimiento, descripcion, guia_remision, num_orden, num_pecosa, perecible
 					FROM productos prod
-					/* INNER JOIN proveedor prov ON prod.id_proveedor = prov.id_proveedor */
+					INNER JOIN proveedor prov ON prod.id_proveedor = prov.id_proveedor
 					INNER JOIN categorias cat ON prod.id_categoria = cat.id_categoria
-					INNER JOIN marca mar ON prod.id_marca = mar.id_marca';
+					INNER JOIN marca mar ON prod.id_marca = mar.id_marca
+					INNER JOIN usuario usu ON prod.id_usuario = usu.id_usuario';
 
 		$resultado = mysqli_query($cadena, $query);
 
