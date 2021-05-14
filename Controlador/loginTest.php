@@ -27,6 +27,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		elseif($sentencia->rowCount() == 1){
 
 			$_SESSION['name'] = $datos->nom_usuario;
+			$_SESSION['secuence_usu'] = $datos->secuence_usu;
 			$_SESSION['last_name'] = $datos->ape_usuario;
 			$_SESSION['user'] = $datos->cod_usuario;
 			$_SESSION['id_rol'] = $datos->id_tipo_usuario;

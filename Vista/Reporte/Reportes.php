@@ -126,11 +126,11 @@ require_once('../../config/security.php');
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Reporte/Reportes.php" class="Blogger">
-                                        <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                                        <i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes
                                     </a>
                                 </li>
                             </ul>
@@ -156,61 +156,33 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                    <i class="fas fa-file-invoice fa-fw"></i> &nbsp; Reportes
                 </h3>
                 <p class="text-justify">
-                    En el módulo REPORTES podrá ver, generar e imprimir reportes de ventas en formato PDF.
+                    En el módulo REPORTES podrá ver, generar e imprimir reportes.
                 </p>
             </div>
 
             <div class="container-fluid">
-                <div id="today-sales">
-                    <h4 class="text-center Gagalin">Estadísticas de ventas de hoy (07-05-2021)</h4>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-dashboard">
-                            <thead>
-                                <tr class="text-center">
-                                    <th scope="col">Ventas realizadas</th>
-                                    <th scope="col">Total en ventas</th>
-                                    <th scope="col">Costo de ventas</th>
-                                    <th scope="col">Ganancias</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-center">
-                                    <td>1</td>
-                                    <td>$11.87 USD</td>
-                                    <td>$9.80 USD</td>
-                                    <td>$2.07 USD</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <p class="text-center">
-                    <a href="#" class="btn btn-outline-info print-barcode" data-id="#today-sales"><i class="fas fa-print"></i> &nbsp; Imprimir</a>
-                </p>
-                <hr>
                 <div class="container-fluid">
-                    <h4 class="text-center Gagalin">Generar reporte personalizado</h4>
+                    <h4 class="text-center">Generar reporte de inventario personalizado</h4>
                     <div class="form-neon">
                         <div class="container-fluid">
                             <div class="row justify-content-md-center">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="fecha_inicio">Fecha inicial (día/mes/año)</label>
-                                        <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" maxlength="30">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="fecha_final">Fecha final (día/mes/año)</label>
-                                        <input type="date" class="form-control" name="fecha_final" id="fecha_final" maxlength="30">
+                                        <label for="orden_reporte_inventario" class="bmd-label-floating">Reportes por &nbsp;<i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <select class="form-control" name="orden_reporte_inventario" id="orden_reporte_inventario">
+                                            <option value="RxStock" selected="">Por Stock</option>
+                                            <option value="RxCategoria">Por Categoria</option>
+                                            <option value="RxVencimiento">Por Vencimiento</option>
+                                            <option value="RxEntrada">Por Ingresos</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <p class="text-center" style="margin-top: 40px;">
-                                        <button type="button" class="btn btn-raised btn-info" onclick="generar_reporte()"><i class="far fa-file-pdf"></i> &nbsp; GENERAR REPORTE</button>
+                                        <button type="button" class="btn btn-raised btn-info" onclick="generar_reporte_inventario()"><i class="far fa-file-pdf"></i> &nbsp; GENERAR REPORTE</button>
                                     </p>
                                 </div>
                             </div>
@@ -219,27 +191,7 @@ require_once('../../config/security.php');
                 </div>
             </div>
 
-            <script>
-                function generar_reporte() {
-                    let fecha_inicio = document.querySelector('#fecha_inicio').value;
-                    let fecha_final = document.querySelector('#fecha_final').value;
-
-                    fecha_inicio.trim();
-                    fecha_final.trim();
-
-                    if (fecha_inicio != "" && fecha_final != "") {
-                        url = "http://systems.designlopers.com/SVI/pdf/report-sales.php?fi=" + fecha_inicio + "&&ff=" + fecha_final;
-                        window.open(url, 'Imprimir reporte de ventas', 'width=820,height=720,top=0,left=100,menubar=YES,toolbar=YES');
-                    } else {
-                        Swal.fire({
-                            title: 'Ocurrió un error inesperado',
-                            text: 'Debe de ingresar la fecha de inicio y final para generar el reporte.',
-                            type: 'error',
-                            confirmButtonText: 'Aceptar'
-                        });
-                    }
-                }
-            </script>
+            <script src="../resources/reportes.js"></script>
         </section>
     </main>
     <script>

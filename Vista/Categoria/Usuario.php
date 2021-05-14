@@ -126,11 +126,11 @@ require_once('../../config/security.php');
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Reporte/Reportes.php" class="Blogger">
-                                        <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                                        <i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes
                                     </a>
                                 </li>
                             </ul>
@@ -210,7 +210,7 @@ require_once('../../config/security.php');
                                         <label for="usuario_numero_documento" class="bmd-label-floating">Numero de documento &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <input type="text"  class="form-control" name="iduser" id="iduser" maxlength="8">
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
@@ -308,7 +308,7 @@ require_once('../../config/security.php');
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </fieldset>-->
@@ -320,7 +320,7 @@ require_once('../../config/security.php');
                                     <div class="form-group">
                                         <select class="form-control" name="usuario_caja_reg">
                                             <option value="" selected="">Seleccione una opción</option>
-                                            
+
                                         </select>
                                     </div>
                                 </div>

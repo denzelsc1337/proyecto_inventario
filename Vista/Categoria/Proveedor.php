@@ -241,11 +241,11 @@ require_once('../../config/security.php');
                         </ul>
                     </li> -->
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Reporte/Reportes.php" class="Blogger">
-                                        <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                                        <i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes
                                     </a>
                                 </li>
                             </ul>

@@ -1,4 +1,3 @@
-
 DROP DATABASE IF EXISTS inventario;
 CREATE DATABASE inventario;
 
@@ -52,16 +51,17 @@ DROP TABLE IF EXISTS colegios;
 CREATE TABLE colegios
 (
     secuence_col INT auto_increment PRIMARY KEY NOT NULL,
-    id_colegio INT (6) NOT NULL,
+    cod_modu_colegio INT NOT NULL,
+    ugel_colegio VARCHAR (30) NOT NULL,
+    nom_colegio VARCHAR (50) NOT NULL,
     dir_colegio VARCHAR (30) NOT NULL,
     tlf_colegio CHAR (9),
-    mail_colegio VARCHAR (40),
-    cod_modu_colegio INT NOT NULL,
+    mail_colegio VARCHAR (40),    
     depa_colegio VARCHAR (15) NOT NULL,
+    prov_colegio VARCHAR (15) NOT NULL,
     dist_colegio VARCHAR (15) NOT NULL,
     loca_colegio VARCHAR (15) NOT NULL,
-    nom_director VARCHAR (40) NOT NULL,
-    estado_colegio BOOLEAN
+    nivel_colegio VARCHAR (30) NOT NULL
 );
 
 DROP TABLE IF EXISTS proveedor;
@@ -89,63 +89,67 @@ DROP TABLE IF EXISTS productos;
 CREATE TABLE productos
 (
     secuence_prod INT auto_increment PRIMARY KEY NOT NULL,
-    -- SKU_producto INT NOT NULL,
-    -- id_proveedor INT (6) NOT NULL,
+    SKU_producto INT NOT NULL,
+    id_proveedor INT (6) NOT NULL,
     id_categoria INT (6) NOT NULL,
     id_marca INT (6) NOT NULL,
+    id_usuario INT (6) NOT NULL,
     nom_producto VARCHAR (30) NOT NULL,
     cantidades INT NOT NULL,
     fecha_entrada DATE NOT NULL,
     fecha_vencimento DATE,
     descripcion VARCHAR(50),
-    num_orden int,
-    estado_producto BOOLEAN  NOT NULL
+    guia_remision VARCHAR (30)  NOT NULL,
+    num_orden int NOT NULL,
+    num_pecosa int,
+    perecible BOOLEAN
 );
 
-DROP TABLE IF EXISTS movimientos;
-CREATE TABLE movimientos
-(
-    secuence_mov INT auto_increment PRIMARY KEY NOT NULL,
-    id_movimiento INT NOT NULL,
-    tipo_movi VARCHAR (10) NOT NULL,
-    estado_movimiento BOOLEAN
-);
+-- DROP TABLE IF EXISTS movimientos;
+-- CREATE TABLE movimientos
+-- (
+--     secuence_mov INT auto_increment PRIMARY KEY NOT NULL,
+--     id_movimiento INT NOT NULL,
+--     tipo_movi VARCHAR (10) NOT NULL,
+--     estado_movimiento BOOLEAN
+-- );
 
-DROP TABLE IF EXISTS detalle_ingreso;
-CREATE TABLE detalle_ingreso
-(
-    secuence_det_ing INT auto_increment PRIMARY KEY NOT NULL,
-    id_det_ing INT (6) NOT NULL,
-    id_proveedor INT (6) NOT NULL,
-    id_categoria INT (6) NOT NULL,
-    SKU_producto INT NOT NULL,
-    id_usuario INT (6) NOT NULL,
-    id_movimiento INT NOT NULL,
-    orden_servicio INT NOT NULL,
-    num_pecosa INT NOT NULL,
-    guia_movi INT NOT NULL,
-    cant_prod_ing INT NOT NULL,
-    fecha_ing DATE,
-    RUC CHAR (11) NOT NULL,
-    razon_social VARCHAR (40) NOT NULL,
-    comentario VARCHAR (50),
-    estado_deta_desp BOOLEAN
-);
+-- DROP TABLE IF EXISTS detalle_ingreso;
+-- CREATE TABLE detalle_ingreso
+-- (
+--     secuence_det_ing INT auto_increment PRIMARY KEY NOT NULL,
+--     id_det_ing INT (6) NOT NULL,
+--     id_proveedor INT (6) NOT NULL,
+--     id_categoria INT (6) NOT NULL,
+--     SKU_producto INT NOT NULL,
+--     id_usuario INT (6) NOT NULL,
+--     id_movimiento INT NOT NULL,
+--     orden_servicio INT NOT NULL,
+--     num_pecosa INT NOT NULL,
+--     guia_movi INT NOT NULL,
+--     cant_prod_ing INT NOT NULL,
+--     fecha_ing DATE,
+--     RUC CHAR (11) NOT NULL,
+--     razon_social VARCHAR (40) NOT NULL,
+--     comentario VARCHAR (50),
+--     estado_deta_desp BOOLEAN
+-- );
 
 DROP TABLE IF EXISTS detalle_despacho;
 CREATE TABLE detalle_despacho
 (
     secuence_det_des INT auto_increment PRIMARY KEY NOT NULL,
-    id_det_des INT (6) NOT NULL,
+    -- id_det_des INT (6) NOT NULL,
     id_usuario INT (6) NOT NULL,
     id_colegio INT (6) NOT NULL,
     SKU_producto INT NOT NULL,
     cant_prod_des INT NOT NULL,
     fecha_des DATE,
-    id_movimiento INT NOT NULL,
+    -- id_movimiento INT NOT NULL,
     -- nom_director VARCHAR (40) NOT NULL,
-    comentario VARCHAR (50),
-    estado_deta_desp BOOLEAN
+    comentario VARCHAR (50)
+    -- ,
+    -- estado_deta_desp BOOLEAN
 );
 
 
@@ -159,8 +163,8 @@ CREATE TABLE detalle_despacho
 
     -- USUARIO A ->
 
-    ALTER TABLE detalle_ingreso
-    ADD CONSTRAINT fk_usu_a_ding
+    ALTER TABLE productos
+    ADD CONSTRAINT fk_usu_a_prod
     FOREIGN KEY (id_usuario) REFERENCES usuario (secuence_usu);
 
     ALTER TABLE detalle_despacho
@@ -189,26 +193,26 @@ CREATE TABLE detalle_despacho
 
     -- PROVEEDOR A ->
 
-    ALTER TABLE detalle_ingreso
-    ADD CONSTRAINT fk_prov_a_ding
-    FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
+    ALTER TABLE productos
+    ADD CONSTRAINT fk_prov_a_prod
+    FOREIGN KEY (SKU_producto) REFERENCES proveedor (secuence_prov);
 
     -- MOVIMIENTO A ->
 
-    ALTER TABLE detalle_ingreso
-    ADD CONSTRAINT fk_mov_a_ding
-    FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);
+    -- ALTER TABLE detalle_ingreso
+    -- ADD CONSTRAINT fk_mov_a_ding
+    -- FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);
 
-    ALTER TABLE detalle_despacho
-    ADD CONSTRAINT fk_mov_a_ddes
-    FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);  
+    -- ALTER TABLE detalle_despacho
+    -- ADD CONSTRAINT fk_mov_a_ddes
+    -- FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);  
 
 
     -- PRODUCTO A ->
 
-    ALTER TABLE detalle_ingreso
-    ADD CONSTRAINT fk_prod_a_ding
-    FOREIGN KEY (SKU_producto) REFERENCES productos (secuence_prod);  
+    -- ALTER TABLE detalle_ingreso
+    -- ADD CONSTRAINT fk_prod_a_ding
+    -- FOREIGN KEY (SKU_producto) REFERENCES productos (secuence_prod);  
 
     -- MARCA A ->
 
@@ -216,9 +220,9 @@ CREATE TABLE detalle_despacho
     ADD CONSTRAINT fk_mar_a_prod
     FOREIGN KEY (id_marca) REFERENCES marca (secuence_mar);
 
-    -- ALTER TABLE productos
-    -- ADD CONSTRAINT fk_prov_a_prod
-    -- FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
+     ALTER TABLE productos
+	 ADD CONSTRAINT fk_prov_to_prod
+	 FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
 
 
     -- -- MOVIMIENTOS
@@ -254,8 +258,8 @@ CREATE TABLE detalle_despacho
 
     -- TIPO USUARIO
 
-    -- INSERT INTO tipo_usuario VALUES ('',1,"administrador");
-    -- INSERT INTO tipo_usuario VALUES ('',2,"operador");
+    -- INSERT INTO tipo_usuario VALUES ('',1,'administrador');
+    -- INSERT INTO tipo_usuario VALUES ('',2,'operador');
 
     -- USUARIO
 
@@ -275,3 +279,28 @@ CREATE TABLE detalle_despacho
 
     -- INSERT INTO `productos`(`secuence_prod`, `id_proveedor`, `id_categoria`, `id_marca`, `nom_producto`, `cantidades`, `fecha_entrada`, `descripcion`, `guia_remision`, `num_orden`, `num_pecosa`, `estado_producto`) 
     -- VALUES (null,1,1,1,'Primer_Producto',100,'2021-05-07','1ra prueba','ni idea',1,11,1)
+
+
+
+    INSERT INTO colegios VALUE (null, 1618958, 'UGEL AIJA', 'Santa Rosa de Viterbo', 'Jirón ramon castilla 1219', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUE (null, 1554815, 'UGEL AIJA', 'Ricardo Palma Carrillo', 'Carretera san nicolas s/n', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUE (null, 0385567, 'UGEL AIJA', 'Jose Antonio Encinas', 'Macashca', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUE (null, 1536598, 'UGEL AIJA', 'La Libertad', 'Avenida agustin gamarra s/n', '422711', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUE (null, 0385492, 'UGEL AIJA', 'Cede Señor de los Milagros', 'Huaraz 02001', '', '', 'Ancash', 'Huaraz', 'Cochabamba', 'Cochabamba', 'Primaria');
+    INSERT INTO colegios VALUE (null, 0385518, 'UGEL AIJA', 'Nuestra Señora Del Sagrado Corazón de Jesús', 'Quenuales 163, Huaraz 02002', '421652', '', 'Ancash', 'Huaraz', 'Independencia', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUE (null, 1311364, 'UGEL AIJA', 'Madre Teresa de Calcuta', 'Jiron los Incas 109', '', '', 'Ancash', 'Carhuaz', 'Carhuaz', 'Carhuaz', 'Secundaria');
+    INSERT INTO colegios VALUE (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
+    INSERT INTO colegios VALUE (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUE (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
+
+
+
+
+
+
+
+
+
+
+
+

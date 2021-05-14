@@ -19,11 +19,24 @@
         return false;
     });
 
-    $('#btnSaveProd').click(function(){
+ /*  $('#btnSaveProd').click(function(){
         var _data_prd=$('#frmProd').serialize();
-        //alert(_data_prd);
-        //return false;
-    
+         alert(_data_prd);
+        return false;  
+        $.ajax({
+            type:"POST",
+            url:"../../Controlador/AddProducto.php",
+            data: _data_prd
+        }).done(function(response){
+            alert("added successfully rctmre");
+        }).fail(function(response){
+            alert(response);
+        });
+        return false;
+    });*/
+
+/*     $('#btnSaveProd').click(function(){
+        var _data_prd=$('#frmProd').serialize();
         $.ajax({
             type:"POST",
             url:"../../Controlador/AddProducto.php",
@@ -31,15 +44,14 @@
             success:function(r){
                 if (r==1) {
                     alert("Add successfully");
-                    event.returnValue=false;
-                    
+                    event.returnValue=false; 
                 }else{
                     alert("Error en el servidor.");
                 }
             }
         });
         return false;
-    });
+    }); */
     $('#btnSave_usr').click(function(){
         var _data_usr=$('#frmUser').serialize();
 
@@ -59,5 +71,34 @@
         });
         return false;
     });
+    $('#btnAddCole').click(function(){
+        var _data_cole=$('#frmCole').serialize();
+        $.ajax({
+            type:"POST",
+            url:"../../Controlador/AddColegio.php",
+            data: _data_cole,
+            success:function(r){
+                if (r==1) {
+                    alert("Add successfully");
+                    event.returnValue=false;
+                    
+                }else{
+                    alert("Error en el servidor.");
+                }
+            }
+        });
+        return false;
+    });
+
+    function handleClick(myRadio) {
+        if (myRadio.value == "true") {
+            document.getElementById("date_out").disabled = false;
+        } else {
+            document.getElementById("date_out").disabled = true;
+        }
+    }
+    
+
+
 });
 

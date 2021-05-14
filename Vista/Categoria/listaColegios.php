@@ -126,11 +126,11 @@ require_once('../../config/security.php');
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Reporte/Reportes.php" class="Blogger">
-                                        <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                                        <i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes
                                     </a>
                                 </li>
                             </ul>
@@ -166,11 +166,12 @@ require_once('../../config/security.php');
 
             <div class="container-fluid Gagalin">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
-                    <!-- <li>
-                        <a href="../Categoria/Proveedor.php">
-                            <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                    <li>
+                        <a class="" href="../Colegio/Colegios.php">
+                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nuevo Colegio
                         </a>
-                    </li> -->
+                    </li>
+
                     <li>
                         <a class="active" href="../Categoria/listaColegios.php">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
@@ -193,17 +194,18 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Colegio</th>
-                                <th>Cod Colegio</th>
+                                <!-- <th>№ Colegio</th> -->
+                                <th>Cod Modular</th>
+                                <th>UGEL</th>
+                                <th>Colegio</th>
                                 <th>Dirección</th>
                                 <th>Telefono</th>
-                                <th>E-mail</th>
-                                <th>Código Modular</th>
+                                <th>Correo</th>
                                 <th>Departamento</th>
+                                <th>Provincia</th>
                                 <th>Distrito</th>
                                 <th>Localidad</th>
-                                <th>Director</th>
-                                <th>Estado</th>
+                                <th>Nivel</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
@@ -212,7 +214,7 @@ require_once('../../config/security.php');
                             foreach ($listaColegio as $vistaCole) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaCole[0] ?></td>
+                                    <!-- <td><?php echo $vistaCole[0] ?></td> -->
                                     <td><?php echo $vistaCole[1] ?></td>
                                     <td><?php echo $vistaCole[2] ?></td>
                                     <td><?php echo $vistaCole[3] ?></td>
@@ -222,24 +224,25 @@ require_once('../../config/security.php');
                                     <td><?php echo $vistaCole[7] ?></td>
                                     <td><?php echo $vistaCole[8] ?></td>
                                     <td><?php echo $vistaCole[9] ?></td>
-                                    
-                                    <td>
+                                    <td><?php echo $vistaCole[10] ?></td>
+                                    <td><?php echo $vistaCole[11] ?></td>
+                                    <!-- <td>
                                         <?php
                                         $hide = "";
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaCole[10] == 1) {
+                                        if ($vistaCole[12] == 1) {
                                         ?>
                                             <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <!-- <button name="btnUpdt"disabled>Update</button> -->
-                                            <!-- Button trigger modal -->
+                                            <!-- <button name="btnUpdt"disabled>Update</button>
+                                            <!-- Button trigger modal
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
                                                 Update
                                             </button>
 
-                                            <!-- Modal -->
+                                            <!-- Modal
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -267,7 +270,7 @@ require_once('../../config/security.php');
                                         <?php
                                         }
                                         ?>
-                                    </td>
+                                    </td> -->
 
                                 </tr>
                         </tbody>

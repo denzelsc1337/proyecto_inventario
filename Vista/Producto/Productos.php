@@ -1,5 +1,5 @@
 <?php
-include_once('../../config/Conexion.php');
+//include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
 
 /*if(isset($_SESSION['user'])){
@@ -73,7 +73,7 @@ require_once('../../config/security.php');
                                 <i class="fas fa-briefcase fa-fw"></i> &nbsp; Administración <i class="fa fa-chevron-down"></i>
                             </a>
                             <ul>
-                               <li>
+                                <li>
                                     <a href="../Categoria/Categoria.php" class="Blogger">
                                         <i class="fa fa-tags fa-fw"></i> &nbsp; Categorías
                                     </a>
@@ -150,7 +150,7 @@ require_once('../../config/security.php');
                 <a href="#" class="Blogger"> Actualizar usuario
                     <i class="fa fa-cogs"></i>
                 </a>
-                <a href="../config/logout.php" class="Blogger">Cerrar Sesión
+                <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
@@ -198,22 +198,40 @@ require_once('../../config/security.php');
                     </li>
                 </ul>
             </div>
-
+            <!-- id="frmProd" -->
             <div class="container-fluid">
-                <form id="frmProd" class="form-neon FormularioAjax" method="POST" autocomplete="off">
+                <form class="form-neon FormularioAjax" method="POST" action="../../Controlador/AddProducto.php" autocomplete="off">
                     <!-- <input type="hidden" name="modulo_producto" value="registrar"> -->
                     <fieldset>
                         <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Categoría & estado</legend>
                         <div class="container-fluid">
                             <div class="row">
-                                <!-- <div class="col-12 col-md-4">
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="producto_nombre" class="bmd-label-floating">SKU &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="number" class="form-control input-barcode" name="sku_prod" id="sku_prod" maxlength="97">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="" class="bmd-label-floating">Proveedor</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
                                         <select class="form-control" name="proovslct" id="proovslct">
-                                            <option value="1">proveedor test</option>
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorProv as $cboProv) {
+                                            ?>
+                                                <option value="<?php echo $cboProv[0]; ?>"><?php echo $cboProv[1]; ?></option>
+                                            <?php }
+                                            ?>
                                         </select>
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_categoria" class="bmd-label-floating">Categoría &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
@@ -226,7 +244,7 @@ require_once('../../config/security.php');
                                             <?php
                                             foreach ($selectorCateg as $cboCate) {
                                             ?>
-                                            <option value="<?php echo $cboCate[1]; ?>"><?php echo $cboCate[2]; ?></option>
+                                                <option value="<?php echo $cboCate[1]; ?>"><?php echo $cboCate[2]; ?></option>
                                             <?php }
                                             ?>
                                         </select>
@@ -242,13 +260,20 @@ require_once('../../config/security.php');
                                         <select class="form-control" name="marca_id" id="marca_id">
                                             <option value="" selected="">Selecciona una marca </option>
                                             <?php
-                                            foreach($selectorMarca as $cboMarca){
+                                            foreach ($selectorMarca as $cboMarca) {
                                             ?>
-                                            <option value="<?php echo $cboMarca[0];?>"><?php echo $cboMarca[1];?></option>
+                                                <option value="<?php echo $cboMarca[0]; ?>"><?php echo $cboMarca[1]; ?></option>
                                             <?php
                                             }
                                             ?>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4" hidden>
+                                    <div class="form-group">
+                                        <label for="producto_nombre" class="bmd-label-floating">User code&nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="number" class="form-control input-barcode" name="id_user" id="id_user" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="97">
                                     </div>
                                 </div>
 
@@ -290,16 +315,48 @@ require_once('../../config/security.php');
                         <legend class="Gagalin"><i class="fas fa-box"></i> &nbsp; Información del producto</legend>
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Nombre del Producto &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <input type="text" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="97">
                                     </div>
                                 </div>
+                                <script type="text/javascript">
+                                    function handleClick(_radio) {
+                                        if (_radio.value == "1") {
+                                            //document.getElementById("date_out").hidden = false;
+                                            document.getElementById("date_out").disabled = false;
+                                        } else {
+                                            //document.getElementById("date_out").hidden = true;
+                                            //document.getElementById("date_out").disabled = true;
+                                        }
+                                    }
+                                </script>
+                                <div class="col-12 col-md-6" style="margin-top: 20px;">
+                                    <label for="" class="bmd-label-floating">Producto Perecible &nbsp;
+                                        <i class="fab fa-font-awesome-alt"></i> &nbsp;
+                                    </label>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="prod_status" value="1" checked="checked" onclick="handleClick(this);">
+                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Si
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="prod_status" value="0" onclick="handleClick(this);">
+                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; No
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_stock_total" class="bmd-label-floating">Stock o existencias &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="number"  class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="20">
+                                        <input type="number" class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="20">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -311,7 +368,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_fecha_vencimiento">Fecha de vencimiento</label>
-                                        <input type="date" class="form-control" name="date_out" id="date_out" >
+                                        <input type="date" class="form-control" value="00-00-0000" name="date_out" id="date_out" >
                                     </div>
                                 </div>
                                 <!-- <div class="col-12 col-md-4">
@@ -369,27 +426,27 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Descripción</label>
-                                        <input type="text"  class="form-control input-barcode" name="desc" id="desc" maxlength="30">
+                                        <input type="text" class="form-control input-barcode" name="desc" id="desc" maxlength="30">
                                     </div>
                                 </div>
-                                <!-- <div class="col-12 col-md-6 col-lg-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Guía Remisión</label>
-                                        <input type="number"class="form-control input-barcode" name="_gremision" id="_gremision" maxlength="30">
+                                        <input type="text" class="form-control input-barcode" name="_gremision" id="_gremision" maxlength="30">
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Orden</label>
-                                        <input type="number"  class="form-control input-barcode" name="_norden" id="_norden" maxlength="30">
+                                        <input type="number" class="form-control input-barcode" name="_norden" id="_norden" maxlength="30">
                                     </div>
                                 </div>
-                                <!-- <div class="col-12 col-md-6 col-lg-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Pecosa</label>
-                                        <input type="number"  class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="30">
+                                        <input type="number" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="30">
                                     </div>
-                                </div> -->
+                                </div>
                                 <!-- <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_modelo" class="bmd-label-floating">Modelo</label>
@@ -473,29 +530,7 @@ require_once('../../config/security.php');
                         </div>
                     </fieldset> -->
 
-                    <fieldset>
-                        <div class="col-12 col-md-6" style="margin-top: 30px;">
-                            <label for="" class="bmd-label-floating">Estado Del Producto &nbsp;
-                                <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                            </label>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="prod_status" value="1" checked>
-                                            <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="prod_status" value="0">
-                                            <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
+
                     <!-- <p class="text-center" style="margin-top: 40px;">
                         <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
                         &nbsp; &nbsp;
@@ -555,7 +590,7 @@ require_once('../../config/security.php');
     <!--=============================================
 =            Include JavaScript files           =
 ==============================================-->
-     <!-- popper -->
+    <!-- popper -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/popper.min.js"></script>
 
     <!-- Bootstrap V4.3 -->
@@ -576,7 +611,7 @@ require_once('../../config/security.php');
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <script src="../resources/functions.js"></script>
+    <!-- <script src="../resources/functions.js"></script> -->
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('../../Modelo/Categorias.php');
 $oCategoria = new cCategoria();
 $listaCategoria = $oCategoria->obtenerCategoria();
@@ -21,4 +21,16 @@ $listaColegio = $oColegio->obtenerColegios();
 require_once('../../Modelo/Marca.php');
 $oMarca = new cMarca();
 $selectorMarca = $oMarca->selectorMarca();
+
+require_once('../../Modelo/Proveedor.php');
+$oProv = new cProvee();
+$selectorProv = $oProv->selectorProv();
+
+// REPORTES
+require_once('../../Modelo/Reportes.php');
+$oReporte = new rReporte();
+$listaRxStock = $oReporte->RxStock();
+$listaRxCategoria = $oReporte->RxCategoria();
+$listaRxVencimiento = $oReporte->RxVencimiento();
+$listaRxEntrada = $oReporte->RxEntrada();
 ?>

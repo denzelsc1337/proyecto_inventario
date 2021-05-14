@@ -188,7 +188,7 @@ require_once('../../config/security.php');
                 <form id="frmAjax" class="form-neon FormularioAjax" method="POST" autocomplete="off">
 
                     <fieldset>
-                        <legend><i class="far fa-address-card"></i> &nbsp; Información de la categoría</legend>
+                        <legend class="Gagalin"><i class="far fa-address-card"></i> &nbsp; Información de la categoría</legend>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 col-md-6">
