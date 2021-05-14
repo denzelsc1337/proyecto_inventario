@@ -68,7 +68,7 @@ class rReporte
         $cnx = new conexion();
         $cadena = $cnx->abrirConexion();
 
-        $query = 'SELECT cat.nom_categoria , nom_producto, mar.nom_marca, cantidades, fecha_vencimiento
+        $query = 'SELECT cat.nom_categoria , nom_producto, mar.nom_marca, cantidades, fecha_vencimento
                     FROM productos prod
                     INNER JOIN categorias cat ON prod.id_categoria = cat.id_categoria
                     INNER JOIN marca mar ON prod.id_marca = mar.id_marca

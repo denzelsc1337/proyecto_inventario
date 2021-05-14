@@ -22,6 +22,9 @@ require_once('../../Modelo/Marca.php');
 $oMarca = new cMarca();
 $selectorMarca = $oMarca->selectorMarca();
 
+require_once('../../Modelo/Proveedor.php');
+$oProv = new cProvee();
+$selectorProv = $oProv->selectorProv();
 
 
 // REPORTES
