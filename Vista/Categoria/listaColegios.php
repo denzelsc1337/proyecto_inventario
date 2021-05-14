@@ -166,12 +166,11 @@ require_once('../../config/security.php');
 
             <div class="container-fluid Gagalin">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
-                    <li>
-                        <a class="" href="../Colegio/Colegios.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nuevo Colegio
+                    <!-- <li>
+                        <a href="../Categoria/Proveedor.php">
+                            <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
                         </a>
-                    </li>
-
+                    </li> -->
                     <li>
                         <a class="active" href="../Categoria/listaColegios.php">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
@@ -226,6 +225,7 @@ require_once('../../config/security.php');
                                     <td><?php echo $vistaCole[9] ?></td>
                                     <td><?php echo $vistaCole[10] ?></td>
                                     <td><?php echo $vistaCole[11] ?></td>
+                                    
                                     <!-- <td>
                                         <?php
                                         $hide = "";
@@ -236,13 +236,13 @@ require_once('../../config/security.php');
                                         ?>
                                             <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <!-- <button name="btnUpdt"disabled>Update</button>
-                                            <!-- Button trigger modal
+                                            <!-- <button name="btnUpdt"disabled>Update</button> 
+                                            <!-- Button trigger modal 
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
                                                 Update
                                             </button>
 
-                                            <!-- Modal
+                                            <!-- Modal 
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">

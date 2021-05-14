@@ -1,4 +1,4 @@
-<?php
+<?php 
 require_once('../../Modelo/Categorias.php');
 $oCategoria = new cCategoria();
 $listaCategoria = $oCategoria->obtenerCategoria();
@@ -22,9 +22,7 @@ require_once('../../Modelo/Marca.php');
 $oMarca = new cMarca();
 $selectorMarca = $oMarca->selectorMarca();
 
-require_once('../../Modelo/Proveedor.php');
-$oProv = new cProvee();
-$selectorProv = $oProv->selectorProv();
+
 
 // REPORTES
 require_once('../../Modelo/Reportes.php');

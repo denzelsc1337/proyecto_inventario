@@ -13,11 +13,10 @@ class pProductos
 
 	public function obtenerProducto()
 	{
-		include_once('../../config/Conexion.php');
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'SELECT secuence_prod, SKU_producto, prov.razon_social, cat.nom_categoria, mar.nom_marca, nom_producto, cantidades, fecha_entrada, fecha_vencimento, descripcion, guia_remision, num_orden, num_pecosa, perecible
+		$query = 'SELECT secuence_prod, SKU_producto, prov.razon_social, cat.nom_categoria, mar.nom_marca, nom_producto, cantidades, fecha_entrada, fecha_vencimiento, descripcion, guia_remision, num_orden, num_pecosa, perecible
 					FROM productos prod
 					INNER JOIN proveedor prov ON prod.id_proveedor = prov.id_proveedor
 					INNER JOIN categorias cat ON prod.id_categoria = cat.id_categoria
@@ -37,44 +36,26 @@ class pProductos
 
 	function agregarProducto($data)
 	{
-		try {
-			include_once('../config/Conexion.php');
-			$cnx = new conexion();
-			$cadena = $cnx->abrirConexion();
+		include_once('../config/Conexion.php');
+		$cnx = new Conexion();
+		$cadena = $cnx->abrirConexion();
 
-			$Query = "INSERT INTO `productos`(`secuence_prod`,
-											   `SKU_producto`,
-											   `id_proveedor`,
-											   `id_categoria`,
-											   `id_marca`,
-											   `id_usuario`,
-											   `nom_producto`,
-											   `cantidades`,
-											   `fecha_entrada`,
-											   `fecha_vencimento`,
-											   `descripcion`,
-											   `guia_remision`,
-											   `num_orden`,
-											   `num_pecosa`,
-											   `perecible`)
-			VALUES (null,'".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."',
-						 '".$data[5]."','".$data[6] ."','".$data[7]."','".$data[8]."',
-						 '".$data[9]."',
-						 '".$data[10]."',
-						 '".$data[11]."',
-						 '".$data[12]."',
-						 '".$data[13]."',
-						 '".$data[14]."');";
+		$Query = "INSERT INTO `productos`(`secuence_prod`,
+										  `id_categoria`,
+										  `id_marca`,
+										  `nom_producto`,
+										  `cantidades`,
+										  `fecha_entrada`,
+										  `fecha_vencimento`,
+										  `descripcion`,
+										  `num_orden`,
+										  `estado_producto`)
+		VALUES (null,'".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."',
+					 '".$data[5]."','".$data[6] ."','".$data[7]."','".$data[8]."',
+					 '".$data[9]."');";
 
-			$result= mysqli_query($cadena, $Query);
+		echo mysqli_query($cadena, $Query);
 
-			$cnx->cerrarConexion($cadena);
-
-			return $result;
-
-		} catch (Exception $e) {
-			die($e->getMessage());
-		}
-
+		$cnx->cerrarConexion($cadena);
 	}
 }
