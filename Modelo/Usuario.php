@@ -10,6 +10,7 @@ class usuario
 	{
 		$this->listUsuarios = array();
 		$this->selectorTusu = array();
+		$this->selectorUser = array();
 	}
 
 	public function obtenerUsuario()
@@ -32,12 +33,15 @@ class usuario
 		return $this->listUsuarios;
 	}
 
+
+
 	public function selectorTipoUsuario()
 	{
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
 		$query = 'SELECT id_tipo_usuario, UPPER(detalle_tipo_usuario) FROM tipo_usuario';
+
 
 		$resultado = mysqli_query($cadena, $query);
 
@@ -48,6 +52,24 @@ class usuario
 		$cnx->cerrarConexion($cadena);
 
 		return $this->selectorTusu;
+	}
+
+	public function selectorUser()
+	{
+		$cnx = new conexion();
+		$cadena = $cnx->abrirConexion();
+
+		$query = 'SELECT secuence_usu, concat ("DNI: ",id_usuario,"-",nom_usuario," ",ape_usuario)from usuario';
+
+		$resultado = mysqli_query($cadena, $query);
+
+		while ($fila = mysqli_fetch_row($resultado)) {
+			$this->selectorUser[] = $fila;
+		}
+
+		$cnx->cerrarConexion($cadena);
+
+		return $this->selectorUser;
 	}
 
 	function agregarUsuarios($data)

@@ -71,6 +71,33 @@
         });
         return false;
     });
+
+    $('#btnSave_despacho').click(function(){
+        var _data_dspch=$('#frmSalida').serialize();
+
+        $.ajax({
+            type:"POST",
+            url:"../../Controlador/AddDespacho.php",
+            data: _data_dspch,
+            success:function(r){
+                if (r==1) {
+                    alert("Add successfully");
+                    event.returnValue=false;
+                    document.getElementById("usuario_cargo").value = "";
+                    document.getElementById("colegio_cod").value = "";
+                    document.getElementById("prod_cod").value = "";
+                    document.getElementById("fecha_in").value = "";
+                    document.getElementById("cant_sal").value = "";
+                    document.getElementById("coment").value = "";
+                    document.getElementById("firma").value = "";
+                    
+                }else{
+                    alert("Error en el servidor.");
+                }
+            }
+        });
+        return false;
+    });
     $('#btnAddCole').click(function(){
         var _data_cole=$('#frmCole').serialize();
         $.ajax({

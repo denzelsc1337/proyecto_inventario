@@ -8,15 +8,18 @@ $selectorCateg = $oCategoria->selectorCategorias();
 require_once('../../Modelo/Productos.php');
 $oProducto = new pProductos();
 $listaProducto = $oProducto->obtenerProducto();
+$selectorProd = $oProducto->selectorProd();
 
 require_once('../../Modelo/Usuario.php');
 $oUsuario1 = new usuario();
 $listaUsuario = $oUsuario1->obtenerUsuario();
 $selectorTusu = $oUsuario1->selectorTipoUsuario();
+$selectorUser = $oUsuario1->selectorUser();
 
 require_once('../../Modelo/Colegio.php');
 $oColegio = new cColegios();
 $listaColegio = $oColegio->obtenerColegios();
+$listColegioCod = $oColegio->selectorCole();
 
 require_once('../../Modelo/Marca.php');
 $oMarca = new cMarca();

@@ -32,8 +32,8 @@ $r = $oProd->agregarProducto($data);
 if($r == 1 ){
 	?>
 	<h2>Se insert&oacute correctamente</h2>
-	<META http-equiv="Refresh" CONTENT="1;
-	URL=../../Producto/listaProductos.php">
+	<META http-equiv="Refresh" CONTENT="0.1;
+	URL=../Vista/Producto/listaProductos.php">
 	<?php
 }
 else{

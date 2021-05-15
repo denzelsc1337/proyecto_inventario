@@ -189,7 +189,7 @@ require_once('../../config/security.php');
                 </ul>
             </div>
             <div class="container-fluid">
-                <form id="frmAjax" class="form-neon FormularioAjax" method="POST" autocomplete="off">
+                <form id="frmSalida" class="form-neon FormularioAjax" method="POST" autocomplete="off">
 
                     <fieldset>
                         <legend class="Gagalin"><i class="fa fa-book-open"></i> &nbsp; Registros del Despacho</legend>
@@ -197,47 +197,83 @@ require_once('../../config/security.php');
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="categoria_nombre" class="bmd-label-floating">Codigo de Categoria &nbsp;
-                                            <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                                        </label>
-                                        <input type="number" class="form-control" name="cod_cate" id="cod_cate" maxlength="6" required="">
+                                        <label for="usuario_cargo" class="bmd-label-floating">Encargado de Salida: &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                        <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorUser as $cboUser) {
+                                            ?>
+                                            <option value="<?php echo $cboUser[0]; ?>"><?php echo $cboUser[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="usuario_cargo" class="bmd-label-floating">Colegio a Entregar: &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="colegio_cod" id="colegio_cod">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($listColegioCod as $cboCole) {
+                                            ?>
+                                            <option value="<?php echo $cboCole[0]; ?>"><?php echo $cboCole[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="usuario_cargo" class="bmd-label-floating">Producto a salir: &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="prod_cod" id="prod_cod">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorProd as $cboProd) {
+                                            ?>
+                                            <option value="<?php echo $cboProd[0]; ?>"><?php echo $cboProd[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <?php
-                                        require_once('../../Controlador/controladorListar.php');
-                                        ?>
-                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
-                                            <option value="" selected="">Seleccione una opción</option>
-                                            <?php
-                                            foreach ($selectorTusu as $cboTusu) {
-                                            ?>
-                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
+                                        <label for="producto_nombre" class="bmd-label-floating">Cantidad de Salida &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="number" class="form-control input-barcode" name="cant_sal" id="cant_sal" maxlength="97">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <?php
-                                        require_once('../../Controlador/controladorListar.php');
-                                        ?>
-                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
-                                            <option value="" selected="">Seleccione una opción</option>
-                                            <?php
-                                            foreach ($selectorTusu as $cboTusu) {
-                                            ?>
-                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
+                                        <label for="producto_fecha_ingreso">Fecha de Salida</label>
+                                        <input type="date" class="form-control" name="fecha_in" id="fecha_in">
                                     </div>
                                 </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="producto_marca" class="bmd-label-floating">Comentario</label>
+                                        <input type="text" class="form-control input-barcode" name="coment" id="coment" maxlength="30">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="producto_marca" class="bmd-label-floating">Firma o Nombre Completo del Encargado</label>
+                                        <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30">
+                                    </div>
+                                </div>
+
                                 <!--                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="categoria_estado" class="bmd-label-floating">Estado de la categoría</label>
@@ -252,7 +288,7 @@ require_once('../../config/security.php');
 
                     </fieldset>
                     <p class="text-center">
-                        <button id="btnSave" type="submit" class="btn btn-raised btn-info btn-sm">
+                        <button id="btnSave_despacho" type="submit" class="btn btn-raised btn-info btn-sm">
                             <i class="far fa-save">
                             </i> &nbsp; GUARDAR
                         </button>

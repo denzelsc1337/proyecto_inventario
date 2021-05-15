@@ -244,7 +244,7 @@ require_once('../../config/security.php');
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaProd[8] == 1) {
+                                        if ($vistaProd[13] == 1) {
                                         ?>
                                             <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
                                             &nbsp;&nbsp;&nbsp;&nbsp;

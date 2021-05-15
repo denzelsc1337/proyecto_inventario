@@ -192,10 +192,10 @@ CREATE TABLE detalle_despacho
 
 
     -- PROVEEDOR A ->
+     ALTER TABLE productos
+	 ADD CONSTRAINT fk_prov_to_prod
+	 FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
 
-    ALTER TABLE productos
-    ADD CONSTRAINT fk_prov_a_prod
-    FOREIGN KEY (SKU_producto) REFERENCES proveedor (secuence_prov);
 
     -- MOVIMIENTO A ->
 
@@ -220,9 +220,7 @@ CREATE TABLE detalle_despacho
     ADD CONSTRAINT fk_mar_a_prod
     FOREIGN KEY (id_marca) REFERENCES marca (secuence_mar);
 
-     ALTER TABLE productos
-	 ADD CONSTRAINT fk_prov_to_prod
-	 FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
+
 
 
     -- DETALLE DESPACHO
@@ -279,8 +277,27 @@ CREATE TABLE detalle_despacho
 
     -- INSERT INTO `productos`(`secuence_prod`, `id_proveedor`, `id_categoria`, `id_marca`, `nom_producto`, `cantidades`, `fecha_entrada`, `descripcion`, `guia_remision`, `num_orden`, `num_pecosa`, `estado_producto`) 
     -- VALUES (null,1,1,1,'Primer_Producto',100,'2021-05-07','1ra prueba','ni idea',1,11,1)
+    
+-- -----------------------------------------------INSERT INTO CATEGORIAS (INICIO)--------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `categorias` (`secuence_cat`, `id_categoria`, `nom_categoria`, `estado_categoria`) VALUES (NULL, '1', 'aseo', '1'), (NULL, '2', 'escolar', '1');
+-- -----------------------------------------------INSERT INTO CATEGORIAS (FIN)--------------------------------------------------------------------------------------------------------------------------
 
+-- -----------------------------------------------INSERT INTO PROVEEDOR (INICIO)--------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `proveedor` (`secuence_prov`, `id_proveedor`, `RUC`, `razon_social`, `tlf_proveedor`, `mail_proveedor`, `estado_proveedor`) VALUES (NULL, '1', '10567845121', 'Limpieza Asociacion AJ', '987654321', 'test@gmail.com', '1'), (NULL, '2', '11452932125', 'Tai-Loy', '963852741', 'Tai-Loy@gmail.com', '1');
+-- -----------------------------------------------INSERT INTO PROVEEDOR (FIN)--------------------------------------------------------------------------------------------------------------------------
 
+-- -----------------------------------------------INSERT INTO MARCA (INICIO)--------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `marca` (`secuence_mar`, `id_marca`, `nom_marca`, `estado_marca`) VALUES (NULL, '1', 'Ayudin', '1'), (NULL, '2', 'Artesco', '1');
+-- -----------------------------------------------INSERT INTO MARCA (FIN)--------------------------------------------------------------------------------------------------------------------------
+
+-- -----------------------------------------------INSERT INTO TIPO USUARIO (INICIO)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `tipo_usuario` (`secuence_tipo_usu`, `id_tipo_usuario`, `detalle_tipo_usuario`) VALUES (NULL, '1', 'admin'), (NULL, '2', 'operador');
+-- ----------------------------------------------------INSERT INTO TIPO USUARIO (FIN)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- ----------------------------------- --------------INSERT INTO  USUARIO (INICIO) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1');
+                                    
+--  ---------------------------------------------------INSERT INTO  USUARIO (FIN)--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     INSERT INTO colegios VALUES (null, 1618958, 'UGEL AIJA', 'Santa Rosa de Viterbo', 'Jirón ramon castilla 1219', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 1554815, 'UGEL AIJA', 'Ricardo Palma Carrillo', 'Carretera san nicolas s/n', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');

@@ -8,6 +8,7 @@ class cColegios
 	function __construct()
 	{
 		$this->listColegios = array();
+		$this->listColegioCod = array();
 	}
 
 	public function obtenerColegios()
@@ -29,6 +30,23 @@ class cColegios
 		return $this->listColegios;
 	}
 
+	public function selectorCole()
+	{
+		$cnx = new conexion();
+		$cadena = $cnx->abrirConexion();
+
+		$query = 'SELECT secuence_col, concat(ugel_colegio," - ", nom_colegio) from colegios';
+
+		$resultado = mysqli_query($cadena, $query);
+
+		while ($fila = mysqli_fetch_row($resultado)) {
+			$this->listColegioCod[] = $fila;
+		}
+
+		$cnx->cerrarConexion($cadena);
+
+		return $this->listColegioCod;
+	}
 	function agregarColegios($data)
 	{
 		include_once('../config/Conexion.php');

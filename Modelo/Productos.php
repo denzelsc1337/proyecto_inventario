@@ -9,6 +9,7 @@ class pProductos
 	function __construct()
 	{
 		$this->listProducto = array();
+		$this->selectorProd = array();
 	}
 
 	public function obtenerProducto()
@@ -34,6 +35,22 @@ class pProductos
 		return $this->listProducto;
 	}
 
+	public function selectorProd(){
+		$cnx = new conexion();
+		$cadena = $cnx->abrirConexion();
+		$query = 'SELECT secuence_prod, concat(nom_producto, " - Marca: " ,marc.nom_marca) 
+		FROM productos prod
+		inner join marca marc
+		on prod.id_marca = marc.id_marca';
+		$result = mysqli_query($cadena, $query);
+		while ($fila = mysqli_fetch_row($result)) {
+			$this->selectorProd[]=$fila;
+		}
+		$cnx->cerrarConexion($cadena);
+		return $this->selectorProd;
+
+	}
+
 	function agregarProducto($data)
 	{
 		include_once('../config/Conexion.php');
@@ -56,9 +73,13 @@ class pProductos
 					 '".$data[5]."','".$data[6] ."','".$data[7]."','".$data[8]."',
 					 '".$data[9]."','".$data[10]."','".$data[11]."','".$data[12]."',
 					 '".$data[13]."','".$data[14]."');";
-
+/* 
 		echo mysqli_query($cadena, $Query);
 
-		$cnx->cerrarConexion($cadena);
+		
+		$cnx->cerrarConexion($cadena); */
+		$result = mysqli_query($cadena, $Query);
+		$cnx ->cerrarConexion($cadena);
+		return $result;
 	}
 }
