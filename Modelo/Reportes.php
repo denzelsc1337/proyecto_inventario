@@ -12,6 +12,7 @@ class rReporte
         $this->listRxCategoria = array();
         $this->listRxVencimiento = array();
         $this->listRxEntrada = array();
+        $this->listRxDespacho = array();
     }
 
     public function RxStock()
@@ -110,9 +111,26 @@ class rReporte
         return $this->listRxEntrada;
     }
 
+    public function RxDespacho()
+    {
+        include_once('../../config/Conexion.php');
+        $cnx = new conexion();
+        $cadena = $cnx->abrirConexion();
 
+        $query = 'SELECT col.nom_colegio, col.cod_modu_colegio, col.dir_colegio, col.nom_colegio, cat.nom_categoria, prod.nom_producto, prod.cantidades, dd.fecha_des
+                    FROM categorias cat
+                    INNER JOIN productos prod ON prod.id_categoria = cat.secuence_cat
+                    INNER JOIN detalle_despacho dd ON prod.secuence_prod = dd.id_producto
+                    INNER JOIN colegios col ON dd.id_colegio = col.secuence_col';
 
+        $resultado = mysqli_query($cadena, $query);
 
+        while ($fila = mysqli_fetch_row($resultado)) {
+            $this->listRxDespacho[] = $fila;
+        }
 
+        $cnx->cerrarConexion($cadena);
 
+        return $this->listRxDespacho;
+    }
 }

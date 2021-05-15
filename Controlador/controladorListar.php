@@ -34,4 +34,5 @@ $listaRxStock = $oReporte->RxStock();
 $listaRxCategoria = $oReporte->RxCategoria();
 $listaRxVencimiento = $oReporte->RxVencimiento();
 $listaRxEntrada = $oReporte->RxEntrada();
+$listaRxDespacho = $oReporte->RxDespacho();
 ?>

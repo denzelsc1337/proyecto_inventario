@@ -1,6 +1,7 @@
 <?php
-include_once('../../config/Conexion.php');
+//include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
+
 /*if(isset($_SESSION['user'])){
         header('Location:Main.php');
     }*/
@@ -16,17 +17,16 @@ require_once('../../config/security.php');
     <title>SISTEMA VENTAS</title>
 
     <!-- Normalize V8.0.1 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/normalize.css">
 
     <!-- Bootstrap V4.3 -->
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design V4.0 -->
-    <!-- <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap-material-design.min.css"> -->
-
+    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap-material-design.min.css">
 
     <!-- Font Awesome V5.9.0 -->
-    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/all.css">
+    <!-- <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/all.css"> -->
     <!-- <link rel="stylesheet" href="Vista/css/all.css"> -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="../css/all.css">
@@ -41,13 +41,12 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 </head>
 
 <body class="Blogger">
     <!-- Main container -->
     <main class="full-box main-container">
-        <!-- Nav lateral -->
         <!-- Nav lateral -->
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
@@ -55,12 +54,11 @@ require_once('../../config/security.php');
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-                    <figcaption class="text-center Blogger" style="font-size: 22px;">
+                    <figcaption class="text-center">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
                     </figcaption>
                 </figure>
-                <div class="full-box nav-lateral-bar">
-                </div>
+                <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
                         <li>
@@ -111,7 +109,7 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-<!--                                 <li>
+                                <!--                                 <li>
                                     <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
@@ -147,7 +145,6 @@ require_once('../../config/security.php');
                 </nav>
             </div>
         </section>
-
         <!-- Page content -->
         <section class="full-box page-content scroll">
             <nav class="full-box navbar-info">
@@ -161,141 +158,119 @@ require_once('../../config/security.php');
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
-            <!-- <a href="#" class="float-left show-nav-lateral">
-                <i class="fas fa-bars"></i>
-            </a>
-            <a href="http://systems.designlopers.com/SVI/user-update/dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09/">
-                <i class="fas fa-user-cog"></i>
-            </a>
-            <a href="#" class="btn-exit-system">
-                <i class="fas fa-power-off"></i>
-            </a> -->
 
-
+            <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Categorías
+                    <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Despacho
                 </h3>
                 <p class="text-justify">
-                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+                    En el módulo DESPACHO usted podrá registrar las despachos que servirán para tener un mejor registro de entradas.
                 </p>
             </div>
 
             <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
-                        <a href="Categoria.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                        <a class="active Gagalin" href="Despacho.php">
+                            <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Nueva Despacho
                         </a>
                     </li>
                     <li>
-                        <a class="active" href="listaCategorias.php">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
+                        <a href="listaDespacho.php" class="Gagalin">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
                         </a>
                     </li>
-                    <li>
-                        <a href="">
+                    <!-- <li>
+                        <a href="" class="Gagalin">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
-
             <div class="container-fluid">
+                <form id="frmAjax" class="form-neon FormularioAjax" method="POST" autocomplete="off">
 
-                <div class="table-responsive">
-                    <?php
-                    require_once('../../Controlador/controladorListar.php');
-                    ?>
-                    <table class="table table-dark table-sm">
-                        <thead>
-                            <tr class="text-center roboto-medium">
-                                <th>№ Almacen</th>
-                                <th>№ Categoria</th>
-                                <th>Categoria</th>
-                                <th>Ver Productos</th>
-                                <th>Enable/Disable</th>
-                                <!-- <button id="btnEnble">Enable</button> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($listaCategoria as $vistaCate) {
-                            ?>
-                                <tr class="text-center">
-                                    <td><?php echo $vistaCate[0] ?></td>
-                                    <td><?php echo $vistaCate[1] ?></td>
-                                    <td><?php echo $vistaCate[2] ?></td>
-                                    <td>
-                                        <a class="btn btn-info" href="http://systems.designlopers.com/SVI/product-category/1/">
-                                            <i class="fab fa-shopify fa-fw"></i>
-                                        </a>
-                                    </td>
-                                    <td>
+                    <fieldset>
+                        <legend class="Gagalin"><i class="fa fa-book-open"></i> &nbsp; Registros del Despacho</legend>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="categoria_nombre" class="bmd-label-floating">Codigo de Categoria &nbsp;
+                                            <i class="fab fa-font-awesome-alt"></i> &nbsp;
+                                        </label>
+                                        <input type="number" class="form-control" name="cod_cate" id="cod_cate" maxlength="6" required="">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
-                                        $hide = "";
-                                        if ($_SESSION['id_rol'] == '2') {
-                                            $hide = "style='display:none;'";
-                                        }
-                                        if ($vistaCate[3] == 1) {
+                                        require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                            <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <!-- <button name="btnUpdt"disabled>Update</button> -->
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
-                                                Update
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Dar de Baja</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorTusu as $cboTusu) {
+                                            ?>
+                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
-                                        } else {
+                                        require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                            <input type="checkbox" name="categoria_estado" value="0" disabled>
-                                        <?php
-                                        }
-                                        ?>
-                                    </td>
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorTusu as $cboTusu) {
+                                            ?>
+                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--                             <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="categoria_estado" class="bmd-label-floating">Estado de la categoría</label>
+                                    <select class="form-control" name="categoria_estado_reg" id="categoria_estado">
+                                        <option value="1" selected="" >Habilitada</option>
+                                        <option value="0">Deshabilitada</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            </div>
+                        </div>
 
-                                </tr>
-                        </tbody>
-                    <?php
-                            }
-                    ?>
-                    </table>
-                </div>
-                <p class="text-right">Mostrando categorías
-                    <strong>1</strong> al <strong>15</strong> de un <strong>total de 18</strong>
+                    </fieldset>
+                    <p class="text-center">
+                        <button id="btnSave" type="submit" class="btn btn-raised btn-info btn-sm">
+                            <i class="far fa-save">
+                            </i> &nbsp; GUARDAR
+                        </button>
+                    </p>
+                    <!--   <p class="text-center" style="margin-top: 40px;">
+                    <button type="reset" class="btn btn-raised btn-secondary btn-sm">
+                        <i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR
+                    </button>
+                    &nbsp; &nbsp;
+                    <button type="submit" class="btn btn-raised btn-info btn-sm">
+                        <i class="far fa-save">
+                        </i> &nbsp; GUARDAR
+                    </button>
                 </p>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
-                        <li class="page-item"><a class="page-link active" href="">1</a></li>
-                        <li class="page-item"><a class="page-link" href="">2</a></li>
-                        <li class="page-item"><a class="page-link" href="">Siguiente</a></li>
-                        <li class="page-item"><a class="page-link" href=""><i class="fas fa-angle-double-right"></i></a></li>
-                    </ul>
-                </nav>
+                <p class="text-center">
+                    <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
+                </p> -->
+                </form>
             </div>
         </section>
     </main>
@@ -317,7 +292,7 @@ require_once('../../config/security.php');
                 if (result.value) {
 
                     let url = 'http://systems.designlopers.com/SVI/ajax/loginAjax.php';
-                    let token = 'bWpkOUtraXlPWndlQzQyOGkzUG1vam04NmZLZ3VRUlQxT2RXak9jeGJzS2VvRVdmZ0JXbzl1MjZ2RDB3TzhZNDVVWHJEblV3bDhZbzVtSzhBbjBqUzJJQUlKQnduOHFRYm1KUjFPeWExYmNvZXdXVFgwdUlxKzlEc0w3aEpkNlA=';
+                    let token = 'OHgwZ3RyMVNDQzZYb3l3VjFaZFlCVXN4KzRXZ0FyTXFyREhwTFZQaUpEV21mbEY1ekw1UDgwMU4rRk1rRm5sLzNUTlJPRWxmallMNkVKMUtCWXBnVkREZW9CbHBjNE5wek5UenZDYUEwWlRxekJwb09MZkpxNG5DWjQyWFVvVm4=';
                     let usuario = 'OFh3MUpva29KdER0ZHNqc0pkTGlmdz09';
 
                     let datos = new FormData();
@@ -339,11 +314,9 @@ require_once('../../config/security.php');
     </script>
     <!--=============================================
 =            Include JavaScript files           =
-
 ==============================================-->
     <!-- popper -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/popper.min.js"></script>
-    <script src="../resources/enableButtons.js"></script>
 
     <!-- Bootstrap V4.3 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap.min.js"></script>
@@ -360,13 +333,11 @@ require_once('../../config/security.php');
     </script>
 
     <!-- printThis  -->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../resources/functions.js"></script>
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>  -->
 </body>
 
 </html>

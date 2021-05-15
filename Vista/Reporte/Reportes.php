@@ -62,7 +62,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
                             </a>
                         </li>
 
@@ -85,6 +85,11 @@ require_once('../../config/security.php');
                                 <li>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
                                 </li>
                             </ul>
@@ -177,6 +182,7 @@ require_once('../../config/security.php');
                                             <option value="RxCategoria">Por Categoria</option>
                                             <option value="RxVencimiento">Por Vencimiento</option>
                                             <option value="RxEntrada">Por Ingresos</option>
+                                            <option value="RxDespacho">Por Despacho</option>
                                         </select>
                                     </div>
                                 </div>

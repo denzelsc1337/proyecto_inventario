@@ -1,6 +1,6 @@
 <?php
-include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
+
 /*if(isset($_SESSION['user'])){
         header('Location:Main.php');
     }*/
@@ -16,17 +16,16 @@ require_once('../../config/security.php');
     <title>SISTEMA VENTAS</title>
 
     <!-- Normalize V8.0.1 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/normalize.css">
 
     <!-- Bootstrap V4.3 -->
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design V4.0 -->
-    <!-- <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap-material-design.min.css"> -->
-
+    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap-material-design.min.css">
 
     <!-- Font Awesome V5.9.0 -->
-    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/all.css">
+    <!-- <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/all.css"> -->
     <!-- <link rel="stylesheet" href="Vista/css/all.css"> -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="../css/all.css">
@@ -48,19 +47,17 @@ require_once('../../config/security.php');
     <!-- Main container -->
     <main class="full-box main-container">
         <!-- Nav lateral -->
-        <!-- Nav lateral -->
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
             <div class="full-box nav-lateral-content scroll">
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-                    <figcaption class="text-center Blogger" style="font-size: 22px;">
+                    <figcaption class="text-center">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
                     </figcaption>
                 </figure>
-                <div class="full-box nav-lateral-bar">
-                </div>
+                <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
                         <li>
@@ -111,7 +108,7 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-<!--                                 <li>
+                                <li>
                                     <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
@@ -130,7 +127,7 @@ require_once('../../config/security.php');
                                     <a href="../Producto/BuscarProducto.php" class="Blogger">
                                         <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
                                     </a>
-                                </li> -->
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -147,7 +144,6 @@ require_once('../../config/security.php');
                 </nav>
             </div>
         </section>
-
         <!-- Page content -->
         <section class="full-box page-content scroll">
             <nav class="full-box navbar-info">
@@ -161,43 +157,35 @@ require_once('../../config/security.php');
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
-            <!-- <a href="#" class="float-left show-nav-lateral">
-                <i class="fas fa-bars"></i>
-            </a>
-            <a href="http://systems.designlopers.com/SVI/user-update/dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09/">
-                <i class="fas fa-user-cog"></i>
-            </a>
-            <a href="#" class="btn-exit-system">
-                <i class="fas fa-power-off"></i>
-            </a> -->
 
+            <!-- Page header -->
 
-            <div class="full-box page-header">
+            <div class="full-box page-header ">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Categorías
+                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Despachos
                 </h3>
                 <p class="text-justify">
-                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+                    En el módulo DESPACHO usted podrá registrar las despachos que servirán para tener un mejor registro de entradas.
                 </p>
             </div>
 
-            <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
+            <div class="container-fluid Gagalin">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
-                        <a href="Categoria.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                        <a href="Despacho.php">
+                            <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Nueva Despacho
                         </a>
                     </li>
                     <li>
-                        <a class="active" href="listaCategorias.php">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
+                        <a class="active" href="listaDespacho.php" class="Gagalin">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
+                    <!-- <li>
+                        <a href="http://systems.designlopers.com/SVI/provider-search/">
+                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveedor
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
@@ -210,44 +198,56 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Almacen</th>
-                                <th>№ Categoria</th>
-                                <th>Categoria</th>
-                                <th>Ver Productos</th>
-                                <th>Enable/Disable</th>
+                                <th>№ Colegio</th>
+                                <th>Cod Modular</th>
+                                <th>UGEL</th>
+                                <th>Colegio</th>
+                                <th>Dirección</th>
+                                <th>Telefono</th>
+                                <th>Correo</th>
+                                <th>Departamento</th>
+                                <th>Provincia</th>
+                                <th>Distrito</th>
+                                <th>Director</th>
+                                <th>Nivel</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($listaCategoria as $vistaCate) {
+                            foreach ($listaColegio as $vistaCole) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaCate[0] ?></td>
-                                    <td><?php echo $vistaCate[1] ?></td>
-                                    <td><?php echo $vistaCate[2] ?></td>
-                                    <td>
-                                        <a class="btn btn-info" href="http://systems.designlopers.com/SVI/product-category/1/">
-                                            <i class="fab fa-shopify fa-fw"></i>
-                                        </a>
-                                    </td>
-                                    <td>
+                                    <td><?php echo $vistaCole[0] ?></td>
+                                    <td><?php echo $vistaCole[1] ?></td>
+                                    <td><?php echo $vistaCole[2] ?></td>
+                                    <td><?php echo $vistaCole[3] ?></td>
+                                    <td><?php echo $vistaCole[4] ?></td>
+                                    <td><?php echo $vistaCole[5] ?></td>
+                                    <td><?php echo $vistaCole[6] ?></td>
+                                    <td><?php echo $vistaCole[7] ?></td>
+                                    <td><?php echo $vistaCole[8] ?></td>
+                                    <td><?php echo $vistaCole[9] ?></td>
+                                    <td><?php echo $vistaCole[10] ?></td>
+                                    <td><?php echo $vistaCole[11] ?></td>
+
+                                    <!-- <td>
                                         <?php
                                         $hide = "";
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaCate[3] == 1) {
+                                        if ($vistaCole[12] == 1) {
                                         ?>
                                             <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <!-- <button name="btnUpdt"disabled>Update</button> -->
-                                            <!-- Button trigger modal -->
+                                            <!-- <button name="btnUpdt"disabled>Update</button> 
+                                            <!-- Button trigger modal 
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
                                                 Update
                                             </button>
 
-                                            <!-- Modal -->
+                                            <!-- Modal 
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -275,7 +275,7 @@ require_once('../../config/security.php');
                                         <?php
                                         }
                                         ?>
-                                    </td>
+                                    </td> -->
 
                                 </tr>
                         </tbody>
@@ -284,19 +284,6 @@ require_once('../../config/security.php');
                     ?>
                     </table>
                 </div>
-                <p class="text-right">Mostrando categorías
-                    <strong>1</strong> al <strong>15</strong> de un <strong>total de 18</strong>
-                </p>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
-                        <li class="page-item"><a class="page-link active" href="">1</a></li>
-                        <li class="page-item"><a class="page-link" href="">2</a></li>
-                        <li class="page-item"><a class="page-link" href="">Siguiente</a></li>
-                        <li class="page-item"><a class="page-link" href=""><i class="fas fa-angle-double-right"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
         </section>
     </main>
     <script>
@@ -317,7 +304,7 @@ require_once('../../config/security.php');
                 if (result.value) {
 
                     let url = 'http://systems.designlopers.com/SVI/ajax/loginAjax.php';
-                    let token = 'bWpkOUtraXlPWndlQzQyOGkzUG1vam04NmZLZ3VRUlQxT2RXak9jeGJzS2VvRVdmZ0JXbzl1MjZ2RDB3TzhZNDVVWHJEblV3bDhZbzVtSzhBbjBqUzJJQUlKQnduOHFRYm1KUjFPeWExYmNvZXdXVFgwdUlxKzlEc0w3aEpkNlA=';
+                    let token = 'bSsxZkJVUGRrRS8yRnJsMXY5cG95NGtzWjh3bDVWVTg3N1ZkRloxN1YyRUVYT2g4bUZUNmNiSVlYT2paWHRaNi9LU1hCbFIrQW9LdERsVlJXdjA5eldwOFBPbXdUcEVWTFpIeFpSY1VQSGl1S1lVRXFOankwTHpqNisvNkJzZms=';
                     let usuario = 'OFh3MUpva29KdER0ZHNqc0pkTGlmdz09';
 
                     let datos = new FormData();
@@ -337,13 +324,12 @@ require_once('../../config/security.php');
             });
         });
     </script>
+
     <!--=============================================
 =            Include JavaScript files           =
-
 ==============================================-->
     <!-- popper -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/popper.min.js"></script>
-    <script src="../resources/enableButtons.js"></script>
 
     <!-- Bootstrap V4.3 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap.min.js"></script>
@@ -364,9 +350,6 @@ require_once('../../config/security.php');
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

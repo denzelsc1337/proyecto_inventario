@@ -62,7 +62,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
                             </a>
                         </li>
 
