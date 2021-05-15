@@ -60,7 +60,7 @@ CREATE TABLE colegios
     depa_colegio VARCHAR (15) NOT NULL,
     prov_colegio VARCHAR (15) NOT NULL,
     dist_colegio VARCHAR (15) NOT NULL,
-    loca_colegio VARCHAR (15) NOT NULL,
+    director_colegio VARCHAR (15) NOT NULL,
     nivel_colegio VARCHAR (30) NOT NULL
 );
 

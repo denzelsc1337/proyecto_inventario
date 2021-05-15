@@ -45,7 +45,7 @@ class cColegios
 										`depa_colegio`, 
 										`prov_colegio`, 
 										`dist_colegio`, 
-										`loca_colegio`, 
+										`director_colegio`, 
 										`nivel_colegio`) 
 										VALUES (null,
 											'".$data[1]."','".$data[2] . "','".$data[3]."','".$data[4]."',

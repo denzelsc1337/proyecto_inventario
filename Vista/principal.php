@@ -64,7 +64,7 @@
 						<ul>
 							<li>
 								<a href="principal.php" class="Blogger">
-									<i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard
+									<i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
 								</a>
 							</li>
 
@@ -79,7 +79,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="Categoria/listaColegios.php" class="Blogger">
+										<a href="Colegio/Colegios.php" class="Blogger">
 											<i class="fa fa-school fa-fw"></i> &nbsp; Colegios
 										</a>
 									</li>
@@ -157,7 +157,7 @@
 				<!-- Page header -->
 				<div class="full-box page-header">
 					<h3 class="text-left Gagalin">
-						<i class="fab fa-dashcube fa-fw"></i> &nbsp; DASHBOARD
+						<i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
 					</h3>
 					<p class="text-justify Blogger">
 						¡Bienvenido <strong>

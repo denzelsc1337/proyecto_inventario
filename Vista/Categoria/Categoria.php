@@ -63,7 +63,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
                             </a>
                         </li>
 
@@ -104,7 +104,7 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
@@ -123,7 +123,7 @@ require_once('../../config/security.php');
                                     <a href="../Producto/BuscarProducto.php" class="Blogger">
                                         <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -157,7 +157,7 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                    <i class="fas fa-tags fa-fw"></i> &nbsp; Categoría
                 </h3>
                 <p class="text-justify">
                     En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.

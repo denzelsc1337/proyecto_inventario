@@ -166,11 +166,11 @@ require_once('../../config/security.php');
 
             <div class="container-fluid Gagalin">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
-                    <!-- <li>
-                        <a href="../Categoria/Proveedor.php">
-                            <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                    <li>
+                        <a href="../Colegio/Colegios.php">
+                            <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo Colegio
                         </a>
-                    </li> -->
+                    </li>
                     <li>
                         <a class="active" href="../Categoria/listaColegios.php">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
@@ -203,7 +203,7 @@ require_once('../../config/security.php');
                                 <th>Departamento</th>
                                 <th>Provincia</th>
                                 <th>Distrito</th>
-                                <th>Localidad</th>
+                                <th>Director</th>
                                 <th>Nivel</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>

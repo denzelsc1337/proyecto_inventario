@@ -33,7 +33,7 @@ if($r == 1 ){
 	?>
 	<h2>Se insert&oacute correctamente</h2>
 	<META http-equiv="Refresh" CONTENT="1;
-	URL=../vista/MostrarUsuarios.php">
+	URL=../../Producto/listaProductos.php">
 	<?php
 }
 else{

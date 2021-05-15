@@ -104,21 +104,21 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+<!--                                 <li>
                                     <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
                                         <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+<!--                                 <li>
                                     <a href="../Producto/Producto-Stock.php" class="Blogger">
                                         <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
                                     </a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="../Producto/BuscarProducto.php" class="Blogger">
                                         <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
@@ -177,21 +177,21 @@ require_once('../../config/security.php');
                             <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                         </a>
                     </li>
-                    <li>
+ <!--                    <li>
                         <a href="../Producto/Producto-Categorias.php">
                             <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+<!--                     <li>
                         <a href="../Producto/Producto-Vencimiento.php">
                             <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+    <!--                 <li>
                         <a href="../Producto/Producto-Stock.php">
                             <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="../Producto/BuscarProducto.php">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
@@ -210,13 +210,12 @@ require_once('../../config/security.php');
                         <thead>
                             <tr class="text-center roboto-medium">
                                 <th>№ Almacen</th>
+                                <th>Proveedor</th>
                                 <th>Categoria</th>
                                 <th>Marca</th>
                                 <th>Producto</th>
-                                <th>Cantidades</th>
-                                <th>F. Ingreso</th>
-                                <th>Descripción</th>
-                                <th>№ Orden</th>
+                                <th>Cantidad</th>
+                                <th>Fecha I</th>
                                 <th>Enable/Disable</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
@@ -227,7 +226,6 @@ require_once('../../config/security.php');
                             ?>
                                 <tr class="text-center">
                                     <td><?php echo $vistaProd[0] ?></td>
-                                    <td><?php echo $vistaProd[1] ?></td>
                                     <td><?php echo $vistaProd[2] ?></td>
                                     <td><?php echo $vistaProd[3] ?></td>
                                     <td><?php echo $vistaProd[4] ?></td>

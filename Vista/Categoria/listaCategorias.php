@@ -106,7 +106,7 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
@@ -125,7 +125,7 @@ require_once('../../config/security.php');
                                     <a href="../Producto/BuscarProducto.php" class="Blogger">
                                         <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>

@@ -288,7 +288,7 @@ require_once('../../config/security.php');
 
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="categoria_nombre" class="bmd-label-floating">Local del Colegio
+                                        <label for="categoria_nombre" class="bmd-label-floating">Director del Colegio
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
                                         <input type="text" class="form-control" name="loc_cole" id="loc_cole"

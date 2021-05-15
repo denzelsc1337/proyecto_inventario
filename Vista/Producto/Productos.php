@@ -97,7 +97,7 @@ require_once('../../config/security.php');
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
-                                        <i class="fa fa-box fa-fw"></i> &nbsp; Nuevo producto
+                                        <i class="fa fa-box fa-fw"></i> &nbsp; Producto
                                     </a>
                                 </li>
                                 <li>
@@ -105,21 +105,21 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+<!--                                 <li>
                                     <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
                                         <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+<!--                                 <li>
                                     <a href="../Producto/Producto-Stock.php" class="Blogger">
                                         <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
                                     </a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="../Producto/BuscarProducto.php" class="Blogger">
                                         <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
@@ -157,7 +157,7 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-box fa-fw"></i> &nbsp; Nuevo producto
+                    <i class="fas fa-box fa-fw"></i> &nbsp; Producto
                 </h3>
                 <p class="text-justify">
                     En el módulo PRODUCTOS podrá agregar nuevos productos al sistema, actualizar datos de los productos, eliminar o actualizar la imagen de los productos, imprimir códigos de barras o SKU de cada producto, buscar productos en el sistema, ver todos los productos en almacén, ver los productos más vendido y filtrar productos por categoría.
@@ -176,21 +176,21 @@ require_once('../../config/security.php');
                             <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="../Producto/Producto-Categorias.php">
                             <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <a href="../Producto/Producto-Vencimiento.php">
                             <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
                         </a>
-                    </li>
-                    <li>
+                    </li> -->
+<!--                     <li>
                         <a href="../Producto/Producto-Stock.php">
                             <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="../Producto/BuscarProducto.php">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
@@ -203,7 +203,7 @@ require_once('../../config/security.php');
                 <form class="form-neon FormularioAjax" method="POST" action="../../Controlador/AddProducto.php" autocomplete="off">
                     <!-- <input type="hidden" name="modulo_producto" value="registrar"> -->
                     <fieldset>
-                        <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Categoría & estado</legend>
+                        <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Registro de Producto</legend>
                         <div class="container-fluid">
                             <div class="row">
 
