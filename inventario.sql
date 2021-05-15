@@ -142,13 +142,13 @@ CREATE TABLE detalle_despacho
     -- id_det_des INT (6) NOT NULL,
     id_usuario INT (6) NOT NULL,
     id_colegio INT (6) NOT NULL,
-    SKU_producto INT NOT NULL,
+    id_producto INT NOT NULL,
     cant_prod_des INT NOT NULL,
     fecha_des DATE,
     -- id_movimiento INT NOT NULL,
     -- nom_director VARCHAR (40) NOT NULL,
-    comentario VARCHAR (50)
-    -- ,
+    comentario VARCHAR (50),
+    firma_resp VARCHAR (50)
     -- estado_deta_desp BOOLEAN
 );
 
@@ -225,11 +225,11 @@ CREATE TABLE detalle_despacho
 	 FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
 
 
-    -- -- MOVIMIENTOS
+    -- DETALLE DESPACHO
 
-    -- ALTER TABLE movimientos
-    -- ADD CONSTRAINT fk_prov_a_mov
-    -- FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
+    ALTER TABLE detalle_despacho
+    ADD CONSTRAINT fk_prod_a_ddes
+    FOREIGN KEY (id_producto) REFERENCES productos (secuence_prod);
 
     -- ALTER TABLE movimientos
     -- ADD CONSTRAINT fk_prod_a_mov
@@ -282,25 +282,15 @@ CREATE TABLE detalle_despacho
 
 
 
-    INSERT INTO colegios VALUE (null, 1618958, 'UGEL AIJA', 'Santa Rosa de Viterbo', 'Jirón ramon castilla 1219', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
-    INSERT INTO colegios VALUE (null, 1554815, 'UGEL AIJA', 'Ricardo Palma Carrillo', 'Carretera san nicolas s/n', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
-    INSERT INTO colegios VALUE (null, 0385567, 'UGEL AIJA', 'Jose Antonio Encinas', 'Macashca', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
-    INSERT INTO colegios VALUE (null, 1536598, 'UGEL AIJA', 'La Libertad', 'Avenida agustin gamarra s/n', '422711', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
-    INSERT INTO colegios VALUE (null, 0385492, 'UGEL AIJA', 'Cede Señor de los Milagros', 'Huaraz 02001', '', '', 'Ancash', 'Huaraz', 'Cochabamba', 'Cochabamba', 'Primaria');
-    INSERT INTO colegios VALUE (null, 0385518, 'UGEL AIJA', 'Nuestra Señora Del Sagrado Corazón de Jesús', 'Quenuales 163, Huaraz 02002', '421652', '', 'Ancash', 'Huaraz', 'Independencia', 'Huaraz', 'Primaria y Secundaria');
-    INSERT INTO colegios VALUE (null, 1311364, 'UGEL AIJA', 'Madre Teresa de Calcuta', 'Jiron los Incas 109', '', '', 'Ancash', 'Carhuaz', 'Carhuaz', 'Carhuaz', 'Secundaria');
-    INSERT INTO colegios VALUE (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
-    INSERT INTO colegios VALUE (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
-    INSERT INTO colegios VALUE (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
-
-
-
-
-
-
-
-
-
-
+    INSERT INTO colegios VALUES (null, 1618958, 'UGEL AIJA', 'Santa Rosa de Viterbo', 'Jirón ramon castilla 1219', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 1554815, 'UGEL AIJA', 'Ricardo Palma Carrillo', 'Carretera san nicolas s/n', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 0385567, 'UGEL AIJA', 'Jose Antonio Encinas', 'Macashca', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 1536598, 'UGEL AIJA', 'La Libertad', 'Avenida agustin gamarra s/n', '422711', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 0385492, 'UGEL AIJA', 'Cede Señor de los Milagros', 'Huaraz 02001', '', '', 'Ancash', 'Huaraz', 'Cochabamba', 'Cochabamba', 'Primaria');
+    INSERT INTO colegios VALUES (null, 0385518, 'UGEL AIJA', 'Nuestra Señora Del Sagrado Corazón de Jesús', 'Quenuales 163, Huaraz 02002', '421652', '', 'Ancash', 'Huaraz', 'Independencia', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 1311364, 'UGEL AIJA', 'Madre Teresa de Calcuta', 'Jiron los Incas 109', '', '', 'Ancash', 'Carhuaz', 'Carhuaz', 'Carhuaz', 'Secundaria');
+    INSERT INTO colegios VALUES (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
+    INSERT INTO colegios VALUES (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
 
 
