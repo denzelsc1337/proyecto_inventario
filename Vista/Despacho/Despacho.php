@@ -54,8 +54,21 @@ require_once('../../config/security.php');
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-                    <figcaption class="text-center">
-                        <?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
+                    <figcaption class="text-center Blogger" style="font-size: 22px;">
+                        <?php echo $_SESSION['name']; ?><br><small class="Blogger">
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -88,11 +101,6 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="../Despacho/Despacho.php" class="Blogger">
-                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
@@ -107,6 +115,11 @@ require_once('../../config/security.php');
                                 <li>
                                     <a href="../Producto/listaProductos.php" class="Blogger">
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
                                 <!--                                 <li>
@@ -162,10 +175,10 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Despacho
+                    <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Salida de Producto
                 </h3>
                 <p class="text-justify">
-                    En el módulo DESPACHO usted podrá registrar las despachos que servirán para tener un mejor registro de entradas.
+                    En el módulo Salida de Producto usted podrá registrar las despachos que servirán para tener un mejor registro de entradas.
                 </p>
             </div>
 
@@ -173,7 +186,7 @@ require_once('../../config/security.php');
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
                         <a class="active Gagalin" href="Despacho.php">
-                            <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Nueva Despacho
+                            <i class="fas fa-clipboard-check fa-fw"></i> &nbsp;Salida de Producto
                         </a>
                     </li>
                     <li>
@@ -269,7 +282,7 @@ require_once('../../config/security.php');
 
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
-                                        <label for="producto_marca" class="bmd-label-floating">Firma o Nombre Completo del Encargado</label>
+                                        <label for="producto_marca" class="bmd-label-floating">DNI y Nombre del contacto a recepcionar</label>
                                         <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30">
                                     </div>
                                 </div>

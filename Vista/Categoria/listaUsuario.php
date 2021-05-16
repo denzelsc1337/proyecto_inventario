@@ -54,8 +54,21 @@ require_once('../../config/security.php');
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-                    <figcaption class="text-center">
-                        <?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
+                    <figcaption class="text-center Blogger" style="font-size: 22px;">
+                        <?php echo $_SESSION['name']; ?><br><small class="Blogger">
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -165,7 +178,7 @@ require_once('../../config/security.php');
                     <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Usuarios
                 </h3>
                 <p class="text-justify">
-                    En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un cajero, también podrá ver la lista de usuarios registrados, buscar usuarios en el sistema, actualizar datos de otros usuarios y los suyos.
+                En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un operador, también podrá ver la lista de usuarios registrados, actualizar datos de otros usuarios.
                 </p>
             </div>
 

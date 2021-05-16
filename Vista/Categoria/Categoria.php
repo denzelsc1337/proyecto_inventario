@@ -53,9 +53,23 @@ require_once('../../config/security.php');
             <div class="full-box nav-lateral-content scroll">
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-                    <figcaption class="text-center">
-                        <?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
+                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" 
+                    class="img-fluid" alt="Avatar">
+                    <figcaption class="text-center Blogger" style="font-size: 22px;">
+                        <?php echo $_SESSION['name']; ?><br><small class="Blogger">
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -63,7 +77,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
@@ -88,16 +102,16 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp;Gestíon de Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -129,6 +143,11 @@ require_once('../../config/security.php');
                                         <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
                                     </a>
                                 </li> -->
+                                <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -165,7 +184,7 @@ require_once('../../config/security.php');
                     <i class="fas fa-tags fa-fw"></i> &nbsp; Categoría
                 </h3>
                 <p class="text-justify">
-                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías o el estado de la categoria.
                 </p>
             </div>
 
@@ -179,11 +198,6 @@ require_once('../../config/security.php');
                     <li>
                         <a href="listaCategorias.php" class="Gagalin">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="Gagalin">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
                         </a>
                     </li>
                 </ul>

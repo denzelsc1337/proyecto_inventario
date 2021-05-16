@@ -8,7 +8,7 @@ $selectorCateg = $oCategoria->selectorCategorias();
 require_once('../../Modelo/Productos.php');
 $oProducto = new pProductos();
 $listaProducto = $oProducto->obtenerProducto();
-$selectorProd = $oProducto->selectorProd();
+$selectorProd = $oProducto->selectorProd();//llenado de filtros
 
 require_once('../../Modelo/Usuario.php');
 $oUsuario1 = new usuario();

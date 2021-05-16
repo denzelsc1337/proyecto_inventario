@@ -55,8 +55,21 @@ require_once('../../config/security.php');
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-                    <figcaption class="text-center">
-                        <?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
+                    <figcaption class="text-center Blogger" style="font-size: 22px;">
+                        <?php echo $_SESSION['name']; ?><br><small class="Blogger">
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -89,11 +102,6 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="../Despacho/Despacho.php" class="Blogger">
-                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 
@@ -102,12 +110,18 @@ require_once('../../config/security.php');
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
-                                        <i class="fa fa-box fa-fw"></i> &nbsp; Producto
+                                        <i class="fa fa-box fa-fw"></i> &nbsp; Ingreso producto
                                     </a>
                                 </li>
                                 <li>
                                     <a href="../Producto/listaProductos.php" class="Blogger">
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
 <!--                                 <li>
@@ -125,11 +139,6 @@ require_once('../../config/security.php');
                                         <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
                                     </a>
                                 </li> -->
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -165,7 +174,8 @@ require_once('../../config/security.php');
                     <i class="fas fa-box fa-fw"></i> &nbsp; Producto
                 </h3>
                 <p class="text-justify">
-                    En el módulo PRODUCTOS podrá agregar nuevos productos al sistema, actualizar datos de los productos, eliminar o actualizar la imagen de los productos, imprimir códigos de barras o SKU de cada producto, buscar productos en el sistema, ver todos los productos en almacén, ver los productos más vendido y filtrar productos por categoría.
+                    En el módulo PRODUCTOS podrá ingresar nuevos productos al sistema, actualizar datos de los productos, 
+                     ver los productos en almacén.
                 </p>
             </div>
 
@@ -173,7 +183,7 @@ require_once('../../config/security.php');
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
                         <a class="active" href="../Producto/Productos.php">
-                            <i class="fas fa-box fa-fw"></i> &nbsp; Nuevo producto
+                            <i class="fas fa-box fa-fw"></i> &nbsp; Ingreso de producto
                         </a>
                     </li>
                     <li>
@@ -196,11 +206,11 @@ require_once('../../config/security.php');
                             <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
                         </a>
                     </li> -->
-                    <li>
+              <!--       <li>
                         <a href="../Producto/BuscarProducto.php">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- id="frmProd" -->
@@ -214,7 +224,7 @@ require_once('../../config/security.php');
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="producto_nombre" class="bmd-label-floating">SKU &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <label for="producto_nombre" class="bmd-label-floating">Codigo de Ingreso de Producto &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <input type="number" class="form-control input-barcode" name="sku_prod" id="sku_prod" maxlength="97">
                                     </div>
                                 </div>
@@ -360,7 +370,7 @@ require_once('../../config/security.php');
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="producto_stock_total" class="bmd-label-floating">Stock o existencias &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <label for="producto_stock_total" class="bmd-label-floating">Cantidad a ingresar&nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <input type="number" class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="20">
                                     </div>
                                 </div>

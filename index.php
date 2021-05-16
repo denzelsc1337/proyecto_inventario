@@ -36,10 +36,7 @@
 	<div class="login-container">
     <div class="login-content">
         <p class="text-center">
-            <i class="fas fa-user-circle fa-5x"></i>
-        </p>
-        <p class="text-center Blogger">
-        Inicia
+        <img src="Vista/resources/icono_ugel.png" class="img-fluid" alt="Avatar">
         </p>
         <form method="POST" autocomplete="off" action = "Controlador/loginTest.php">
             <div class="form-group Blogger">

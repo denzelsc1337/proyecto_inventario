@@ -7,7 +7,7 @@
             data: _data,
             success:function(r){
                 if (r==1) {
-                    alert("Add successfully");
+                    alert("Agregado correctamente");
                     event.returnValue=false;
                     document.getElementById("categoria_nombre").value = "";
                     document.getElementById("cod_cate").value = "";
@@ -61,7 +61,7 @@
             data: _data_usr,
             success:function(r){
                 if (r==1) {
-                    alert("Add successfully");
+                    alert("Agregado correctamente");
                     event.returnValue=false;
                     
                 }else{
@@ -71,7 +71,38 @@
         });
         return false;
     });
+    /* $('#dataUpdate').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Botón que activó el modal
+        var id = button.data('id') // Extraer la información de atributos de datos
+        var cate = button.data('cate') // Extraer la información de atributos de datos
+        var estado = button.data('estado') // Extraer la información de atributos de datos
+        
+        var modal = $(this)
+        modal.find('.modal-title').text('Modificar Estado : '+cate)
+        modal.find('.modal-body #id').val(id)
+        modal.find('.modal-body #cate').val(cate)
+        modal.find('.modal-body #estado').val(estado)
+        $('.alert').hide();//Oculto alert
+      });
 
+      $("#actualizarDatos").submit(function( event ) {
+		var parametros = $(this).serialize();
+			 $.ajax({
+					type: "POST",
+					url: "modificar.php",
+					data: parametros,
+					 beforeSend: function(objeto){
+						$("#datos_ajax").html("Mensaje: Cargando...");
+					  },
+					success: function(datos){
+					$("#datos_ajax").html(datos);
+					
+					load(1);
+				  }
+			});
+		  event.preventDefault();
+		});
+*/
     $('#btnSave_despacho').click(function(){
         var _data_dspch=$('#frmSalida').serialize();
 
@@ -81,7 +112,7 @@
             data: _data_dspch,
             success:function(r){
                 if (r==1) {
-                    alert("Add successfully");
+                    alert("Agregado correctamente");
                     event.returnValue=false;
                     document.getElementById("usuario_cargo").value = "";
                     document.getElementById("colegio_cod").value = "";
@@ -97,7 +128,9 @@
             }
         });
         return false;
-    });
+    }); 
+
+    
     $('#btnAddCole').click(function(){
         var _data_cole=$('#frmCole').serialize();
         $.ajax({
@@ -106,7 +139,26 @@
             data: _data_cole,
             success:function(r){
                 if (r==1) {
-                    alert("Add successfully");
+                    alert("Agregado correctamente");
+                    event.returnValue=false;
+                    
+                }else{
+                    alert("Error en el servidor.");
+                }
+            }
+        });
+        return false;
+    });
+
+    $('#btnActualizarCate').click(function(){
+        var _actuCat=$('#frmActuCateg').serialize();
+        $.ajax({
+            type:"POST",
+            url:"../../Controlador/ActualizarCategoria.php",
+            data: _actuCat,
+            success:function(r){
+                if (r==1) {
+                    alert("Actualizado correctamente");
                     event.returnValue=false;
                     
                 }else{

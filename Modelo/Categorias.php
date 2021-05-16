@@ -29,6 +29,14 @@ class cCategoria
 		$cnx->cerrarConexion($cadena);
 
 		return $this->listCategoria;
+
+		/* while ($fila = mysqli_fetch_row($resultado)) {
+			$this->listCategoria[] = $fila;
+		}
+
+		$cnx->cerrarConexion($cadena) ;
+
+		return $resultado;*/
 	}
 
 	public function selectorCategorias()
@@ -49,6 +57,8 @@ class cCategoria
 		return $this->listCategoria;
 	}
 
+
+
 	function agregarCategorias($data)
 	{
 		include_once('../config/Conexion.php');
@@ -63,4 +73,5 @@ class cCategoria
 		$cnx->cerrarConexion($cadena);
 
 	}
+
 }

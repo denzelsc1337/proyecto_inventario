@@ -54,9 +54,22 @@ require_once('../config/security.php');
 				<figure class="full-box nav-lateral-avatar">
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
-					<figcaption class="text-center Blogger">
-						<?php echo $_SESSION['name']; ?><br><small class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
-					</figcaption>
+                    <figcaption class="text-center Blogger" style="font-size: 22px;">
+                        <?php echo $_SESSION['name']; ?><br><small class="Blogger">
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
+                    </figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar">
 				</div>
@@ -90,16 +103,16 @@ require_once('../config/security.php');
 									</a>
 								</li>
 
-								<li>
+								<!-- <li>
 									<a href="Despacho/Despacho.php" class="Blogger">
 										<i class="fa fa-user-tie fa-fw"></i> &nbsp; Despachos
 									</a>
-								</li>
+								</li> -->
 							</ul>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
 							<ul>
 								<li>
 									<a href="Producto/Productos.php" class="Blogger">
@@ -111,6 +124,11 @@ require_once('../config/security.php');
 										<i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
 									</a>
 								</li>
+								<li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
+                                    </a>
+                                </li>
 								<!--                                 <li>
                                     <a href="../Producto/Producto-Categoria.php" class="Blogger">
                                         <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
@@ -213,7 +231,7 @@ require_once('../config/security.php');
 					</a>
 
 					<a href="Producto/listaProductos.php" class="tile">
-						<div class="tile-tittle Gagalin">Productos</div>
+						<div class="tile-tittle Gagalin">Gestión De Productos</div>
 						<div class="tile-icon">
 							<i class="fa fa-boxes fa-fw"></i>
 							<p class="Blogger"> - Registrados</p>
@@ -265,7 +283,7 @@ require_once('../config/security.php');
 						<p> &nbsp; </p>
 					</div>
 				</a> -->
-					<a href="#" class="tile">
+					<a href="Reporte/Reportes.php" class="tile">
 						<div class="tile-tittle Gagalin">Reportes</div>
 						<div class="tile-icon">
 							<i class="far fa-file-pdf fa-fw"></i>

@@ -57,9 +57,21 @@ require_once('../../config/security.php');
                     <i class="far fa-times-circle show-nav-lateral"></i>
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png"
                         class="img-fluid" alt="Avatar">
-                    <figcaption class="text-center">
-                        <?php echo $_SESSION['name']; ?><br><small
-                            class="Blogger"><?php echo $_SESSION['id_rol'] ?></small>
+                        <figcaption class="text-center Blogger" style="font-size: 22px;">
+                        <?php echo $_SESSION['name']; ?><br><small class="Blogger">
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -169,11 +181,11 @@ require_once('../../config/security.php');
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva Colegio
+                    <i class="fas fa-tags fa-fw"></i> &nbsp; Nuevo Colegio
                 </h3>
                 <p class="text-justify">
-                    En el módulo COLEGIOS usted podrá actualizar los datos de los colegios, ver todos los colegios
-                    registrados en el sistema o eliminarlos si así lo desea.
+                    En el módulo COLEGIOS usted podrá registrar o actualizar los datos de los colegios y ver todos los colegios
+                    registrados en el sistema.
                 </p>
             </div>
 
@@ -301,7 +313,7 @@ require_once('../../config/security.php');
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6" style="margin-top: 30px;">
-                                    <label for="" class="bmd-label-floating">Estado Del Producto &nbsp;
+                                    <label for="" class="bmd-label-floating">Nivel del Colegio &nbsp;
                                         <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                     </label>
                                     <div class="col-12 col-md-6">
