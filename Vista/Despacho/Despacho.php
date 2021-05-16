@@ -76,7 +76,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
@@ -101,11 +101,16 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
+                                <!-- <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
+                                    </a>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -122,26 +127,6 @@ require_once('../../config/security.php');
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
-                                <!--                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
-                                    </a>
-                                </li> -->
                             </ul>
                         </li>
                         <li>

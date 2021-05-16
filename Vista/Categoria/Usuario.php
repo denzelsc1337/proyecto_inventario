@@ -75,7 +75,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
@@ -100,16 +100,16 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -122,23 +122,8 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
                             </ul>
@@ -408,121 +393,7 @@ require_once('../../config/security.php');
                         </div>
                     </fieldset>
                     <br><br><br>
-                    <!-- <fieldset>
-                        <div class="container-fluid">
-                            <legend><i class="fas fa-portrait"></i> &nbsp; Avatar</legend>
-                            <div class="row">
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Male_2.png" checked>
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_2.png" alt="Avatar_Male_2.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Male_1.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_1.png" alt="Avatar_Male_1.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_default_male.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_default_male.png" alt="Avatar_default_male.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Female_5.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_5.png" alt="Avatar_Female_5.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_default_female.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_default_female.png" alt="Avatar_default_female.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Female_1.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_1.png" alt="Avatar_Female_1.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Male_3.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_3.png" alt="Avatar_Male_3.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Female_4.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_4.png" alt="Avatar_Female_4.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Male_4.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" alt="Avatar_Male_4.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Male_5.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_5.png" alt="Avatar_Male_5.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Female_3.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_3.png" alt="Avatar_Female_3.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-6 col-md-4 col-lg-2">
-                                    <div class="radio radio-avatar-form">
-                                        <label>
-                                            <input type="radio" name="usuario_avatar_reg" value="Avatar_Female_2.png">
-                                            <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_2.png" alt="Avatar_Female_2.png" class="img-fluid img-avatar-form">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset> -->
+                    
                     <p class="text-center" style="margin-top: 40px;">
                         <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
                         &nbsp; &nbsp;

@@ -48,7 +48,6 @@ require_once('../../config/security.php');
     <!-- Main container -->
     <main class="full-box main-container">
         <!-- Nav lateral -->
-        <!-- Nav lateral -->
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
             <div class="full-box nav-lateral-content scroll">
@@ -57,19 +56,19 @@ require_once('../../config/security.php');
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                        <?php 
-                        switch ($_SESSION['id_rol']) {
-                            case '1':
-                                echo "Administrador";
-                                break;
-                            case '2':
-                                echo "Operador";
-                                break;
-                            default:   
-                                break;
-                        }
- 
-                        ?></small>
+                            <?php
+                            switch ($_SESSION['id_rol']) {
+                                case '1':
+                                    echo "Administrador";
+                                    break;
+                                case '2':
+                                    echo "Operador";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -77,7 +76,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
@@ -102,15 +101,20 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
+                                <!-- <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
+                                    </a>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
-                                        <i class="fa fa-box fa-fw"></i> &nbsp; Ingreso producto
+                                        <i class="fa fa-box fa-fw"></i> &nbsp; Nuevo producto
                                     </a>
                                 </li>
                                 <li>
@@ -118,27 +122,11 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
-<!--                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li> -->
-<!--                                 <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li> -->
-<!--                                 <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -174,8 +162,8 @@ require_once('../../config/security.php');
                     <i class="fas fa-box fa-fw"></i> &nbsp; Producto
                 </h3>
                 <p class="text-justify">
-                    En el módulo PRODUCTOS podrá ingresar nuevos productos al sistema, actualizar datos de los productos, 
-                     ver los productos en almacén.
+                    En el módulo PRODUCTOS podrá ingresar nuevos productos al sistema, actualizar datos de los productos,
+                    ver los productos en almacén.
                 </p>
             </div>
 
@@ -201,12 +189,12 @@ require_once('../../config/security.php');
                             <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
                         </a>
                     </li> -->
-<!--                     <li>
+                    <!--                     <li>
                         <a href="../Producto/Producto-Stock.php">
                             <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
                         </a>
                     </li> -->
-              <!--       <li>
+                    <!--       <li>
                         <a href="../Producto/BuscarProducto.php">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
                         </a>
@@ -291,40 +279,9 @@ require_once('../../config/security.php');
                                         <input type="number" class="form-control input-barcode" name="id_user" id="id_user" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="97">
                                     </div>
                                 </div>
-
-
-                                <!-- <div class="col-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="producto_estado" class="bmd-label-floating">Estado del producto</label>
-                                        <select class="form-control" name="producto_estado_reg" id="producto_estado">
-                                            <option value="Habilitado" selected="">Habilitado</option>
-                                            <option value="Deshabilitado">Deshabilitado</option>
-                                        </select>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </fieldset>
-                    <!-- <br><br><br>
-                    <fieldset>
-                        <legend><i class="fas fa-barcode"></i> &nbsp; Código y SKU</legend>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="producto_codigo" class="bmd-label-floating">Código de barras &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[a-zA-Z0-9- ]{1,70}" class="form-control input-barcode" name="producto_codigo_reg" id="producto_codigo" maxlength="70">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="producto_sku" class="bmd-label-floating">SKU</label>
-                                        <input type="text" pattern="[a-zA-Z0-9- ]{1,70}" class="form-control input-barcode" name="producto_sku_reg" id="producto_sku" maxlength="70">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset> -->
                     <br><br><br>
                     <fieldset>
                         <legend class="Gagalin"><i class="fas fa-box"></i> &nbsp; Información del producto</legend>
@@ -383,61 +340,9 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_fecha_vencimiento">Fecha de vencimiento</label>
-                                        <input type="date" class="form-control" value="00-00-0000" name="date_out" id="date_out" >
+                                        <input type="date" class="form-control" value="00-00-0000" name="date_out" id="date_out">
                                     </div>
                                 </div>
-                                <!-- <div class="col-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="producto_stock_minimo" class="bmd-label-floating">Stock mínimo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[0-9]{1,9}" class="form-control" name="producto_stock_minimo_reg" id="producto_stock_minimo" maxlength="9">
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="producto_unidad" class="bmd-label-floating">Presentación del producto &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <select class="form-control" name="producto_unidad_reg" id="producto_unidad">
-                                            <option value="" selected="">Seleccione una opción</option>
-                                            <option value="Unidad">1 - Unidad</option>
-                                            <option value="Libra">2 - Libra</option>
-                                            <option value="Kilogramo">3 - Kilogramo</option>
-                                            <option value="Caja">4 - Caja</option>
-                                            <option value="Paquete">5 - Paquete</option>
-                                            <option value="Lata">6 - Lata</option>
-                                            <option value="Galon">7 - Galon</option>
-                                            <option value="Botella">8 - Botella</option>
-                                            <option value="Tira">9 - Tira</option>
-                                            <option value="Sobre">10 - Sobre</option>
-                                            <option value="Bolsa">11 - Bolsa</option>
-                                            <option value="Saco">12 - Saco</option>
-                                            <option value="Tarjeta">13 - Tarjeta</option>
-                                            <option value="Otro">14 - Otro</option>
-                                        </select>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="producto_precio_compra" class="bmd-label-floating">Precio de compra (Con impuesto incluido) &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[0-9.]{1,25}" class="form-control" name="producto_precio_compra_reg" value="0.00" id="producto_precio_compra" maxlength="25">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="producto_precio_venta" class="bmd-label-floating">Precio de venta (Con impuesto incluido) &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[0-9.]{1,25}" class="form-control" name="producto_precio_venta_reg" value="0.00" id="producto_precio_venta" maxlength="25">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="producto_precio_venta_mayoreo" class="bmd-label-floating">Precio de venta por mayoreo (Con impuesto incluido) &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[0-9.]{1,25}" class="form-control" name="producto_precio_venta_mayoreo_reg" value="0.00" id="producto_precio_venta_mayoreo" maxlength="25">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="producto_descuento" class="bmd-label-floating">Descuento (%) en venta &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" pattern="[0-9]{1,2}" class="form-control" name="producto_descuento_reg" value="0" id="producto_descuento" maxlength="2">
-                                    </div>
-                                </div> -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Descripción</label>
@@ -462,12 +367,6 @@ require_once('../../config/security.php');
                                         <input type="number" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="30">
                                     </div>
                                 </div>
-                                <!-- <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label for="producto_modelo" class="bmd-label-floating">Modelo</label>
-                                        <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,30}" class="form-control input-barcode" name="producto_modelo_reg" id="producto_modelo" maxlength="30">
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </fieldset>

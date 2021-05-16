@@ -125,30 +125,10 @@ require_once('../config/security.php');
 									</a>
 								</li>
 								<li>
-                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                    <a href="Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
-								<!--                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
-                                    </a>
-                                </li> -->
 							</ul>
 						</li>
 						<li>
@@ -286,7 +266,7 @@ require_once('../config/security.php');
 					<a href="Reporte/Reportes.php" class="tile">
 						<div class="tile-tittle Gagalin">Reportes</div>
 						<div class="tile-icon">
-							<i class="far fa-file-pdf fa-fw"></i>
+							<i class="fa fa-file-invoice fa-fw"></i>
 							<p class="Blogger"> &nbsp; </p>
 						</div>
 					</a>

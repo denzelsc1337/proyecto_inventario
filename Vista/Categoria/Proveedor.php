@@ -75,7 +75,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
@@ -86,25 +86,30 @@ require_once('../../config/security.php');
                             <ul>
                                 <li>
                                     <a href="../Categoria/Categoria.php" class="Blogger">
-                                        <i class="fa fa-tags fa-fw"></i> &nbsp; Nueva categoría
+                                        <i class="fa fa-tags fa-fw"></i> &nbsp; Categorías
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Categoria/Proveedor.php" class="Blogger">
-                                        <i class="fa fa-shipping-fast fa-fw"></i> &nbsp; Nuevo proveedor
+                                    <a href="../Categoria/listaColegios.php" class="Blogger">
+                                        <i class="fa fa-school fa-fw"></i> &nbsp; Colegios
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
-                                        <i class="fa fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
+                                        <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
+                                <!-- <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
+                                    </a>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -117,28 +122,12 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
                             </ul>
                         </li>
-
                         <li>
                             <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
@@ -149,22 +138,6 @@ require_once('../../config/security.php');
                                 </li>
                             </ul>
                         </li>
-
-                        <!-- <li>
-                            <a href="#" class="nav-btn-submenu"><i class="fa fa-cogs fa-fw"></i> &nbsp; Configuraciones <i class="fa fa-chevron-down"></i></a>
-                            <ul>
-                                                            <li>
-                                        <a href="http://systems.designlopers.com/SVI/company/">
-                                            <i class="fa fa-store-alt fa-fw"></i> &nbsp; Datos de la empresa
-                                        </a>
-                                    </li>
-                                                        <li>
-                                    <a href="http://systems.designlopers.com/SVI/user-update/dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09/">
-                                        <i class="fa fa-sync fa-fw"></i> &nbsp; Actualizar cuenta
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
                     </ul>
                 </nav>
             </div>

@@ -53,23 +53,22 @@ require_once('../../config/security.php');
             <div class="full-box nav-lateral-content scroll">
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" 
-                    class="img-fluid" alt="Avatar">
+                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                        <?php 
-                        switch ($_SESSION['id_rol']) {
-                            case '1':
-                                echo "Administrador";
-                                break;
-                            case '2':
-                                echo "Operador";
-                                break;
-                            default:   
-                                break;
-                        }
- 
-                        ?></small>
+                            <?php
+                            switch ($_SESSION['id_rol']) {
+                                case '1':
+                                    echo "Administrador";
+                                    break;
+                                case '2':
+                                    echo "Operador";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -102,7 +101,7 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-<!--                                 <li>
+                                <!-- <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
@@ -111,7 +110,7 @@ require_once('../../config/security.php');
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp;Gestíon de Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -123,26 +122,6 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-<!--                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
-                                    </a>
-                                </li> -->
                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto

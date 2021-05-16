@@ -48,7 +48,6 @@ require_once('../../config/security.php');
     <!-- Main container -->
     <main class="full-box main-container">
         <!-- Nav lateral -->
-        <!-- Nav lateral -->
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
             <div class="full-box nav-lateral-content scroll">
@@ -72,8 +71,7 @@ require_once('../../config/security.php');
                         ?></small>
                     </figcaption>
                 </figure>
-                <div class="full-box nav-lateral-bar">
-                </div>
+                <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
                         <li>
@@ -103,7 +101,7 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <!--                                 <li>
+                                <!-- <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
@@ -112,7 +110,7 @@ require_once('../../config/security.php');
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestion de Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -124,26 +122,6 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <!--                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
-                                    </a>
-                                </li> -->
                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
@@ -258,9 +236,9 @@ require_once('../../config/security.php');
                                         ?>
                                     </td>
                                     <td>
-                                    <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
+                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
                                             Actualizar
-                                    </button>
+                                        </button>
                                     </td>
 
                                 </tr>
@@ -272,7 +250,7 @@ require_once('../../config/security.php');
                 </div>
 
 
-                <p class="text-right">Mostrando categorías
+                <!-- <p class="text-right">Mostrando categorías
                     <strong>1</strong> al <strong>15</strong> de un <strong>total de 18</strong>
                 </p>
                 <nav aria-label="Page navigation example">
@@ -283,7 +261,7 @@ require_once('../../config/security.php');
                         <li class="page-item"><a class="page-link" href="">Siguiente</a></li>
                         <li class="page-item"><a class="page-link" href=""><i class="fas fa-angle-double-right"></i></a></li>
                     </ul>
-                </nav>
+                </nav> -->
             </div>
         </section>
     </main>

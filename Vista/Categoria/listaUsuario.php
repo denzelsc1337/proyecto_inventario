@@ -56,19 +56,19 @@ require_once('../../config/security.php');
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                        <?php 
-                        switch ($_SESSION['id_rol']) {
-                            case '1':
-                                echo "Administrador";
-                                break;
-                            case '2':
-                                echo "Operador";
-                                break;
-                            default:   
-                                break;
-                        }
- 
-                        ?></small>
+                            <?php
+                            switch ($_SESSION['id_rol']) {
+                                case '1':
+                                    echo "Administrador";
+                                    break;
+                                case '2':
+                                    echo "Operador";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -76,7 +76,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
@@ -101,16 +101,16 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -123,23 +123,8 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
                             </ul>
@@ -178,7 +163,7 @@ require_once('../../config/security.php');
                     <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Usuarios
                 </h3>
                 <p class="text-justify">
-                En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un operador, también podrá ver la lista de usuarios registrados, actualizar datos de otros usuarios.
+                    En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un operador, también podrá ver la lista de usuarios registrados, actualizar datos de otros usuarios.
                 </p>
             </div>
 
@@ -211,6 +196,7 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
+                                <!-- <th>  -  </th> -->
                                 <th>Cod. Usuario</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
@@ -220,6 +206,7 @@ require_once('../../config/security.php');
                                 <th>E-mail</th>
                                 <th>Celular</th>
                                 <th>Estado</th>
+                                <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
@@ -228,7 +215,7 @@ require_once('../../config/security.php');
                             foreach ($listaUsuario as $vistaUsu) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaUsu[0] ?></td>
+                                    <td hidden><?php echo $vistaUsu[0] ?></td>
                                     <td><?php echo $vistaUsu[1] ?></td>
                                     <td><?php echo $vistaUsu[2] ?></td>
                                     <td><?php echo $vistaUsu[3] ?></td>
@@ -236,6 +223,7 @@ require_once('../../config/security.php');
                                     <td><?php echo $vistaUsu[5] ?></td>
                                     <td><?php echo $vistaUsu[6] ?></td>
                                     <td><?php echo $vistaUsu[7] ?></td>
+                                    <td><?php echo $vistaUsu[8] ?></td>
                                     <!-- <td>
                                         <a class="btn btn-info" href="http://systems.designlopers.com/SVI/product-category/1/">
                                             <i class="fab fa-shopify fa-fw"></i>
@@ -247,37 +235,10 @@ require_once('../../config/security.php');
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaUsu[8] == 1) {
+                                        if ($vistaUsu[9] == 1) {
                                         ?>
-                                            <input type="checkbox" name="usuario_estado" value="1" checked="" disabled="">
+                                            <input type="checkbox" name="usuario_estado" value="1" checked="" disabled>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <!-- <button name="btnUpdt"disabled>Update</button> -->
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
-                                                Update
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Dar de Baja</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         <?php
                                         } else {
                                         ?>
@@ -286,7 +247,11 @@ require_once('../../config/security.php');
                                         }
                                         ?>
                                     </td>
-
+                                    <td>
+                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
+                                            Actualizar
+                                        </button>
+                                    </td>
                                 </tr>
                         </tbody>
                     <?php
@@ -297,6 +262,130 @@ require_once('../../config/security.php');
             </div>
         </section>
     </main>
+    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+    <div class="modal fade" id="editusu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuarios</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="../../Controlador/ActualizarUsuario.php" method="POST">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <input type="text" class="form-control" name="secuence" id="secuence">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Numero de documento</label>
+                                        <input type="text" class="form-control" name="iduser" id="iduser" maxlength="8">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Cargo</label>
+                                        <input class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label>Nombres</label>
+                                        <input type="text" class="form-control" name="nomuser" id="nomuser" maxlength="35">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label>Apellidos</label>
+                                        <input type="text" class="form-control" name="usuario_apellido" id="usuario_apellido" maxlength="35">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label>Teléfono</label>
+                                        <input type="text" class="form-control" name="usuario_telefono" id="usuario_telefono" maxlength="20">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" name="usuario_email" id="usuario_email" maxlength="50">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Nombre de usuario</label>
+                                        <input type="text" class="form-control" name="username" id="username" maxlength="25">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="100">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12" style="margin-top: 30px;">
+                                    <label for="" class="bmd-label-floating">Estado De la Cuenta &nbsp;
+                                        <i class="fab fa-font-awesome-alt"></i> &nbsp;
+                                    </label>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_estado" value="1" checked>
+                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_estado" value="0">
+                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" name="actualizarDataUsu" class="btn btn-primary">Actualizar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <script>
+        $(document).ready(function() {
+            $('.editbtn').on('click', function() {
+
+                $('#editusu').modal('show');
+
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+                console.log(data);
+                $('#secuence').val(data[0]);
+                $('#iduser').val(data[1]);
+                $('#nomuser').val(data[2]);
+                $('#usuario_apellido').val(data[3]);
+                $('#usuario_cargo').val(data[4]);
+                $('#username').val(data[5]);
+                $('#pass').val(data[6]);
+                $('#usuario_email').val(data[7]);
+                $('#usuario_telefono').val(data[8]);
+                $('#user_estado').prop('checked', data[9]);
+            });
+        });
+    </script>
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 

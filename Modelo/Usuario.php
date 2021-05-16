@@ -18,7 +18,7 @@ class usuario
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'SELECT id_usuario, nom_usuario, ape_usuario, UPPER(tusu.detalle_tipo_usuario), cod_usuario, pass_usuario, mail_usuario, tlf_usuario, estado_usuario
+		$query = 'SELECT secuence_usu,id_usuario, nom_usuario, ape_usuario, UPPER(tusu.detalle_tipo_usuario), cod_usuario, pass_usuario, mail_usuario, tlf_usuario, estado_usuario
 					FROM usuario usu
 					INNER JOIN tipo_usuario tusu ON usu.id_tipo_usuario = tusu.id_tipo_usuario';
 

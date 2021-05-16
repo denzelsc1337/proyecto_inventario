@@ -11,7 +11,7 @@
 
         $query = "UPDATE `categorias` 
                   SET `nom_categoria` = '$nombreCate', `estado_categoria` = '$estado'
-                  WHERE `categorias`.`secuence_cat` = '$id'";
+                  WHERE `categorias`.`id_categoria` = '$id'";
 
         $query_run = mysqli_query($cadena,$query);
 

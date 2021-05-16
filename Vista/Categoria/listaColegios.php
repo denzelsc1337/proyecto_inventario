@@ -55,19 +55,19 @@ require_once('../../config/security.php');
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                            <?php
-                            switch ($_SESSION['id_rol']) {
-                                case '1':
-                                    echo "Administrador";
-                                    break;
-                                case '2':
-                                    echo "Operador";
-                                    break;
-                                default:
-                                    break;
-                            }
-
-                            ?></small>
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -75,7 +75,7 @@ require_once('../../config/security.php');
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
@@ -100,7 +100,7 @@ require_once('../../config/security.php');
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <!--                                 <li>
+                                <!-- <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
@@ -113,7 +113,7 @@ require_once('../../config/security.php');
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
-                                        <i class="fa fa-box fa-fw"></i> &nbsp; Ingreso de producto
+                                        <i class="fa fa-box fa-fw"></i> &nbsp; Nuevo producto
                                     </a>
                                 </li>
                                 <li>
@@ -197,7 +197,7 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Colegio</th>
+                                <!-- <th>№ Colegio</th> -->
                                 <th>Cod Modular</th>
                                 <th>UGEL</th>
                                 <th>Colegio</th>
@@ -218,7 +218,7 @@ require_once('../../config/security.php');
                             foreach ($listaColegio as $vistaCole) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaCole[0] ?></td>
+                                    <td hidden><?php echo $vistaCole[0] ?></td>
                                     <td><?php echo $vistaCole[1] ?></td>
                                     <td><?php echo $vistaCole[2] ?></td>
                                     <td><?php echo $vistaCole[3] ?></td>
@@ -267,101 +267,79 @@ require_once('../../config/security.php');
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Categoria</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Colegios</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form action="../../Controlador/ActualizarColegios.php" method="POST">
                     <div class="modal-body">
-                        <input type="text" id="idcole" name="idcole" class="form-control" hidden>
                         <!--<div class="form-group">
                            <label>Id categoria</label>
                             <input type="text" id="idcate" name="idcate" class="form-control" placeholder="test">
                         </div> -->
-
-                        <div class="form-group">
-                            <label>Codigo Modular</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Ugel</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Nombre de colegio</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Direccion</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Telefono</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Correo</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Departamento</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Provincia</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Codigo Modular</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Distrito</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Director</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Codigo Modular</label>
-                            <input type="text" id="codModu" name="codModu" class="form-control" placeholder="test">
-                        </div>
-
-
-<!--                         <div class="col-12 col-md-6" style="margin-top: 30px;">
-                            <label for="" class="bmd-label-floating">Estado De la Categoria &nbsp;
-                                <i class="fab fa-font-awesome-alt"></i> &nbsp;
-                            </label>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="estadocate" value="1" checked>
-                                            <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="estadocate" value="0">
-                                            <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
-                                        </label>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <input type="hidden" id="secuence" name="secuence" class="form-control">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Codigo Modular</label>
+                                        <input type="text" id="cod_mod" name="cod_mod" class="form-control" placeholder="test">
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group ">
+                                        <label>Ugel</label>
+                                        <input type="text" id="cod_ugel" name="cod_ugel" class="form-control" placeholder="test">
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12 col-md-12">
+                                    <label>Nombre de colegio</label>
+                                    <input type="text" id="nom_cole" name="nom_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-12">
+                                    <label>Direccion</label>
+                                    <input type="text" id="dir_cole" name="dir_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Telefono</label>
+                                    <input type="text" id="num_cole" name="num_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-12">
+                                    <label>Correo</label>
+                                    <input type="text" id="email_cole" name="email_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Departamento</label>
+                                    <input type="text" id="dpto_cole" name="dpto_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Provincia</label>
+                                    <input type="text" id="prov_cole" name="prov_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-6">
+                                    <label>Distrito</label>
+                                    <input type="text" id="dsto_cole" name="dsto_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-12">
+                                    <label>Director</label>
+                                    <input type="text" id="loc_cole" name="loc_cole" class="form-control" placeholder="test">
+                                </div>
+
+                                <div class="form-group col-12 col-md-12">
+                                    <label>Nivel</label>
+                                    <input type="text" id="nivel_cole" name="nivel_cole" class="form-control" placeholder="test">
+                                </div>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" name="actualizarData" class="btn btn-primary">Actualizar Cambios</button>
@@ -370,7 +348,7 @@ require_once('../../config/security.php');
             </div>
         </div>
     </div>
-<!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script>
         $(document).ready(function() {
             $('.editbtn').on('click', function() {
@@ -382,14 +360,22 @@ require_once('../../config/security.php');
                     return $(this).text();
                 }).get();
                 console.log(data);
-                $('#codModu').val(data[0]);
-                $('#nomcate').val(data[2]);
-                //$('#estadocate').val(data[1]);
-                $('#estadocate').prop('checked', data[1]);
+                $('#secuence').val(data[0]);
+                $('#cod_mod').val(data[1]);
+                $('#cod_ugel').val(data[2]);
+                $('#nom_cole').val(data[3]);
+                $('#dir_cole').val(data[4]);
+                $('#num_cole').val(data[5]);
+                $('#email_cole').val(data[6]);
+                $('#dpto_cole').val(data[7]);
+                $('#prov_cole').val(data[8]);
+                $('#dsto_cole').val(data[9]);
+                $('#loc_cole').val(data[10]);
+                $('#nivel_cole').val(data[11]);
             });
         });
     </script>
-<!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
 
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
@@ -451,13 +437,13 @@ require_once('../../config/security.php');
     </script>
 
 
-<!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
 
