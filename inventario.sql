@@ -3,8 +3,6 @@ CREATE DATABASE inventario;
 
 USE inventario;
 
-
-
 DROP TABLE IF EXISTS usuario;
 CREATE TABLE usuario
 (
@@ -28,23 +26,29 @@ CREATE TABLE tipo_usuario
     detalle_tipo_usuario VARCHAR (20) NOT NULL
 );
 
-DROP TABLE IF EXISTS categorias;
-CREATE TABLE categorias
-(
-    secuence_cat INT auto_increment PRIMARY KEY NOT NULL,
-    id_categoria INT (6) NOT NULL,
-    nom_categoria VARCHAR (30) NOT NULL,
-    estado_categoria BOOLEAN
-);
 
-DROP TABLE IF EXISTS marca;
-CREATE TABLE marca
-(
-    secuence_mar INT auto_increment PRIMARY KEY NOT NULL,
-    id_marca INT (6) NOT NULL,
-    nom_marca VARCHAR (30) NOT NULL,
-    estado_marca BOOLEAN
-);
+
+# DROP TABLE IF EXISTS proveedor;
+# CREATE TABLE proveedor
+# (
+#     secuence_prov INT auto_increment PRIMARY KEY NOT NULL,
+#     id_proveedor INT (6) NOT NULL,
+#     RUC CHAR (11) NOT NULL,
+#     razon_social VARCHAR (40) NOT NULL,
+#     tlf_proveedor CHAR (9) NOT NULL,
+#     mail_proveedor VARCHAR (40),
+#     estado_proveedor BOOLEAN
+# );
+
+
+# DROP TABLE IF EXISTS marca;
+# CREATE TABLE marca
+# (
+#     secuence_mar INT auto_increment PRIMARY KEY NOT NULL,
+#     id_marca INT (6) NOT NULL,
+#     nom_marca VARCHAR (30) NOT NULL,
+#     estado_marca BOOLEAN
+# );
 
 
 DROP TABLE IF EXISTS colegios;
@@ -64,35 +68,23 @@ CREATE TABLE colegios
     nivel_colegio VARCHAR (30) NOT NULL
 );
 
-DROP TABLE IF EXISTS proveedor;
-CREATE TABLE proveedor
+DROP TABLE IF EXISTS categorias;
+CREATE TABLE categorias
 (
-    secuence_prov INT auto_increment PRIMARY KEY NOT NULL,
-    id_proveedor INT (6) NOT NULL,
-    RUC CHAR (11) NOT NULL,
-    razon_social VARCHAR (40) NOT NULL,
-    tlf_proveedor CHAR (9) NOT NULL,
-    mail_proveedor VARCHAR (40),
-    estado_proveedor BOOLEAN
+    secuence_cat INT auto_increment PRIMARY KEY NOT NULL,
+    id_categoria INT (6) NOT NULL,
+    nom_categoria VARCHAR (30) NOT NULL,
+    estado_categoria BOOLEAN
 );
-
--- DROP TABLE IF EXISTS tipo_movimiento;
--- CREATE TABLE tipo_movimiento
--- (
---     secuence_tip_mov INT auto_increment PRIMARY KEY NOT NULL,
---     id_tipo_movi INT NOT NULL,
---     tipo_movi VARCHAR (10) NOT NULL,
---     estado_tipo_movimiento BOOLEAN
--- );
 
 DROP TABLE IF EXISTS productos;
 CREATE TABLE productos
 (
     secuence_prod INT auto_increment PRIMARY KEY NOT NULL,
-    SKU_producto INT NOT NULL,
-    id_proveedor INT (6) NOT NULL,
     id_categoria INT (6) NOT NULL,
-    id_marca INT (6) NOT NULL,
+    marca_nom varchar(50) not null,
+    RUC int(11) not null,
+    razon_social varchar(50) not null,
     id_usuario INT (6) NOT NULL,
     nom_producto VARCHAR (30) NOT NULL,
     cantidades INT NOT NULL,
@@ -192,9 +184,9 @@ CREATE TABLE detalle_despacho
 
 
     -- PROVEEDOR A ->
-     ALTER TABLE productos
-	 ADD CONSTRAINT fk_prov_to_prod
-	 FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
+#      ALTER TABLE productos
+# 	 ADD CONSTRAINT fk_prov_to_prod
+# 	 FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
 
 
     -- MOVIMIENTO A ->
@@ -216,9 +208,9 @@ CREATE TABLE detalle_despacho
 
     -- MARCA A ->
 
-    ALTER TABLE productos
-    ADD CONSTRAINT fk_mar_a_prod
-    FOREIGN KEY (id_marca) REFERENCES marca (secuence_mar);
+#     ALTER TABLE productos
+#     ADD CONSTRAINT fk_mar_a_prod
+#     FOREIGN KEY (id_marca) REFERENCES marca (secuence_mar);
 
 
 
@@ -282,13 +274,6 @@ CREATE TABLE detalle_despacho
 INSERT INTO `categorias` (`secuence_cat`, `id_categoria`, `nom_categoria`, `estado_categoria`) VALUES (NULL, '1', 'aseo', '1'), (NULL, '2', 'escolar', '1');
 -- -----------------------------------------------INSERT INTO CATEGORIAS (FIN)--------------------------------------------------------------------------------------------------------------------------
 
--- -----------------------------------------------INSERT INTO PROVEEDOR (INICIO)--------------------------------------------------------------------------------------------------------------------------
-INSERT INTO `proveedor` (`secuence_prov`, `id_proveedor`, `RUC`, `razon_social`, `tlf_proveedor`, `mail_proveedor`, `estado_proveedor`) VALUES (NULL, '1', '10567845121', 'Limpieza Asociacion AJ', '987654321', 'test@gmail.com', '1'), (NULL, '2', '11452932125', 'Tai-Loy', '963852741', 'Tai-Loy@gmail.com', '1');
--- -----------------------------------------------INSERT INTO PROVEEDOR (FIN)--------------------------------------------------------------------------------------------------------------------------
-
--- -----------------------------------------------INSERT INTO MARCA (INICIO)--------------------------------------------------------------------------------------------------------------------------
-INSERT INTO `marca` (`secuence_mar`, `id_marca`, `nom_marca`, `estado_marca`) VALUES (NULL, '1', 'Ayudin', '1'), (NULL, '2', 'Artesco', '1');
--- -----------------------------------------------INSERT INTO MARCA (FIN)--------------------------------------------------------------------------------------------------------------------------
 
 -- -----------------------------------------------INSERT INTO TIPO USUARIO (INICIO)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO `tipo_usuario` (`secuence_tipo_usu`, `id_tipo_usuario`, `detalle_tipo_usuario`) VALUES (NULL, '1', 'admin'), (NULL, '2', 'operador');

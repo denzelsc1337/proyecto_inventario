@@ -18,7 +18,7 @@ class cCategoria
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'select * from categorias';
+		$query = 'SELECT * FROM categorias ORDER BY 1 desc';
 
 		$resultado = mysqli_query($cadena, $query);
 

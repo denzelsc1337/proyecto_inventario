@@ -1,9 +1,10 @@
 <?php
+if (isset($_POST['btnSaveProd'])) {
 //Guardamos los datos el post
-$data[1] = $_POST["sku_prod"];
-$data[2] = $_POST["proovslct"];
-$data[3] = $_POST["producto_categoria"];
-$data[4] = $_POST["marca_id"];
+$data[1] = $_POST["cod_cate"];
+$data[2] = $_POST["marca_prod"];
+$data[3] = $_POST["ruc_pro"];
+$data[4] = $_POST["razon"];
 $data[5] = $_POST["id_user"];
 $data[6] = $_POST["producto_nombre"];
 $data[7] = $_POST["producto_stock_total"];
@@ -30,13 +31,12 @@ $r = $oProd->agregarProducto($data);
 
 
 if($r == 1 ){
-	?>
-	<h2>Se insert&oacute correctamente</h2>
-	<META http-equiv="Refresh" CONTENT="0.1;
-	URL=../Vista/Producto/listaProductos.php">
-	<?php
+    echo '<script> alert("Producto Ingresado");</script>';
+    header("Location:../Vista/Producto/Productos.php");
 }
 else{
+    echo '<script> alert("Error al Ingresar");</script>';
+    header("Location:../Vista/Producto/Productos.php");
     echo "sku_prod:\n".$data[1]."<br>";
     echo "proovslct:\n".$data[2]."<br>";
     echo "producto_categoria:\n".$data[3]."<br>";
@@ -51,12 +51,8 @@ else{
     echo "_norden:\n".$data[12]."<br>";
     echo "npecosa:\n".$data[13]."<br>";
     echo "prod_status:\n".$data[14]."<br>";
-	?>
-	<h2>Error</h2>
-	<?php
 }
 
-
+}
 //$date_in,$date_out
-
 ?>

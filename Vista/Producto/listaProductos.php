@@ -149,10 +149,7 @@ require_once('../../config/security.php');
                 <a href="#" class="float-left show-nav-lateral">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#" class="Blogger"> Actualizar usuario
-                    <i class="fa fa-cogs"></i>
-                </a>
-                <a href="../config/logout.php" class="Blogger">Cerrar Sesión
+                <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
@@ -213,14 +210,14 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Almacen</th>
                                 <th>Proveedor</th>
                                 <th>Categoria</th>
                                 <th>Marca</th>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Fecha I</th>
-                                <th>Habilitado/Deshabilitado</th>
+                                <th hidden>Fecha I</th>
+                                <th>Perecible/No Perecible</th>
                                 <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
@@ -231,20 +228,19 @@ require_once('../../config/security.php');
                             ?>
                                 <tr class="text-center">
                                     <td><?php echo $vistaProd[0] ?></td>
+                                    <td><?php echo $vistaProd[1] ?></td>
                                     <td><?php echo $vistaProd[2] ?></td>
                                     <td><?php echo $vistaProd[3] ?></td>
                                     <td><?php echo $vistaProd[4] ?></td>
                                     <td><?php echo $vistaProd[5] ?></td>
-                                    <td><?php echo $vistaProd[6] ?></td>
-                                    <td><?php echo $vistaProd[7] ?></td>
-
+                                    <td hidden><?php echo $vistaProd[6] ?></td>
                                     <td>
                                         <?php
                                         $hide = "";
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaProd[8] == 1) {
+                                        if ($vistaProd[10] == 1) {
                                         ?>
                                             <input type="checkbox" name="producto_estado" value="1" checked="" disabled>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -257,7 +253,7 @@ require_once('../../config/security.php');
                                         ?>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
+                                        <button type="button" class="btn btn-success editProd" data-toggle="modal" data-target="#exampleModal">
                                             Actualizar
                                         </button>
                                     </td>
@@ -301,6 +297,7 @@ require_once('../../config/security.php');
                 </div>
                 <form action="../../Controlador/ActualizarProducto.php" method="POST">
                     <div class="modal-body">
+                    <input type="text" id="idProd" name="idProd" class="form-control">
                         <div class="container-fluid">
                             <div class="row">
 
@@ -453,7 +450,7 @@ require_once('../../config/security.php');
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" name="actualizarData" class="btn btn-primary">Actualizar Cambios</button>
+                                <button type="submit" name="actuProd" class="btn btn-primary">Actualizar Cambios</button>
                             </div>
                 </form>
             </div>
@@ -463,7 +460,7 @@ require_once('../../config/security.php');
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script>
         $(document).ready(function() {
-            $('.editbtn').on('click', function() {
+            $('.editProd').on('click', function() {
 
                 $('#editpro').modal('show');
 
@@ -472,8 +469,8 @@ require_once('../../config/security.php');
                     return $(this).text();
                 }).get();
                 console.log(data);
-                $('#secuence').val(data[0]);
-                $('#cod_mod').val(data[1]);
+                $('#idProd').val(data[0]);
+                $('#proovslct:selected').
                 $('#cod_ugel').val(data[2]);
                 $('#nom_cole').val(data[3]);
                 $('#dir_cole').val(data[4]);

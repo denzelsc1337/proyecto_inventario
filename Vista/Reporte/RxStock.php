@@ -50,11 +50,11 @@ require_once('../../config/security.php');
 
         .title {
             padding-top: 30px;
-            font-size: 50px;
+            font-size: 40px;
         }
 
         .thead {
-            color: #fff;
+            color: white;
             background-color: #343a40;
         }
     </style>
@@ -62,7 +62,7 @@ require_once('../../config/security.php');
 </head>
 <main class="full-box main-container Blogger">
 
-    <H1 class="text-center title Gagalin">REPORTE DE STOCK MINIMO</H1>
+    <h1 class="text-center title Gagalin">REPORTE DE STOCK MINIMO</h1>
 
     <div class="table-responsive frm">
         <?php
@@ -71,13 +71,10 @@ require_once('../../config/security.php');
         <table class="table table-sm">
             <thead>
                 <caption>REPORTE DE STOCK MINIMO</caption>
-                <tr class="text-center roboto-medium thead">
-                    <th>Código Producto</th>
-                    <th>Proveedor</th>
+                <tr class="text-center roboto-medium thead">                    
                     <th>Categoria</th>
                     <th>Producto</th>
                     <th>Marca</th>
-                    <th>Usuario</th>
                     <th>Cantidades</th>
                 </tr>
             </thead>
@@ -90,9 +87,6 @@ require_once('../../config/security.php');
                         <td><?php echo $vistaRepo[1] ?></td>
                         <td><?php echo $vistaRepo[2] ?></td>
                         <td><?php echo $vistaRepo[3] ?></td>
-                        <td><?php echo $vistaRepo[4] ?></td>
-                        <td><?php echo $vistaRepo[5] ?></td>
-                        <td><?php echo $vistaRepo[6] ?></td>
                     </tr>
             </tbody>
         <?php
@@ -100,5 +94,7 @@ require_once('../../config/security.php');
         ?>
         </table>
     </div>
+
+
 
 </main>

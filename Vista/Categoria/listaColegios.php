@@ -148,10 +148,7 @@ require_once('../../config/security.php');
                 <a href="#" class="float-left show-nav-lateral">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#" class="Blogger"> Actualizar usuario
-                    <i class="fa fa-cogs"></i>
-                </a>
-                <a href="../config/logout.php" class="Blogger">Cerrar Sesión
+                <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
@@ -248,7 +245,7 @@ require_once('../../config/security.php');
                                         ?>
                                     </td> -->
                                     <td>
-                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
+                                        <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
                                             Actualizar
                                         </button>
                                     </td>
@@ -342,7 +339,7 @@ require_once('../../config/security.php');
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="actualizarData" class="btn btn-primary">Actualizar Cambios</button>
+                            <button type="submit" name="actuCole" class="btn btn-primary">Actualizar Cambios</button>
                         </div>
                 </form>
             </div>
@@ -351,7 +348,7 @@ require_once('../../config/security.php');
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script>
         $(document).ready(function() {
-            $('.editbtn').on('click', function() {
+            $('.editCole').on('click', function() {
 
                 $('#editCole').modal('show');
 

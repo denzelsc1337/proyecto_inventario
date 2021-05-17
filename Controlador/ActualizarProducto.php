@@ -5,6 +5,7 @@
 
     if (isset($_POST['actualizarData'])) {
 
+        $idProd = $_POST['idProd'];
         $sku_prod = $_POST['sku_prod'];
         $proovslct = $_POST['proovslct'];
         $producto_categoria = $_POST['producto_categoria'];
@@ -20,11 +21,10 @@
         $npecosa = $_POST['npecosa'];
         $estado = $_POST['prod_status'];
 
-        $query = "UPDATE `productos` 
-                    SET `SKU_producto`='$sku_prod',`id_proveedor`='$proovslct',`id_categoria`='$producto_categoria',`id_marca`='$marca_id',
-                    `id_usuario`='$id_user',`nom_producto`='$producto_nombre',`cantidades`='$producto_stock_total',`fecha_entrada`='$date_in',`fecha_vencimento`='$date_out',
-                    `descripcion`='$desc',`guia_remision`='$_gremision',`num_orden`='$_norden',`num_pecosa`='$npecosa' 
-                    WHERE `productos`.`SKU_producto` = '$id'";
+        $query = "UPDATE `productos` SET `id_proveedor` = '2', `id_categoria` = '2', 
+        `id_marca` = '2', `nom_producto` = 'Lapices', `cantidades` = '16', 
+        `fecha_entrada` = '2021-05-17', `perecible` = '0' 
+        WHERE `productos`.`secuence_prod` = 2;";
 
         $query_run = mysqli_query($cadena,$query);
 

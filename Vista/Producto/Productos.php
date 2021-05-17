@@ -149,9 +149,6 @@ require_once('../../config/security.php');
                 <a href="#" class="float-left show-nav-lateral">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#" class="Blogger"> Actualizar usuario
-                    <i class="fa fa-cogs"></i>
-                </a>
                 <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
@@ -209,16 +206,48 @@ require_once('../../config/security.php');
                         <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Registro de Producto</legend>
                         <div class="container-fluid">
                             <div class="row">
+                            <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="producto_categoria" class="bmd-label-floating">Categoría &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+
+                                        <select class="form-control" name="cod_cate" id="cod_cate">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorCateg as $cboCate) {
+                                            ?>
+                                                <option value="<?php echo $cboCate[1]; ?>"><?php echo $cboCate[2]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="producto_nombre" class="bmd-label-floating">Codigo de Ingreso de Producto &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="number" class="form-control input-barcode" name="sku_prod" id="sku_prod" maxlength="97">
+                                        <label for="producto_nombre" class="bmd-label-floating">Marca &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="text" class="form-control input-barcode" name="marca_prod" id="marca_prod" maxlength="97">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="producto_nombre" class="bmd-label-floating">RUC &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="number" class="form-control input-barcode" name="ruc_pro" id="ruc_pro" maxlength="97">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="producto_nombre" class="bmd-label-floating">Razón Social &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="text" class="form-control input-barcode" name="razon" id="razon" maxlength="97">
                                     </div>
                                 </div>
 
 
-                                <div class="col-12 col-md-4">
+                                <div hidden class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="" class="bmd-label-floating">Proveedor</label>
                                         <?php
@@ -235,26 +264,9 @@ require_once('../../config/security.php');
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="form-group">
-                                        <label for="producto_categoria" class="bmd-label-floating">Categoría &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <?php
-                                        require_once('../../Controlador/controladorListar.php');
-                                        ?>
 
-                                        <select class="form-control" name="producto_categoria" id="producto_categoria">
-                                            <option value="" selected="">Seleccione una opción</option>
-                                            <?php
-                                            foreach ($selectorCateg as $cboCate) {
-                                            ?>
-                                                <option value="<?php echo $cboCate[1]; ?>"><?php echo $cboCate[2]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="col-12 col-md-4">
+                                <div hidden class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Marca &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
@@ -454,7 +466,7 @@ require_once('../../config/security.php');
                         <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
                     </p> -->
                     <p class="text-center">
-                        <button id="btnSaveProd" type="submit" class="btn btn-raised btn-info btn-sm">
+                        <button id="btnSaveProd" name="btnSaveProd" type="submit" class="btn btn-raised btn-info btn-sm">
                             <i class="far fa-save">
                             </i> &nbsp; GUARDAR
                         </button>

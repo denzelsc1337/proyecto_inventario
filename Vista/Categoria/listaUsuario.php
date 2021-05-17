@@ -149,10 +149,7 @@ require_once('../../config/security.php');
                 <a href="#" class="float-left show-nav-lateral">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#" class="Blogger"> Actualizar usuario
-                    <i class="fa fa-cogs"></i>
-                </a>
-                <a href="../config/logout.php" class="Blogger">Cerrar Sesión
+                <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
@@ -197,12 +194,12 @@ require_once('../../config/security.php');
                         <thead>
                             <tr class="text-center roboto-medium">
                                 <!-- <th>  -  </th> -->
-                                <th>Cod. Usuario</th>
+                                <th>N° documento</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
                                 <th>Tipo Usuario</th>
                                 <th>Usuario</th>
-                                <th>Contraseña</th>
+                                <th hidden>Contraseña</th>
                                 <th>E-mail</th>
                                 <th>Celular</th>
                                 <th>Estado</th>
@@ -221,7 +218,7 @@ require_once('../../config/security.php');
                                     <td><?php echo $vistaUsu[3] ?></td>
                                     <td><?php echo $vistaUsu[4] ?></td>
                                     <td><?php echo $vistaUsu[5] ?></td>
-                                    <td><?php echo $vistaUsu[6] ?></td>
+                                    <td hidden><?php echo $vistaUsu[6] ?></td>
                                     <td><?php echo $vistaUsu[7] ?></td>
                                     <td><?php echo $vistaUsu[8] ?></td>
                                     <!-- <td>
@@ -248,7 +245,7 @@ require_once('../../config/security.php');
                                         ?>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
+                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal">
                                             Actualizar
                                         </button>
                                     </td>
@@ -323,7 +320,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Contraseña</label>
-                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="100">
+                                        <input type="text" class="form-control" name="pass" id="pass" maxlength="100">
                                     </div>
                                 </div>
 

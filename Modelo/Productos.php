@@ -17,12 +17,13 @@ class pProductos
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'SELECT secuence_prod, SKU_producto, prov.razon_social, cat.nom_categoria, mar.nom_marca, nom_producto, cantidades, fecha_entrada, fecha_vencimento, descripcion, guia_remision, num_orden, num_pecosa, perecible
+		$query = 'SELECT razon_social,cat.nom_categoria, marca_nom, nom_producto, cantidades, 
+					fecha_entrada, descripcion, guia_remision, num_orden, 
+					num_pecosa, perecible
 					FROM productos prod
-					INNER JOIN proveedor prov ON prod.id_proveedor = prov.id_proveedor
 					INNER JOIN categorias cat ON prod.id_categoria = cat.id_categoria
-					INNER JOIN marca mar ON prod.id_marca = mar.id_marca
-					INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu';
+					INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu 
+					ORDER BY 1 desc';
 
 		$resultado = mysqli_query($cadena, $query);
 
@@ -38,10 +39,8 @@ class pProductos
 	public function selectorProd(){
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
-		$query = 'SELECT secuence_prod, concat(nom_producto, " - Marca: " ,marc.nom_marca) 
-		FROM productos prod
-		inner join marca marc
-		on prod.id_marca = marc.id_marca';
+		$query = 'SELECT secuence_prod, concat(nom_producto, " - Marca: " ,marca_nom) 
+		FROM productos';
 		$result = mysqli_query($cadena, $query);
 		while ($fila = mysqli_fetch_row($result)) {
 			$this->selectorProd[]=$fila;
@@ -57,18 +56,11 @@ class pProductos
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$Query = "INSERT INTO `productos`(`secuence_prod`, 
-										`SKU_producto`, 
-										`id_proveedor`, 
-										`id_categoria`, 
-										`id_marca`, 
-										`id_usuario`, 
-										`nom_producto`, 
-										`cantidades`, 
-										`fecha_entrada`, 
-										`fecha_vencimento`, 
-										`descripcion`, 
-										`guia_remision`, `num_orden`, `num_pecosa`, `perecible`)
+		$Query = "INSERT INTO `productos` (`secuence_prod`, `id_categoria`, 
+		`marca_nom`, `RUC`, `razon_social`, `id_usuario`, `nom_producto`,
+		`cantidades`, `fecha_entrada`, `fecha_vencimento`, `descripcion`, 
+		`guia_remision`, `num_orden`, `num_pecosa`, `perecible`) 
+
 		VALUES (null,'".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."',
 					 '".$data[5]."','".$data[6] ."','".$data[7]."','".$data[8]."',
 					 '".$data[9]."','".$data[10]."','".$data[11]."','".$data[12]."',
@@ -79,6 +71,7 @@ class pProductos
 		
 		$cnx->cerrarConexion($cadena); */
 		$result = mysqli_query($cadena, $Query);
+		
 		$cnx ->cerrarConexion($cadena);
 		return $result;
 	}

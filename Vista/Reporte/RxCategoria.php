@@ -50,7 +50,7 @@ require_once('../../config/security.php');
 
         .title {
             padding-top: 30px;
-            font-size: 50px;
+            font-size: 40px;
         }
 
         .thead {

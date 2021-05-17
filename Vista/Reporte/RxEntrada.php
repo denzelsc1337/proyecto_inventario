@@ -50,7 +50,7 @@ require_once('../../config/security.php');
 
         .title {
             padding-top: 30px;
-            font-size: 50px;
+            font-size: 40px;
         }
 
         .thead {
@@ -75,8 +75,6 @@ require_once('../../config/security.php');
                     <th>Razón Social</th>
                     <th>Guía Remisión</th>
                     <th>N. Orden</th>
-                    <th>N. Pecosa</th>
-                    <th>Usuario</th>
                     <th>Categoria</th>
                     <th>Producto</th>
                     <th>Marca</th>
@@ -97,8 +95,6 @@ require_once('../../config/security.php');
                         <td><?php echo $vistaRepo[5] ?></td>
                         <td><?php echo $vistaRepo[6] ?></td>
                         <td><?php echo $vistaRepo[7] ?></td>
-                        <td><?php echo $vistaRepo[8] ?></td>
-                        <td><?php echo $vistaRepo[9] ?></td>
                     </tr>
             </tbody>
         <?php

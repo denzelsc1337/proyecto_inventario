@@ -148,10 +148,7 @@ require_once('../../config/security.php');
                 <a href="#" class="float-left show-nav-lateral">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#" class="Blogger"> Actualizar usuario
-                    <i class="fa fa-cogs"></i>
-                </a>
-                <a href="../config/logout.php" class="Blogger">Cerrar Sesión
+                <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
@@ -203,17 +200,13 @@ require_once('../../config/security.php');
                                 <th>Dirección</th>
                                 <th>Telefono</th>
                                 <th>Correo</th>
-                                <th>Departamento</th>
-                                <th>Provincia</th>
-                                <th>Distrito</th>
-                                <th>Director</th>
-                                <th>Nivel</th>
+                                <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($listaColegio as $vistaCole) {
+                            foreach ($listSalida as $vistaCole) {
                             ?>
                                 <tr class="text-center">
                                     <td><?php echo $vistaCole[0] ?></td>
@@ -223,11 +216,6 @@ require_once('../../config/security.php');
                                     <td><?php echo $vistaCole[4] ?></td>
                                     <td><?php echo $vistaCole[5] ?></td>
                                     <td><?php echo $vistaCole[6] ?></td>
-                                    <td><?php echo $vistaCole[7] ?></td>
-                                    <td><?php echo $vistaCole[8] ?></td>
-                                    <td><?php echo $vistaCole[9] ?></td>
-                                    <td><?php echo $vistaCole[10] ?></td>
-                                    <td><?php echo $vistaCole[11] ?></td>
 
                                     <!-- <td>
                                         <?php
@@ -274,6 +262,11 @@ require_once('../../config/security.php');
                                         }
                                         ?>
                                     </td> -->
+                                    <td>
+                                        <button type="button" class="btn btn-success editProd" data-toggle="modal" data-target="#exampleModal">
+                                            Actualizar
+                                        </button>
+                                    </td>
 
                                 </tr>
                         </tbody>

@@ -11,6 +11,32 @@ class cDespacho
 
 	}
 
+	public function obtenerSalidas()
+	{
+		$cnx = new conexion();
+		$cadena = $cnx->abrirConexion();
+
+		$query = 'SELECT col.nom_colegio, cat.nom_categoria, prod.nom_producto, prod.cantidades, 
+					desp.fecha_des, usu.cod_usuario, concat(usu.nom_usuario, "-" , usu.ape_usuario) 
+					FROM detalle_despacho desp 
+					INNER JOIN colegios col ON desp.id_colegio = col.secuence_col 
+					INNER JOIN productos prod ON desp.id_producto = prod.secuence_prod 
+					INNER JOIN usuario usu ON desp.id_usuario = usu.secuence_usu
+					INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
+					ORDER BY 1 DESC';
+
+		$resultado = mysqli_query($cadena, $query);
+
+		while ($fila = mysqli_fetch_row($resultado)) {
+			$this->listSalida[] = $fila;
+		}
+
+		$cnx->cerrarConexion($cadena);
+
+		return $this->listSalida;
+	}
+
+
 
 	function agregarSalidas($data)
 	{

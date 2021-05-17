@@ -50,7 +50,7 @@ require_once('../../config/security.php');
 
         .title {
             padding-top: 30px;
-            font-size: 50px;
+            font-size: 40px;
         }
 
         .thead {
@@ -73,13 +73,12 @@ require_once('../../config/security.php');
                 <caption>REPORTE POR INGRESO DE PRODUCTOS</caption>
                 <tr class="text-center roboto-medium thead">
                     <th>Colegio</th>
-                    <th>C. Modular</th>
-                    <th>Direccion</th>
-                    <th>Colegio</th>
                     <th>Categoria</th>
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>F. Despacho</th>
+                    <th>Responsable</th>
+                    <th>Comentario</th>
                 </tr>
             </thead>
             <tbody>
@@ -94,7 +93,6 @@ require_once('../../config/security.php');
                         <td><?php echo $vistaRepo[4] ?></td>
                         <td><?php echo $vistaRepo[5] ?></td>
                         <td><?php echo $vistaRepo[6] ?></td>
-                        <td><?php echo $vistaRepo[7] ?></td>
                     </tr>
             </tbody>
         <?php

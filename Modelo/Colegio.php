@@ -17,7 +17,7 @@ class cColegios
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'select * from colegios';
+		$query = 'SELECT * FROM colegios ORDER BY 1 DESC';
 
 		$resultado = mysqli_query($cadena, $query);
 

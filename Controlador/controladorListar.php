@@ -23,11 +23,11 @@ $listColegioCod = $oColegio->selectorCole();
 
 require_once('../../Modelo/Marca.php');
 $oMarca = new cMarca();
-$selectorMarca = $oMarca->selectorMarca();
+//$selectorMarca = $oMarca->selectorMarca();
 
 require_once('../../Modelo/Proveedor.php');
 $oProv = new cProvee();
-$selectorProv = $oProv->selectorProv();
+//$selectorProv = $oProv->selectorProv();
 
 
 // REPORTES
@@ -38,4 +38,8 @@ $listaRxCategoria = $oReporte->RxCategoria();
 $listaRxVencimiento = $oReporte->RxVencimiento();
 $listaRxEntrada = $oReporte->RxEntrada();
 $listaRxDespacho = $oReporte->RxDespacho();
+
+require_once('../../Modelo/Despacho.php');
+$oDespa = new cDespacho();
+$listSalida = $oDespa->obtenerSalidas();
 ?>

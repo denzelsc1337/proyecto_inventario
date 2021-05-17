@@ -151,9 +151,6 @@ require_once('../config/security.php');
 				<a href="#" class="float-left show-nav-lateral">
 					<i class="fa fa-bars"></i>
 				</a>
-				<a href="#" class="Blogger"> Actualizar usuario
-					<i class="fa fa-cogs"></i>
-				</a>
 				<a href="../config/logout.php" class="Blogger">Cerrar Sesión
 					<i class="fa fa-power-off"></i>
 				</a>

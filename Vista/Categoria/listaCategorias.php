@@ -150,10 +150,7 @@ require_once('../../config/security.php');
                 <a href="#" class="float-left show-nav-lateral">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#" class="Blogger"> Actualizar usuario
-                    <i class="fa fa-cogs"></i>
-                </a>
-                <a href="../config/logout.php" class="Blogger">Cerrar Sesión
+                <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
@@ -201,10 +198,10 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Almacen</th>
+                                <th hidden>secuence</th>
                                 <th>№ Categoria</th>
                                 <th>Categoria</th>
-                                <th>Habilitado/Deshabilitado</th>
+                                <th hidden>Habilitado/Deshabilitado</th>
                                 <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
@@ -214,10 +211,10 @@ require_once('../../config/security.php');
                             foreach ($listaCategoria as $vistaCate) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaCate[0] ?></td>
+                                    <td hidden><?php echo $vistaCate[0] ?></td>
                                     <td><?php echo $vistaCate[1] ?></td>
                                     <td><?php echo $vistaCate[2] ?></td>
-                                    <td>
+                                    <td hidden>
                                         <?php
                                         $hide = "";
                                         if ($_SESSION['id_rol'] == '2') {
@@ -281,7 +278,8 @@ require_once('../../config/security.php');
                 </div>
                 <form action="../../Controlador/ActualizarCategoria.php" method="POST">
                     <div class="modal-body">
-                        <input type="text" id="idcate" name="idcate" class="form-control" hidden>
+                        <input type="hidden" id="secuence" name="secuence" class="form-control">
+                        <input type="hidden" id="idcate" name="idcate" class="form-control">
                         <!--                                                                 <div class="form-group">
                                                                     <label>Id categoria</label>
                                                                     <input type="text" id="idcate" name="idcate" class="form-control" placeholder="test">
@@ -397,10 +395,11 @@ require_once('../../config/security.php');
                     return $(this).text();
                 }).get();
                 console.log(data);
-                $('#idcate').val(data[0]);
+                $('#secuence').val(data[0]);
+                $('#idcate').val(data[1]);
                 $('#nomcate').val(data[2]);
                 //$('#estadocate').val(data[1]);
-                $('#estadocate').prop('checked', data[1]);
+                $('#estadocate').prop('checked', data[3]);
             });
         });
     </script>
