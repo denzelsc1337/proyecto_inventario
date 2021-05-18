@@ -77,16 +77,20 @@ require_once('../../config/security.php');
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
+                    <?php
+					$hide = "";
+					if ($_SESSION['id_rol'] == '2') {
+						$hide = "style='display:none;'";
+					} ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
-                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; MENU PRINCIPAL
+                                <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
                             </a>
                         </li>
 
                         <li>
                             <a href="" class="nav-btn-submenu Blogger">
-                                <i class="fas fa-briefcase fa-fw"></i> &nbsp; Administración <i
-                                    class="fa fa-chevron-down"></i>
+                                <i class="fas fa-briefcase fa-fw"></i> &nbsp; Administración <i class="fa fa-chevron-down"></i>
                             </a>
                             <ul>
                                 <li>
@@ -100,22 +104,21 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li>
+                                <li <?php echo $hide ?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp;
-                                Productos <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-boxes fa-fw"></i> &nbsp; Gestión De Productos <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
@@ -128,34 +131,18 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="../Producto/Producto-Categoria.php" class="Blogger">
-                                        <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Vencimiento.php" class="Blogger">
-                                        <i class="fa fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/Producto-Stock.php" class="Blogger">
-                                        <i class="fa fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../Producto/BuscarProducto.php" class="Blogger">
-                                        <i class="fa fa-search fa-fw"></i> &nbsp; Buscar productos
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="nav-btn-submenu Blogger"><i class="far fa-file-pdf fa-fw"></i> &nbsp;
-                                Reportes <i class="fa fa-chevron-down"></i></a>
+                            <a href="#" class="nav-btn-submenu Blogger"><i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes <i class="fa fa-chevron-down"></i></a>
                             <ul>
                                 <li>
                                     <a href="../Reporte/Reportes.php" class="Blogger">
-                                        <i class="fa fa-hand-holding-usd fa-fw"></i> &nbsp; Reportes de ventas
+                                        <i class="fa fa-file-invoice fa-fw"></i> &nbsp; Reportes
                                     </a>
                                 </li>
                             </ul>
@@ -267,8 +254,7 @@ require_once('../../config/security.php');
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="categoria_nombre" class="bmd-label-floating">Departamento del
-                                            Colegio
+                                        <label for="categoria_nombre" class="bmd-label-floating">DEPARTAMENTO
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
                                         <select class="form-control" name="dpto_cole" id="dpto_cole">
@@ -279,7 +265,7 @@ require_once('../../config/security.php');
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="categoria_nombre" class="bmd-label-floating">Provincia del Colegio
+                                        <label for="categoria_nombre" class="bmd-label-floating">PROVINCIA
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
                                         <select class="form-control" name="prov_cole" id="prov_cole">
@@ -291,7 +277,7 @@ require_once('../../config/security.php');
 
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="categoria_nombre" class="bmd-label-floating">Distrito del Colegio
+                                        <label for="categoria_nombre" class="bmd-label-floating">DISTRITO
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
                                         <select class="form-control" name="dsto_cole" id="dsto_cole">
@@ -382,6 +368,8 @@ require_once('../../config/security.php');
                             </div>
                         </div>
                         <p class="text-center">
+                        <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+                        &nbsp; &nbsp;
                             <button id="btnAddCole" type="submit" class="btn btn-raised btn-info btn-sm">
                                 <i class="far fa-save">
                                 </i> &nbsp; GUARDAR

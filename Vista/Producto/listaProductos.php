@@ -210,14 +210,13 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
+                                <th >secuence</th>
                                 <th>Proveedor</th>
                                 <th>Categoria</th>
                                 <th>Marca</th>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Fecha I</th>
-                                <th hidden>Fecha I</th>
-                                <th>Perecible/No Perecible</th>
                                 <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
@@ -227,31 +226,14 @@ require_once('../../config/security.php');
                             foreach ($listaProducto as $vistaProd) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaProd[0] ?></td>
+                                    <td ><?php echo $vistaProd[0] ?></td>
                                     <td><?php echo $vistaProd[1] ?></td>
-                                    <td><?php echo $vistaProd[2] ?></td>
+                                    <td ><?php echo $vistaProd[2] ?></td>
                                     <td><?php echo $vistaProd[3] ?></td>
                                     <td><?php echo $vistaProd[4] ?></td>
                                     <td><?php echo $vistaProd[5] ?></td>
-                                    <td hidden><?php echo $vistaProd[6] ?></td>
-                                    <td>
-                                        <?php
-                                        $hide = "";
-                                        if ($_SESSION['id_rol'] == '2') {
-                                            $hide = "style='display:none;'";
-                                        }
-                                        if ($vistaProd[10] == 1) {
-                                        ?>
-                                            <input type="checkbox" name="producto_estado" value="1" checked="" disabled>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <input type="checkbox" name="producto_estado" value="0" disabled>
-                                        <?php
-                                        }
-                                        ?>
-                                    </td>
+                                    <td><?php echo $vistaProd[6] ?></td>
+                                    <td><?php echo $vistaProd[7] ?></td>
                                     <td>
                                         <button type="button" class="btn btn-success editProd" data-toggle="modal" data-target="#exampleModal">
                                             Actualizar
@@ -297,44 +279,30 @@ require_once('../../config/security.php');
                 </div>
                 <form action="../../Controlador/ActualizarProducto.php" method="POST">
                     <div class="modal-body">
-                    <input type="text" id="idProd" name="idProd" class="form-control">
+
+                        <input type="text" id="secuence" name="secuence" class="form-control">
                         <div class="container-fluid">
                             <div class="row">
-
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Codigo de Ingreso de Producto</label>
-                                        <input type="number" class="form-control input-barcode" name="sku_prod" id="sku_prod" maxlength="97">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Proveedor</label>
-                                        <?php
-                                        require_once('../../Controlador/controladorListar.php');
-                                        ?>
-                                        <select class="form-control" name="proovslct" id="proovslct">
-                                            <option value="" selected="">Seleccione una opción</option>
-                                            <?php
-                                            foreach ($selectorProv as $cboProv) {
-                                            ?>
-                                                <option value="<?php echo $cboProv[0]; ?>"><?php echo $cboProv[1]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
+                                        <input type="text" class="form-control input-barcode" name="rsocial" id="rsocial" maxlength="97">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Categoría</label>
+                                        <label>categoria .2</label>
+                                        <input type="text" class="form-control input-barcode" name="idecat" id="idecat" maxlength="97">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Categoria</label>
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
-
-                                        <select class="form-control" name="producto_categoria" id="producto_categoria">
-                                            <option value="" selected="">Seleccione una opción</option>
+                                        <select class="form-control" name="cat_id" id="cat_id">
+                                            <!-- <option value="" selected="">Seleccionar</option> -->
                                             <?php
                                             foreach ($selectorCateg as $cboCate) {
                                             ?>
@@ -344,107 +312,28 @@ require_once('../../config/security.php');
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Marca</label>
-                                        <?php
-                                        require('../../Controlador/controladorListar.php');
-                                        ?>
-                                        <select class="form-control" name="marca_id" id="marca_id">
-                                            <option value="" selected="">Selecciona una marca </option>
-                                            <?php
-                                            foreach ($selectorMarca as $cboMarca) {
-                                            ?>
-                                                <option value="<?php echo $cboMarca[0]; ?>"><?php echo $cboMarca[1]; ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-4" hidden>
-                                    <div class="form-group">
-                                        <label>User code</label>
-                                        <input type="number" class="form-control input-barcode" name="id_user" id="id_user" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="97">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-12">
-                                    <div class="form-group">
-                                        <label>Nombre del Producto</label>
-                                        <input type="text" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="97">
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                    function handleClick(_radio) {
-                                        if (_radio.value == "1") {
-                                            //document.getElementById("date_out").hidden = false;
-                                            document.getElementById("date_out").disabled = false;
-                                        } else {
-                                            //document.getElementById("date_out").hidden = true;
-                                            //document.getElementById("date_out").disabled = true;
-                                        }
-                                    }
-                                </script>
-                                <div class="col-12 col-md-6" style="margin-top: 20px;">
-                                <label for="" class="bmd-label-floating">Producto Perecible</label>
-                                        <div class="form-group">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="prod_status" value="1" checked="checked" onclick="handleClick(this);">
-                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Si
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="prod_status" value="0" onclick="handleClick(this);">
-                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; No
-                                                </label>
-                                            </div>
-                                        </div>
-                                    <!-- </div> -->
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Cantidad a ingresar</label>
-                                        <input type="number" class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="20">
+                                        <input type="text" class="form-control input-barcode" name="mar_id" id="mar_id" maxlength="97">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Fecha de ingreso</label>
-                                        <input type="date" class="form-control" name="date_in" id="date_in">
+                                        <label>Producto</label>
+                                        <input type="text" class="form-control input-barcode" name="pro_id" id="pro_id" maxlength="97">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Fecha de vencimiento</label>
-                                        <input type="date" class="form-control" value="00-00-0000" name="date_out" id="date_out">
+                                        <label>Cantidad</label>
+                                        <input type="text" class="form-control input-barcode" name="cant" id="cant" maxlength="97">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-lg-12">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Descripción</label>
-                                        <input type="text" class="form-control input-barcode" name="desc" id="desc" maxlength="30">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label>Guía Remisión</label>
-                                        <input type="text" class="form-control input-barcode" name="_gremision" id="_gremision" maxlength="30">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label>N° Orden</label>
-                                        <input type="number" class="form-control input-barcode" name="_norden" id="_norden" maxlength="30">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="form-group">
-                                        <label>N° Pecosa</label>
-                                        <input type="number" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="30">
+                                        <label>Fecha Ingreso</label>
+                                        <input type="date" class="form-control input-barcode" name="date_in" id="date_in" maxlength="97">
                                     </div>
                                 </div>
                             </div>
@@ -469,18 +358,14 @@ require_once('../../config/security.php');
                     return $(this).text();
                 }).get();
                 console.log(data);
-                $('#idProd').val(data[0]);
-                $('#proovslct:selected').
-                $('#cod_ugel').val(data[2]);
-                $('#nom_cole').val(data[3]);
-                $('#dir_cole').val(data[4]);
-                $('#num_cole').val(data[5]);
-                $('#email_cole').val(data[6]);
-                $('#dpto_cole').val(data[7]);
-                $('#prov_cole').val(data[8]);
-                $('#dsto_cole').val(data[9]);
-                $('#loc_cole').val(data[10]);
-                $('#nivel_cole').val(data[11]);
+                $('#secuence').val(data[0]);
+                $('#rsocial').val(data[1]);
+                $('#idecat').val(data[2]);
+                $('#cat_id').val(data[3]);
+                $('#mar_id').val(data[4]);
+                $('#pro_id').val(data[5]);
+                $('#cant').val(data[6]);
+                $('#date_in').val(data[7]);
             });
         });
     </script>

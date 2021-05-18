@@ -280,12 +280,25 @@ require_once('../../config/security.php');
                                         <input type="text" class="form-control" name="iduser" id="iduser" maxlength="8">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label>Cargo</label>
-                                        <input class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                        <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorTusu as $cboTusu) {
+                                            ?>
+                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label>Nombres</label>
@@ -373,7 +386,7 @@ require_once('../../config/security.php');
                 $('#iduser').val(data[1]);
                 $('#nomuser').val(data[2]);
                 $('#usuario_apellido').val(data[3]);
-                $('#usuario_cargo').val(data[4]);
+                //$('#usuario_cargo').prop('selected',data[4]);
                 $('#username').val(data[5]);
                 $('#pass').val(data[6]);
                 $('#usuario_email').val(data[7]);

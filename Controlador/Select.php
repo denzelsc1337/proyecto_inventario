@@ -1,0 +1,82 @@
+<?php
+    function selectorDepartamentos(){
+        include_once('../config/Conexion.php');
+		$cnx = new Conexion();
+		$cadena = $cnx->abrirConexion();
+
+        $query = "select * from ubdepartamento";
+
+        $result = mysqli_query($cadena, $query);
+
+        $json = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $json [] = array(
+                'codDepto' => $row['idDepa'],
+                'nombDepto' => $row['departamento']
+            );
+        }
+
+        $jsonstring = json_encode($json);
+
+        echo $jsonstring;
+    }
+
+    function obtenerProvincias($codDepartamento){
+        include_once('../config/Conexion.php');
+		$cnx = new Conexion();
+		$cadena = $cnx->abrirConexion();
+
+        $query = "SELECT * FROM ubprovincia where idDepa = $codDepartamento";
+        $result = mysqli_query($cadena, $query);
+
+        $jsonstring = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $json [] = array(
+                'codProv' => $row['idProv'],
+                'nomProv' => $row['provincia']
+            );
+        }
+
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
+
+    }
+    
+    function obtenerDistritos($codProvincia){
+        include_once('../config/Conexion.php');
+		$cnx = new Conexion();
+		$cadena = $cnx->abrirConexion();
+
+        $query = "SELECT * FROM ubdistrito where idProv = $codProvincia";
+        $result = mysqli_query($cadena, $query);
+
+        $json = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $json [] = array(
+                'codDist' => $row['idDist'],
+                'nomDist' => $row['distrito']
+            );
+        }
+
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
+
+    }
+
+
+
+    if (isset($_POST['codDepar'])) {
+        $codDepartamento = $_POST['codDepar'];
+        obtenerProvincias($codDepartamento);
+        
+    }else if(isset($_POST['codProv'])){
+        $codProvincia = $_POST['codProv'];
+        obtenerDistritos($codProvincia);
+    }else{
+        selectorDepartamentos();
+    }
+
+?>

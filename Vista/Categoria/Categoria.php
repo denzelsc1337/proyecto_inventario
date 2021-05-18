@@ -215,7 +215,7 @@ require_once('../../config/security.php');
                                                     <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
                                                 </label>
                                             </div>
-                                            <div class="radio">
+                                            <div hidden class="radio">
                                                 <label>
                                                     <input type="radio" name="categoria_estado" value="0">
                                                     <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
@@ -238,6 +238,8 @@ require_once('../../config/security.php');
 
                     </fieldset>
                     <p class="text-center">
+                    <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+                        &nbsp; &nbsp;
                         <button id="btnSave" type="submit" class="btn btn-raised btn-info btn-sm">
                             <i class="far fa-save">
                             </i> &nbsp; GUARDAR

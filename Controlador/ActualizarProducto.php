@@ -3,34 +3,27 @@
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-    if (isset($_POST['actualizarData'])) {
+    if (isset($_POST['actuProd'])) {
 
-        $idProd = $_POST['idProd'];
-        $sku_prod = $_POST['sku_prod'];
-        $proovslct = $_POST['proovslct'];
-        $producto_categoria = $_POST['producto_categoria'];
-        $marca_id = $_POST['marca_id'];
-        $id_user = $_POST['id_user'];
-        $producto_nombre = $_POST['producto_nombre'];
-        $producto_stock_total = $_POST['producto_stock_total'];
+        $secuence = $_POST['secuence'];
+        $rsocial = $_POST['rsocial'];
+        $idecat = $_POST['idecat'];
+        $cat_id = $_POST['cat_id'];
+        $mar_id = $_POST['mar_id'];
+        $pro_id = $_POST['pro_id'];
+        $cant = $_POST['cant'];
         $date_in = $_POST['date_in'];
-        $date_out = $_POST['date_out'];
-        $desc = $_POST['desc'];
-        $_gremision = $_POST['_gremision'];
-        $_norden = $_POST['_norden'];
-        $npecosa = $_POST['npecosa'];
-        $estado = $_POST['prod_status'];
 
-        $query = "UPDATE `productos` SET `id_proveedor` = '2', `id_categoria` = '2', 
-        `id_marca` = '2', `nom_producto` = 'Lapices', `cantidades` = '16', 
-        `fecha_entrada` = '2021-05-17', `perecible` = '0' 
-        WHERE `productos`.`secuence_prod` = 2;";
+        $query = "UPDATE `productos` 
+        SET `razon_social`='$rsocial',`id_categoria`= '$cat_id',`marca_nom`='$mar_id',
+        `nom_producto`='$pro_id',`cantidades`='$cant',`fecha_entrada`='$date_in'
+        WHERE `secuence_prod`= '$secuence';";
 
         $query_run = mysqli_query($cadena,$query);
 
         if ($query_run) {
             echo '<script> alert("Producto Actualizado");</script>';
-            header("Location:../Vista/Categoria/listaProductos.php");
+            header("Location:../Vista/Producto/listaProductos.php");
         }else{
             
             echo '<script> alert("Error al actualizar");</script>';

@@ -377,7 +377,7 @@ require_once('../../config/security.php');
                                                     <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
                                                 </label>
                                             </div>
-                                            <div class="radio">
+                                            <div hidden class="radio">
                                                 <label>
                                                     <input type="radio" name="user_estado" value="0">
                                                     <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado

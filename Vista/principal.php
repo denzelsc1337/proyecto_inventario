@@ -1,5 +1,26 @@
 <?php
 require_once('../config/security.php');
+include_once('../config/Conexion.php');
+$cnx = new Conexion();
+$cadena = $cnx->abrirConexion();
+
+$num_result = mysqli_query($cadena,"SELECT COUNT(*) AS `count` FROM `productos`") or exit(mysql_error());
+$prod = mysqli_fetch_object($num_result);
+
+$num_result = mysqli_query($cadena,"SELECT COUNT(*) AS `countcole` FROM `colegios`") or exit(mysql_error());
+$coles = mysqli_fetch_object($num_result);
+
+$num_result = mysqli_query($cadena,"SELECT COUNT(*) AS `countCate` FROM `categorias`") or exit(mysql_error());
+$cate = mysqli_fetch_object($num_result);
+
+$num_result = mysqli_query($cadena,"SELECT COUNT(*) AS `countUser` FROM `usuario`") or exit(mysql_error());
+$usu = mysqli_fetch_object($num_result);
+
+
+
+/* $result = mysqli_query($cadena,"SELECT COUNT(*) AS `count` FROM `productos`");
+$filas = mysqli_result($result,0); */
+
 
 /*if(isset($_SESSION['user'])){
 	    header('Location:Main.php');
@@ -186,24 +207,24 @@ require_once('../config/security.php');
 						<div class="tile-tittle Gagalin">Colegios</div>
 						<div class="tile-icon">
 							<i class="fas fa-school"></i>
-							<p class="Blogger"> - Registrados</p>
+							<p class="Blogger"><?php  echo $coles->countcole; ?> Registrados</p>
 						</div>
 					</a>
-					<a href="Categoria/Categoria.php" class="tile">
+					<a href="Categoria/listaCategorias.php" class="tile">
 						<div class="tile-tittle Gagalin">Categorías</div>
 						<div class="tile-icon">
 							<i class="fa fa-tags fa-fw"></i>
 							<?php
 
 							?>
-							<p class="Blogger"> - Registradas</p>
+							<p class="Blogger"> <?php  echo $cate->countCate; ?> Registradas</p>
 						</div>
 					</a>
-					<a href="Categoria/Usuario.php" class="tile" <?php echo $hide; ?>>
+					<a href="Categoria/listaUsuario.php" class="tile" <?php echo $hide; ?>>
 						<div class="tile-tittle Gagalin">Usuarios</div>
 						<div class="tile-icon">
 							<i class="fa fa-user-tie fa-fw"></i>
-							<p class="Blogger"> - Registrados</p>
+							<p class="Blogger"><?php  echo $usu->countUser; ?> Registrados</p>
 						</div>
 					</a>
 
@@ -211,7 +232,7 @@ require_once('../config/security.php');
 						<div class="tile-tittle Gagalin">Gestión De Productos</div>
 						<div class="tile-icon">
 							<i class="fa fa-boxes fa-fw"></i>
-							<p class="Blogger"> - Registrados</p>
+							<p class="Blogger"><?php  echo $prod->count; ?> Registrados</p>
 						</div>
 					</a>
 					<!-- <a href="http://systems.designlopers.com/SVI/client-list/" class="tile">

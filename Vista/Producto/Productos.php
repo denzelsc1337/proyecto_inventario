@@ -466,6 +466,8 @@ require_once('../../config/security.php');
                         <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
                     </p> -->
                     <p class="text-center">
+                    <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+                        &nbsp; &nbsp;
                         <button id="btnSaveProd" name="btnSaveProd" type="submit" class="btn btn-raised btn-info btn-sm">
                             <i class="far fa-save">
                             </i> &nbsp; GUARDAR

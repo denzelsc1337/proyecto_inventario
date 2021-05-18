@@ -17,9 +17,8 @@ class pProductos
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'SELECT razon_social,cat.nom_categoria, marca_nom, nom_producto, cantidades, 
-					fecha_entrada, descripcion, guia_remision, num_orden, 
-					num_pecosa, perecible
+		$query = 'SELECT secuence_prod, razon_social,cat.secuence_cat,cat.nom_categoria, marca_nom, nom_producto, cantidades, 
+					fecha_entrada
 					FROM productos prod
 					INNER JOIN categorias cat ON prod.id_categoria = cat.id_categoria
 					INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu 

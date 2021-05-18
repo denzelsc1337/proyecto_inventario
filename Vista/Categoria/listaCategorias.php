@@ -73,6 +73,11 @@ require_once('../../config/security.php');
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
+                <?php
+					$hide = "";
+					if ($_SESSION['id_rol'] == '2') {
+						$hide = "style='display:none;'";
+					} ?>
                     <ul>
                         <li>
                             <a href="../principal.php" class="Blogger">
@@ -96,7 +101,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li>
+                                <li <?php echo $hide?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -233,7 +238,7 @@ require_once('../../config/security.php');
                                         ?>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
+                                        <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal">
                                             Actualizar
                                         </button>
                                     </td>

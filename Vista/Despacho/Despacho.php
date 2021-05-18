@@ -283,6 +283,8 @@ require_once('../../config/security.php');
 
                     </fieldset>
                     <p class="text-center">
+                    <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+                        &nbsp; &nbsp;
                         <button id="btnSave_despacho" type="submit" class="btn btn-raised btn-info btn-sm">
                             <i class="far fa-save">
                             </i> &nbsp; GUARDAR

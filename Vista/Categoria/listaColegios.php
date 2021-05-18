@@ -10,6 +10,7 @@ require_once('../../config/security.php');
 
 <head>
     <meta charset="UTF-8">
+    
 
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -23,7 +24,6 @@ require_once('../../config/security.php');
 
     <!-- Bootstrap Material Design V4.0 -->
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap-material-design.min.css">
-
     <!-- Font Awesome V5.9.0 -->
     <!-- <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/all.css"> -->
     <!-- <link rel="stylesheet" href="Vista/css/all.css"> -->
@@ -55,24 +55,29 @@ require_once('../../config/security.php');
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                        <?php 
-                        switch ($_SESSION['id_rol']) {
-                            case '1':
-                                echo "Administrador";
-                                break;
-                            case '2':
-                                echo "Operador";
-                                break;
-                            default:   
-                                break;
-                        }
- 
-                        ?></small>
+                            <?php
+                            switch ($_SESSION['id_rol']) {
+                                case '1':
+                                    echo "Administrador";
+                                    break;
+                                case '2':
+                                    echo "Operador";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
+                        <?php
+                        $hide = "";
+                        if ($_SESSION['id_rol'] == '2') {
+                            $hide = "style='display:none;'";
+                        } ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
                                 <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
@@ -95,7 +100,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li>
+                                <li <?php echo $hide; ?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -177,6 +182,10 @@ require_once('../../config/security.php');
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
                         </a>
                     </li>
+
+                    <li>
+                    <input name="text" id="search" placeholder="Buscar Colegio">
+                    </li>
                     <!-- <li>
                         <a href="http://systems.designlopers.com/SVI/provider-search/">
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveedor
@@ -185,50 +194,53 @@ require_once('../../config/security.php');
                 </ul>
             </div>
 
+
             <div class="container-fluid">
 
                 <div class="table-responsive">
                     <?php
                     require_once('../../Controlador/controladorListar.php');
                     ?>
-                    <table class="table table-dark table-sm">
-                        <thead>
-                            <tr class="text-center roboto-medium">
-                                <!-- <th>№ Colegio</th> -->
-                                <th>Cod Modular</th>
-                                <th>UGEL</th>
-                                <th>Colegio</th>
-                                <th>Dirección</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Departamento</th>
-                                <th>Provincia</th>
-                                <th>Distrito</th>
-                                <th>Director</th>
-                                <th>Nivel</th>
-                                <th>Editar</th>
-                                <!-- <button id="btnEnble">Enable</button> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($listaColegio as $vistaCole) {
-                            ?>
-                                <tr class="text-center">
-                                    <td hidden><?php echo $vistaCole[0] ?></td>
-                                    <td><?php echo $vistaCole[1] ?></td>
-                                    <td><?php echo $vistaCole[2] ?></td>
-                                    <td><?php echo $vistaCole[3] ?></td>
-                                    <td><?php echo $vistaCole[4] ?></td>
-                                    <td><?php echo $vistaCole[5] ?></td>
-                                    <td><?php echo $vistaCole[6] ?></td>
-                                    <td><?php echo $vistaCole[7] ?></td>
-                                    <td><?php echo $vistaCole[8] ?></td>
-                                    <td><?php echo $vistaCole[9] ?></td>
-                                    <td><?php echo $vistaCole[10] ?></td>
-                                    <td><?php echo $vistaCole[11] ?></td>
+                    <div class="col-md-7">
+                        <table class="table table-dark table-sm">
+                            <thead>
+                                <tr class="text-center roboto-medium">
+                                    <!-- <th>№ Colegio</th> -->
+                                    <th>Cod Modular</th>
+                                    <th>UGEL</th>
+                                    <th>Colegio</th>
+                                    <th>Dirección</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Departamento</th>
+                                    <th>Provincia</th>
+                                    <th>Distrito</th>
+                                    <th>Director</th>
+                                    <th>Nivel</th>
+                                    <th>Editar</th>
+                                    <!-- <button id="btnEnble">Enable</button> -->
+                                </tr>
+                            </thead>
 
-                                    <!-- <td>
+                            <tbody>
+                                <?php
+                                foreach ($listaColegio as $vistaCole) {
+                                ?>
+                                    <tr class="text-center">
+                                        <td hidden><?php echo $vistaCole[0] ?></td>
+                                        <td><?php echo $vistaCole[1] ?></td>
+                                        <td><?php echo $vistaCole[2] ?></td>
+                                        <td><?php echo $vistaCole[3] ?></td>
+                                        <td><?php echo $vistaCole[4] ?></td>
+                                        <td><?php echo $vistaCole[5] ?></td>
+                                        <td><?php echo $vistaCole[6] ?></td>
+                                        <td><?php echo $vistaCole[7] ?></td>
+                                        <td><?php echo $vistaCole[8] ?></td>
+                                        <td><?php echo $vistaCole[9] ?></td>
+                                        <td><?php echo $vistaCole[10] ?></td>
+                                        <td><?php echo $vistaCole[11] ?></td>
+
+                                        <!-- <td>
                                         <?php
                                         $hide = "";
                                         if ($_SESSION['id_rol'] == '2') {
@@ -244,19 +256,34 @@ require_once('../../config/security.php');
                                         }
                                         ?>
                                     </td> -->
-                                    <td>
-                                        <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
-                                            Actualizar
-                                        </button>
-                                    </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal">
+                                                Actualizar
+                                            </button>
+                                        </td>
 
-                                </tr>
-                        </tbody>
-                    <?php
-                            }
-                    ?>
-                    </table>
-                </div>
+                                    </tr>
+                            </tbody>
+                        <?php
+                                }
+                        ?>
+                        </table>
+<!--                         <script>
+                            $("#search").on("keyup", function(){
+                                var value = $(this).val();
+                                $('table tbody').each(function(result){
+                                    if (result!==0) {
+                                        var id=$(this).find("tr:first").text();
+                                        if (id.indexOf(value) !== 0 && id.toLowerCase().indexOf(value.toLowerCase())<0) {
+                                            $(this).hide();
+                                        }else{
+                                            $(this).show();
+                                        }
+                                    }
+                                });
+                            });
+                        </script> -->
+                    </div>
         </section>
     </main>
     <!----------------------------------------------------------- Modal ----------------------------------------------------------------->

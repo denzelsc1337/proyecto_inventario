@@ -193,13 +193,13 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>№ Colegio</th>
-                                <th>Cod Modular</th>
-                                <th>UGEL</th>
                                 <th>Colegio</th>
-                                <th>Dirección</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
+                                <th>Categoria</th>
+                                <th>Producto Entregado</th>
+                                <th>Cantidad</th>
+                                <th>Fecha de Salida</th>
+                                <th>DNI Contacto</th>
+                                <th>Nombre y Apellido Contacto</th>
                                 <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
