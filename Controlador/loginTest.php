@@ -6,14 +6,12 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 	$pass = $_POST['password'];
 
 	if($user == "" || $pass == ""){
-		echo "Datos no definidos.Vuelve e ingresar Datos :)";
-		?>
+?>
 		<META http-equiv="Refresh" content = " 0.2; URL = index.php">
 
-		<?php
+<?php
 	}
 	else{
-		echo "Cargando...";
 
 		$sentencia = $conexion->prepare('select * from usuario where cod_usuario = ? and pass_usuario = ?;');
 		$sentencia->execute([$user, $pass]);
@@ -21,8 +19,10 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		$datos = $sentencia->fetch(PDO::FETCH_OBJ);
 
 		if ($datos === FALSE) {
-
-			header('Location:../index.php');
+		?>
+			<script>alert("Autenticacion incorrecta. Vuelve e ingresar Datos")</script>;
+			<META http-equiv='Refresh' content = '0.2; URL = ../index.php'>;
+		<?php
 		}
 		elseif($sentencia->rowCount() == 1){
 

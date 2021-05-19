@@ -218,7 +218,7 @@ require_once('../../config/security.php');
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
                                         <select class="form-control" name="usuario_cargo" id="usuario_cargo">
-                                            <option value="" selected="">Seleccione una opción</option>
+                                            <option value="" selected="" >Seleccione una opción</option>
                                             <?php
                                             foreach ($selectorTusu as $cboTusu) {
                                             ?>

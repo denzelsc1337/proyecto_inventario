@@ -27,19 +27,21 @@
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-        $query = "SELECT * FROM ubprovincia where idDepa = $codDepartamento";
+        $query = "SELECT provincia from ubprovincia uprov
+        INNER JOIN ubdepartamento udep 
+        on uprov.idDepa = udep.idDepa 
+        where udep.departamento = '$codDepartamento'";
+
         $result = mysqli_query($cadena, $query);
 
         $jsonstring = array();
 
         while ($row = mysqli_fetch_array($result)) {
-            $json [] = array(
-                'codProv' => $row['idProv'],
+            $jsonstring [] = array(
                 'nomProv' => $row['provincia']
             );
         }
-
-        $jsonstring = json_encode($json);
+        $jsonstring = json_encode($jsonstring);
         echo $jsonstring;
 
     }
@@ -49,14 +51,16 @@
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-        $query = "SELECT * FROM ubdistrito where idProv = $codProvincia";
+        $query = "SELECT distrito from ubdistrito ubdist
+        INNER JOIN ubprovincia uprov 
+        on ubdist.idProv = uprov.idProv 
+        where uprov.provincia  = '$codProvincia'";
         $result = mysqli_query($cadena, $query);
 
         $json = array();
 
         while ($row = mysqli_fetch_array($result)) {
             $json [] = array(
-                'codDist' => $row['idDist'],
                 'nomDist' => $row['distrito']
             );
         }

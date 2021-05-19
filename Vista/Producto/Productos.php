@@ -213,7 +213,7 @@ require_once('../../config/security.php');
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
 
-                                        <select class="form-control" name="cod_cate" id="cod_cate">
+                                        <select class="form-control" name="cod_cate" id="cod_cate" required>
                                             <option value="" selected="">Seleccione una opción</option>
                                             <?php
                                             foreach ($selectorCateg as $cboCate) {
@@ -228,21 +228,21 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Marca &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control input-barcode" name="marca_prod" id="marca_prod" maxlength="97">
+                                        <input type="text" class="form-control input-barcode" name="marca_prod" id="marca_prod" maxlength="50">
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">RUC &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="number" class="form-control input-barcode" name="ruc_pro" id="ruc_pro" maxlength="97">
+                                        <input type="text" class="form-control input-barcode" name="ruc_pro" id="ruc_pro" maxlength="11">
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Razón Social &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control input-barcode" name="razon" id="razon" maxlength="97">
+                                        <input type="text" class="form-control input-barcode" name="razon" id="razon" maxlength="50">
                                     </div>
                                 </div>
 
@@ -288,7 +288,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4" hidden>
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">User code&nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="number" class="form-control input-barcode" name="id_user" id="id_user" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="97">
+                                        <input type="number" class="form-control input-barcode" name="id_user" id="id_user" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="6">
                                     </div>
                                 </div>
                             </div>
@@ -302,7 +302,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Nombre del Producto &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="97">
+                                        <input type="text" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="30">
                                     </div>
                                 </div>
                                 <script type="text/javascript">
@@ -340,7 +340,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_stock_total" class="bmd-label-floating">Cantidad a ingresar&nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="number" class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="20">
+                                        <input type="text" class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="11">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -358,7 +358,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Descripción</label>
-                                        <input type="text" class="form-control input-barcode" name="desc" id="desc" maxlength="30">
+                                        <input type="text" class="form-control input-barcode" name="desc" id="desc" maxlength="50">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
@@ -370,13 +370,13 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Orden</label>
-                                        <input type="number" class="form-control input-barcode" name="_norden" id="_norden" maxlength="30">
+                                        <input type="number" class="form-control input-barcode" name="_norden" id="_norden" maxlength="11">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Pecosa</label>
-                                        <input type="number" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="30">
+                                        <input type="number" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="11">
                                     </div>
                                 </div>
                             </div>

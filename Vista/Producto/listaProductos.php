@@ -210,7 +210,7 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th >secuence</th>
+                                <th hidden>secuence</th>
                                 <th>Proveedor</th>
                                 <th>Categoria</th>
                                 <th>Marca</th>
@@ -226,9 +226,9 @@ require_once('../../config/security.php');
                             foreach ($listaProducto as $vistaProd) {
                             ?>
                                 <tr class="text-center">
-                                    <td ><?php echo $vistaProd[0] ?></td>
+                                    <td hidden><?php echo $vistaProd[0] ?></td>
                                     <td><?php echo $vistaProd[1] ?></td>
-                                    <td ><?php echo $vistaProd[2] ?></td>
+                                    <td hidden><?php echo $vistaProd[2] ?></td>
                                     <td><?php echo $vistaProd[3] ?></td>
                                     <td><?php echo $vistaProd[4] ?></td>
                                     <td><?php echo $vistaProd[5] ?></td>

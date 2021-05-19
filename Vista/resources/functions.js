@@ -72,6 +72,40 @@
         });
         return false;
     });
+    $('#search').keyup(function() {
+        if($('#search').val()) {
+          let search = $('#search').val();
+          $.ajax({
+            url: '../../Controlador/buscarColegio.php',
+            data: {search},
+            type: 'POST',
+            success: function (response) {
+              if(!response.error) {
+                let tasks = JSON.parse(response);
+                let template = '';
+                tasks.forEach(task => {
+                  template += `
+                  <tr class="text-center">
+                  <td>${task.nombre}</td>
+                  <td>${task.director}</td>
+                  <td>${task.tlf_colegio}</td>
+                  <td>${task.mail_colegio}</td>
+              </td> 
+                  <td>
+                      <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal">
+                          Actualizar
+                      </button>
+                  </td>
+
+              </tr>`
+                });
+                $('#task-result').show();
+                $('#container').html(template);
+              }
+            }
+          })
+        }
+      });
     /* $('#dataUpdate').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Botón que activó el modal
         var id = button.data('id') // Extraer la información de atributos de datos
@@ -142,6 +176,17 @@
                 if (r==1) {
                     alert("Agregado correctamente");
                     event.returnValue=false;
+                    document.getElementById("cod_mod").value = "";
+                    document.getElementById("cod_ugel").value = "";
+                    document.getElementById("nom_cole").value = "";
+                    document.getElementById("dir_cole").value = "";
+                    document.getElementById("num_cole").value = "";
+                    document.getElementById("email_cole").value = "";
+                    document.getElementById("dpto_cole").value = "";
+                    document.getElementById("prov_cole").value = "";
+                    document.getElementById("dsto_cole").value = "";
+                    document.getElementById("loc_cole").value = "";
+                    document.getElementById("nivel_cole").value = "";
                     
                 }else{
                     alert("Error en el servidor.");
@@ -177,6 +222,8 @@
             document.getElementById("date_out").disabled = true;
         }
     }
+
+
     
 
 

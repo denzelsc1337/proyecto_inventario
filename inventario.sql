@@ -83,7 +83,7 @@ CREATE TABLE productos
     secuence_prod INT auto_increment PRIMARY KEY NOT NULL,
     id_categoria INT (6) NOT NULL,
     marca_nom varchar(50) not null,
-    RUC int(11) not null,
+    RUC BIGINT(11) not null,
     razon_social varchar(50) not null,
     id_usuario INT (6) NOT NULL,
     nom_producto VARCHAR (30) NOT NULL,
@@ -146,63 +146,23 @@ CREATE TABLE detalle_despacho
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `ubdepartamento`
---
 
-CREATE TABLE `ubdepartamento` (
-  `idDepa` int(5) NOT NULL,
-  `departamento` varchar(50) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `ubdepartamento`
---
-
-INSERT INTO `ubdepartamento` (`idDepa`, `departamento`) VALUES
-(1, 'AMAZONAS'),
-(2, 'ANCASH'),
-(3, 'APURIMAC'),
-(4, 'AREQUIPA'),
-(5, 'AYACUCHO'),
-(6, 'CAJAMARCA'),
-(7, 'CALLAO'),
-(8, 'CUSCO'),
-(9, 'HUANCAVELICA'),
-(10, 'HUANUCO'),
-(11, 'ICA'),
-(12, 'JUNIN'),
-(13, 'LA LIBERTAD'),
-(14, 'LAMBAYEQUE'),
-(15, 'LIMA'),
-(16, 'LORETO'),
-(17, 'MADRE DE DIOS'),
-(18, 'MOQUEGUA'),
-(19, 'PASCO'),
-(20, 'PIURA'),
-(21, 'PUNO'),
-(22, 'SAN MARTIN'),
-(23, 'TACNA'),
-(24, 'TUMBES'),
-(25, 'UCAYALI');
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `ubdistrito`
 --
-
-CREATE TABLE `ubdistrito` (
-  `idDist` int(5) NOT NULL DEFAULT 0,
-  `distrito` varchar(50) DEFAULT NULL,
-  `idProv` int(5) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS ubdistrito;
+CREATE TABLE ubdistrito (
+  idDist int(5) PRIMARY KEY NOT NULL DEFAULT 0,
+  distrito varchar(50) DEFAULT NULL,
+  idProv int(5) DEFAULT NULL
+);
 
 --
 -- Volcado de datos para la tabla `ubdistrito`
 --
 
-INSERT INTO `ubdistrito` (`idDist`, `distrito`, `idProv`) VALUES
+INSERT INTO ubdistrito (idDist, distrito, idProv) VALUES
 (1, 'CHACHAPOYAS', 1),
 (2, 'ASUNCION', 1),
 (3, 'BALSAS', 1),
@@ -2080,18 +2040,18 @@ INSERT INTO `ubdistrito` (`idDist`, `distrito`, `idProv`) VALUES
 --
 -- Estructura de tabla para la tabla `ubprovincia`
 --
-
-CREATE TABLE `ubprovincia` (
-  `idProv` int(5) NOT NULL DEFAULT 0,
-  `provincia` varchar(50) DEFAULT NULL,
-  `idDepa` int(5) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS ubprovincia;
+CREATE TABLE ubprovincia (
+  idProv int(5) PRIMARY KEY NOT NULL DEFAULT 0,
+  provincia varchar(50) DEFAULT NULL,
+  idDepa int(5) DEFAULT NULL
+);
 
 --
 -- Volcado de datos para la tabla `ubprovincia`
 --
 
-INSERT INTO `ubprovincia` (`idProv`, `provincia`, `idDepa`) VALUES
+INSERT INTO ubprovincia (idProv, provincia, idDepa) VALUES
 (1, 'CHACHAPOYAS ', 1),
 (2, 'BAGUA', 1),
 (3, 'BONGARA', 1),
@@ -2294,22 +2254,60 @@ INSERT INTO `ubprovincia` (`idProv`, `provincia`, `idDepa`) VALUES
 --
 
 --
+-- Estructura de tabla para la tabla `ubdepartamento`
+--
+DROP TABLE IF EXISTS ubdepartamento;
+CREATE TABLE ubdepartamento (
+  idDepa int(5) PRIMARY KEY NOT NULL,
+  departamento varchar(50) DEFAULT NULL
+);
+
+--
+-- Volcado de datos para la tabla `ubdepartamento`
+--
+
+INSERT INTO ubdepartamento (idDepa, departamento) VALUES
+(1, 'AMAZONAS'),
+(2, 'ANCASH'),
+(3, 'APURIMAC'),
+(4, 'AREQUIPA'),
+(5, 'AYACUCHO'),
+(6, 'CAJAMARCA'),
+(7, 'CALLAO'),
+(8, 'CUSCO'),
+(9, 'HUANCAVELICA'),
+(10, 'HUANUCO'),
+(11, 'ICA'),
+(12, 'JUNIN'),
+(13, 'LA LIBERTAD'),
+(14, 'LAMBAYEQUE'),
+(15, 'LIMA'),
+(16, 'LORETO'),
+(17, 'MADRE DE DIOS'),
+(18, 'MOQUEGUA'),
+(19, 'PASCO'),
+(20, 'PIURA'),
+(21, 'PUNO'),
+(22, 'SAN MARTIN'),
+(23, 'TACNA'),
+(24, 'TUMBES'),
+(25, 'UCAYALI');
+
+-- --------------------------------------------------------
+
+--
 -- Indices de la tabla `ubdepartamento`
 --
-ALTER TABLE `ubdepartamento`
-ADD PRIMARY KEY (`idDepa`);
+
 
 --
 -- Indices de la tabla `ubdistrito`
 --
-ALTER TABLE `ubdistrito`
-ADD PRIMARY KEY (`idDist`);
 
 --
 -- Indices de la tabla `ubprovincia`
 --
-ALTER TABLE `ubprovincia`
-ADD PRIMARY KEY (`idProv`);
+
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -2318,10 +2316,29 @@ ADD PRIMARY KEY (`idProv`);
 --
 -- AUTO_INCREMENT de la tabla `ubdepartamento`
 --
-ALTER TABLE `ubdepartamento`
-  MODIFY `idDepa` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-COMMIT;
+-- ALTER TABLE `ubdepartamento`
+--   MODIFY `idDepa` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+-- COMMIT;
 
+
+--
+-- RELACIONES UBICACIONES
+--
+    -- DISTRITO A PROVINCIA
+    ALTER TABLE ubdistrito
+    ADD CONSTRAINT fk_dis_a_provi
+    FOREIGN KEY (idProv) REFERENCES ubprovincia (idProv);
+
+    -- PROVINCIA A DEPARTAMENTO
+    ALTER TABLE ubprovincia
+    ADD CONSTRAINT fk_provi_a_dep
+    FOREIGN KEY (idDepa) REFERENCES ubdepartamento (idDepa);
+
+
+
+--
+-- RELACIONES UBICACIONES
+--
 
 
 -- RELACIONES --
@@ -2473,5 +2490,4 @@ INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario
     INSERT INTO colegios VALUES (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
     INSERT INTO colegios VALUES (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
-
 

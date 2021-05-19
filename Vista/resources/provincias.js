@@ -44,7 +44,7 @@ $(document).ready(function(){
                 let template = '<option class="form-control" selected disabled> Selecciona </option>';
 
                 departamentos.forEach(departamento =>{
-                    template += `<option class="form-control" value="${departamento.codDepto}">${departamento.nombDepto}</option>`;
+                    template += `<option class="form-control" value="${departamento.nombDepto}">${departamento.nombDepto}</option>`;
                 })
 
                 $dpto.innerHTML = template;
@@ -54,6 +54,17 @@ $(document).ready(function(){
     }
 
     cargarDepart();
+
+
+    $(document).on('keyup','#search',function(){
+        var valor = $(this).val();
+        if (valor != "") {
+            buscarData(valor);
+        }else{
+            buscarData(valor);
+        }
+
+    })
 
     function cargarProvincias(sendDatos){
         $.ajax({
@@ -65,7 +76,7 @@ $(document).ready(function(){
                 let template = '<option class="form-control" selected disabled> Selecciona </option>';
 
                 provincias.forEach(provincia =>{
-                    template += `<option class="form-control" value="${provincia.codProv}">${provincia.nomProv}</option>`;
+                    template += `<option class="form-control" value="${provincia.nomProv}">${provincia.nomProv}</option>`;
                 })
 
                 $prov.innerHTML = template;
@@ -83,7 +94,7 @@ $(document).ready(function(){
                 let template = '<option class="form-control" selected disabled> Selecciona </option>';
 
                 distritos.forEach(distrito =>{
-                    template += `<option class="form-control" value="${distrito.codDist}">${distrito.nomDist}</option>`;
+                    template += `<option class="form-control" value="${distrito.nomDist}">${distrito.nomDist}</option>`;
                 })
 
                 $dsto.innerHTML = template;
@@ -93,7 +104,7 @@ $(document).ready(function(){
 
     $dpto.addEventListener('change',function () {
         const codigoDepar = $dpto.value
-        //console.log(codDepartamento)
+        console.log(codigoDepar)
         const sendDatos ={
             'codDepar' : codigoDepar
         }
@@ -104,7 +115,7 @@ $(document).ready(function(){
 
     $prov.addEventListener('change', function(){
         const codigoProv = $prov.value
-        //console.log(codigoProv)
+        console.log(codigoProv)
 
         const sendDatos ={
             'codProv' : codigoProv

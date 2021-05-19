@@ -10,7 +10,7 @@ require_once('../../config/security.php');
 
 <head>
     <meta charset="UTF-8">
-    
+
 
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -157,9 +157,7 @@ require_once('../../config/security.php');
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
-
             <!-- Page header -->
-
             <div class="full-box page-header ">
                 <h3 class="text-left text-uppercase Gagalin">
                     <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Colegios
@@ -169,7 +167,6 @@ require_once('../../config/security.php');
                     registrados en el sistema.
                 </p>
             </div>
-
             <div class="container-fluid Gagalin">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
@@ -177,32 +174,31 @@ require_once('../../config/security.php');
                             <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo Colegio
                         </a>
                     </li>
+
                     <li>
                         <a class="active" href="../Categoria/listaColegios.php">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
                         </a>
                     </li>
 
-                    <li>
-                    <input name="text" id="search" placeholder="Buscar Colegio">
-                    </li>
-                    <!-- <li>
-                        <a href="http://systems.designlopers.com/SVI/provider-search/">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveedor
-                        </a>
-                    </li> -->
+                    <input type="text" name="search" id="search" placeholder="Buscar Colegio">
+
                 </ul>
             </div>
 
 
             <div class="container-fluid">
 
+            <div id="result">
+
+            </div>
+            </div>
                 <div class="table-responsive">
                     <?php
                     require_once('../../Controlador/controladorListar.php');
                     ?>
                     <div class="col-md-7">
-                        <table class="table table-dark table-sm">
+                        <table class="table table-dark table-sm" id="task-result">
                             <thead>
                                 <tr class="text-center roboto-medium">
                                     <!-- <th>№ Colegio</th> -->
@@ -222,7 +218,7 @@ require_once('../../config/security.php');
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="container">
                                 <?php
                                 foreach ($listaColegio as $vistaCole) {
                                 ?>
@@ -268,24 +264,12 @@ require_once('../../config/security.php');
                                 }
                         ?>
                         </table>
-<!--                         <script>
-                            $("#search").on("keyup", function(){
-                                var value = $(this).val();
-                                $('table tbody').each(function(result){
-                                    if (result!==0) {
-                                        var id=$(this).find("tr:first").text();
-                                        if (id.indexOf(value) !== 0 && id.toLowerCase().indexOf(value.toLowerCase())<0) {
-                                            $(this).hide();
-                                        }else{
-                                            $(this).show();
-                                        }
-                                    }
-                                });
-                            });
-                        </script> -->
                     </div>
+                </div>
         </section>
     </main>
+
+    
     <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
     <div class="modal fade" id="editCole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -399,6 +383,32 @@ require_once('../../config/security.php');
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            load_data();
+            function load_data(query) {
+                $.ajax({
+                    url: "../../Controlador/buscarColegio.php",
+                    method: "POST",
+                    data: {
+                        query: query
+                    },
+                    success: function(data) {
+                        $('#result').html(data);
+                    }
+                });
+            }
+            $('#search').keyup(function() {
+                var search = $(this).val();
+                if (search != '') {
+                    load_data(search);
+                } else {
+                    load_data();
+                }
+            });
+        });
+    </script>
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
 
     <script>
@@ -461,12 +471,18 @@ require_once('../../config/security.php');
     </script>
 
 
+
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <!-- cambiar version de jquery y arreglar -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- cambiar version de jquery y arreglar -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../resources/functions.js"></script>
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>

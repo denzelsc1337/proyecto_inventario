@@ -31,15 +31,19 @@ $r = $oProd->agregarProducto($data);
 
 
 if($r == 1 ){
-    echo '<script> alert("Producto Ingresado");</script>';
+?>
+    <script>alert("Registro de Producto Exitoso")</script>
+    <?php
     header("Location:../Vista/Producto/Productos.php");
 }
 else{
-    echo '<script> alert("Error al Ingresar");</script>';
+?>
+    <script>alert("Error al ingresar Datos. Vuelve e ingresar.")</script>
+<?php
     header("Location:../Vista/Producto/Productos.php");
-    echo "sku_prod:\n".$data[1]."<br>";
-    echo "proovslct:\n".$data[2]."<br>";
-    echo "producto_categoria:\n".$data[3]."<br>";
+/*     echo "sku_prod:\n".$data[1]."<br>";
+    echo "proveedor nombre:\n".$data[2]."<br>";
+    echo "ruc:\n".$data[3]."<br>";
     echo "marca_id:\n".$data[4]."<br>";
     echo "id_user:\n".$data[5]."<br>";
     echo "producto_nombre:\n".$data[6]."<br>";
@@ -50,7 +54,7 @@ else{
     echo "_gremision:\n".$data[11]."<br>";
     echo "_norden:\n".$data[12]."<br>";
     echo "npecosa:\n".$data[13]."<br>";
-    echo "prod_status:\n".$data[14]."<br>";
+    echo "prod_status:\n".$data[14]."<br>"; */
 }
 
 }

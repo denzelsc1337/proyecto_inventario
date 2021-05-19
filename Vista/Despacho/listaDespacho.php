@@ -196,7 +196,7 @@ require_once('../../config/security.php');
                                 <th>Colegio</th>
                                 <th>Categoria</th>
                                 <th>Producto Entregado</th>
-                                <th>Cantidad</th>
+                                <th>Cantidad de Salida</th>
                                 <th>Fecha de Salida</th>
                                 <th>DNI Contacto</th>
                                 <th>Nombre y Apellido Contacto</th>
@@ -206,16 +206,16 @@ require_once('../../config/security.php');
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($listSalida as $vistaCole) {
+                            foreach ($listSalida as $salidaOut) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $vistaCole[0] ?></td>
-                                    <td><?php echo $vistaCole[1] ?></td>
-                                    <td><?php echo $vistaCole[2] ?></td>
-                                    <td><?php echo $vistaCole[3] ?></td>
-                                    <td><?php echo $vistaCole[4] ?></td>
-                                    <td><?php echo $vistaCole[5] ?></td>
-                                    <td><?php echo $vistaCole[6] ?></td>
+                                    <td><?php echo $salidaOut[0] ?></td>
+                                    <td><?php echo $salidaOut[1] ?></td>
+                                    <td><?php echo $salidaOut[2] ?></td>
+                                    <td><?php echo $salidaOut[3] ?></td>
+                                    <td><?php echo $salidaOut[4] ?></td>
+                                    <td><?php echo $salidaOut[5] ?></td>
+                                    <td><?php echo $salidaOut[6] ?></td>
 
                                     <!-- <td>
                                         <?php
@@ -223,7 +223,7 @@ require_once('../../config/security.php');
                                         if ($_SESSION['id_rol'] == '2') {
                                             $hide = "style='display:none;'";
                                         }
-                                        if ($vistaCole[12] == 1) {
+                                        if ($salidaOut[12] == 1) {
                                         ?>
                                             <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
                                             &nbsp;&nbsp;&nbsp;&nbsp;

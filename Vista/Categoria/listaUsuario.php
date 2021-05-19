@@ -17,7 +17,7 @@ require_once('../../config/security.php');
     <title>SISTEMA VENTAS</title>
 
     <!-- Normalize V8.0.1 -->
-    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Bootstrap V4.3 -->
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap.min.css">
@@ -190,6 +190,7 @@ require_once('../../config/security.php');
                     <?php
                     require_once('../../Controlador/controladorListar.php');
                     ?>
+                    
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
@@ -252,7 +253,7 @@ require_once('../../config/security.php');
                                 </tr>
                         </tbody>
                     <?php
-                            }
+                    }
                     ?>
                     </table>
                 </div>
@@ -273,7 +274,7 @@ require_once('../../config/security.php');
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row">
-                                <input type="text" class="form-control" name="secuence" id="secuence">
+                                <input type="text" class="form-control" name="secuence" id="secuence" hidden>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Numero de documento</label>
@@ -281,18 +282,18 @@ require_once('../../config/security.php');
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-5">
                                     <div class="form-group">
                                         <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
                                         <select class="form-control" name="usuario_cargo" id="usuario_cargo">
-                                            <option value="" selected="">Seleccione una opción</option>
+                                            <option value="" selected="" disabled>Seleccione un cargo</option>
                                             <?php
                                             foreach ($selectorTusu as $cboTusu) {
                                             ?>
-                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
+                                                <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
                                             <?php }
                                             ?>
                                         </select>
@@ -363,7 +364,7 @@ require_once('../../config/security.php');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" name="actualizarDataUsu" class="btn btn-primary">Actualizar Cambios</button>
+                        <button type="submit" name="actualizarDataUsu" id="actualizarDataUsu" class="btn btn-primary" disabled>Actualizar Cambios</button>
                     </div>
                 </form>
             </div>
@@ -373,6 +374,7 @@ require_once('../../config/security.php');
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script>
         $(document).ready(function() {
+            let $cargo = document.querySelector('#usuario_cargo');
             $('.editbtn').on('click', function() {
 
                 $('#editusu').modal('show');
@@ -393,6 +395,10 @@ require_once('../../config/security.php');
                 $('#usuario_telefono').val(data[8]);
                 $('#user_estado').prop('checked', data[9]);
             });
+
+            $cargo.addEventListener('change', function() {
+                document.getElementById("actualizarDataUsu").disabled = false;
+            })
         });
     </script>
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
@@ -456,7 +462,7 @@ require_once('../../config/security.php');
 
     <!-- printThis  -->
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
