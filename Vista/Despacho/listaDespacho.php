@@ -55,19 +55,19 @@ require_once('../../config/security.php');
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                        <?php 
-                        switch ($_SESSION['id_rol']) {
-                            case '1':
-                                echo "Administrador";
-                                break;
-                            case '2':
-                                echo "Operador";
-                                break;
-                            default:   
-                                break;
-                        }
- 
-                        ?></small>
+                            <?php
+                            switch ($_SESSION['id_rol']) {
+                                case '1':
+                                    echo "Administrador";
+                                    break;
+                                case '2':
+                                    echo "Operador";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -200,6 +200,7 @@ require_once('../../config/security.php');
                                 <th>Fecha de Salida</th>
                                 <th>DNI Contacto</th>
                                 <th>Nombre y Apellido Contacto</th>
+                                <th>Comentario</th>
                                 <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
@@ -209,13 +210,15 @@ require_once('../../config/security.php');
                             foreach ($listSalida as $salidaOut) {
                             ?>
                                 <tr class="text-center">
-                                    <td><?php echo $salidaOut[0] ?></td>
+                                    <td hidden><?php echo $salidaOut[0] ?></td>
                                     <td><?php echo $salidaOut[1] ?></td>
                                     <td><?php echo $salidaOut[2] ?></td>
                                     <td><?php echo $salidaOut[3] ?></td>
                                     <td><?php echo $salidaOut[4] ?></td>
                                     <td><?php echo $salidaOut[5] ?></td>
                                     <td><?php echo $salidaOut[6] ?></td>
+                                    <td><?php echo $salidaOut[7] ?></td>
+                                    <td><?php echo $salidaOut[8] ?></td>
 
                                     <!-- <td>
                                         <?php
@@ -263,7 +266,7 @@ require_once('../../config/security.php');
                                         ?>
                                     </td> -->
                                     <td>
-                                        <button type="button" class="btn btn-success editProd" data-toggle="modal" data-target="#exampleModal">
+                                        <button type="button" class="btn btn-success editDesp" data-toggle="modal" data-target="#exampleModal">
                                             Actualizar
                                         </button>
                                     </td>
@@ -277,6 +280,136 @@ require_once('../../config/security.php');
                 </div>
         </section>
     </main>
+    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+    <div class="modal fade" id="editDesp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Despacho</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="../../Controlador/ActualizarDespacho.php" method="POST">
+                    <div class="modal-body">
+                        <!--<div class="form-group">
+                           <label>Id categoria</label>
+                            <input type="text" id="idcate" name="idcate" class="form-control" placeholder="test">
+                        </div> -->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <input type="text" id="secuence" name="secuence" class="form-control">
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Encargado de Salida:</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorUser as $cboUser) {
+                                            ?>
+                                                <option value="<?php echo $cboUser[0]; ?>"><?php echo $cboUser[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Colegio a Entregar:</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="colegio_cod" id="colegio_cod">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($listColegioCod as $cboCole) {
+                                            ?>
+                                                <option value="<?php echo $cboCole[0]; ?>"><?php echo $cboCole[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-10">
+                                    <div class="form-group">
+                                        <label>Producto a salir:</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="prod_cod" id="prod_cod">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorProd as $cboProd) {
+                                            ?>
+                                                <option value="<?php echo $cboProd[0]; ?>"><?php echo $cboProd[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Cantidad de Salida</label>
+                                        <input type="number" class="form-control input-barcode" name="cant_sal" id="cant_sal" maxlength="97">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Fecha de Salida</label>
+                                        <input type="date" class="form-control" name="fecha_in" id="fecha_in">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Comentario</label>
+                                        <input type="text" class="form-control input-barcode" name="coment" id="coment" maxlength="30">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Recepcionista</label>
+                                        <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" name="actuDespacho" class="btn btn-primary">Actualizar Cambios</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <script>
+        $(document).ready(function() {
+            $('.editDesp').on('click', function() {
+
+                $('#editDesp').modal('show');
+
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+                console.log(data);
+                $('#secuence').val(data[0]);
+                $('#usuario_cargo').val(data[1]);
+                $('#colegio_cod').val(data[2]);
+                $('#prod_cod').val(data[3]);
+                $('#cant_sal').val(data[4]);
+                $('#fecha_in').val(data[5]);
+                $('#coment').val(data[8]);
+                $('#firma').val(data[7]);
+            });
+        });
+    </script>
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 
