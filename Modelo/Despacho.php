@@ -16,8 +16,8 @@ class cDespacho
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'SELECT col.nom_colegio, cat.nom_categoria, prod.nom_producto, prod.cantidades, 
-					desp.fecha_des, usu.id_usuario, concat(usu.nom_usuario, "  " , usu.ape_usuario) 
+		$query = 'SELECT secuence_det_des, col.nom_colegio, cat.nom_categoria, prod.nom_producto, cant_prod_des, 
+					desp.fecha_des, usu.id_usuario, concat(usu.nom_usuario, "  " , usu.ape_usuario), comentario
 					FROM detalle_despacho desp 
 					INNER JOIN colegios col ON desp.id_colegio = col.secuence_col 
 					INNER JOIN productos prod ON desp.id_producto = prod.secuence_prod 
