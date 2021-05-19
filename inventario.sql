@@ -55,6 +55,7 @@ DROP TABLE IF EXISTS colegios;
 CREATE TABLE colegios
 (
     secuence_col INT auto_increment PRIMARY KEY NOT NULL,
+    idDepa int(5) not null,
     cod_modu_colegio INT NOT NULL,
     ugel_colegio VARCHAR (30) NOT NULL,
     nom_colegio VARCHAR (50) NOT NULL,
@@ -83,7 +84,7 @@ CREATE TABLE productos
     secuence_prod INT auto_increment PRIMARY KEY NOT NULL,
     id_categoria INT (6) NOT NULL,
     marca_nom varchar(50) not null,
-    RUC BIGINT(11) not null,
+    RUC int(11) not null,
     razon_social varchar(50) not null,
     id_usuario INT (6) NOT NULL,
     nom_producto VARCHAR (30) NOT NULL,
@@ -2298,16 +2299,20 @@ INSERT INTO ubdepartamento (idDepa, departamento) VALUES
 --
 -- Indices de la tabla `ubdepartamento`
 --
-
+ALTER TABLE ubdepartamento
+ADD PRIMARY KEY (idDepa);
 
 --
 -- Indices de la tabla `ubdistrito`
 --
+ALTER TABLE ubdistrito
+ADD PRIMARY KEY (idDist);
 
 --
 -- Indices de la tabla `ubprovincia`
 --
-
+ALTER TABLE ubprovincia
+ADD PRIMARY KEY (idProv);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -2327,12 +2332,12 @@ INSERT INTO ubdepartamento (idDepa, departamento) VALUES
     -- DISTRITO A PROVINCIA
     ALTER TABLE ubdistrito
     ADD CONSTRAINT fk_dis_a_provi
-    FOREIGN KEY (idProv) REFERENCES ubprovincia (idProv);
+    FOREIGN KEY (idProv) REFERENCES ubprovincia (idProv)
 
     -- PROVINCIA A DEPARTAMENTO
     ALTER TABLE ubprovincia
     ADD CONSTRAINT fk_provi_a_dep
-    FOREIGN KEY (idDepa) REFERENCES ubdepartamento (idDepa);
+    FOREIGN KEY (idDepa) REFERENCES ubdepartamento (idDepa)
 
 
 
@@ -2490,4 +2495,5 @@ INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario
     INSERT INTO colegios VALUES (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
     INSERT INTO colegios VALUES (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
+
 
