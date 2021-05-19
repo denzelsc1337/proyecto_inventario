@@ -55,13 +55,12 @@ DROP TABLE IF EXISTS colegios;
 CREATE TABLE colegios
 (
     secuence_col INT auto_increment PRIMARY KEY NOT NULL,
-    idDepa int(5) not null,
     cod_modu_colegio INT NOT NULL,
     ugel_colegio VARCHAR (30) NOT NULL,
     nom_colegio VARCHAR (50) NOT NULL,
     dir_colegio VARCHAR (30) NOT NULL,
     tlf_colegio CHAR (9),
-    mail_colegio VARCHAR (40),    
+    mail_colegio VARCHAR (40),
     depa_colegio VARCHAR (15) NOT NULL,
     prov_colegio VARCHAR (15) NOT NULL,
     dist_colegio VARCHAR (15) NOT NULL,
@@ -84,7 +83,7 @@ CREATE TABLE productos
     secuence_prod INT auto_increment PRIMARY KEY NOT NULL,
     id_categoria INT (6) NOT NULL,
     marca_nom varchar(50) not null,
-    RUC int(11) not null,
+    RUC BIGINT(11) not null,
     razon_social varchar(50) not null,
     id_usuario INT (6) NOT NULL,
     nom_producto VARCHAR (30) NOT NULL,
@@ -2299,20 +2298,16 @@ INSERT INTO ubdepartamento (idDepa, departamento) VALUES
 --
 -- Indices de la tabla `ubdepartamento`
 --
-ALTER TABLE ubdepartamento
-ADD PRIMARY KEY (idDepa);
+
 
 --
 -- Indices de la tabla `ubdistrito`
 --
-ALTER TABLE ubdistrito
-ADD PRIMARY KEY (idDist);
 
 --
 -- Indices de la tabla `ubprovincia`
 --
-ALTER TABLE ubprovincia
-ADD PRIMARY KEY (idProv);
+
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -2332,12 +2327,12 @@ ADD PRIMARY KEY (idProv);
     -- DISTRITO A PROVINCIA
     ALTER TABLE ubdistrito
     ADD CONSTRAINT fk_dis_a_provi
-    FOREIGN KEY (idProv) REFERENCES ubprovincia (idProv)
+    FOREIGN KEY (idProv) REFERENCES ubprovincia (idProv);
 
     -- PROVINCIA A DEPARTAMENTO
     ALTER TABLE ubprovincia
     ADD CONSTRAINT fk_provi_a_dep
-    FOREIGN KEY (idDepa) REFERENCES ubdepartamento (idDepa)
+    FOREIGN KEY (idDepa) REFERENCES ubdepartamento (idDepa);
 
 
 
@@ -2398,14 +2393,14 @@ ADD PRIMARY KEY (idProv);
 
     -- ALTER TABLE detalle_despacho
     -- ADD CONSTRAINT fk_mov_a_ddes
-    -- FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);  
+    -- FOREIGN KEY (id_movimiento) REFERENCES movimientos (secuence_mov);
 
 
     -- PRODUCTO A ->
 
     -- ALTER TABLE detalle_ingreso
     -- ADD CONSTRAINT fk_prod_a_ding
-    -- FOREIGN KEY (SKU_producto) REFERENCES productos (secuence_prod);  
+    -- FOREIGN KEY (SKU_producto) REFERENCES productos (secuence_prod);
 
     -- MARCA A ->
 
@@ -2459,18 +2454,18 @@ ADD PRIMARY KEY (idProv);
 
 
 
-    -- INSERT INTO `categorias`(`secuence_cat`, `id_categoria`, `nom_categoria`, `estado_categoria`) 
+    -- INSERT INTO `categorias`(`secuence_cat`, `id_categoria`, `nom_categoria`, `estado_categoria`)
     -- VALUES (null,1,'viveres',1)
 
-    -- INSERT INTO `proveedor`(`secuence_prov`, `id_proveedor`, `RUC`, `razon_social`, `tlf_proveedor`, `mail_proveedor`, `estado_proveedor`) 
+    -- INSERT INTO `proveedor`(`secuence_prov`, `id_proveedor`, `RUC`, `razon_social`, `tlf_proveedor`, `mail_proveedor`, `estado_proveedor`)
     -- VALUES (null,1,'10738918300','Arroshi','942394243','nel@gmail.com',1)
 
-    -- INSERT INTO `marca`(`secuence_mar`, `id_marca`, `nom_marca`, `estado_marca`) 
+    -- INSERT INTO `marca`(`secuence_mar`, `id_marca`, `nom_marca`, `estado_marca`)
     -- VALUES (null,1,'Arroshis',1)
 
-    -- INSERT INTO `productos`(`secuence_prod`, `id_proveedor`, `id_categoria`, `id_marca`, `nom_producto`, `cantidades`, `fecha_entrada`, `descripcion`, `guia_remision`, `num_orden`, `num_pecosa`, `estado_producto`) 
+    -- INSERT INTO `productos`(`secuence_prod`, `id_proveedor`, `id_categoria`, `id_marca`, `nom_producto`, `cantidades`, `fecha_entrada`, `descripcion`, `guia_remision`, `num_orden`, `num_pecosa`, `estado_producto`)
     -- VALUES (null,1,1,1,'Primer_Producto',100,'2021-05-07','1ra prueba','ni idea',1,11,1)
-    
+
 -- -----------------------------------------------INSERT INTO CATEGORIAS (INICIO)--------------------------------------------------------------------------------------------------------------------------
 INSERT INTO `categorias` (`secuence_cat`, `id_categoria`, `nom_categoria`, `estado_categoria`) VALUES (NULL, '1', 'aseo', '1'), (NULL, '2', 'escolar', '1');
 -- -----------------------------------------------INSERT INTO CATEGORIAS (FIN)--------------------------------------------------------------------------------------------------------------------------
@@ -2482,7 +2477,7 @@ INSERT INTO `tipo_usuario` (`secuence_tipo_usu`, `id_tipo_usuario`, `detalle_tip
 
 -- ----------------------------------- --------------INSERT INTO  USUARIO (INICIO) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1');
-                                    
+
 --  ---------------------------------------------------INSERT INTO  USUARIO (FIN)--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     INSERT INTO colegios VALUES (null, 1618958, 'UGEL AIJA', 'Santa Rosa de Viterbo', 'Jirón ramon castilla 1219', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
@@ -2495,5 +2490,4 @@ INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario
     INSERT INTO colegios VALUES (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
     INSERT INTO colegios VALUES (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
-
 
