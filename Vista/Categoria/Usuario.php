@@ -40,7 +40,7 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 
 <body class="Blogger">
@@ -55,19 +55,19 @@ require_once('../../config/security.php');
                     <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                        <?php 
-                        switch ($_SESSION['id_rol']) {
-                            case '1':
-                                echo "Administrador";
-                                break;
-                            case '2':
-                                echo "Operador";
-                                break;
-                            default:   
-                                break;
-                        }
- 
-                        ?></small>
+                            <?php
+                            switch ($_SESSION['id_rol']) {
+                                case '1':
+                                    echo "Administrador";
+                                    break;
+                                case '2':
+                                    echo "Operador";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
@@ -194,8 +194,34 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_tipo_documento" class="bmd-label-floating">Tipo de documento &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <select class="form-control" name="usuario_tipo_documento" id="usuario_tipo_documento">
-                                            <option value="" selected="">Seleccione una opción</option>
+                                        <script type="text/javascript">
+                                            function changeValue(dropdown) {
+                                                var option = dropdown.options[dropdown.selectedIndex].value,
+                                                    field = document.getElementById('iduser');
+                                                    if (option == 'DUI') {
+                                                        document.getElementById('iduser').value='';
+                                                        field.maxLength = 15;
+                                                    } else if  (option == 'DNI'){
+                                                        document.getElementById('iduser').value='';
+                                                        field.maxLength = 8;
+                                                    } else if  (option == 'Cedula'){
+                                                        document.getElementById('iduser').value='';
+                                                        field.maxLength = 9;
+                                                    } else if  (option == 'Licencia'){
+                                                        document.getElementById('iduser').value='';
+                                                        field.maxLength = 11;
+                                                    } else if  (option == 'Pasaporte'){
+                                                        document.getElementById('iduser').value='';
+                                                        field.maxLength = 15;
+                                                    } else if  (option == 'Otro'){
+                                                        document.getElementById('iduser').value='';
+                                                        field.maxLength = 20;
+                                                    }
+                                                    
+                                            }
+                                        </script>
+                                        <select class="form-control" name="usuario_tipo_documento" id="usuario_tipo_documento" onchange="changeValue(this);">
+                                            <option value="" selected="" disabled>Seleccione una opción</option>
                                             <option value="DUI">1 - DUI</option>
                                             <option value="DNI">2 - DNI</option>
                                             <option value="Cedula">3 - Cedula</option>
@@ -205,10 +231,12 @@ require_once('../../config/security.php');
                                         </select>
                                     </div>
                                 </div>
-                            <div class="col-12 col-md-4">
+
+
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_numero_documento" class="bmd-label-floating">Numero de documento &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text"  class="form-control" name="iduser" id="iduser" maxlength="8">
+                                        <input type="text" class="form-control" name="iduser" id="iduser" maxlength="20">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -218,11 +246,11 @@ require_once('../../config/security.php');
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
                                         <select class="form-control" name="usuario_cargo" id="usuario_cargo">
-                                            <option value="" selected="" >Seleccione una opción</option>
+                                            <option value="" selected="">Seleccione una opción</option>
                                             <?php
                                             foreach ($selectorTusu as $cboTusu) {
                                             ?>
-                                            <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
+                                                <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
                                             <?php }
                                             ?>
                                         </select>
@@ -231,19 +259,19 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_nombre" class="bmd-label-floating">Nombres &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text"  class="form-control" name="nomuser" id="nomuser" maxlength="35">
+                                        <input type="text" class="form-control" name="nomuser" id="nomuser" maxlength="35">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_apellido" class="bmd-label-floating">Apellidos &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text"  class="form-control" name="usuario_apellido" id="usuario_apellido" maxlength="35">
+                                        <input type="text" class="form-control" name="usuario_apellido" id="usuario_apellido" maxlength="35">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="usuario_telefono" class="bmd-label-floating">Teléfono</label>
-                                        <input type="text"  class="form-control" name="usuario_telefono" id="usuario_telefono" maxlength="20">
+                                        <input type="text" class="form-control" name="usuario_telefono" id="usuario_telefono" maxlength="9">
                                     </div>
                                 </div>
                             </div>
@@ -335,7 +363,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_usuario" class="bmd-label-floating">Nombre de usuario &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text"class="form-control" name="username" id="username" maxlength="25">
+                                        <input type="text" class="form-control" name="username" id="username" maxlength="25">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -347,13 +375,13 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_clave_1" class="bmd-label-floating">Contraseña &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="100">
+                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="50">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="usuario_clave_2" class="bmd-label-floating">Repetir contraseña &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="100">
+                                        <input type="password" class="form-control" name="pass" id="pass" maxlength="50">
                                     </div>
                                 </div>
                                 <!-- <div class="col-12 col-md-6">
@@ -390,12 +418,12 @@ require_once('../../config/security.php');
                         </div>
                     </fieldset>
                     <br><br><br>
-                    
+
                     <p class="text-center" style="margin-top: 40px;">
                         <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
                         &nbsp; &nbsp;
                         <button id="btnSave_usr" type="submit" class="btn btn-raised btn-info btn-sm">
-                        <i class="far fa-save"></i> &nbsp; GUARDAR</button>
+                            <i class="far fa-save"></i> &nbsp; GUARDAR</button>
                     </p>
                     <p class="text-center">
                         <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>

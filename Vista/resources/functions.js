@@ -1,4 +1,5 @@
  $(document).ready(function(){
+
     $('#btnSave').click(function(){
         var _data=$('#frmAjax').serialize();
         $.ajax({
@@ -20,21 +21,37 @@
     });
 
 
- /*  $('#btnSaveProd').click(function(){
+    $('#btnSaveProd').click(function(){
         var _data_prd=$('#frmProd').serialize();
-         alert(_data_prd);
-        return false;  
         $.ajax({
             type:"POST",
             url:"../../Controlador/AddProducto.php",
-            data: _data_prd
-        }).done(function(response){
-            alert("added successfully rctmre");
-        }).fail(function(response){
-            alert(response);
+            data: _data_prd,
+            success:function(response){
+                if (response==true ) {
+                    alert("Agregado correctamente");
+                    event.returnValue=false;
+                    document.getElementById("cod_cate").value = "";
+                    document.getElementById("marca_prod").value = "";
+                    document.getElementById("ruc_pro").value = "";
+                    document.getElementById("razon").value = "";
+                    document.getElementById("producto_nombre").value = "";
+                    document.getElementById("producto_stock_total").value = "";
+                    document.getElementById("date_in").value = "";
+                    document.getElementById("date_out").value = "";
+                    document.getElementById("desc").value = "";
+                    document.getElementById("_gremision").value = "";
+                    document.getElementById("_norden").value = "";
+                    document.getElementById("npecosa").value = "";
+                    document.getElementById("prod_status").value = "";
+                }else{
+                    alert("Error en el servidor.");
+                }
+            }
         });
         return false;
-    });*/
+    });
+
 
 /*     $('#btnSaveProd').click(function(){
         var _data_prd=$('#frmProd').serialize();

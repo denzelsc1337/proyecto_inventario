@@ -69,6 +69,29 @@
         echo $jsonstring;
 
     }
+    function obtenerProducto($codDespacho){
+        include_once('../config/Conexion.php');
+		$cnx = new Conexion();
+		$cadena = $cnx->abrirConexion();
+
+        $query = "SELECT prod.nom_producto 
+        FROM detalle_despacho desp 
+        INNER JOIN productos prod ON desp.id_producto = prod.secuence_prod 
+        WHERE desp.secuence_det_des= '$codDespacho'";
+
+        $result = mysqli_query($cadena, $query);
+
+        $jsonstring = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $jsonstring [] = array(
+                'nom_product ' => $row['nom_producto']
+            );
+        }
+        $jsonstring = json_encode($jsonstring);
+        echo $jsonstring;
+
+    }
 
 
 
@@ -76,6 +99,10 @@
         $codDepartamento = $_POST['codDepar'];
         obtenerProvincias($codDepartamento);
         
+    }else if(isset($_POST['codDesp'])){
+        $codDespacho= $_POST['codDesp'];
+        obtenerProducto($codDespacho);
+
     }else if(isset($_POST['codProv'])){
         $codProvincia = $_POST['codProv'];
         obtenerDistritos($codProvincia);

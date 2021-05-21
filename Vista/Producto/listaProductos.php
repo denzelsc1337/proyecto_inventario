@@ -42,6 +42,10 @@ require_once('../../config/security.php');
 
     <!-- jQuery V3.4.1 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="datatables/dataTables.min.css">
+
 </head>
 
 <body class="Blogger">
@@ -74,6 +78,11 @@ require_once('../../config/security.php');
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
+                    <?php
+                        $hide = "";
+                        if ($_SESSION['id_rol'] == '2') {
+                            $hide = "style='display:none;'";
+                        } ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
                                 <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
@@ -96,7 +105,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li>
+                                <li <?php echo $hide; ?> >
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -207,7 +216,7 @@ require_once('../../config/security.php');
                     <?php
                     require_once('../../Controlador/controladorListar.php');
                     ?>
-                    <table class="table table-dark table-sm">
+                    <table id="prueba" class="table table-striped table-boredered" style="width:100%">
                         <thead>
                             <tr class="text-center roboto-medium">
                                 <th hidden>secuence</th>
@@ -246,6 +255,7 @@ require_once('../../config/security.php');
                             }
                     ?>
                     </table>
+
                 </div>
 
 
@@ -306,7 +316,7 @@ require_once('../../config/security.php');
                                             <?php
                                             foreach ($selectorCateg as $cboCate) {
                                             ?>
-                                                <option value="<?php echo $cboCate[1]; ?>"><?php echo $cboCate[2]; ?></option>
+                                                <option value="<?php echo $cboCate[0]; ?>"><?php echo $cboCate[2]; ?></option>
                                             <?php }
                                             ?>
                                         </select>
@@ -347,6 +357,13 @@ require_once('../../config/security.php');
     </div>
     <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    
+    <script>
+        $(document).ready(function() {
+    $('#prueba').DataTable();
+        } );
+    </script>
+    
     <script>
         $(document).ready(function() {
             $('.editProd').on('click', function() {
@@ -428,6 +445,8 @@ require_once('../../config/security.php');
             $('body').bootstrapMaterialDesign();
         });
     </script>
+
+    <script type="text/javascript" src="datatables/datatables.min.js" ></script>
 
     <!-- printThis  -->
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->

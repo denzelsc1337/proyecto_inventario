@@ -206,7 +206,7 @@ require_once('../../config/security.php');
                                 <th hidden>secuence</th>
                                 <th>№ Categoria</th>
                                 <th>Categoria</th>
-                                <th hidden>Habilitado/Deshabilitado</th>
+                                <th>Habilitado/Deshabilitado</th>
                                 <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
@@ -219,7 +219,7 @@ require_once('../../config/security.php');
                                     <td hidden><?php echo $vistaCate[0] ?></td>
                                     <td><?php echo $vistaCate[1] ?></td>
                                     <td><?php echo $vistaCate[2] ?></td>
-                                    <td hidden>
+                                    <td>
                                         <?php
                                         $hide = "";
                                         if ($_SESSION['id_rol'] == '2') {

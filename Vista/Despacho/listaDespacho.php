@@ -73,6 +73,11 @@ require_once('../../config/security.php');
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
+                        <?php
+                        $hide = "";
+                        if ($_SESSION['id_rol'] == '2') {
+                            $hide = "style='display:none;'";
+                        } ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
                                 <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
@@ -95,7 +100,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li>
+                                <li <?php echo $hide; ?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -160,7 +165,7 @@ require_once('../../config/security.php');
                     <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Despachos
                 </h3>
                 <p class="text-justify">
-                    En el módulo DESPACHO usted podrá registrar las despachos que servirán para tener un mejor registro de entradas.
+                    En el módulo Salida de Producto usted podrá registrar las despachos que servirán para tener un mejor registro de entradas.
                 </p>
             </div>
 
@@ -168,7 +173,7 @@ require_once('../../config/security.php');
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
                         <a href="Despacho.php">
-                            <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Nueva Despacho
+                            <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Salida de Producto
                         </a>
                     </li>
                     <li>
@@ -266,7 +271,7 @@ require_once('../../config/security.php');
                                         ?>
                                     </td> -->
                                     <td>
-                                        <button type="button" class="btn btn-success editDesp" data-toggle="modal" data-target="#exampleModal">
+                                        <button type="button" class="btn btn-success editDesp" data-toggle="modal" id="<?php echo $salidaOut[0] ?>" data-target="#exampleModal">
                                             Actualizar
                                         </button>
                                     </td>
@@ -298,7 +303,7 @@ require_once('../../config/security.php');
                         </div> -->
                         <div class="container-fluid">
                             <div class="row">
-                                <input type="text" id="secuence" name="secuence" class="form-control">
+                                <input type="text" id="desp_id" name="desp_id" class="form-control">
                                 <div class="col-12 col-md-12">
                                     <div class="form-group">
                                         <label>Encargado de Salida:</label>
@@ -337,15 +342,13 @@ require_once('../../config/security.php');
                                     <div class="form-group">
                                         <label>Producto a salir:</label>
                                         <?php
-                                        require_once('../../Controlador/controladorListar.php');
+                                        //require_once('../../Controlador/controladorListar.php');
                                         ?>
                                         <select class="form-control" name="prod_cod" id="prod_cod">
-                                            <option value="" selected="">Seleccione una opción</option>
                                             <?php
-                                            foreach ($selectorProd as $cboProd) {
+                                            //foreach ($selectorProd as $cboProd) {
                                             ?>
-                                                <option value="<?php echo $cboProd[0]; ?>"><?php echo $cboProd[1]; ?></option>
-                                            <?php }
+                                            <?php //}
                                             ?>
                                         </select>
                                     </div>
@@ -388,7 +391,9 @@ require_once('../../config/security.php');
         </div>
     </div>
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
-    <script>
+
+
+        <script>
         $(document).ready(function() {
             $('.editDesp').on('click', function() {
 
@@ -410,6 +415,70 @@ require_once('../../config/security.php');
             });
         });
     </script>
+<!--     <script>
+        $(document).ready(function() {
+            let $col = document.querySelector('#prod_cod');
+            let $despa_id = document.getElementById('#desp_id');
+
+
+            $('#add').click(function() {
+                $('#insert').val("Insert");
+                $('#insert_form')[0].reset();
+            });
+            $(document).on('click', '.editData', function() {
+                
+                var desp_id = $(this).attr("id");
+                console.log(desp_id)
+
+                $.ajax({
+                    url: "../../Controlador/getUpdateSalidaProd.php",
+                    method: "POST",
+                    data: {
+                        desp_id: desp_id
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        const codDesp = desp_id
+                        const sendDatos = {
+                            'codDesp': codDesp
+                        }
+                        $('#usuario_cargo').val(data.id_usuario);
+                        $('#colegio_cod').val(data.nom_colegio);
+                        //$('#prod_cod').val(data.nom_producto);  
+                        $('#cant_sal').val(data.cant_prod_des);
+                        $('#fecha_in').val(data.fecha_des);
+                        $('#coment').val(codDesp);
+                        $('#firma').val(data.recepcionista);
+                        $('#desp_id').val(data.secuence_det_des);
+                        //$('#insert').val("Update");  
+                        $('#updateData').modal('show');
+
+                        cargarProd(sendDatos)
+                    }
+                });
+
+            });
+
+            function cargarProd(sendDatos) {
+                $.ajax({
+                    type: "POST",
+                    url: "../../Controlador/Select.php",
+                    data: sendDatos,
+                    success: function(response) {
+                        const producto = JSON.parse(response);
+                        let template
+
+                        producto.forEach(productos => {
+                            template += `<option class="form-control" value="${productos.nom_product}">${productos.nom_product}</option>`;
+                        })
+
+                        $col.innerHTML = template;
+                    }
+                })
+            }
+        });
+    </script> -->
+
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 

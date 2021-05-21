@@ -86,14 +86,14 @@ CREATE TABLE productos
     RUC BIGINT(11) not null,
     razon_social varchar(50) not null,
     id_usuario INT (6) NOT NULL,
-    nom_producto VARCHAR (30) NOT NULL,
-    cantidades INT NOT NULL,
+    nom_producto VARCHAR (50) NOT NULL,
+    cantidades BIGINT NOT NULL,
     fecha_entrada DATE NOT NULL,
     fecha_vencimento DATE,
     descripcion VARCHAR(50),
-    guia_remision VARCHAR (30)  NOT NULL,
-    num_orden int NOT NULL,
-    num_pecosa int,
+    guia_remision VARCHAR (50)  NOT NULL,
+    num_orden varchar(50) NOT NULL,
+    num_pecosa varchar(50),
     perecible BOOLEAN
 );
 

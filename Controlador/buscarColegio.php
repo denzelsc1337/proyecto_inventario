@@ -5,7 +5,9 @@ $connect = mysqli_connect("localhost", "root", "", "inventario");
 $search = $_POST['search'];
 
 if(!empty($search)) {
-  $query = "SELECT * FROM colegios  WHERE nom_colegio LIKE '%".$search."%'";
+  $query = "SELECT * FROM colegios  WHERE
+   nom_colegio LIKE '%".$search."%'
+   or cod_modu_colegio LIKE '%".$search."%'";
   $result = mysqli_query($connect, $query);
 
   if(!$result) {

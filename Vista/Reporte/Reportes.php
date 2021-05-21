@@ -73,6 +73,11 @@ require_once('../../config/security.php');
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
+                    <?php
+                        $hide = "";
+                        if ($_SESSION['id_rol'] == '2') {
+                            $hide = "style='display:none;'";
+                        } ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
                                 <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
@@ -95,7 +100,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li>
+                                <li <?php echo $hide; ?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>

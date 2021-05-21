@@ -44,7 +44,7 @@ class cCategoria
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$query = 'select id_categoria, nom_categoria from categorias';
+		$query = 'select secuence_cat, nom_categoria from categorias';
 
 		$resultado = mysqli_query($cadena, $query);
 

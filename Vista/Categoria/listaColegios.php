@@ -201,13 +201,13 @@ require_once('../../config/security.php');
                         <table class="table table-dark table-sm" id="task-result">
                             <thead>
                                 <tr class="text-center roboto-medium">
-                                    <!-- <th>№ Colegio</th> -->
+                                    <th hidden>№ Colegio</th>
                                     <th>Cod Modular</th>
-                                    <th>UGEL</th>
+                                    <th hidden>UGEL</th>
                                     <th>Colegio</th>
                                     <th>Dirección</th>
-                                    <th>Telefono</th>
-                                    <th>Correo</th>
+                                    <th hidden>Telefono</th>
+                                    <th hidden>Correo</th>
                                     <th>Departamento</th>
                                     <th>Provincia</th>
                                     <th>Distrito</th>
@@ -224,17 +224,17 @@ require_once('../../config/security.php');
                                 ?>
                                     <tr class="text-center">
                                         <td hidden><?php echo $vistaCole[0] ?></td>
-                                        <td><?php echo $vistaCole[1] ?></td>
-                                        <td><?php echo $vistaCole[2] ?></td>
-                                        <td><?php echo $vistaCole[3] ?></td>
-                                        <td><?php echo $vistaCole[4] ?></td>
-                                        <td><?php echo $vistaCole[5] ?></td>
-                                        <td><?php echo $vistaCole[6] ?></td>
-                                        <td><?php echo $vistaCole[7] ?></td>
-                                        <td><?php echo $vistaCole[8] ?></td>
-                                        <td><?php echo $vistaCole[9] ?></td>
-                                        <td><?php echo $vistaCole[10] ?></td>
-                                        <td><?php echo $vistaCole[11] ?></td>
+                                        <td><?php echo $vistaCole[1]//codmodular ?></td> 
+                                        <td hidden><?php echo $vistaCole[2]//ugel ?></td>
+                                        <td><?php echo $vistaCole[3] //colegio?></td>
+                                        <td><?php echo $vistaCole[4] //direccion?></td>
+                                        <td hidden><?php echo $vistaCole[5] //telefono?></td>
+                                        <td hidden><?php echo $vistaCole[6] //correo?></td>
+                                        <td><?php echo $vistaCole[7] //dep?></td>
+                                        <td><?php echo $vistaCole[8] //prov?></td>
+                                        <td><?php echo $vistaCole[9] //dsto?></td>
+                                        <td><?php echo $vistaCole[10] //director ?></td>
+                                        <td><?php echo $vistaCole[11] //nivel?></td>
 
                                         <!-- <td>
                                         <?php

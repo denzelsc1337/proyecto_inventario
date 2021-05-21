@@ -18,11 +18,11 @@ class pProductos
 		$cadena = $cnx->abrirConexion();
 
 		$query = 'SELECT secuence_prod, razon_social,cat.secuence_cat,cat.nom_categoria, marca_nom, nom_producto, cantidades, 
-					fecha_entrada
-					FROM productos prod
-					INNER JOIN categorias cat ON prod.id_categoria = cat.id_categoria
-					INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu 
-					ORDER BY 1 desc';
+		fecha_entrada
+		FROM productos prod
+		INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
+		INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu
+		ORDER BY 1 desc';
 
 		$resultado = mysqli_query($cadena, $query);
 
@@ -55,23 +55,25 @@ class pProductos
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
+		
 		$Query = "INSERT INTO `productos` (`secuence_prod`, `id_categoria`, 
 		`marca_nom`, `RUC`, `razon_social`, `id_usuario`, `nom_producto`,
 		`cantidades`, `fecha_entrada`, `fecha_vencimento`, `descripcion`, 
 		`guia_remision`, `num_orden`, `num_pecosa`, `perecible`) 
 
+
 		VALUES (null,'".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."',
 					 '".$data[5]."','".$data[6] ."','".$data[7]."','".$data[8]."',
 					 '".$data[9]."','".$data[10]."','".$data[11]."','".$data[12]."',
 					 '".$data[13]."','".$data[14]."');";
-/* 
+
 		echo mysqli_query($cadena, $Query);
 
 		
-		$cnx->cerrarConexion($cadena); */
-		$result = mysqli_query($cadena, $Query);
+		$cnx->cerrarConexion($cadena);
+		/*$result = mysqli_query($cadena, $Query);
 		
 		$cnx ->cerrarConexion($cadena);
-		return $result;
+		return $result;*/
 	}
 }

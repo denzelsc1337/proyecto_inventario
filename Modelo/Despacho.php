@@ -23,7 +23,7 @@ class cDespacho
 					INNER JOIN productos prod ON desp.id_producto = prod.secuence_prod 
 					INNER JOIN usuario usu ON desp.id_usuario = usu.secuence_usu
 					INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
-					ORDER BY 1 ASC';
+					ORDER BY 1 DESC';
 
 		$resultado = mysqli_query($cadena, $query);
 
@@ -48,7 +48,6 @@ class cDespacho
                         `cant_prod_des`, `fecha_des`, `comentario`, `firma_resp`) 
                          VALUES (NULL,'" . $data[1] . "','" . $data[2] . "','".$data[3]."','" . $data[4] . "',
                        '".$data[5]."','" . $data[6] . "','" . $data[7] . "');";
-
 		echo mysqli_query($cadena, $Query);
 
 		$cnx->cerrarConexion($cadena);
@@ -56,5 +55,3 @@ class cDespacho
 	}
 
 }
-?>
-

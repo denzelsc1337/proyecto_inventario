@@ -25,10 +25,14 @@ if (isset($_POST['actualizarDataUsu'])) {
     $query_run = mysqli_query($cadena, $query);
 
     if ($query_run) {
-        echo '<script> alert("Usuario Actualizado");</script>';
-        header("Location:../Vista/Categoria/listaUsuario.php");
+        //echo '<script> alert("Usuario Actualizado");</script>';
+    ?>
+        <!--header("Location:../Vista/Categoria/listaUsuario.php");-->
+        <script> alert("Usuario Actualizado");</script>
+        <META http-equiv="Refresh" content = "0.3 ; URL =../Vista/Categoria/listaUsuario.php">;
+<?php
     } else {
-
         echo '<script> alert("Error al actualizar");</script>';
     }
 }
+?>

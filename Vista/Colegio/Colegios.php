@@ -240,7 +240,7 @@ require_once('../../config/security.php');
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
                                         <input type="text" class="form-control" name="num_cole" id="num_cole"
-                                            maxlength="40" required>
+                                            maxlength="9" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -248,7 +248,7 @@ require_once('../../config/security.php');
                                         <label for="categoria_nombre" class="bmd-label-floating">EMAIL Colegio
                                             <i class="fab fa-font-awesome-alt"></i> &nbsp;
                                         </label>
-                                        <input type="text" class="form-control" name="email_cole" id="email_cole"
+                                        <input type="email" class="form-control" name="email_cole" id="email_cole"
                                             maxlength="40" required>
                                     </div>
                                 </div>

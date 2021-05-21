@@ -41,7 +41,7 @@ require_once('../../config/security.php');
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/style.css">
 
     <!-- jQuery V3.4.1 -->
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 
 <body class="Blogger">
@@ -74,6 +74,11 @@ require_once('../../config/security.php');
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
+                    <?php
+                        $hide = "";
+                        if ($_SESSION['id_rol'] == '2') {
+                            $hide = "style='display:none;'";
+                        } ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
                                 <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
@@ -96,7 +101,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li>
+                                <li <?php echo $hide; ?> >
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -200,7 +205,7 @@ require_once('../../config/security.php');
             </div>
             <!-- id="frmProd" -->
             <div class="container-fluid">
-                <form class="form-neon FormularioAjax" method="POST" action="../../Controlador/AddProducto.php" autocomplete="off">
+                <form class="form-neon FormularioAjax" id="frmProd" method="POST"  autocomplete="off">
                     <!-- <input type="hidden" name="modulo_producto" value="registrar"> -->
                     <fieldset>
                         <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Registro de Producto</legend>
@@ -218,7 +223,7 @@ require_once('../../config/security.php');
                                             <?php
                                             foreach ($selectorCateg as $cboCate) {
                                             ?>
-                                                <option value="<?php echo $cboCate[1]; ?>"><?php echo $cboCate[2]; ?></option>
+                                                <option value="<?php echo $cboCate[0]; ?>"><?php echo $cboCate[2]; ?></option>
                                             <?php }
                                             ?>
                                         </select>
@@ -324,13 +329,13 @@ require_once('../../config/security.php');
                                         <div class="form-group">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="prod_status" value="1" checked="checked" onclick="handleClick(this);">
+                                                    <input type="radio" name="prod_status" value="1" checked="checked"">
                                                     <i class="far fa-check-circle fa-fw"></i> &nbsp; Si
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="prod_status" value="0" onclick="handleClick(this);">
+                                                    <input type="radio" name="prod_status" value="0"">
                                                     <i class="far fa-times-circle fa-fw"></i> &nbsp; No
                                                 </label>
                                             </div>
@@ -340,19 +345,19 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_stock_total" class="bmd-label-floating">Cantidad a ingresar&nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control" name="producto_stock_total" id="producto_stock_total" maxlength="11">
+                                        <input type="number" class="form-control" name="producto_stock_total" id="producto_stock_total">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="producto_fecha_ingreso">Fecha de ingreso</label>
+                                        <label >Fecha de ingreso</label>
                                         <input type="date" class="form-control" name="date_in" id="date_in">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="producto_fecha_vencimiento">Fecha de vencimiento</label>
-                                        <input type="date" class="form-control" value="00-00-0000" name="date_out" id="date_out">
+                                        <label>Fecha de vencimiento</label>
+                                        <input type="date" class="form-control"  name="date_out" id="date_out">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
@@ -370,13 +375,13 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Orden</label>
-                                        <input type="number" class="form-control input-barcode" name="_norden" id="_norden" maxlength="11">
+                                        <input type="text" class="form-control input-barcode" name="_norden" id="_norden" maxlength="40">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Pecosa</label>
-                                        <input type="number" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="11">
+                                        <input type="text" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="40">
                                     </div>
                                 </div>
                             </div>
@@ -477,7 +482,7 @@ require_once('../../config/security.php');
             </div>
         </section>
     </main>
-    <script>
+<!--     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 
         btn_salir.addEventListener('click', function(e) {
@@ -514,7 +519,7 @@ require_once('../../config/security.php');
                 }
             });
         });
-    </script>
+    </script> -->
     <!--=============================================
 =            Include JavaScript files           =
 ==============================================-->
@@ -525,7 +530,7 @@ require_once('../../config/security.php');
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap.min.js"></script>
 
     <!-- SnackbarJS plugin -->
-    <script src="http://systems.designlopers.com/SVI/vistas/js/snackbar.min.js"></script>
+   <!--  <script src="http://systems.designlopers.com/SVI/vistas/js/snackbar.min.js"></script> -->
 
     <!-- Bootstrap Material Design V4.0 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap-material-design.min.js"></script>
@@ -539,7 +544,7 @@ require_once('../../config/security.php');
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script>-->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <!-- <script src="../resources/functions.js"></script> -->
+    <script src="../resources/functions.js"></script>
 </body>
 
 </html>
