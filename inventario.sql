@@ -15,8 +15,7 @@ CREATE TABLE usuario
     pass_usuario VARCHAR (20) NOT NULL,
     mail_usuario VARCHAR (40),
     tlf_usuario CHAR (9),
-    estado_usuario BOOLEAN,
-    sexo_usuario CHAR(2)
+    estado_usuario BOOLEAN
 );
 
 DROP TABLE IF EXISTS tipo_usuario;
@@ -2503,7 +2502,7 @@ INSERT INTO  productos (`secuence_prod`, `id_categoria`,
 IF (SELECT ROW_COUNT() > 0) THEN
             
         	INSERT INTO productos_historicos
-            	VALUES (NULL, (SELECT MAX(secuence_prod) FROM productos), CURRENT_DATE,'INGRESO', cantidades);
+            	VALUES (NULL, (SELECT MAX(secuence_prod) FROM productos), CURRENT_DATE,'REGISTRO', cantidades);
          END IF;
 
 END $$
@@ -2511,11 +2510,11 @@ END $$
 DELIMITER ;
 
 
-##########
+----------------------
 
-DROP PROCEDURE IF EXISTS salidaProducto;
+DROP PROCEDURE IF EXISTS actualizarProducto;
 DELIMITER $$
-CREATE PROCEDURE salidaProducto(
+CREATE PROCEDURE actualizarProducto(
     
 IN secuence_prod_    INT,
 
@@ -2602,7 +2601,7 @@ INSERT INTO `tipo_usuario` (`secuence_tipo_usu`, `id_tipo_usuario`, `detalle_tip
 -- ----------------------------------------------------INSERT INTO TIPO USUARIO (FIN)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- ----------------------------------- --------------INSERT INTO  USUARIO (INICIO) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`,`sexo_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1','m'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1','m');
+INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1');
 
 --  ---------------------------------------------------INSERT INTO  USUARIO (FIN)--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2616,3 +2615,4 @@ INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario
     INSERT INTO colegios VALUES (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
     INSERT INTO colegios VALUES (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
+
