@@ -9,6 +9,7 @@ class cColegios
 	{
 		$this->listColegios = array();
 		$this->listColegioCod = array();
+		$this->busquedaCole = array();
 	}
 
 	public function obtenerColegios()
@@ -30,9 +31,35 @@ class cColegios
 		return $this->listColegios;
 	}
 
+	public function buscarColegio($search)
+	{
+		include_once('../config/Conexion.php');
+		$cnx = new conexion();
+		$cadena = $cnx->abrirConexion();
+
+		$query = 'SELECT * FROM colegios  WHERE
+		nom_colegio LIKE "'.$search.'"
+		or cod_modu_colegio LIKE "'.$search.'"
+		ORDER BY 1 DESC';
+
+		$resultado = mysqli_query($cadena, $query);
+
+		while ($fila = mysqli_fetch_row($resultado)) {
+			$this->busquedaCole[] = $fila;
+		}
+
+		if ($fila<0) {
+			echo "wops...";
+		}else{
+			$cnx->cerrarConexion($cadena);
+			return $this->busquedaCole;
+		}
+
+	}
+
 	public function selectorCole()
 	{
-		$cnx = new conexion();
+		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
 		$query = 'SELECT secuence_col, concat(ugel_colegio," - ", nom_colegio) from colegios';

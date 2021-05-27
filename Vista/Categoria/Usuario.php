@@ -50,9 +50,19 @@ require_once('../../config/security.php');
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
             <div class="full-box nav-lateral-content scroll">
-                <figure class="full-box nav-lateral-avatar">
-                    <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
+            <figure class="full-box nav-lateral-avatar">
+					<i class="far fa-times-circle show-nav-lateral"></i>
+					<?php
+						if ($_SESSION['sexo'] == 'm') {
+					?>
+						<img src="https://cooperativadepica.cl/wp-content/uploads/2018/07/avatar2.png" class="img-fluid" alt="Avatar">
+					<?php
+						}elseif ($_SESSION['sexo'] == 'f') {
+					?>
+						<img src="https://www.w3schools.com/w3images/avatar6.png" class="img-fluid" alt="Avatar">
+					<?php
+						}
+					?>
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
                             <?php
@@ -121,11 +131,11 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -409,6 +419,28 @@ require_once('../../config/security.php');
                                                 <label>
                                                     <input type="radio" name="user_estado" value="0">
                                                     <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6" style="margin-top: 30px;">
+                                    <label for="" class="bmd-label-floating">Sexo de Usuario
+                                        <i class="fab fa-font-awesome-alt"></i> &nbsp;
+                                    </label>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_setso" value="m" checked>
+                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Masculino
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_setso" value="f">
+                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; Femenino
                                                 </label>
                                             </div>
                                         </div>

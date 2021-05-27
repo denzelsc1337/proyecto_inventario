@@ -15,7 +15,8 @@ CREATE TABLE usuario
     pass_usuario VARCHAR (20) NOT NULL,
     mail_usuario VARCHAR (40),
     tlf_usuario CHAR (9),
-    estado_usuario BOOLEAN
+    estado_usuario BOOLEAN,
+    sexo_usuario CHAR(2)
 );
 
 DROP TABLE IF EXISTS tipo_usuario;
@@ -88,6 +89,7 @@ CREATE TABLE productos
     id_usuario INT (6) NOT NULL,
     nom_producto VARCHAR (50) NOT NULL,
     cantidades BIGINT NOT NULL,
+    -- cant_ingre BIGINT NOT NULL,
     fecha_entrada DATE NOT NULL,
     fecha_vencimento DATE,
     descripcion VARCHAR(50),
@@ -97,14 +99,32 @@ CREATE TABLE productos
     perecible BOOLEAN
 );
 
--- DROP TABLE IF EXISTS movimientos;
--- CREATE TABLE movimientos
+-- DROP TABLE IF EXISTS historias;
+-- CREATE TABLE historias
 -- (
---     secuence_mov INT auto_increment PRIMARY KEY NOT NULL,
---     id_movimiento INT NOT NULL,
---     tipo_movi VARCHAR (10) NOT NULL,
---     estado_movimiento BOOLEAN
+--     secuence_histo INT auto_increment PRIMARY KEY NOT NULL,
+
+--     secuence_prod INT,
+--     fecha CURRENT_DATE,
+    
+--     stock INT
 -- );
+
+DROP TABLE IF EXISTS productos_historicos;
+CREATE TABLE productos_historicos
+(
+    secuence_histo INT auto_increment PRIMARY KEY NOT NULL,
+
+    secuence_prod INT,
+    fecha DATETIME,
+    tipo_trans VARCHAR(50),
+    
+    unidades INT
+);
+
+    ALTER TABLE productos_historicos
+    ADD CONSTRAINT fk_stock1
+    FOREIGN KEY (secuence_prod) REFERENCES productos (secuence_prod);
 
 -- DROP TABLE IF EXISTS detalle_ingreso;
 -- CREATE TABLE detalle_ingreso
@@ -608,7 +628,7 @@ INSERT INTO ubdistrito (idDist, distrito, idProv) VALUES
 (443, 'AYACUCHO', 43),
 (444, 'ACOCRO', 43),
 (445, 'ACOS VINCHOS', 43),
-(446, 'ANDRES AVELINO CÁCERES DORREGARAY', 43),
+(446, 'ANDRES AVELINO CÃCERES DORREGARAY', 43),
 (447, 'CARMEN ALTO', 43),
 (448, 'CHIARA', 43),
 (449, 'OCROS', 43),
@@ -2195,7 +2215,7 @@ INSERT INTO ubprovincia (idProv, provincia, idDepa) VALUES
 (141, 'MARISCAL RAMON CASTILLA', 16),
 (142, 'REQUENA', 16),
 (143, 'UCAYALI', 16),
-(144, 'DATEM DE MARAÑON', 16),
+(144, 'DATEM DE MARAÃ‘ON', 16),
 (145, 'PUTUMAYO', 16),
 (146, 'TAMBOPATA', 17),
 (147, 'MANU', 17),
@@ -2250,7 +2270,7 @@ INSERT INTO ubprovincia (idProv, provincia, idDepa) VALUES
 (196, 'PURUS', 25);
 
 --
--- Índices para tablas volcadas
+-- Ãndices para tablas volcadas
 --
 
 --
@@ -2440,6 +2460,112 @@ INSERT INTO ubdepartamento (idDepa, departamento) VALUES
     -- FOREIGN KEY (id_tipo_movi) REFERENCES tipo_movimiento (secuence_tip_mov);
 
 
+-- PROCEDURES --
+
+DROP PROCEDURE IF EXISTS agregarProducto;
+DELIMITER $$
+CREATE PROCEDURE agregarProducto(
+    
+IN id_categoria		INT,
+IN marca_nom		VARCHAR(50),
+IN RUC				BIGINT,
+IN razon_social		VARCHAR(50),
+IN id_usuario		INT,
+IN nom_producto		VARCHAR(50),
+IN cantidades		INT,
+IN fecha_entrada	DATE,
+IN fecha_vencimento	DATE,
+IN descripcion		VARCHAR(50),
+IN guia_remision	VARCHAR(50),
+IN num_orden		VARCHAR(50),
+IN num_pecosa		VARCHAR(50),
+IN perecible		BOOLEAN
+
+)
+
+
+
+BEGIN
+
+DECLARE
+id_prod INT;
+
+INSERT INTO  productos (`secuence_prod`, `id_categoria`, 
+			`marca_nom`, `RUC`, `razon_social`, `id_usuario`, `nom_producto`,
+			`cantidades`, `fecha_entrada`, `fecha_vencimento`, `descripcion`, 
+			`guia_remision`, `num_orden`, `num_pecosa`, `perecible`) 
+        VALUES (null, id_categoria, marca_nom, RUC, razon_social, id_usuario, nom_producto, cantidades, fecha_entrada, fecha_vencimento, descripcion, guia_remision, num_orden, num_pecosa, perecible);
+        
+        
+       
+        
+        
+IF (SELECT ROW_COUNT() > 0) THEN
+            
+        	INSERT INTO productos_historicos
+            	VALUES (NULL, (SELECT MAX(secuence_prod) FROM productos), CURRENT_DATE,'INGRESO', cantidades);
+         END IF;
+
+END $$
+
+DELIMITER ;
+
+
+##########
+
+DROP PROCEDURE IF EXISTS salidaProducto;
+DELIMITER $$
+CREATE PROCEDURE salidaProducto(
+    
+IN secuence_prod_    INT,
+
+IN modificar BOOLEAN,
+    
+
+IN id_usuario		INT,
+IN id_colegio		INT,
+IN fecha_des		DATETIME,
+IN comentario 	VARCHAR (50),
+IN firma_resp 	VARCHAR (50),
+    
+IN cantidad		INT
+
+)
+
+
+
+BEGIN
+
+DECLARE 
+
+cant int;
+
+
+	IF (modificar = 1) THEN
+	
+        SET cant = (SELECT cantidades FROM productos WHERE secuence_prod = secuence_prod_);
+
+        IF (cant >= cantidad && cant != 0) THEN
+
+            UPDATE  productos 
+                SET cantidades = (cant-cantidad)
+                WHERE secuence_prod = secuence_prod_;
+                
+            INSERT INTO productos_historicos
+            	VALUES (NULL, secuence_prod_, CURRENT_DATE,'SALIDA', cantidad);
+                
+            INSERT INTO `detalle_despacho` (`secuence_det_des`, `id_usuario`, `id_colegio`, `id_producto`, 
+						`cant_prod_des`, `fecha_des`, `comentario`, `firma_resp`) 
+           		VALUES (null, id_usuario,id_colegio,secuence_prod_,cantidad,fecha_des,comentario, firma_resp);
+        END IF;
+    END IF;
+        
+END $$
+
+DELIMITER ;
+
+
+
 -- INSERT INTO --
 
     -- TIPO USUARIO
@@ -2476,18 +2602,17 @@ INSERT INTO `tipo_usuario` (`secuence_tipo_usu`, `id_tipo_usuario`, `detalle_tip
 -- ----------------------------------------------------INSERT INTO TIPO USUARIO (FIN)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- ----------------------------------- --------------INSERT INTO  USUARIO (INICIO) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1');
+INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`,`sexo_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1','m'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1','m');
 
 --  ---------------------------------------------------INSERT INTO  USUARIO (FIN)--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    INSERT INTO colegios VALUES (null, 1618958, 'UGEL AIJA', 'Santa Rosa de Viterbo', 'Jirón ramon castilla 1219', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 1618958, 'UGEL AIJA', 'Santa Rosa de Viterbo', 'JirÃ³n ramon castilla 1219', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 1554815, 'UGEL AIJA', 'Ricardo Palma Carrillo', 'Carretera san nicolas s/n', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 0385567, 'UGEL AIJA', 'Jose Antonio Encinas', 'Macashca', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 1536598, 'UGEL AIJA', 'La Libertad', 'Avenida agustin gamarra s/n', '422711', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
-    INSERT INTO colegios VALUES (null, 0385492, 'UGEL AIJA', 'Cede Señor de los Milagros', 'Huaraz 02001', '', '', 'Ancash', 'Huaraz', 'Cochabamba', 'Cochabamba', 'Primaria');
-    INSERT INTO colegios VALUES (null, 0385518, 'UGEL AIJA', 'Nuestra Señora Del Sagrado Corazón de Jesús', 'Quenuales 163, Huaraz 02002', '421652', '', 'Ancash', 'Huaraz', 'Independencia', 'Huaraz', 'Primaria y Secundaria');
+    INSERT INTO colegios VALUES (null, 0385492, 'UGEL AIJA', 'Cede SeÃ±or de los Milagros', 'Huaraz 02001', '', '', 'Ancash', 'Huaraz', 'Cochabamba', 'Cochabamba', 'Primaria');
+    INSERT INTO colegios VALUES (null, 0385518, 'UGEL AIJA', 'Nuestra SeÃ±ora Del Sagrado CorazÃ³n de JesÃºs', 'Quenuales 163, Huaraz 02002', '421652', '', 'Ancash', 'Huaraz', 'Independencia', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 1311364, 'UGEL AIJA', 'Madre Teresa de Calcuta', 'Jiron los Incas 109', '', '', 'Ancash', 'Carhuaz', 'Carhuaz', 'Carhuaz', 'Secundaria');
     INSERT INTO colegios VALUES (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
     INSERT INTO colegios VALUES (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
-

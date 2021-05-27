@@ -21,6 +21,7 @@ $oColegio = new cColegios();
 $listaColegio = $oColegio->obtenerColegios();
 $listColegioCod = $oColegio->selectorCole();
 
+
 require_once('../../Modelo/Marca.php');
 $oMarca = new cMarca();
 //$selectorMarca = $oMarca->selectorMarca();

@@ -197,12 +197,27 @@ require_once('../../config/security.php');
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 col-md-4">
+
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
+                                        <label for="producto_fecha_ingreso">Fecha de Salida</label>
+                                        <input type="text" class="form-control" name="usuario_cargo" id="usuario_cargo" value="<?php echo $_SESSION['secuence_usu'];?>"> 
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="producto_fecha_ingreso">Fecha de Salida</label>
+                                        <input type="text" class="form-control" value="<?php echo $_SESSION['name']; ?> <?php echo $_SESSION['last_name']; ?>"> 
+                                    </div>
+                                </div>
+
+                                    <div class="form-group" hidden>
                                         <label for="usuario_cargo" class="bmd-label-floating">Encargado de Salida: &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                        <select class="form-control" name="" id="">
                                         <option value="" selected="">Seleccione una opción</option>
                                             <?php
                                             foreach ($selectorUser as $cboUser) {

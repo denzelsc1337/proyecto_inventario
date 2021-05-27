@@ -10,6 +10,7 @@ $data[6] = $_POST["pass"];
 $data[7] = $_POST["usuario_email"];
 $data[8] = $_POST["usuario_telefono"];
 $data[9] = $_POST["user_estado"];
+$data[10] = $_POST["user_setso"];
 
 
 require_once('../Modelo/Usuario.php');

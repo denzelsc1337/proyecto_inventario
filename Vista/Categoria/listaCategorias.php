@@ -51,9 +51,19 @@ require_once('../../config/security.php');
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
             <div class="full-box nav-lateral-content scroll">
-                <figure class="full-box nav-lateral-avatar">
-                    <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
+            <figure class="full-box nav-lateral-avatar">
+					<i class="far fa-times-circle show-nav-lateral"></i>
+					<?php
+						if ($_SESSION['sexo'] == 'm') {
+					?>
+						<img src="https://cooperativadepica.cl/wp-content/uploads/2018/07/avatar2.png" class="img-fluid" alt="Avatar">
+					<?php
+						}elseif ($_SESSION['sexo'] == 'f') {
+					?>
+						<img src="https://www.w3schools.com/w3images/avatar6.png" class="img-fluid" alt="Avatar">
+					<?php
+						}
+					?>
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
                         <?php 
@@ -127,11 +137,11 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -179,7 +189,7 @@ require_once('../../config/security.php');
                 </p>
             </div>
 
-            <div class="container-fluid">
+            <div class="container-fluid Gagalin">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
                         <a href="Categoria.php">
@@ -192,6 +202,15 @@ require_once('../../config/security.php');
                         </a>
                     </li>
                 </ul>
+
+                <nav class="navbar navbar-light bg-light justify-content-between">
+                    <a class="navbar-brand"></a>
+
+                    <form class="form-inline" method="POST" action="buscarCategoria.php">
+                        <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Categoria o Nro.Categ." aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="btnCate" name="btnCate" disabled type="submit">Buscar</button>
+                    </form>
+                </nav>
             </div>
 
             <div class="container-fluid">
@@ -325,6 +344,25 @@ require_once('../../config/security.php');
         </div>
     </div>
     <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+       
+    <script type="text/javascript">
+        function EnableDisable(txtCate) {
+            //boton.
+            var btnSearch = document.getElementById("btnCate");
+
+            //input
+            if (txtCate.value.trim() != "") {
+                //habilitar = lleno.
+                //console.log("oli");
+                btnSearch.disabled = false;
+            } else {
+                //deshabilitar = vacio
+                btnSearch.disabled = true;
+            }
+        };
+    </script>
+
+
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 
@@ -363,6 +401,7 @@ require_once('../../config/security.php');
             });
         });
     </script>
+
     <!--=============================================
 =            Include JavaScript files           =
 

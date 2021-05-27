@@ -53,7 +53,17 @@ require_once('../../config/security.php');
             <div class="full-box nav-lateral-content scroll">
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    if ($_SESSION['sexo'] == 'm') {
+                    ?>
+                        <img src="https://cooperativadepica.cl/wp-content/uploads/2018/07/avatar2.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    } elseif ($_SESSION['sexo'] == 'f') {
+                    ?>
+                        <img src="https://www.w3schools.com/w3images/avatar6.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    }
+                    ?>
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
                             <?php
@@ -74,7 +84,7 @@ require_once('../../config/security.php');
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
-                    <?php
+                        <?php
                         $hide = "";
                         if ($_SESSION['id_rol'] == '2') {
                             $hide = "style='display:none;'";
@@ -101,7 +111,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li <?php echo $hide; ?> >
+                                <li <?php echo $hide; ?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -127,11 +137,12 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+
+                                <!--                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -181,6 +192,11 @@ require_once('../../config/security.php');
                             <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                         </a>
                     </li>
+                    <li>
+                        <a href="../Despacho/listaDespacho.php" class="Gagalin">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
+                        </a>
+                    </li>
                     <!-- <li>
                         <a href="../Producto/Producto-Categorias.php">
                             <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
@@ -205,13 +221,13 @@ require_once('../../config/security.php');
             </div>
             <!-- id="frmProd" -->
             <div class="container-fluid">
-                <form class="form-neon FormularioAjax" id="frmProd" method="POST"  autocomplete="off">
+                <form class="form-neon FormularioAjax" id="frmProd" method="POST" autocomplete="off">
                     <!-- <input type="hidden" name="modulo_producto" value="registrar"> -->
                     <fieldset>
                         <legend class="Gagalin"><i class="fas fa-truck-loading"></i> &nbsp; Registro de Producto</legend>
                         <div class="container-fluid">
                             <div class="row">
-                            <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_categoria" class="bmd-label-floating">Categoría &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
@@ -233,21 +249,21 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Marca &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control input-barcode" name="marca_prod" id="marca_prod" maxlength="50">
+                                        <input type="text" class="form-control input-barcode" name="marca_prod" id="marca_prod" maxlength="50" required>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">RUC &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control input-barcode" name="ruc_pro" id="ruc_pro" maxlength="11">
+                                        <input type="text" class="form-control input-barcode" name="ruc_pro" id="ruc_pro" maxlength="11" required>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Razón Social &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control input-barcode" name="razon" id="razon" maxlength="50">
+                                        <input type="text" class="form-control input-barcode" name="razon" id="razon" maxlength="50" required>
                                     </div>
                                 </div>
 
@@ -307,7 +323,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="producto_nombre" class="bmd-label-floating">Nombre del Producto &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="text" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="30">
+                                        <input type="text" class="form-control input-barcode" name="producto_nombre" id="producto_nombre" maxlength="30" required>
                                     </div>
                                 </div>
                                 <script type="text/javascript">
@@ -329,14 +345,14 @@ require_once('../../config/security.php');
                                         <div class="form-group">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="prod_status" value="1" checked="checked"">
-                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Si
+                                                    <input type="radio" name="prod_status" value="1" checked="checked"" required>
+                                                    <i class=" far fa-check-circle fa-fw"></i> &nbsp; Si
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="prod_status" value="0"">
-                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; No
+                                                    <input type="radio" name="prod_status" value="0"" required>
+                                                    <i class=" far fa-times-circle fa-fw"></i> &nbsp; No
                                                 </label>
                                             </div>
                                         </div>
@@ -345,43 +361,43 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="producto_stock_total" class="bmd-label-floating">Cantidad a ingresar&nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <input type="number" class="form-control" name="producto_stock_total" id="producto_stock_total">
+                                        <input type="number" class="form-control" name="producto_stock_total" id="producto_stock_total" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label >Fecha de ingreso</label>
-                                        <input type="date" class="form-control" name="date_in" id="date_in">
+                                        <label>Fecha de ingreso</label>
+                                        <input type="date" class="form-control" name="date_in" id="date_in" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label>Fecha de vencimiento</label>
-                                        <input type="date" class="form-control"  name="date_out" id="date_out">
+                                        <input type="date" class="form-control" name="date_out" id="date_out">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Descripción</label>
-                                        <input type="text" class="form-control input-barcode" name="desc" id="desc" maxlength="50">
+                                        <input type="text" class="form-control input-barcode" name="desc" id="desc" maxlength="50" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">Guía Remisión</label>
-                                        <input type="text" class="form-control input-barcode" name="_gremision" id="_gremision" maxlength="30">
+                                        <input type="text" class="form-control input-barcode" name="_gremision" id="_gremision" maxlength="30" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Orden</label>
-                                        <input type="text" class="form-control input-barcode" name="_norden" id="_norden" maxlength="40">
+                                        <input type="text" class="form-control input-barcode" name="_norden" id="_norden" maxlength="40" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label for="producto_marca" class="bmd-label-floating">N° Pecosa</label>
-                                        <input type="text" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="40">
+                                        <input type="text" class="form-control input-barcode" name="npecosa" id="npecosa" maxlength="40" required>
                                     </div>
                                 </div>
                             </div>
@@ -471,7 +487,7 @@ require_once('../../config/security.php');
                         <small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son obligatorios</small>
                     </p> -->
                     <p class="text-center">
-                    <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+                        <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
                         &nbsp; &nbsp;
                         <button id="btnSaveProd" name="btnSaveProd" type="submit" class="btn btn-raised btn-info btn-sm">
                             <i class="far fa-save">
@@ -482,7 +498,7 @@ require_once('../../config/security.php');
             </div>
         </section>
     </main>
-<!--     <script>
+    <!--     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 
         btn_salir.addEventListener('click', function(e) {
@@ -530,7 +546,7 @@ require_once('../../config/security.php');
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap.min.js"></script>
 
     <!-- SnackbarJS plugin -->
-   <!--  <script src="http://systems.designlopers.com/SVI/vistas/js/snackbar.min.js"></script> -->
+    <!--  <script src="http://systems.designlopers.com/SVI/vistas/js/snackbar.min.js"></script> -->
 
     <!-- Bootstrap Material Design V4.0 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap-material-design.min.js"></script>

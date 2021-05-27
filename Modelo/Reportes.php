@@ -21,9 +21,17 @@ class rReporte
         $cnx = new conexion();
         $cadena = $cnx->abrirConexion();
 
-        $query = 'SELECT cat.nom_categoria, nom_producto, marca_nom, cantidades
-                    FROM productos prod
+        // $query = 'SELECT cat.nom_categoria, nom_producto, marca_nom, cantidades
+        //             FROM productos prod
+        //             INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
+        //             ORDER BY cantidades ASC';
+
+        $query = 'SELECT DISTINCT(cat.nom_categoria), prod.nom_producto, prod.marca_nom, sum(prod.cantidades)
+                    FROM  productos prod
                     INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
+                    INNER JOIN productos_historicos phis ON prod.secuence_prod = phis.secuence_prod
+                    WHERE phis.tipo_trans = "INGRESO"
+                    group by cat.nom_categoria, prod.nom_producto, prod.marca_nom
                     ORDER BY cantidades ASC';
 
         $resultado = mysqli_query($cadena, $query);
@@ -88,10 +96,12 @@ class rReporte
         $cnx = new conexion();
         $cadena = $cnx->abrirConexion();
 
-        $query = 'SELECT razon_social, guia_remision, num_orden, cat.nom_categoria, nom_producto, marca_nom, cantidades, fecha_entrada
+        $query = 'SELECT razon_social, guia_remision, num_orden, cat.nom_categoria, nom_producto, marca_nom, phis.unidades, fecha_entrada
                     FROM productos prod
                     INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
-                    INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu';
+                    INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu
+                    INNER JOIN productos_historicos phis ON prod.secuence_prod = phis.secuence_prod
+                    WHERE phis.tipo_trans = "INGRESO"';
 
         $resultado = mysqli_query($cadena, $query);
 
@@ -110,7 +120,7 @@ class rReporte
         $cnx = new conexion();
         $cadena = $cnx->abrirConexion();
 
-        $query = 'SELECT col.nom_colegio, cat.nom_categoria, prod.nom_producto, prod.cantidades, dd.fecha_des, dd.firma_resp, dd.comentario
+        $query = 'SELECT col.nom_colegio, cat.nom_categoria, prod.nom_producto, dd.cant_prod_des, dd.fecha_des, dd.firma_resp, dd.comentario
                     FROM categorias cat
                     INNER JOIN productos prod ON prod.id_categoria = cat.secuence_cat
                     INNER JOIN detalle_despacho dd ON prod.secuence_prod = dd.id_producto

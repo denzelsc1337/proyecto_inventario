@@ -1,9 +1,27 @@
 <?php
+include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
 
-/*if(isset($_SESSION['user'])){
-        header('Location:Main.php');
-    }*/
+$connect = mysqli_connect("localhost", "root", "", "inventario");
+
+$search = $_POST['search'];
+
+if (!$connect) {
+    die('Could not connect: ' . mysqli_error());
+}
+
+$query = "SELECT * FROM colegios  WHERE
+   cod_modu_colegio LIKE '%" . $search . "%' or nom_colegio LIKE '%" . $search . "%' ";
+
+$result = mysqli_query($connect, $query);
+
+
+if (!$result) {
+    die('Could not get data: ' . mysql_error());
+}
+$count = mysqli_num_rows($result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -136,11 +154,11 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-<!--                                 <li>
+                                <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
-                                </li> -->
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -184,11 +202,11 @@ require_once('../../config/security.php');
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
                         <a href="../Colegio/Colegios.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nuevo Colegio
+                            <i class="fas fa-shipping-fast fa-fw"></i> &nbsp; Nuevo Colegio
                         </a>
                     </li>
                     <li>
-                        <a class="active" href="../Categoria/listaColegios.php">
+                        <a class="" href="../Categoria/listaColegios.php">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
                         </a>
                     </li>
@@ -196,9 +214,9 @@ require_once('../../config/security.php');
                 <nav class="navbar navbar-light bg-light justify-content-between">
                     <a class="navbar-brand"></a>
 
-                    <form class="form-inline" method="POST" action="../Colegio/buscarColegio.php">
-                        <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Colegio o Nro.Modular" aria-label="Search">
-                        <button id="btnSend" class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Buscar</button>
+                    <form class="form-inline" method="POST" action="buscarColegio.php">
+                        <input class="form-control mr-sm-2" type="text" id="search" name="search" placeholder="Colegio o Nro.Modular" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
 
                 </nav>
@@ -209,8 +227,12 @@ require_once('../../config/security.php');
                 <div class="table-responsive">
                     <?php
                     require_once('../../Controlador/controladorListar.php');
+                    if (mysqli_num_rows($result) == 0) {
+                        $dispNone = "display:none";
+                    } else {
+                    }
                     ?>
-                    <table class="table table-dark table-sm">
+                    <table class="table table-dark table-sm" style="<?= $dispNone ?>">
                         <thead>
                             <tr class="text-center roboto-medium">
                                 <th hidden>№ Colegio</th>
@@ -230,68 +252,53 @@ require_once('../../config/security.php');
                             </tr>
                         </thead>
                         <tbody id="container">
+
                             <?php
-                            foreach ($listaColegio as $vistaCole) {
+                            if ($count >= 1) {
+
+                                while ($fila = mysqli_fetch_array($result)) {
                             ?>
-                                <tr class="text-center">
-                                    <td hidden><?php echo $vistaCole[0] ?></td>
-                                    <td><?php echo $vistaCole[1] //codmodular 
-                                        ?></td>
-                                    <td hidden><?php echo $vistaCole[2] //ugel 
-                                                ?></td>
-                                    <td><?php echo $vistaCole[3] //colegio
-                                        ?></td>
-                                    <td><?php echo $vistaCole[4] //direccion
-                                        ?></td>
-                                    <td hidden><?php echo $vistaCole[5] //telefono
-                                                ?></td>
-                                    <td hidden><?php echo $vistaCole[6] //correo
-                                                ?></td>
-                                    <td><?php echo $vistaCole[7] //dep
-                                        ?></td>
-                                    <td><?php echo $vistaCole[8] //prov
-                                        ?></td>
-                                    <td><?php echo $vistaCole[9] //dsto
-                                        ?></td>
-                                    <td><?php echo $vistaCole[10] //director 
-                                        ?></td>
-                                    <td><?php echo $vistaCole[11] //nivel
-                                        ?></td>
+                                    <tr class="text-center">
+                                        <td hidden><?php echo $fila['secuence_col'] ?></td>
+                                        <td><?php echo $fila['cod_modu_colegio'] ?></td>
+                                        <td hidden><?php echo $fila['ugel_colegio'] ?></td>
+                                        <td><?php echo $fila['nom_colegio'] ?></td>
+                                        <td><?php echo $fila['dir_colegio'] ?></td>
+                                        <td hidden><?php echo $fila['tlf_colegio'] ?></td>
+                                        <td hidden><?php echo $fila['mail_colegio'] ?></td>
+                                        <td><?php echo $fila['depa_colegio'] ?></td>
+                                        <td><?php echo $fila['prov_colegio'] ?></td>
+                                        <td><?php echo $fila['dist_colegio'] ?></td>
+                                        <td><?php echo $fila['director_colegio'] ?></td>
+                                        <td><?php echo $fila['nivel_colegio'] ?></td>
+                                        <td>
+                                            <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal">
+                                                Actualizar
+                                            </button>
+                                        </td>
 
-                                    <!-- <td>
-                                        <?php
-                                        $hide = "";
-                                        if ($_SESSION['id_rol'] == '2') {
-                                            $hide = "style='display:none;'";
-                                        }
-                                        if ($vistaCole[12] == 1) {
-                                        ?>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <input type="checkbox" name="categoria_estado" value="0" disabled>
-                                        <?php
-                                        }
-                                        ?>
-                                    </td> -->
-                                    <td>
-                                        <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal">
-                                            Actualizar
-                                        </button>
-                                    </td>
-
-                                </tr>
+                                    </tr>
                         </tbody>
                     <?php
-                            }
+                                }
+                            } else {
                     ?>
+
+                    <div class="container-fluid">
+                        <div class="container-fluid">
+                            <h4 class="text-center">No Data</h4>
+                        </div>
+                    </div>
+                <?php
+                            }
+                ?>
                     </table>
                 </div>
         </section>
     </main>
     <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
-    <div class="modal fade bd-example-modal-lg" id="editCole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <div class="modal fade" id="editCole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Actualizar Colegios</h5>
@@ -403,21 +410,7 @@ require_once('../../config/security.php');
         });
     </script>
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
-    <script type="text/javascript">
-        function EnableDisable(txtCodCole) {
-            //boton.
-            var btnSearch = document.getElementById("btnSend");
 
-            //input
-            if (txtCodCole.value.trim() != "") {
-                //habilitar = lleno.
-                btnSearch.disabled = false;
-            } else {
-                //deshabilitar = vacio
-                btnSearch.disabled = true;
-            }
-        };
-    </script>
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 

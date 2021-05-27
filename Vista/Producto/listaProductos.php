@@ -42,10 +42,6 @@ require_once('../../config/security.php');
 
     <!-- jQuery V3.4.1 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/jquery-3.4.1.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.24/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="datatables/dataTables.min.css">
-
 </head>
 
 <body class="Blogger">
@@ -57,7 +53,17 @@ require_once('../../config/security.php');
             <div class="full-box nav-lateral-content scroll">
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    if ($_SESSION['sexo'] == 'm') {
+                    ?>
+                        <img src="https://cooperativadepica.cl/wp-content/uploads/2018/07/avatar2.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    } elseif ($_SESSION['sexo'] == 'f') {
+                    ?>
+                        <img src="https://www.w3schools.com/w3images/avatar6.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    }
+                    ?>
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
                             <?php
@@ -78,7 +84,7 @@ require_once('../../config/security.php');
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
-                    <?php
+                        <?php
                         $hide = "";
                         if ($_SESSION['id_rol'] == '2') {
                             $hide = "style='display:none;'";
@@ -105,7 +111,7 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li <?php echo $hide; ?> >
+                                <li <?php echo $hide; ?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -130,12 +136,11 @@ require_once('../../config/security.php');
                                     <a href="../Producto/listaProductos.php" class="Blogger">
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="../Despacho/Despacho.php" class="Blogger">
-                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
+                                    <!--                                 <li>
+                                    <a class="active" href="listaDespacho.php" class="Gagalin">
+                                        <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -175,7 +180,7 @@ require_once('../../config/security.php');
                 </p>
             </div>
 
-            <div class="container-fluid">
+            <div class="container-fluid Gagalin ">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
                         <a href="../Producto/Productos.php">
@@ -187,6 +192,19 @@ require_once('../../config/security.php');
                             <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                         </a>
                     </li>
+                    <li>
+                        <a class="" href="../Despacho/listaDespacho.php" class="Gagalin">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
+                        </a>
+                    </li>
+<!--                     <nav class="navbar navbar-light bg-light justify-content-between">
+                        <a class="navbar-brand"></a>
+
+                        <form class="form-inline" method="POST" action="buscarProducto.php">
+                            <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Ingrese" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" id="btnCate" name="btnCate" disabled type="submit">Search</button>
+                        </form>
+                    </nav> -->
                     <!--                    <li>
                         <a href="../Producto/Producto-Categorias.php">
                             <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
@@ -207,7 +225,16 @@ require_once('../../config/security.php');
                             <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
                         </a>
                     </li> -->
+
                 </ul>
+                <nav class="navbar navbar-light bg-light justify-content-between">
+                    <a class="navbar-brand"></a>
+
+                    <form class="form-inline" method="POST" action="buscarProducto.php">
+                        <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Ingrese" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="btnCate" name="btnCate" disabled type="submit">Buscar</button>
+                    </form>
+                </nav>
             </div>
 
             <div class="container-fluid" style="background-color: #FFF; padding-bottom: 20px;">
@@ -216,7 +243,7 @@ require_once('../../config/security.php');
                     <?php
                     require_once('../../Controlador/controladorListar.php');
                     ?>
-                    <table id="prueba" class="table table-striped table-boredered" style="width:100%">
+                    <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
                                 <th hidden>secuence</th>
@@ -225,11 +252,13 @@ require_once('../../config/security.php');
                                 <th>Marca</th>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
-                                <th>Fecha I</th>
+                                <th>Fecha Ingreso</th>
                                 <th>Editar</th>
+                                <th>Salida</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
+
                         <tbody>
                             <?php
                             foreach ($listaProducto as $vistaProd) {
@@ -243,9 +272,15 @@ require_once('../../config/security.php');
                                     <td><?php echo $vistaProd[5] ?></td>
                                     <td><?php echo $vistaProd[6] ?></td>
                                     <td><?php echo $vistaProd[7] ?></td>
+
                                     <td>
                                         <button type="button" class="btn btn-success editProd" data-toggle="modal" data-target="#exampleModal">
                                             Actualizar
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-success editSalida" data-toggle="modal" data-target="exampleModal">
+                                            Salida
                                         </button>
                                     </td>
 
@@ -255,7 +290,6 @@ require_once('../../config/security.php');
                             }
                     ?>
                     </table>
-
                 </div>
 
 
@@ -277,9 +311,97 @@ require_once('../../config/security.php');
             </div>
         </section>
     </main>
-    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+    <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
+    <div class="modal fade" id="salidaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Salida de Procuto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmSalida" method="POST">
+
+                        <div class="container-fluid">
+                            <input type="text" id="prod_cod" name="prod_cod" class="form-control" hidden>
+                            <div class="row">
+                                <div class="col-12 col-md-6" hidden>
+                                    <div class="form-group">
+                                        <label>user id</label>
+                                        <input type="text" class="form-control input-barcode" name="usuario_cargo" id="usuario_cargo" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="97">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Encargado</label>
+                                        <input type="text" class="form-control input-barcode" maxlength="97" value="<?php echo $_SESSION['name']; ?> <?php echo $_SESSION['last_name']; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Colegios</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="colegio_cod" id="colegio_cod" required>
+                                            <!-- <option value="" selected="">Seleccionar</option> -->
+                                            <?php
+                                            foreach ($listColegioCod as $cboCole) {
+                                            ?>
+                                                <option value="<?php echo $cboCole[0]; ?>"><?php echo $cboCole[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Stock Actual</label>
+                                        <input type="text" class="form-control input-barcode" name="stock_ahora" id="stock_ahora" maxlength="97" onkeydown="return false">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>Cantidad de salida</label>
+                                        <input type="number" class="form-control input-barcode" name="cant_sal" id="cant_sal" min="0" placeholder="ej.15">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="producto_fecha_ingreso">Fecha de Salida</label>
+                                        <input type="date" class="form-control" name="fecha_in" id="fecha_in">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="producto_marca" class="bmd-label-floating">Comentario</label>
+                                        <input type="text" class="form-control input-barcode" name="coment" id="coment" maxlength="30" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-18">
+                                    <div class="form-group">
+                                        <label for="producto_marca" class="bmd-label-floating">DNI y Nombre del contacto a recepcionar</label>
+                                        <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" id="btnSave_despacho" name="btnSave_despacho" class="btn btn-primary">uwu</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
+
+    <!----------------------------------------------------------- Modal UPDATE----------------------------------------------------------------->
     <div class="modal fade" id="editpro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Actualizar Producto</h5>
@@ -287,19 +409,20 @@ require_once('../../config/security.php');
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="../../Controlador/ActualizarProducto.php" method="POST">
-                    <div class="modal-body">
+                <div class="modal-body">
+                    <form action="../../Controlador/ActualizarProducto.php" method="POST">
 
-                        <input type="text" id="secuence" name="secuence" class="form-control">
+
+                        <input type="text" id="secuence" name="secuence" class="form-control" hidden>
                         <div class="container-fluid">
                             <div class="row">
-                            <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Proveedor</label>
-                                        <input type="text" class="form-control input-barcode" name="rsocial" id="rsocial" maxlength="97">
+                                        <input type="text" class="form-control input-barcode" name="rsocial" id="rsocial" maxlength="97" required>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-6" hidden>
                                     <div class="form-group">
                                         <label>categoria .2</label>
                                         <input type="text" class="form-control input-barcode" name="idecat" id="idecat" maxlength="97">
@@ -311,8 +434,8 @@ require_once('../../config/security.php');
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                        <select class="form-control" name="cat_id" id="cat_id">
-                                            <!-- <option value="" selected="">Seleccionar</option> -->
+                                        <select class="form-control" name="cat_id" id="cat_id" required>
+                                            <option value="" selected="">Seleccione una categoria</option>
                                             <?php
                                             foreach ($selectorCateg as $cboCate) {
                                             ?>
@@ -325,7 +448,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Marca</label>
-                                        <input type="text" class="form-control input-barcode" name="mar_id" id="mar_id" maxlength="97">
+                                        <input type="text" class="form-control input-barcode" name="mar_id" id="mar_id" maxlength="97" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -337,7 +460,7 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Cantidad</label>
-                                        <input type="text" class="form-control input-barcode" name="cant" id="cant" maxlength="97">
+                                        <input type="number" class="form-control input-barcode" name="cant" id="cant" min="0">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -351,24 +474,23 @@ require_once('../../config/security.php');
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" name="actuProd" class="btn btn-primary">Actualizar Cambios</button>
                             </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+    <!----------------------------------------------FIN------------- Modal UPDATE----------------------------------------------------------------->
+
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
-    
-    <script>
-        $(document).ready(function() {
-    $('#prueba').DataTable();
-        } );
-    </script>
-    
+
+
     <script>
         $(document).ready(function() {
             $('.editProd').on('click', function() {
 
                 $('#editpro').modal('show');
+                //$('#editpro').modal('toggle')
 
                 $tr = $(this).closest('tr');
                 var data = $tr.children("td").map(function() {
@@ -378,15 +500,59 @@ require_once('../../config/security.php');
                 $('#secuence').val(data[0]);
                 $('#rsocial').val(data[1]);
                 $('#idecat').val(data[2]);
-                $('#cat_id').val(data[3]);
+                //$('#cat_id').val(data[3]);
                 $('#mar_id').val(data[4]);
                 $('#pro_id').val(data[5]);
                 $('#cant').val(data[6]);
                 $('#date_in').val(data[7]);
             });
+
+            $('.editSalida').on('click', function() {
+                $('#salidaProducto').modal('show');
+                //$('#salidaProducto').modal('toggle')
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+                console.log(data);
+                $('#prod_cod').val(data[0]);
+                $('#stock_ahora').val(data[6]);
+                $('#fecha_in').val(data[7]);
+            });
+
         });
     </script>
+
+        <script type="text/javascript">
+        function EnableDisable(txtCate) {
+            //boton.
+            var btnSearch = document.getElementById("btnCate");
+
+            //input
+            if (txtCate.value.trim() != "") {
+                //habilitar = lleno.
+                //console.log("oli");
+                btnSearch.disabled = false;
+            } else {
+                //deshabilitar = vacio
+                btnSearch.disabled = true;
+            }
+        };
+    </script>
+
+
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+
+    <!-- Modal -->
+
+
+    <script>
+
+    </script>
+
+
+
+
 
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
@@ -446,13 +612,12 @@ require_once('../../config/security.php');
         });
     </script>
 
-    <script type="text/javascript" src="datatables/datatables.min.js" ></script>
-
     <!-- printThis  -->
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
+    <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>
+    <script src="../resources/functions.js"></script>
 </body>
 
 </html>

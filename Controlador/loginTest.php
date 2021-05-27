@@ -29,6 +29,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 			$_SESSION['name'] = $datos->nom_usuario;
 			$_SESSION['secuence_usu'] = $datos->secuence_usu;
 			$_SESSION['last_name'] = $datos->ape_usuario;
+			$_SESSION['sexo'] = $datos->sexo_usuario;
 			$_SESSION['user'] = $datos->cod_usuario;
 			$_SESSION['id_rol'] = $datos->id_tipo_usuario;
 			//$_SESSION['tipo_rol'] = $datos->detalle_tipo_usuario;
@@ -38,6 +39,12 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 
 			<META http-equiv="Refresh" content = "0.3 ; URL =../Vista/principal.php">
 			<?php
+			if($datos->estado_usuario == 0){
+			?>
+				<script>alert("User disable. Vuelve e ingresar Datos")</script>;
+				<META http-equiv='Refresh' content = '0.2; URL = ../index.php'>;
+			<?php
+			}
 		}
 
 

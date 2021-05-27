@@ -38,7 +38,7 @@ class pProductos
 	public function selectorProd(){
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
-		$query = 'SELECT secuence_prod, concat(nom_producto, " - Marca: " ,marca_nom) 
+		$query = 'SELECT secuence_prod, concat(nom_producto, " - Marca: " ,marca_nom , " (stock: " ,cantidades , ")") 
 		FROM productos';
 		$result = mysqli_query($cadena, $query);
 		while ($fila = mysqli_fetch_row($result)) {
@@ -56,7 +56,7 @@ class pProductos
 		$cadena = $cnx->abrirConexion();
 
 		
-		$Query = "INSERT INTO `productos` (`secuence_prod`, `id_categoria`, 
+/* 		$Query = "INSERT INTO `productos` (`secuence_prod`, `id_categoria`, 
 		`marca_nom`, `RUC`, `razon_social`, `id_usuario`, `nom_producto`,
 		`cantidades`, `fecha_entrada`, `fecha_vencimento`, `descripcion`, 
 		`guia_remision`, `num_orden`, `num_pecosa`, `perecible`) 
@@ -65,7 +65,13 @@ class pProductos
 		VALUES (null,'".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."',
 					 '".$data[5]."','".$data[6] ."','".$data[7]."','".$data[8]."',
 					 '".$data[9]."','".$data[10]."','".$data[11]."','".$data[12]."',
-					 '".$data[13]."','".$data[14]."');";
+					 '".$data[13]."','".$data[14]."');"; */
+		
+		$Query = "CALL agregarProducto('".$data[1]."','".$data[2]."','".$data[3]."','".$data[4]."',
+		'".$data[5]."','".$data[6] ."','".$data[7]."','".$data[8]."',
+		'".$data[9]."','".$data[10]."','".$data[11]."','".$data[12]."',
+		'".$data[13]."','".$data[14]."');";
+
 
 		echo mysqli_query($cadena, $Query);
 

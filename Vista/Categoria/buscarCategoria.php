@@ -1,9 +1,27 @@
 <?php
+include_once('../../config/Conexion.php');
 require_once('../../config/security.php');
 
-/*if(isset($_SESSION['user'])){
-        header('Location:Main.php');
-    }*/
+$connect = mysqli_connect("localhost", "root", "", "inventario");
+
+$search = $_POST['search'];
+
+if (!$connect) {
+    die('Could not connect: ' . mysqli_error());
+}
+
+$query = "SELECT * FROM categorias  WHERE
+   nom_categoria LIKE '%" . $search . "%' or id_categoria LIKE '%" . $search . "%' ";
+
+$result = mysqli_query($connect, $query);
+
+
+if (!$result) {
+    die('Could not get data: ' . mysql_error());
+}
+$count = mysqli_num_rows($result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,16 +34,17 @@ require_once('../../config/security.php');
     <title>SISTEMA VENTAS</title>
 
     <!-- Normalize V8.0.1 -->
-    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Bootstrap V4.3 -->
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap.min.css">
 
     <!-- Bootstrap Material Design V4.0 -->
-    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap-material-design.min.css">
+    <!-- <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap-material-design.min.css"> -->
+
 
     <!-- Font Awesome V5.9.0 -->
-    <!-- <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/all.css"> -->
+    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/all.css">
     <!-- <link rel="stylesheet" href="Vista/css/all.css"> -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="../css/all.css">
@@ -65,29 +84,29 @@ require_once('../../config/security.php');
 					?>
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
-                            <?php
-                            switch ($_SESSION['id_rol']) {
-                                case '1':
-                                    echo "Administrador";
-                                    break;
-                                case '2':
-                                    echo "Operador";
-                                    break;
-                                default:
-                                    break;
-                            }
-
-                            ?></small>
+                        <?php 
+                        switch ($_SESSION['id_rol']) {
+                            case '1':
+                                echo "Administrador";
+                                break;
+                            case '2':
+                                echo "Operador";
+                                break;
+                            default:   
+                                break;
+                        }
+ 
+                        ?></small>
                     </figcaption>
                 </figure>
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
+                <?php
+					$hide = "";
+					if ($_SESSION['id_rol'] == '2') {
+						$hide = "style='display:none;'";
+					} ?>
                     <ul>
-                        <?php
-                        $hide = "";
-                        if ($_SESSION['id_rol'] == '2') {
-                            $hide = "style='display:none;'";
-                        } ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
                                 <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
@@ -110,12 +129,12 @@ require_once('../../config/security.php');
                                     </a>
                                 </li>
 
-                                <li <?php echo $hide; ?>>
+                                <li <?php echo $hide?>>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
                                 </li>
-                                <!--                                 <li>
+                                <!-- <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Despachos
                                     </a>
@@ -128,7 +147,7 @@ require_once('../../config/security.php');
                             <ul>
                                 <li>
                                     <a href="../Producto/Productos.php" class="Blogger">
-                                        <i class="fa fa-box fa-fw"></i> &nbsp; Ingreso de producto
+                                        <i class="fa fa-box fa-fw"></i> &nbsp; Nuevo producto
                                     </a>
                                 </li>
                                 <li>
@@ -157,115 +176,100 @@ require_once('../../config/security.php');
                 </nav>
             </div>
         </section>
+
         <!-- Page content -->
         <section class="full-box page-content scroll">
             <nav class="full-box navbar-info">
                 <a href="#" class="float-left show-nav-lateral">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="../config/logout.php" class="Blogger">Cerrar Sesión
+                <a href="../../config/logout.php" class="Blogger">Cerrar Sesión
                     <i class="fa fa-power-off"></i>
                 </a>
             </nav>
+            <!-- <a href="#" class="float-left show-nav-lateral">
+                <i class="fas fa-bars"></i>
+            </a>
+            <a href="http://systems.designlopers.com/SVI/user-update/dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09/">
+                <i class="fas fa-user-cog"></i>
+            </a>
+            <a href="#" class="btn-exit-system">
+                <i class="fas fa-power-off"></i>
+            </a> -->
 
-            <!-- Page header -->
 
-            <div class="full-box page-header ">
+            <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Colegios
+                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Categorías
                 </h3>
                 <p class="text-justify">
-                    En el módulo COLEGIOS usted podrá registrar o actualizar los datos de los colegios y ver todos los colegios
-                    registrados en el sistema.
+                    En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede actualizar los datos de las categorías o el estado de la categoria.
                 </p>
             </div>
 
             <div class="container-fluid Gagalin">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
                     <li>
-                        <a href="../Colegio/Colegios.php">
-                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nuevo Colegio
+                        <a href="Categoria.php">
+                            <i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
                         </a>
                     </li>
                     <li>
-                        <a class="active" href="../Categoria/listaColegios.php">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Colegios
+                        <a class="" href="listaCategorias.php">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
                         </a>
                     </li>
                 </ul>
+
                 <nav class="navbar navbar-light bg-light justify-content-between">
                     <a class="navbar-brand"></a>
 
-                    <form class="form-inline" method="POST" action="../Colegio/buscarColegio.php">
-                        <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Colegio o Nro.Modular" aria-label="Search">
-                        <button id="btnSend" class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Buscar</button>
+                    <form class="form-inline" method="POST" action="buscarCategoria.php">
+                        <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Categoria o Nro.Categ." aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="btnCate" name="btnCate" disabled type="submit">Buscar</button>
                     </form>
 
                 </nav>
+                
             </div>
 
             <div class="container-fluid">
 
                 <div class="table-responsive">
-                    <?php
+                <?php
                     require_once('../../Controlador/controladorListar.php');
+                    if (mysqli_num_rows($result) == 0) {
+                        $dispNone = "display:none";
+                    } else {
+                    }
                     ?>
-                    <table class="table table-dark table-sm">
+                    <table class="table table-dark table-sm" style="<?= $dispNone ?>">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th hidden>№ Colegio</th>
-                                <th>Cod Modular</th>
-                                <th hidden>UGEL</th>
-                                <th>Colegio</th>
-                                <th>Dirección</th>
-                                <th hidden>Telefono</th>
-                                <th hidden>Correo</th>
-                                <th>Departamento</th>
-                                <th>Provincia</th>
-                                <th>Distrito</th>
-                                <th>Director</th>
-                                <th>Nivel</th>
+                                <th hidden>secuence</th>
+                                <th>№ Categoria</th>
+                                <th>Categoria</th>
+                                <th>Habilitado/Deshabilitado</th>
                                 <th>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
                         <tbody id="container">
-                            <?php
-                            foreach ($listaColegio as $vistaCole) {
-                            ?>
-                                <tr class="text-center">
-                                    <td hidden><?php echo $vistaCole[0] ?></td>
-                                    <td><?php echo $vistaCole[1] //codmodular 
-                                        ?></td>
-                                    <td hidden><?php echo $vistaCole[2] //ugel 
-                                                ?></td>
-                                    <td><?php echo $vistaCole[3] //colegio
-                                        ?></td>
-                                    <td><?php echo $vistaCole[4] //direccion
-                                        ?></td>
-                                    <td hidden><?php echo $vistaCole[5] //telefono
-                                                ?></td>
-                                    <td hidden><?php echo $vistaCole[6] //correo
-                                                ?></td>
-                                    <td><?php echo $vistaCole[7] //dep
-                                        ?></td>
-                                    <td><?php echo $vistaCole[8] //prov
-                                        ?></td>
-                                    <td><?php echo $vistaCole[9] //dsto
-                                        ?></td>
-                                    <td><?php echo $vistaCole[10] //director 
-                                        ?></td>
-                                    <td><?php echo $vistaCole[11] //nivel
-                                        ?></td>
 
-                                    <!-- <td>
+                            <?php
+                            if ($count >= 1) {
+
+                                while ($fila = mysqli_fetch_array($result)) {
+                            ?>
+                                    <tr class="text-center">
+                                        <td hidden><?php echo $fila['secuence_cat'] ?></td>
+                                        <td><?php echo $fila['id_categoria'] ?></td>
+                                        <td ><?php echo $fila['nom_categoria'] ?></td>
+                                        <td>
                                         <?php
-                                        $hide = "";
-                                        if ($_SESSION['id_rol'] == '2') {
-                                            $hide = "style='display:none;'";
-                                        }
-                                        if ($vistaCole[12] == 1) {
+                                        if ($fila['estado_categoria'] == 1) {
                                         ?>
+                                            <input type="checkbox" name="categoria_estado" value="1" checked disabled>
                                         <?php
                                         } else {
                                         ?>
@@ -273,144 +277,114 @@ require_once('../../config/security.php');
                                         <?php
                                         }
                                         ?>
-                                    </td> -->
-                                    <td>
-                                        <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal">
-                                            Actualizar
-                                        </button>
-                                    </td>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal">
+                                                Actualizar
+                                            </button>
+                                        </td>
 
-                                </tr>
+                                    </tr>
                         </tbody>
                     <?php
-                            }
+                                }
+                            } else {
                     ?>
+
+                    <div class="container-fluid">
+                        <div class="container-fluid">
+                            <h4 class="text-center">No Data</h4>
+                        </div>
+                    </div>
+                <?php
+                            }
+                ?>
                     </table>
                 </div>
+
+
+                <!-- <p class="text-right">Mostrando categorías
+                    <strong>1</strong> al <strong>15</strong> de un <strong>total de 18</strong>
+                </p>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+                        <li class="page-item"><a class="page-link active" href="">1</a></li>
+                        <li class="page-item"><a class="page-link" href="">2</a></li>
+                        <li class="page-item"><a class="page-link" href="">Siguiente</a></li>
+                        <li class="page-item"><a class="page-link" href=""><i class="fas fa-angle-double-right"></i></a></li>
+                    </ul>
+                </nav> -->
+            </div>
         </section>
     </main>
+    <!-- <button name="btnUpdt"disabled>Update</button> -->
+    <!-- Button trigger modal -->
+
+
     <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
-    <div class="modal fade bd-example-modal-lg" id="editCole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Colegios</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Categoria</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="../../Controlador/ActualizarColegios.php" method="POST">
+                <form action="../../Controlador/ActualizarCategoria.php" method="POST">
                     <div class="modal-body">
-                        <!--<div class="form-group">
-                           <label>Id categoria</label>
-                            <input type="text" id="idcate" name="idcate" class="form-control" placeholder="test">
-                        </div> -->
-                        <div class="container-fluid">
-                            <div class="row">
-                                <input type="hidden" id="secuence" name="secuence" class="form-control">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Codigo Modular</label>
-                                        <input type="text" id="cod_mod" name="cod_mod" class="form-control" placeholder="test">
+                        <input type="hidden" id="secuence" name="secuence" class="form-control">
+                        <input type="hidden" id="idcate" name="idcate" class="form-control">
+                        <!--                                                                 <div class="form-group">
+                                                                    <label>Id categoria</label>
+                                                                    <input type="text" id="idcate" name="idcate" class="form-control" placeholder="test">
+                                                                </div> -->
+
+                        <div class="form-group">
+                            <label>Nombre Categoria</label>
+                            <input type="text" id="nomcate" name="nomcate" class="form-control" placeholder="test">
+                        </div>
+
+                        <div class="col-12 col-md-6" style="margin-top: 30px;">
+                            <label for="" class="bmd-label-floating">Estado De la Categoria &nbsp;
+                                <i class="fab fa-font-awesome-alt"></i> &nbsp;
+                            </label>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="estadocate" value="1" checked>
+                                            <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
+                                        </label>
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group ">
-                                        <label>Ugel</label>
-                                        <input type="text" id="cod_ugel" name="cod_ugel" class="form-control" placeholder="test">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="estadocate" value="0">
+                                            <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
+                                        </label>
                                     </div>
-                                </div>
-
-                                <div class="form-group col-12 col-md-12">
-                                    <label>Nombre de colegio</label>
-                                    <input type="text" id="nom_cole" name="nom_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-12">
-                                    <label>Direccion</label>
-                                    <input type="text" id="dir_cole" name="dir_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-6">
-                                    <label>Telefono</label>
-                                    <input type="text" id="num_cole" name="num_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-12">
-                                    <label>Correo</label>
-                                    <input type="text" id="email_cole" name="email_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-6">
-                                    <label>Departamento</label>
-                                    <input type="text" id="dpto_cole" name="dpto_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-6">
-                                    <label>Provincia</label>
-                                    <input type="text" id="prov_cole" name="prov_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-6">
-                                    <label>Distrito</label>
-                                    <input type="text" id="dsto_cole" name="dsto_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-12">
-                                    <label>Director</label>
-                                    <input type="text" id="loc_cole" name="loc_cole" class="form-control" placeholder="test">
-                                </div>
-
-                                <div class="form-group col-12 col-md-12">
-                                    <label>Nivel</label>
-                                    <input type="text" id="nivel_cole" name="nivel_cole" class="form-control" placeholder="test">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="actuCole" class="btn btn-primary">Actualizar Cambios</button>
+                            <button type="submit" name="actualizarData" class="btn btn-primary">Actualizar Cambios</button>
                         </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
-    <script>
-        $(document).ready(function() {
-            $('.editCole').on('click', function() {
-
-                $('#editCole').modal('show');
-
-                $tr = $(this).closest('tr');
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-                console.log(data);
-                $('#secuence').val(data[0]);
-                $('#cod_mod').val(data[1]);
-                $('#cod_ugel').val(data[2]);
-                $('#nom_cole').val(data[3]);
-                $('#dir_cole').val(data[4]);
-                $('#num_cole').val(data[5]);
-                $('#email_cole').val(data[6]);
-                $('#dpto_cole').val(data[7]);
-                $('#prov_cole').val(data[8]);
-                $('#dsto_cole').val(data[9]);
-                $('#loc_cole').val(data[10]);
-                $('#nivel_cole').val(data[11]);
-            });
-        });
-    </script>
-    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
     <script type="text/javascript">
-        function EnableDisable(txtCodCole) {
+        function EnableDisable(txtCate) {
             //boton.
-            var btnSearch = document.getElementById("btnSend");
+            var btnSearch = document.getElementById("btnCate");
 
             //input
-            if (txtCodCole.value.trim() != "") {
+            if (txtCate.value.trim() != "") {
                 //habilitar = lleno.
+                //console.log("oli");
                 btnSearch.disabled = false;
             } else {
                 //deshabilitar = vacio
@@ -418,6 +392,7 @@ require_once('../../config/security.php');
             }
         };
     </script>
+
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 
@@ -436,7 +411,7 @@ require_once('../../config/security.php');
                 if (result.value) {
 
                     let url = 'http://systems.designlopers.com/SVI/ajax/loginAjax.php';
-                    let token = 'bSsxZkJVUGRrRS8yRnJsMXY5cG95NGtzWjh3bDVWVTg3N1ZkRloxN1YyRUVYT2g4bUZUNmNiSVlYT2paWHRaNi9LU1hCbFIrQW9LdERsVlJXdjA5eldwOFBPbXdUcEVWTFpIeFpSY1VQSGl1S1lVRXFOankwTHpqNisvNkJzZms=';
+                    let token = 'bWpkOUtraXlPWndlQzQyOGkzUG1vam04NmZLZ3VRUlQxT2RXak9jeGJzS2VvRVdmZ0JXbzl1MjZ2RDB3TzhZNDVVWHJEblV3bDhZbzVtSzhBbjBqUzJJQUlKQnduOHFRYm1KUjFPeWExYmNvZXdXVFgwdUlxKzlEc0w3aEpkNlA=';
                     let usuario = 'OFh3MUpva29KdER0ZHNqc0pkTGlmdz09';
 
                     let datos = new FormData();
@@ -456,12 +431,13 @@ require_once('../../config/security.php');
             });
         });
     </script>
-
     <!--=============================================
 =            Include JavaScript files           =
+
 ==============================================-->
     <!-- popper -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/popper.min.js"></script>
+    <script src="../resources/enableButtons.js"></script>
 
     <!-- Bootstrap V4.3 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap.min.js"></script>
@@ -471,21 +447,35 @@ require_once('../../config/security.php');
 
     <!-- Bootstrap Material Design V4.0 -->
     <script src="http://systems.designlopers.com/SVI/vistas/js/bootstrap-material-design.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('body').bootstrapMaterialDesign();
-        });
-    </script>
 
 
-    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
+    <!-- printThis  -->
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
+
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
-    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            $('.editbtn').on('click', function() {
+
+                $('#editmodal').modal('show');
+
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+                console.log(data);
+                $('#secuence').val(data[0]);
+                $('#idcate').val(data[1]);
+                $('#nomcate').val(data[2]);
+                //$('#estadocate').val(data[1]);
+                $('#estadocate').prop('checked', data[3]);
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -10,12 +10,16 @@ if (!$connect) {
     die('Could not connect: ' . mysqli_error());
 }
 
-$query = "SELECT secuence_prod, razon_social,cat.secuence_cat,cat.nom_categoria, marca_nom, nom_producto, cantidades, 
-fecha_entrada
-FROM productos prod
-INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
-INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu
-WHERE nom_producto LIKE '%" . $search . "%' or marca_nom LIKE '%" . $search . "%' or cat.nom_categoria LIKE '%" . $search . "%' 
+$query = "SELECT secuence_usu,id_usuario, nom_usuario, ape_usuario, UPPER(tusu.detalle_tipo_usuario) as tipousuario, 
+cod_usuario, pass_usuario, mail_usuario, tlf_usuario, estado_usuario
+FROM usuario usu
+INNER JOIN tipo_usuario tusu ON usu.id_tipo_usuario = tusu.id_tipo_usuario
+WHERE nom_usuario LIKE '%" . $search . "%' 
+or ape_usuario LIKE '%" . $search . "%' 
+or cod_usuario LIKE '%" . $search . "%' 
+or mail_usuario LIKE '%" . $search . "%' 
+or tlf_usuario LIKE '%" . $search . "%' 
+or id_usuario LIKE '%" . $search . "%' 
 ORDER BY 1 desc ";
 
 $result = mysqli_query($connect, $query);
@@ -39,7 +43,7 @@ $count = mysqli_num_rows($result);
     <title>SISTEMA VENTAS</title>
 
     <!-- Normalize V8.0.1 -->
-    <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Bootstrap V4.3 -->
     <link rel="stylesheet" href="http://systems.designlopers.com/SVI/vistas/css/bootstrap.min.css">
@@ -106,11 +110,6 @@ $count = mysqli_num_rows($result);
                 <div class="full-box nav-lateral-bar"></div>
                 <nav class="full-box nav-lateral-menu">
                     <ul>
-                        <?php
-                        $hide = "";
-                        if ($_SESSION['id_rol'] == '2') {
-                            $hide = "style='display:none;'";
-                        } ?>
                         <li>
                             <a href="../principal.php" class="Blogger">
                                 <i class="fab fa-dashcube fa-fw"></i> &nbsp; Menu Principal
@@ -133,7 +132,7 @@ $count = mysqli_num_rows($result);
                                     </a>
                                 </li>
 
-                                <li <?php echo $hide; ?>>
+                                <li>
                                     <a href="../Categoria/Usuario.php" class="Blogger">
                                         <i class="fa fa-user-tie fa-fw"></i> &nbsp; Usuarios
                                     </a>
@@ -158,9 +157,10 @@ $count = mysqli_num_rows($result);
                                     <a href="../Producto/listaProductos.php" class="Blogger">
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
-                                    <!--                                 <li>
-                                    <a class="active" href="listaDespacho.php" class="Gagalin">
-                                        <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
+                                </li>
+                                <!--                                 <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li> -->
                             </ul>
@@ -191,66 +191,44 @@ $count = mysqli_num_rows($result);
             </nav>
 
             <!-- Page header -->
-
             <div class="full-box page-header">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
+                    <i class="fas fa-user-tie fa-fw"></i> &nbsp; Usuarios
                 </h3>
                 <p class="text-justify">
-                    En el módulo PRODUCTOS podrá ingresar nuevos productos al sistema, actualizar datos de los productos,
-                    ver los productos en almacén.
+                    En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un operador, también podrá ver la lista de usuarios registrados, actualizar datos de otros usuarios.
                 </p>
             </div>
 
             <div class="container-fluid Gagalin">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
-                        <a href="../Producto/Productos.php">
-                            <i class="fas fa-box fa-fw"></i> &nbsp; Nuevo producto
+                        <a href="../Categoria/Usuario.php">
+                            <i class="fas fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
                         </a>
                     </li>
                     <li>
-                        <a class="" href="../Producto/listaProductos.php">
-                            <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
+                        <a class="" href="../Categoria/listaUsuario.php">
+                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de usuarios
                         </a>
                     </li>
-                    <li>
-                        <a class="" href="../Despacho/listaDespacho.php" class="Gagalin">
-                            <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
-                        </a>
-                    </li>
-                    <!--                    <li>
-                        <a href="../Producto/Producto-Categorias.php">
-                            <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                        </a>
-                    </li> -->
-                    <!--                     <li>
-                        <a href="../Producto/Producto-Vencimiento.php">
-                            <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                        </a>
-                    </li> -->
-                    <!--                 <li>
-                        <a href="../Producto/Producto-Stock.php">
-                            <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                        </a>
-                    </li> -->
-                    <!--                     <li>
-                        <a href="../Producto/BuscarProducto.php">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
+                    <!-- <li>
+                        <a href="http://systems.designlopers.com/SVI/user-search/">
+                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar usuario
                         </a>
                     </li> -->
                 </ul>
                 <nav class="navbar navbar-light bg-light justify-content-between">
                     <a class="navbar-brand"></a>
 
-                    <form class="form-inline" method="POST" action="buscarProducto.php">
+                    <form class="form-inline" method="POST" action="buscarUsuario.php">
                         <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Ingrese" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" id="btnCate" name="btnCate" disabled type="submit">Buscar</button>
                     </form>
                 </nav>
             </div>
 
-            <div class="container-fluid" style="background-color: #FFF; padding-bottom: 20px;">
+            <div class="container-fluid">
 
                 <div class="table-responsive">
                     <?php
@@ -261,47 +239,62 @@ $count = mysqli_num_rows($result);
                     }
                     ?>
                     <table class="table table-dark table-sm" style="<?= $dispNone ?>">
-                    <thead>
+                        <thead>
                             <tr class="text-center roboto-medium">
-                                <th hidden>secuence</th>
-                                <th>Proveedor</th>
-                                <th>Categoria</th>
-                                <th>Marca</th>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Fecha Ingreso</th>
+                                <th>N° documento</th>
+                                <th>N° documento</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Tipo Usuario</th>
+                                <th>Usuario</th>
+                                <th hidden>Contraseña</th>
+                                <th>E-mail</th>
+                                <th>Celular</th>
+                                <th>Estado</th>
                                 <th>Editar</th>
-                                <th>Salida</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
-
                         <tbody id="container">
 
                             <?php
                             if ($count >= 1) {
 
                                 while ($fila = mysqli_fetch_array($result)) {
-                                   
                             ?>
                                     <tr class="text-center">
-                                        <td hidden><?php echo $fila['secuence_prod'] ?></td>
-                                        <td><?php echo $fila['razon_social'] ?></td>
-                                        <td><?php echo $fila['nom_categoria'] ?></td>
-                                        <td><?php echo $fila['marca_nom'] ?></td>
-                                        <td><?php echo $fila['nom_producto'] ?></td>
-                                        <td><?php echo $fila['cantidades'] ?></td>
-                                        <td><?php echo $fila['fecha_entrada'] ?></td>
+                                        <td ><?php echo $fila['secuence_usu'] ?></td>
+                                        <td><?php echo $fila['id_usuario'] ?></td>
+                                        <td><?php echo $fila['nom_usuario'] ?></td>
+                                        <td><?php echo $fila['ape_usuario'] ?></td>
+                                        <td><?php echo $fila['tipousuario'] ?></td>
+                                        <td><?php echo $fila['cod_usuario'] ?></td>
+                                        <td><?php echo $fila['mail_usuario'] ?></td>
+                                        <td hidden><?php echo $fila['pass_usuario'] ?></td>
+                                        <td><?php echo $fila['tlf_usuario'] ?></td>
                                         <td>
-                                        <button type="button" class="btn btn-success editProd" data-toggle="modal" data-target="#exampleModal">
-                                            Actualizar
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success editSalida" data-toggle="modal" data-target="exampleModal">
-                                            Salida
-                                        </button>
-                                    </td>
+                                        <?php
+                                        if ($fila['estado_usuario'] == 1) {
+                                        ?>
+                                            <input type="checkbox" name="categoria_estado" value="1" checked disabled>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <input type="checkbox" name="categoria_estado" value="0" disabled>
+                                        <?php
+                                        }
+                                        ?>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal">
+                                                Actualizar
+                                            </button>
+                                        </td>
+                                        <!--                                         <td>
+                <button type="button" class="btn btn-success editSalida" data-toggle="modal" data-target="exampleModal">
+                    Salida
+                </button>
+            </td> -->
 
                                     </tr>
                         </tbody>
@@ -323,186 +316,124 @@ $count = mysqli_num_rows($result);
             </div>
         </section>
     </main>
-    <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
-    <div class="modal fade" id="salidaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+    <div class="modal fade" id="editusu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Salida de Procuto</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuarios</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form id="frmSalida" method="POST">
-
+                <form action="../../Controlador/ActualizarUsuario.php" method="POST">
+                    <div class="modal-body">
                         <div class="container-fluid">
-                            <input type="text" id="prod_cod" name="prod_cod" class="form-control" hidden>
                             <div class="row">
-                                <div class="col-12 col-md-6" hidden>
-                                    <div class="form-group">
-                                        <label>user id</label>
-                                        <input type="text" class="form-control input-barcode" name="usuario_cargo" id="usuario_cargo" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="97">
-                                    </div>
-                                </div>
+                                <input type="text" class="form-control" name="secuence" id="secuence">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Encargado</label>
-                                        <input type="text" class="form-control input-barcode" maxlength="97" value="<?php echo $_SESSION['name']; ?> <?php echo $_SESSION['last_name']; ?>">
+                                        <label>Numero de documento</label>
+                                        <input type="text" class="form-control" name="iduser" id="iduser" maxlength="8">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+
+                                <div class="col-12 col-md-5">
                                     <div class="form-group">
-                                        <label>Colegios</label>
+                                        <label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                        <select class="form-control" name="colegio_cod" id="colegio_cod" required>
-                                            <!-- <option value="" selected="">Seleccionar</option> -->
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                            <option value="" selected="">Seleccione un cargo</option>
                                             <?php
-                                            foreach ($listColegioCod as $cboCole) {
+                                            foreach ($selectorTusu as $cboTusu) {
                                             ?>
-                                                <option value="<?php echo $cboCole[0]; ?>"><?php echo $cboCole[1]; ?></option>
+                                                <option value="<?php echo $cboTusu[0]; ?>"><?php echo $cboTusu[1]; ?></option>
                                             <?php }
                                             ?>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label>Stock Actual</label>
-                                        <input type="text" class="form-control input-barcode" name="stock_ahora" id="stock_ahora" maxlength="97" onkeydown="return false">
+                                        <label>Nombres</label>
+                                        <input type="text" class="form-control" name="nomuser" id="nomuser" maxlength="35">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label>Apellidos</label>
+                                        <input type="text" class="form-control" name="usuario_apellido" id="usuario_apellido" maxlength="35">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label>Teléfono</label>
+                                        <input type="text" class="form-control" name="usuario_telefono" id="usuario_telefono" maxlength="20">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" name="usuario_email" id="usuario_email" maxlength="50">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Cantidad de salida</label>
-                                        <input type="number" class="form-control input-barcode" name="cant_sal" id="cant_sal" min="0" placeholder="ej.15">
+                                        <label>Nombre de usuario</label>
+                                        <input type="text" class="form-control" name="username" id="username" maxlength="25">
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="producto_fecha_ingreso">Fecha de Salida</label>
-                                        <input type="date" class="form-control" name="fecha_in" id="fecha_in">
+                                        <label>Contraseña</label>
+                                        <input type="text" class="form-control" name="pass" id="pass" maxlength="100">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="producto_marca" class="bmd-label-floating">Comentario</label>
-                                        <input type="text" class="form-control input-barcode" name="coment" id="coment" maxlength="30" required>
+
+                                <div class="col-12 col-md-12" style="margin-top: 30px;">
+                                    <label for="" class="bmd-label-floating">Estado De la Cuenta &nbsp;
+                                        <i class="fab fa-font-awesome-alt"></i> &nbsp;
+                                    </label>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_estado" value="1" checked>
+                                                    <i class="far fa-check-circle fa-fw"></i> &nbsp; Habilitado
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="user_estado" value="0">
+                                                    <i class="far fa-times-circle fa-fw"></i> &nbsp; Deshabilitado
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-18">
-                                    <div class="form-group">
-                                        <label for="producto_marca" class="bmd-label-floating">DNI y Nombre del contacto a recepcionar</label>
-                                        <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" id="btnSave_despacho" name="btnSave_despacho" class="btn btn-primary">uwu</button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" name="actualizarDataUsu" id="actualizarDataUsu" class="btn btn-primary">Actualizar Cambios</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
-
-    <!----------------------------------------------------------- Modal UPDATE----------------------------------------------------------------->
-    <div class="modal fade" id="editpro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Producto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="../../Controlador/ActualizarProducto.php" method="POST">
-
-
-                        <input type="text" id="secuence" name="secuence" class="form-control" hidden>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Proveedor</label>
-                                        <input type="text" class="form-control input-barcode" name="rsocial" id="rsocial" maxlength="97" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6" hidden>
-                                    <div class="form-group">
-                                        <label>categoria .2</label>
-                                        <input type="text" class="form-control input-barcode" name="idecat" id="idecat" maxlength="97">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Categoria</label>
-                                        <?php
-                                        require_once('../../Controlador/controladorListar.php');
-                                        ?>
-                                        <select class="form-control" name="cat_id" id="cat_id" required>
-                                            <option value="" selected="">Seleccione una categoria</option>
-                                            <?php
-                                            foreach ($selectorCateg as $cboCate) {
-                                            ?>
-                                                <option value="<?php echo $cboCate[0]; ?>"><?php echo $cboCate[2]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Marca</label>
-                                        <input type="text" class="form-control input-barcode" name="mar_id" id="mar_id" maxlength="97" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Producto</label>
-                                        <input type="text" class="form-control input-barcode" name="pro_id" id="pro_id" maxlength="97">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Cantidad</label>
-                                        <input type="number" class="form-control input-barcode" name="cant" id="cant" min="0">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Fecha Ingreso</label>
-                                        <input type="date" class="form-control input-barcode" name="date_in" id="date_in" maxlength="97">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" name="actuProd" class="btn btn-primary">Actualizar Cambios</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!----------------------------------------------FIN------------- Modal UPDATE----------------------------------------------------------------->
-
+    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
-
-
     <script>
         $(document).ready(function() {
-            $('.editProd').on('click', function() {
+            let $cargo = document.querySelector('#usuario_cargo');
+            $('.editbtn').on('click', function() {
 
-                $('#editpro').modal('show');
-                //$('#editpro').modal('toggle')
+                $('#editusu').modal('show');
 
                 $tr = $(this).closest('tr');
                 var data = $tr.children("td").map(function() {
@@ -510,36 +441,25 @@ $count = mysqli_num_rows($result);
                 }).get();
                 console.log(data);
                 $('#secuence').val(data[0]);
-                $('#rsocial').val(data[1]);
-                $('#idecat').val(data[2]);
-                //$('#cat_id').val(data[3]);
-                $('#mar_id').val(data[4]);
-                $('#pro_id').val(data[5]);
-                $('#cant').val(data[6]);
-                $('#date_in').val(data[7]);
+                $('#iduser').val(data[1]);
+                $('#nomuser').val(data[2]);
+                $('#usuario_apellido').val(data[3]);
+                //$('#usuario_cargo').prop('selected',data[4]);
+                $('#username').val(data[5]);
+                $('#usuario_email').val(data[6]);
+                $('#pass').val(data[7]);
+                $('#usuario_telefono').val(data[8]);
+                $('#user_estado').prop('checked', data[9]);
             });
 
-            $('.editSalida').on('click', function() {
-                $('#salidaProducto').modal('show');
-                //$('#salidaProducto').modal('toggle')
-                $tr = $(this).closest('tr');
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-                console.log(data);
-                $('#prod_cod').val(data[0]);
-                $('#stock_ahora').val(data[5]);
-                $('#fecha_in').val(data[6]);
-            });
-
+            /*             $cargo.addEventListener('change', function() {
+                            document.getElementById("actualizarDataUsu").disabled = false;
+                        }) */
         });
     </script>
 
-    <!-----------------------------------------------------------Llamar Modal -------FIN---------------------------------------------------------->
-
-    <!-- Modal -->
-
-    <script type="text/javascript">
+</script>
+        <script type="text/javascript">
         function EnableDisable(txtCate) {
             //boton.
             var btnSearch = document.getElementById("btnCate");
@@ -555,11 +475,7 @@ $count = mysqli_num_rows($result);
             }
         };
     </script>
-
-
-
-
-
+    <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
     <script>
         let btn_salir = document.querySelector('.btn-exit-system');
 
@@ -578,7 +494,7 @@ $count = mysqli_num_rows($result);
                 if (result.value) {
 
                     let url = 'http://systems.designlopers.com/SVI/ajax/loginAjax.php';
-                    let token = 'OHgwZ3RyMVNDQzZYb3l3VjFaZFlCVXN4KzRXZ0FyTXFyREhwTFZQaUpEV21mbEY1ekw1UDgwMU4rRk1rRm5sLzNUTlJPRWxmallMNkVKMUtCWXBnVkREZW9CbHBjNE5wek5UenZDYUEwWlRxekJwb09MZkpxNG5DWjQyWFVvVm4=';
+                    let token = 'bSsxZkJVUGRrRS8yRnJsMXY5cG95NGtzWjh3bDVWVTg3N1ZkRloxN1YyRUVYT2g4bUZUNmNiSVlYT2paWHRaNi9LU1hCbFIrQW9LdERsVlJXdjA5eldwOFBPbXdUcEVWTFpIeFpSY1VQSGl1S1lVRXFOankwTHpqNisvNkJzZms=';
                     let usuario = 'OFh3MUpva29KdER0ZHNqc0pkTGlmdz09';
 
                     let datos = new FormData();
@@ -620,10 +536,9 @@ $count = mysqli_num_rows($result);
 
     <!-- printThis  -->
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>
-    <script src="../resources/functions.js"></script>
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
 
 </html>

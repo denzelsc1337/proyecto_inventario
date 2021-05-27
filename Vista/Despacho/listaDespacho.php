@@ -52,7 +52,17 @@ require_once('../../config/security.php');
             <div class="full-box nav-lateral-content scroll">
                 <figure class="full-box nav-lateral-avatar">
                     <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    if ($_SESSION['sexo'] == 'm') {
+                    ?>
+                        <img src="https://cooperativadepica.cl/wp-content/uploads/2018/07/avatar2.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    } elseif ($_SESSION['sexo'] == 'f') {
+                    ?>
+                        <img src="https://www.w3schools.com/w3images/avatar6.png" class="img-fluid" alt="Avatar">
+                    <?php
+                    }
+                    ?>
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
                             <?php
@@ -126,11 +136,11 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+                                <!--                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -172,10 +182,16 @@ require_once('../../config/security.php');
             <div class="container-fluid Gagalin">
                 <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
-                        <a href="Despacho.php">
-                            <i class="fas fa-clipboard-check fa-fw"></i> &nbsp; Salida de Producto
+                        <a class="" href="../Producto/Productos.php">
+                            <i class="fas fa-box fa-fw"></i> &nbsp; Ingreso de producto
                         </a>
                     </li>
+                    <li>
+                        <a href="../Producto/listaProductos.php">
+                            <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
+                        </a>
+                    </li>
+                    <li>
                     <li>
                         <a class="active" href="listaDespacho.php" class="Gagalin">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
@@ -187,6 +203,16 @@ require_once('../../config/security.php');
                         </a>
                     </li> -->
                 </ul>
+                <nav class="navbar navbar-light bg-light justify-content-between">
+                    <a class="navbar-brand"></a>
+
+                    <form class="form-inline" method="POST" action="buscarDespacho.php">
+                        <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Ingrese" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="btnCate" name="btnCate" disabled type="submit">Buscar</button>
+                    </form>
+                </nav>
+
+
             </div>
 
             <div class="container-fluid">
@@ -393,7 +419,7 @@ require_once('../../config/security.php');
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
 
 
-        <script>
+    <script>
         $(document).ready(function() {
             $('.editDesp').on('click', function() {
 
@@ -415,7 +441,24 @@ require_once('../../config/security.php');
             });
         });
     </script>
-<!--     <script>
+    <script type="text/javascript">
+        function EnableDisable(txtCate) {
+            //boton.
+            var btnSearch = document.getElementById("btnCate");
+
+            //input
+            if (txtCate.value.trim() != "") {
+                //habilitar = lleno.
+                //console.log("oli");
+                btnSearch.disabled = false;
+            } else {
+                //deshabilitar = vacio
+                btnSearch.disabled = true;
+            }
+        };
+    </script>
+
+    <!--     <script>
         $(document).ready(function() {
             let $col = document.querySelector('#prod_cod');
             let $despa_id = document.getElementById('#desp_id');

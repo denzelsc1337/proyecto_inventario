@@ -22,6 +22,7 @@
 
 
     $('#btnSaveProd').click(function(){
+
         var _data_prd=$('#frmProd').serialize();
         $.ajax({
             type:"POST",
@@ -45,7 +46,7 @@
                     document.getElementById("npecosa").value = "";
                     document.getElementById("prod_status").value = "";
                 }else{
-                    alert("Error en el servidor.");
+                    alert("Error al registrar, Verifique que los campos esten correctamente completos.");
                 }
             }
         });
@@ -81,6 +82,15 @@
                 if (r==1) {
                     alert("Agregado correctamente");
                     event.returnValue=false;
+                    document.getElementById("iduser").value = "";
+                    document.getElementById("nomuser").value = "";
+                    document.getElementById("usuario_apellido").value = "";
+                    document.getElementById("usuario_cargo").value = "";
+                    document.getElementById("username").value = "";
+                    document.getElementById("pass").value = "";
+                    document.getElementById("usuario_email").value = "";
+                    document.getElementById("usuario_telefono").value = "";
+                    document.getElementById("user_estado").value = "";
                     
                 }else{
                     alert("Error en el servidor.");
@@ -156,6 +166,9 @@
 		});
 */
     $('#btnSave_despacho').click(function(){
+        $("#coment").prop('required');
+        $("#firma").prop('required');
+
         var _data_dspch=$('#frmSalida').serialize();
 
         $.ajax({
@@ -166,6 +179,7 @@
                 if (r==1) {
                     alert("Agregado correctamente");
                     event.returnValue=false;
+                    window.location.reload();
                     document.getElementById("usuario_cargo").value = "";
                     document.getElementById("colegio_cod").value = "";
                     document.getElementById("prod_cod").value = "";

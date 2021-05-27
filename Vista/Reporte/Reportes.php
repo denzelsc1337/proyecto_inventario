@@ -50,9 +50,20 @@ require_once('../../config/security.php');
         <section class="full-box nav-lateral">
             <div class="full-box nav-lateral-bg show-nav-lateral"></div>
             <div class="full-box nav-lateral-content scroll">
-                <figure class="full-box nav-lateral-avatar">
-                    <i class="far fa-times-circle show-nav-lateral"></i>
-                    <img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
+            <figure class="full-box nav-lateral-avatar">
+					<i class="far fa-times-circle show-nav-lateral"></i>
+					<?php
+						if ($_SESSION['sexo'] == 'm') {
+					?>
+						<img src="https://cooperativadepica.cl/wp-content/uploads/2018/07/avatar2.png" class="img-fluid" alt="Avatar">
+					<?php
+						}elseif ($_SESSION['sexo'] == 'f') {
+					?>
+						<img src="https://www.w3schools.com/w3images/avatar6.png" class="img-fluid" alt="Avatar">
+					<?php
+						}
+					?>
+
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
                         <?php 
@@ -126,11 +137,11 @@ require_once('../../config/security.php');
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
                                 </li>
-                                <li>
+<!--                                 <li>
                                     <a href="../Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -177,13 +188,41 @@ require_once('../../config/security.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="orden_reporte_inventario" class="bmd-label-floating">Reportes por &nbsp;<i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
-                                        <select class="form-control" name="orden_reporte_inventario" id="orden_reporte_inventario">
+                                        <script type="text/javascript">
+                                            function changeValue(dropdown) {
+                                                var option = dropdown.options[dropdown.selectedIndex].value;
+
+                                                    if (option == 'RxNow') {
+                                                        field_1 = document.getElementById('nomcoleN').style.display="block";
+                                                        field_2 = document.getElementById('fechaN').style.display="block";
+                                                    }else{
+                                                        field_1 = document.getElementById('nomcoleN').style.display="none";
+                                                        field_2 = document.getElementById('fechaN').style.display="none";
+                                                    }
+                                                    
+                                            }
+                                        </script>
+                                        <select class="form-control" name="orden_reporte_inventario" id="orden_reporte_inventario" onchange="changeValue(this);" > 
                                             <option value="RxStock" selected="">Por Stock</option>
                                             <option value="RxCategoria">Por Categoria</option>
                                             <option value="RxVencimiento">Por Vencimiento</option>
                                             <option value="RxEntrada">Por Ingresos</option>
                                             <option value="RxDespacho">Por Despacho</option>
+                                            <option value="RxNow">Por uwu</option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4" id="nomcoleN" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="usuario_nombre" class="bmd-label-floating">Nombres &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="text" class="form-control" name="nomcole" id="nomcole" maxlength="35">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4" id="fechaN" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="usuario_apellido" class="bmd-label-floating">Apellidos &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+                                        <input type="date" class="form-control" name="fecha" id="fecha" maxlength="35">
                                     </div>
                                 </div>
                                 <div class="col-12">

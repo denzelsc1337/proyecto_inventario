@@ -35,5 +35,3 @@ if(!empty($search)) {
 }
 
 ?>
-
-

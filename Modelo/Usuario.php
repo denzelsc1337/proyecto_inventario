@@ -78,8 +78,8 @@ class usuario
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
 
-		$Query = "INSERT INTO `usuario`(`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`)
-									 VALUES(null,'" . $data[1] . "','" . $data[2] . "','".$data[3]."','" . $data[4] . "','".$data[5]."','" . $data[6] . "','" . $data[7] . "','" . $data[8] . "','" . $data[9] . "');";
+		$Query = "INSERT INTO `usuario`(`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`,`sexo_usuario`)
+									 VALUES(null,'" . $data[1] . "','" . $data[2] . "','".$data[3]."','" . $data[4] . "','".$data[5]."','" . $data[6] . "','" . $data[7] . "','" . $data[8] . "','" . $data[9] . "','" . $data[10] . "');";
 
 		echo mysqli_query($cadena, $Query);
 

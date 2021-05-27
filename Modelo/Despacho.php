@@ -17,7 +17,7 @@ class cDespacho
 		$cadena = $cnx->abrirConexion();
 
 		$query = 'SELECT secuence_det_des, col.nom_colegio, cat.nom_categoria, prod.nom_producto, cant_prod_des, 
-					desp.fecha_des, usu.id_usuario, concat(usu.nom_usuario, "  " , usu.ape_usuario), comentario
+					desp.fecha_des, usu.id_usuario, firma_resp, comentario
 					FROM detalle_despacho desp 
 					INNER JOIN colegios col ON desp.id_colegio = col.secuence_col 
 					INNER JOIN productos prod ON desp.id_producto = prod.secuence_prod 
@@ -43,12 +43,17 @@ class cDespacho
 		include_once('../config/Conexion.php');
 		$cnx = new Conexion();
 		$cadena = $cnx->abrirConexion();
+		$bool = 1;
 
-		$Query = "INSERT INTO `detalle_despacho` (`secuence_det_des`, `id_usuario`, `id_colegio`, `id_producto`, 
+/* 		$Query = "INSERT INTO `detalle_despacho` (`secuence_det_des`, `id_usuario`, `id_colegio`, `id_producto`, 
                         `cant_prod_des`, `fecha_des`, `comentario`, `firma_resp`) 
                          VALUES (NULL,'" . $data[1] . "','" . $data[2] . "','".$data[3]."','" . $data[4] . "',
-                       '".$data[5]."','" . $data[6] . "','" . $data[7] . "');";
+                       '".$data[5]."','" . $data[6] . "','" . $data[7] . "');"; */
+
+		$Query = "CALL salidaProducto('" . $data[1] . "','".$bool."','" . $data[2] . "','".$data[3]."','" . $data[4] . "',
+		'".$data[5]."','" . $data[6] . "','" . $data[7] . "');";
 		echo mysqli_query($cadena, $Query);
+		
 
 		$cnx->cerrarConexion($cadena);
 		

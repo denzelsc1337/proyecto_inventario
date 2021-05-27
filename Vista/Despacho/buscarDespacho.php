@@ -10,12 +10,15 @@ if (!$connect) {
     die('Could not connect: ' . mysqli_error());
 }
 
-$query = "SELECT secuence_prod, razon_social,cat.secuence_cat,cat.nom_categoria, marca_nom, nom_producto, cantidades, 
-fecha_entrada
-FROM productos prod
+$query = "SELECT secuence_det_des, col.nom_colegio, cat.nom_categoria, prod.nom_producto, cant_prod_des, 
+desp.fecha_des, usu.id_usuario, firma_resp, comentario
+FROM detalle_despacho desp 
+INNER JOIN colegios col ON desp.id_colegio = col.secuence_col 
+INNER JOIN productos prod ON desp.id_producto = prod.secuence_prod 
+INNER JOIN usuario usu ON desp.id_usuario = usu.secuence_usu
 INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
-INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu
-WHERE nom_producto LIKE '%" . $search . "%' or marca_nom LIKE '%" . $search . "%' or cat.nom_categoria LIKE '%" . $search . "%' 
+WHERE prod.nom_producto LIKE '%" . $search . "%' 
+or col.nom_colegio LIKE '%" . $search . "%' 
 ORDER BY 1 desc ";
 
 $result = mysqli_query($connect, $query);
@@ -158,9 +161,10 @@ $count = mysqli_num_rows($result);
                                     <a href="../Producto/listaProductos.php" class="Blogger">
                                         <i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
                                     </a>
-                                    <!--                                 <li>
-                                    <a class="active" href="listaDespacho.php" class="Gagalin">
-                                        <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
+                                </li>
+                                <!--                                 <li>
+                                    <a href="../Despacho/Despacho.php" class="Blogger">
+                                        <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
                                 </li> -->
                             </ul>
@@ -192,68 +196,53 @@ $count = mysqli_num_rows($result);
 
             <!-- Page header -->
 
-            <div class="full-box page-header">
+            <div class="full-box page-header ">
                 <h3 class="text-left text-uppercase Gagalin">
-                    <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
+                    <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Despachos
                 </h3>
                 <p class="text-justify">
-                    En el módulo PRODUCTOS podrá ingresar nuevos productos al sistema, actualizar datos de los productos,
-                    ver los productos en almacén.
+                    En el módulo Salida de Producto usted podrá registrar las despachos que servirán para tener un mejor registro de entradas.
                 </p>
             </div>
 
             <div class="container-fluid Gagalin">
-                <ul class="full-box list-unstyled page-nav-tabs text-uppercase Gagalin">
+                <ul class="full-box list-unstyled page-nav-tabs text-uppercase">
                     <li>
-                        <a href="../Producto/Productos.php">
-                            <i class="fas fa-box fa-fw"></i> &nbsp; Nuevo producto
+                        <a class="" href="../Producto/Productos.php">
+                            <i class="fas fa-box fa-fw"></i> &nbsp; Ingreso de producto
                         </a>
                     </li>
                     <li>
-                        <a class="" href="../Producto/listaProductos.php">
+                        <a href="../Producto/listaProductos.php">
                             <i class="fas fa-boxes fa-fw"></i> &nbsp; Productos en almacen
                         </a>
                     </li>
                     <li>
-                        <a class="" href="../Despacho/listaDespacho.php" class="Gagalin">
+                    <li>
+                        <a class="" href="listaDespacho.php" class="Gagalin">
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
                         </a>
                     </li>
-                    <!--                    <li>
-                        <a href="../Producto/Producto-Categorias.php">
-                            <i class="fab fa-shopify fa-fw"></i> &nbsp; Productos por categoría
-                        </a>
-                    </li> -->
-                    <!--                     <li>
-                        <a href="../Producto/Producto-Vencimiento.php">
-                            <i class="fas fa-history fa-fw"></i> &nbsp; Productos por vencimiento
-                        </a>
-                    </li> -->
-                    <!--                 <li>
-                        <a href="../Producto/Producto-Stock.php">
-                            <i class="fas fa-stopwatch-20 fa-fw"></i> &nbsp; Productos en stock mínimo
-                        </a>
-                    </li> -->
-                    <!--                     <li>
-                        <a href="../Producto/BuscarProducto.php">
-                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar productos
+                    <!-- <li>
+                        <a href="http://systems.designlopers.com/SVI/provider-search/">
+                            <i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveedor
                         </a>
                     </li> -->
                 </ul>
                 <nav class="navbar navbar-light bg-light justify-content-between">
                     <a class="navbar-brand"></a>
 
-                    <form class="form-inline" method="POST" action="buscarProducto.php">
+                    <form class="form-inline" method="POST" action="buscarDespacho.php">
                         <input class="form-control mr-sm-2" onkeyup="EnableDisable(this)" type="text" id="search" name="search" placeholder="Ingrese" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" id="btnCate" name="btnCate" disabled type="submit">Buscar</button>
                     </form>
                 </nav>
             </div>
 
-            <div class="container-fluid" style="background-color: #FFF; padding-bottom: 20px;">
+            <div class="container-fluid">
 
                 <div class="table-responsive">
-                    <?php
+                <?php
                     require_once('../../Controlador/controladorListar.php');
                     if (mysqli_num_rows($result) == 0) {
                         $dispNone = "display:none";
@@ -261,47 +250,48 @@ $count = mysqli_num_rows($result);
                     }
                     ?>
                     <table class="table table-dark table-sm" style="<?= $dispNone ?>">
-                    <thead>
+                        <thead>
                             <tr class="text-center roboto-medium">
-                                <th hidden>secuence</th>
-                                <th>Proveedor</th>
+                                <th>Colegio</th>
                                 <th>Categoria</th>
-                                <th>Marca</th>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Fecha Ingreso</th>
+                                <th>Producto Entregado</th>
+                                <th>Cantidad de Salida</th>
+                                <th>Fecha de Salida</th>
+                                <th>DNI Contacto</th>
+                                <th>Nombre y Apellido Contacto</th>
+                                <th>Comentario</th>
                                 <th>Editar</th>
-                                <th>Salida</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
-
                         <tbody id="container">
 
                             <?php
                             if ($count >= 1) {
 
                                 while ($fila = mysqli_fetch_array($result)) {
-                                   
+
                             ?>
                                     <tr class="text-center">
-                                        <td hidden><?php echo $fila['secuence_prod'] ?></td>
-                                        <td><?php echo $fila['razon_social'] ?></td>
+                                        <td hidden><?php echo $fila['secuence_det_des'] ?></td>
+                                        <td><?php echo $fila['nom_colegio'] ?></td>
                                         <td><?php echo $fila['nom_categoria'] ?></td>
-                                        <td><?php echo $fila['marca_nom'] ?></td>
                                         <td><?php echo $fila['nom_producto'] ?></td>
-                                        <td><?php echo $fila['cantidades'] ?></td>
-                                        <td><?php echo $fila['fecha_entrada'] ?></td>
+                                        <td><?php echo $fila['cant_prod_des'] ?></td>
+                                        <td><?php echo $fila['fecha_des'] ?></td>
+                                        <td><?php echo $fila['id_usuario'] ?></td>
+                                        <td><?php echo $fila['firma_resp'] ?></td>
+                                        <td><?php echo $fila['comentario'] ?></td>
                                         <td>
-                                        <button type="button" class="btn btn-success editProd" data-toggle="modal" data-target="#exampleModal">
-                                            Actualizar
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success editSalida" data-toggle="modal" data-target="exampleModal">
-                                            Salida
-                                        </button>
-                                    </td>
+                                            <button type="button" class="btn btn-success editDesp" data-toggle="modal" data-target="#exampleModal">
+                                                Actualizar
+                                            </button>
+                                        </td>
+<!--                                         <td>
+                                            <button type="button" class="btn btn-success editSalida" data-toggle="modal" data-target="exampleModal">
+                                                Salida
+                                            </button>
+                                        </td> -->
 
                                     </tr>
                         </tbody>
@@ -323,42 +313,50 @@ $count = mysqli_num_rows($result);
             </div>
         </section>
     </main>
-    <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
-    <div class="modal fade" id="salidaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <!----------------------------------------------------------- Modal ----------------------------------------------------------------->
+    <div class="modal fade" id="editDesp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Salida de Procuto</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Despacho</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form id="frmSalida" method="POST">
-
+                <form action="../../Controlador/ActualizarDespacho.php" method="POST">
+                    <div class="modal-body">
+                        <!--<div class="form-group">
+                           <label>Id categoria</label>
+                            <input type="text" id="idcate" name="idcate" class="form-control" placeholder="test">
+                        </div> -->
                         <div class="container-fluid">
-                            <input type="text" id="prod_cod" name="prod_cod" class="form-control" hidden>
                             <div class="row">
-                                <div class="col-12 col-md-6" hidden>
+                                <input type="text" id="desp_id" name="desp_id" class="form-control">
+                                <div class="col-12 col-md-12">
                                     <div class="form-group">
-                                        <label>user id</label>
-                                        <input type="text" class="form-control input-barcode" name="usuario_cargo" id="usuario_cargo" value="<?php echo $_SESSION['secuence_usu']; ?>" maxlength="97">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Encargado</label>
-                                        <input type="text" class="form-control input-barcode" maxlength="97" value="<?php echo $_SESSION['name']; ?> <?php echo $_SESSION['last_name']; ?>">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Colegios</label>
+                                        <label>Encargado de Salida:</label>
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                        <select class="form-control" name="colegio_cod" id="colegio_cod" required>
-                                            <!-- <option value="" selected="">Seleccionar</option> -->
+                                        <select class="form-control" name="usuario_cargo" id="usuario_cargo">
+                                            <option value="" selected="">Seleccione una opción</option>
+                                            <?php
+                                            foreach ($selectorUser as $cboUser) {
+                                            ?>
+                                                <option value="<?php echo $cboUser[0]; ?>"><?php echo $cboUser[1]; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Colegio a Entregar:</label>
+                                        <?php
+                                        require_once('../../Controlador/controladorListar.php');
+                                        ?>
+                                        <select class="form-control" name="colegio_cod" id="colegio_cod">
+                                            <option value="" selected="">Seleccione una opción</option>
                                             <?php
                                             foreach ($listColegioCod as $cboCole) {
                                             ?>
@@ -368,141 +366,66 @@ $count = mysqli_num_rows($result);
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-10">
                                     <div class="form-group">
-                                        <label>Stock Actual</label>
-                                        <input type="text" class="form-control input-barcode" name="stock_ahora" id="stock_ahora" maxlength="97" onkeydown="return false">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Cantidad de salida</label>
-                                        <input type="number" class="form-control input-barcode" name="cant_sal" id="cant_sal" min="0" placeholder="ej.15">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="producto_fecha_ingreso">Fecha de Salida</label>
-                                        <input type="date" class="form-control" name="fecha_in" id="fecha_in">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="producto_marca" class="bmd-label-floating">Comentario</label>
-                                        <input type="text" class="form-control input-barcode" name="coment" id="coment" maxlength="30" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-18">
-                                    <div class="form-group">
-                                        <label for="producto_marca" class="bmd-label-floating">DNI y Nombre del contacto a recepcionar</label>
-                                        <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" id="btnSave_despacho" name="btnSave_despacho" class="btn btn-primary">uwu</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
-
-    <!----------------------------------------------------------- Modal UPDATE----------------------------------------------------------------->
-    <div class="modal fade" id="editpro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Producto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="../../Controlador/ActualizarProducto.php" method="POST">
-
-
-                        <input type="text" id="secuence" name="secuence" class="form-control" hidden>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Proveedor</label>
-                                        <input type="text" class="form-control input-barcode" name="rsocial" id="rsocial" maxlength="97" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6" hidden>
-                                    <div class="form-group">
-                                        <label>categoria .2</label>
-                                        <input type="text" class="form-control input-barcode" name="idecat" id="idecat" maxlength="97">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label>Categoria</label>
+                                        <label>Producto a salir:</label>
                                         <?php
-                                        require_once('../../Controlador/controladorListar.php');
+                                        //require_once('../../Controlador/controladorListar.php');
                                         ?>
-                                        <select class="form-control" name="cat_id" id="cat_id" required>
-                                            <option value="" selected="">Seleccione una categoria</option>
+                                        <select class="form-control" name="prod_cod" id="prod_cod">
                                             <?php
-                                            foreach ($selectorCateg as $cboCate) {
+                                            //foreach ($selectorProd as $cboProd) {
                                             ?>
-                                                <option value="<?php echo $cboCate[0]; ?>"><?php echo $cboCate[2]; ?></option>
-                                            <?php }
+                                            <?php //}
                                             ?>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Marca</label>
-                                        <input type="text" class="form-control input-barcode" name="mar_id" id="mar_id" maxlength="97" required>
+                                        <label>Cantidad de Salida</label>
+                                        <input type="number" class="form-control input-barcode" name="cant_sal" id="cant_sal" maxlength="97">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label>Producto</label>
-                                        <input type="text" class="form-control input-barcode" name="pro_id" id="pro_id" maxlength="97">
+                                        <label>Fecha de Salida</label>
+                                        <input type="date" class="form-control" name="fecha_in" id="fecha_in">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+
+                                <div class="col-12 col-md-12">
                                     <div class="form-group">
-                                        <label>Cantidad</label>
-                                        <input type="number" class="form-control input-barcode" name="cant" id="cant" min="0">
+                                        <label>Comentario</label>
+                                        <input type="text" class="form-control input-barcode" name="coment" id="coment" maxlength="30">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+
+                                <div class="col-12 col-md-12">
                                     <div class="form-group">
-                                        <label>Fecha Ingreso</label>
-                                        <input type="date" class="form-control input-barcode" name="date_in" id="date_in" maxlength="97">
+                                        <label>Recepcionista</label>
+                                        <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" name="actuProd" class="btn btn-primary">Actualizar Cambios</button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" name="actuDespacho" class="btn btn-primary">Actualizar Cambios</button>
+                        </div>
+                </form>
             </div>
         </div>
     </div>
-    <!----------------------------------------------FIN------------- Modal UPDATE----------------------------------------------------------------->
-
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
 
 
     <script>
         $(document).ready(function() {
-            $('.editProd').on('click', function() {
+            $('.editDesp').on('click', function() {
 
-                $('#editpro').modal('show');
-                //$('#editpro').modal('toggle')
+                $('#editDesp').modal('show');
 
                 $tr = $(this).closest('tr');
                 var data = $tr.children("td").map(function() {
@@ -510,35 +433,79 @@ $count = mysqli_num_rows($result);
                 }).get();
                 console.log(data);
                 $('#secuence').val(data[0]);
-                $('#rsocial').val(data[1]);
-                $('#idecat').val(data[2]);
-                //$('#cat_id').val(data[3]);
-                $('#mar_id').val(data[4]);
-                $('#pro_id').val(data[5]);
-                $('#cant').val(data[6]);
-                $('#date_in').val(data[7]);
+                $('#usuario_cargo').val(data[1]);
+                $('#colegio_cod').val(data[2]);
+                $('#prod_cod').val(data[3]);
+                $('#cant_sal').val(data[4]);
+                $('#fecha_in').val(data[5]);
+                $('#coment').val(data[8]);
+                $('#firma').val(data[7]);
             });
-
-            $('.editSalida').on('click', function() {
-                $('#salidaProducto').modal('show');
-                //$('#salidaProducto').modal('toggle')
-                $tr = $(this).closest('tr');
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-                console.log(data);
-                $('#prod_cod').val(data[0]);
-                $('#stock_ahora').val(data[5]);
-                $('#fecha_in').val(data[6]);
-            });
-
         });
     </script>
+    <!--     <script>
+        $(document).ready(function() {
+            let $col = document.querySelector('#prod_cod');
+            let $despa_id = document.getElementById('#desp_id');
 
-    <!-----------------------------------------------------------Llamar Modal -------FIN---------------------------------------------------------->
 
-    <!-- Modal -->
+            $('#add').click(function() {
+                $('#insert').val("Insert");
+                $('#insert_form')[0].reset();
+            });
+            $(document).on('click', '.editData', function() {
+                
+                var desp_id = $(this).attr("id");
+                console.log(desp_id)
 
+                $.ajax({
+                    url: "../../Controlador/getUpdateSalidaProd.php",
+                    method: "POST",
+                    data: {
+                        desp_id: desp_id
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        const codDesp = desp_id
+                        const sendDatos = {
+                            'codDesp': codDesp
+                        }
+                        $('#usuario_cargo').val(data.id_usuario);
+                        $('#colegio_cod').val(data.nom_colegio);
+                        //$('#prod_cod').val(data.nom_producto);  
+                        $('#cant_sal').val(data.cant_prod_des);
+                        $('#fecha_in').val(data.fecha_des);
+                        $('#coment').val(codDesp);
+                        $('#firma').val(data.recepcionista);
+                        $('#desp_id').val(data.secuence_det_des);
+                        //$('#insert').val("Update");  
+                        $('#updateData').modal('show');
+
+                        cargarProd(sendDatos)
+                    }
+                });
+
+            });
+
+            function cargarProd(sendDatos) {
+                $.ajax({
+                    type: "POST",
+                    url: "../../Controlador/Select.php",
+                    data: sendDatos,
+                    success: function(response) {
+                        const producto = JSON.parse(response);
+                        let template
+
+                        producto.forEach(productos => {
+                            template += `<option class="form-control" value="${productos.nom_product}">${productos.nom_product}</option>`;
+                        })
+
+                        $col.innerHTML = template;
+                    }
+                })
+            }
+        });
+    </script> -->
     <script type="text/javascript">
         function EnableDisable(txtCate) {
             //boton.
@@ -555,9 +522,6 @@ $count = mysqli_num_rows($result);
             }
         };
     </script>
-
-
-
 
 
     <script>
@@ -578,7 +542,7 @@ $count = mysqli_num_rows($result);
                 if (result.value) {
 
                     let url = 'http://systems.designlopers.com/SVI/ajax/loginAjax.php';
-                    let token = 'OHgwZ3RyMVNDQzZYb3l3VjFaZFlCVXN4KzRXZ0FyTXFyREhwTFZQaUpEV21mbEY1ekw1UDgwMU4rRk1rRm5sLzNUTlJPRWxmallMNkVKMUtCWXBnVkREZW9CbHBjNE5wek5UenZDYUEwWlRxekJwb09MZkpxNG5DWjQyWFVvVm4=';
+                    let token = 'bSsxZkJVUGRrRS8yRnJsMXY5cG95NGtzWjh3bDVWVTg3N1ZkRloxN1YyRUVYT2g4bUZUNmNiSVlYT2paWHRaNi9LU1hCbFIrQW9LdERsVlJXdjA5eldwOFBPbXdUcEVWTFpIeFpSY1VQSGl1S1lVRXFOankwTHpqNisvNkJzZms=';
                     let usuario = 'OFh3MUpva29KdER0ZHNqc0pkTGlmdz09';
 
                     let datos = new FormData();
@@ -598,6 +562,8 @@ $count = mysqli_num_rows($result);
             });
         });
     </script>
+
+
     <!--=============================================
 =            Include JavaScript files           =
 ==============================================-->
@@ -622,8 +588,7 @@ $count = mysqli_num_rows($result);
     <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/printThis.js"></script> -->
 
     <script src="http://systems.designlopers.com/SVI/vistas/js/main.js"></script>
-    <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script>
-    <script src="../resources/functions.js"></script>
+    <!-- <script src="http://systems.designlopers.com/SVI/vistas/js/ajax.js"></script> -->
 </body>
 
 </html>

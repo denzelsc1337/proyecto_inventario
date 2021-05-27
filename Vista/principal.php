@@ -74,7 +74,18 @@ $filas = mysqli_result($result,0); */
 			<div class="full-box nav-lateral-content scroll">
 				<figure class="full-box nav-lateral-avatar">
 					<i class="far fa-times-circle show-nav-lateral"></i>
-					<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png" class="img-fluid" alt="Avatar">
+					<?php
+						if ($_SESSION['sexo'] == 'm') {
+					?>
+						<img src="https://cooperativadepica.cl/wp-content/uploads/2018/07/avatar2.png" class="img-fluid" alt="Avatar">
+					<?php
+						}elseif ($_SESSION['sexo'] == 'f') {
+					?>
+						<img src="https://www.w3schools.com/w3images/avatar6.png" class="img-fluid" alt="Avatar">
+					<?php
+						}
+					?>
+					
                     <figcaption class="text-center Blogger" style="font-size: 22px;">
                         <?php echo $_SESSION['name']; ?><br><small class="Blogger">
                         <?php 
@@ -89,7 +100,8 @@ $filas = mysqli_result($result,0); */
                                 break;
                         }
  
-                        ?></small>
+                        ?>
+						</small>
                     </figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar">
@@ -150,11 +162,11 @@ $filas = mysqli_result($result,0); */
 										<i class="fa fa-boxes fa-fw"></i> &nbsp; Productos en almacén
 									</a>
 								</li>
-								<li>
+<!-- 								<li hidden>
                                     <a href="Despacho/Despacho.php" class="Blogger">
                                         <i class="fa fa-clipboard-check fa-fw"></i> &nbsp; Salida de producto
                                     </a>
-                                </li>
+                                </li> -->
 							</ul>
 						</li>
 						<li>
