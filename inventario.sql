@@ -15,7 +15,8 @@ CREATE TABLE usuario
     pass_usuario VARCHAR (20) NOT NULL,
     mail_usuario VARCHAR (40),
     tlf_usuario CHAR (9),
-    estado_usuario BOOLEAN
+    estado_usuario BOOLEAN,
+    sexo_usuario CHAR(2)
 );
 
 DROP TABLE IF EXISTS tipo_usuario;
@@ -105,7 +106,7 @@ CREATE TABLE productos
 
 --     secuence_prod INT,
 --     fecha CURRENT_DATE,
-    
+
 --     stock INT
 -- );
 
@@ -117,7 +118,7 @@ CREATE TABLE productos_historicos
     secuence_prod INT,
     fecha DATETIME,
     tipo_trans VARCHAR(50),
-    
+
     unidades INT
 );
 
@@ -2400,8 +2401,8 @@ INSERT INTO ubdepartamento (idDepa, departamento) VALUES
 
     -- PROVEEDOR A ->
 #      ALTER TABLE productos
-# 	 ADD CONSTRAINT fk_prov_to_prod
-# 	 FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
+#    ADD CONSTRAINT fk_prov_to_prod
+#    FOREIGN KEY (id_proveedor) REFERENCES proveedor (secuence_prov);
 
 
     -- MOVIMIENTO A ->
@@ -2464,21 +2465,21 @@ INSERT INTO ubdepartamento (idDepa, departamento) VALUES
 DROP PROCEDURE IF EXISTS agregarProducto;
 DELIMITER $$
 CREATE PROCEDURE agregarProducto(
-    
-IN id_categoria		INT,
-IN marca_nom		VARCHAR(50),
-IN RUC				BIGINT,
-IN razon_social		VARCHAR(50),
-IN id_usuario		INT,
-IN nom_producto		VARCHAR(50),
-IN cantidades		INT,
-IN fecha_entrada	DATE,
-IN fecha_vencimento	DATE,
-IN descripcion		VARCHAR(50),
-IN guia_remision	VARCHAR(50),
-IN num_orden		VARCHAR(50),
-IN num_pecosa		VARCHAR(50),
-IN perecible		BOOLEAN
+
+IN id_categoria     INT,
+IN marca_nom        VARCHAR(50),
+IN RUC              BIGINT,
+IN razon_social     VARCHAR(50),
+IN id_usuario       INT,
+IN nom_producto     VARCHAR(50),
+IN cantidades       INT,
+IN fecha_entrada    DATE,
+IN fecha_vencimento DATE,
+IN descripcion      VARCHAR(50),
+IN guia_remision    VARCHAR(50),
+IN num_orden        VARCHAR(50),
+IN num_pecosa       VARCHAR(50),
+IN perecible        BOOLEAN
 
 )
 
@@ -2489,20 +2490,20 @@ BEGIN
 DECLARE
 id_prod INT;
 
-INSERT INTO  productos (`secuence_prod`, `id_categoria`, 
-			`marca_nom`, `RUC`, `razon_social`, `id_usuario`, `nom_producto`,
-			`cantidades`, `fecha_entrada`, `fecha_vencimento`, `descripcion`, 
-			`guia_remision`, `num_orden`, `num_pecosa`, `perecible`) 
+INSERT INTO  productos (`secuence_prod`, `id_categoria`,
+            `marca_nom`, `RUC`, `razon_social`, `id_usuario`, `nom_producto`,
+            `cantidades`, `fecha_entrada`, `fecha_vencimento`, `descripcion`,
+            `guia_remision`, `num_orden`, `num_pecosa`, `perecible`)
         VALUES (null, id_categoria, marca_nom, RUC, razon_social, id_usuario, nom_producto, cantidades, fecha_entrada, fecha_vencimento, descripcion, guia_remision, num_orden, num_pecosa, perecible);
-        
-        
-       
-        
-        
+
+
+
+
+
 IF (SELECT ROW_COUNT() > 0) THEN
-            
-        	INSERT INTO productos_historicos
-            	VALUES (NULL, (SELECT MAX(secuence_prod) FROM productos), CURRENT_DATE,'REGISTRO', cantidades);
+
+            INSERT INTO productos_historicos
+                VALUES (NULL, (SELECT MAX(secuence_prod) FROM productos), CURRENT_DATE,'INGRESO', cantidades);
          END IF;
 
 END $$
@@ -2510,24 +2511,24 @@ END $$
 DELIMITER ;
 
 
-----------------------
+##########
 
-DROP PROCEDURE IF EXISTS actualizarProducto;
+DROP PROCEDURE IF EXISTS salidaProducto;
 DELIMITER $$
-CREATE PROCEDURE actualizarProducto(
-    
+CREATE PROCEDURE salidaProducto(
+
 IN secuence_prod_    INT,
 
 IN modificar BOOLEAN,
-    
 
-IN id_usuario		INT,
-IN id_colegio		INT,
-IN fecha_des		DATETIME,
-IN comentario 	VARCHAR (50),
-IN firma_resp 	VARCHAR (50),
-    
-IN cantidad		INT
+
+IN id_usuario       INT,
+IN id_colegio       INT,
+IN fecha_des        DATETIME,
+IN comentario   VARCHAR (50),
+IN firma_resp   VARCHAR (50),
+
+IN cantidad     INT
 
 )
 
@@ -2535,30 +2536,30 @@ IN cantidad		INT
 
 BEGIN
 
-DECLARE 
+DECLARE
 
 cant int;
 
 
-	IF (modificar = 1) THEN
-	
+    IF (modificar = 1) THEN
+
         SET cant = (SELECT cantidades FROM productos WHERE secuence_prod = secuence_prod_);
 
         IF (cant >= cantidad && cant != 0) THEN
 
-            UPDATE  productos 
+            UPDATE  productos
                 SET cantidades = (cant-cantidad)
                 WHERE secuence_prod = secuence_prod_;
-                
+
             INSERT INTO productos_historicos
-            	VALUES (NULL, secuence_prod_, CURRENT_DATE,'SALIDA', cantidad);
-                
-            INSERT INTO `detalle_despacho` (`secuence_det_des`, `id_usuario`, `id_colegio`, `id_producto`, 
-						`cant_prod_des`, `fecha_des`, `comentario`, `firma_resp`) 
-           		VALUES (null, id_usuario,id_colegio,secuence_prod_,cantidad,fecha_des,comentario, firma_resp);
+                VALUES (NULL, secuence_prod_, CURRENT_DATE,'SALIDA', cantidad);
+
+            INSERT INTO `detalle_despacho` (`secuence_det_des`, `id_usuario`, `id_colegio`, `id_producto`,
+                        `cant_prod_des`, `fecha_des`, `comentario`, `firma_resp`)
+                VALUES (null, id_usuario,id_colegio,secuence_prod_,cantidad,fecha_des,comentario, firma_resp);
         END IF;
     END IF;
-        
+
 END $$
 
 DELIMITER ;
@@ -2601,7 +2602,7 @@ INSERT INTO `tipo_usuario` (`secuence_tipo_usu`, `id_tipo_usuario`, `detalle_tip
 -- ----------------------------------------------------INSERT INTO TIPO USUARIO (FIN)-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- ----------------------------------- --------------INSERT INTO  USUARIO (INICIO) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1');
+INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario`, `id_tipo_usuario`, `cod_usuario`, `pass_usuario`, `mail_usuario`, `tlf_usuario`, `estado_usuario`,`sexo_usuario`) VALUES (NULL, '75481104', 'denzel', 'sotomayor', '1', 'dsotomayor', '1337', 'denzelsotomayor@gmail.com', '981374706', '1','m'),(NULL, '10675550', 'pedro', 'almenara', '2', 'pedro123', 'palmenara', 'pedroalmenara@gmail.com', '987654321', '1','m');
 
 --  ---------------------------------------------------INSERT INTO  USUARIO (FIN)--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -2615,4 +2616,3 @@ INSERT INTO `usuario` (`secuence_usu`, `id_usuario`, `nom_usuario`, `ape_usuario
     INSERT INTO colegios VALUES (null, 1042704, 'UGEL AIJA', 'Pedro Paulet', 'Jiron Quipacocha 284', '', '', 'Ancash', 'Carhuaz', 'Marcara', 'Casha corral', 'Primaria');
     INSERT INTO colegios VALUES (null, 1042662, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria y Secundaria');
     INSERT INTO colegios VALUES (null, 0385542, 'UGEL AIJA', 'Pedro Pablo Atusparia', 'Avenida bolognesi 116', '', '', 'Ancash', 'Huaraz', 'Huaraz', 'Huaraz', 'Primaria');
-
