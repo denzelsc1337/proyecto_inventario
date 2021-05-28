@@ -197,7 +197,7 @@ require_once('../../config/security.php');
                             <i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Despachos
                         </a>
                     </li>
-<!--                     <nav class="navbar navbar-light bg-light justify-content-between">
+                    <!--                     <nav class="navbar navbar-light bg-light justify-content-between">
                         <a class="navbar-brand"></a>
 
                         <form class="form-inline" method="POST" action="buscarProducto.php">
@@ -279,7 +279,7 @@ require_once('../../config/security.php');
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success editSalida" data-toggle="modal" data-target="exampleModal">
+                                        <button type="button" class="btn btn-success editSalida" data-toggle="modal" data-target="exampleModal" >
                                             Salida
                                         </button>
                                     </td>
@@ -312,7 +312,7 @@ require_once('../../config/security.php');
         </section>
     </main>
     <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
-    <div class="modal fade" id="salidaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="salidaProducto" name="salidaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -322,7 +322,8 @@ require_once('../../config/security.php');
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="frmSalida" method="POST">
+                <h5 class="text-warning" id="warn">SIN STOCK</h5>
+                    <form id="frmSalida" name="frmSalida" method="POST" onsubmit="return validateForm()">
 
                         <div class="container-fluid">
                             <input type="text" id="prod_cod" name="prod_cod" class="form-control" hidden>
@@ -356,10 +357,14 @@ require_once('../../config/security.php');
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Stock Actual</label>
                                         <input type="text" class="form-control input-barcode" name="stock_ahora" id="stock_ahora" maxlength="97" onkeydown="return false">
+                                        <span class="text-warning" id="error" style="display: none;">
+                                            <p id="stock_warn">stock agotado</p>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -389,7 +394,7 @@ require_once('../../config/security.php');
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" id="btnSave_despacho" name="btnSave_despacho" class="btn btn-primary">uwu</button>
+                                <button type="submit" id="btnSave_despacho" name="btnSave_despacho" class="btn btn-primary" >Añadir Salida</button>
                             </div>
                         </div>
                     </form>
@@ -411,7 +416,6 @@ require_once('../../config/security.php');
                 </div>
                 <div class="modal-body">
                     <form action="../../Controlador/ActualizarProducto.php" method="POST">
-
 
                         <input type="text" id="secuence" name="secuence" class="form-control" hidden>
                         <div class="container-fluid">
@@ -487,6 +491,11 @@ require_once('../../config/security.php');
 
     <script>
         $(document).ready(function() {
+            var stock_test = document.getElementById("stock_ahora");
+            var stock_agotado = document.getElementById("error");
+            var add_btn = document.getElementById("btnSave_despacho");
+            var warn_titl = document.getElementById("warn");
+            
             $('.editProd').on('click', function() {
 
                 $('#editpro').modal('show');
@@ -517,13 +526,26 @@ require_once('../../config/security.php');
                 console.log(data);
                 $('#prod_cod').val(data[0]);
                 $('#stock_ahora').val(data[6]);
+                if (stock_test.value =="0") {
+                    console.log("wops :c")
+                    stock_test.disabled = true;
+                    stock_agotado.style.display="block";
+                    warn_titl.style.display = "block";
+                    add_btn.disabled = true;
+                }else{
+                    console.log("yup")
+                    stock_test.disabled = false;
+                    add_btn.disabled = false;
+                    stock_agotado.style.display="none";
+                    warn_titl.style.display = "none";
+                }
                 $('#fecha_in').val(data[7]);
             });
 
         });
     </script>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
         function EnableDisable(txtCate) {
             //boton.
             var btnSearch = document.getElementById("btnCate");

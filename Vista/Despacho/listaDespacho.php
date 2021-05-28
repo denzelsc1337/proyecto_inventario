@@ -248,8 +248,17 @@ require_once('../../config/security.php');
                                     <td><?php echo $salidaOut[4] ?></td>
                                     <td><?php echo $salidaOut[5] ?></td>
                                     <td><?php echo $salidaOut[6] ?></td>
-                                    <td><?php echo $salidaOut[7] ?></td>
+                                    <td>
+                                        <?php
+                                        if (empty($salidaOut[7])) {
+                                            echo "- - -";
+                                        } else {
+                                           echo $salidaOut[7];
+                                        }
+                                        ?>
+                                    </td>
                                     <td><?php echo $salidaOut[8] ?></td>
+
 
                                     <!-- <td>
                                         <?php
@@ -295,7 +304,11 @@ require_once('../../config/security.php');
                                         <?php
                                         }
                                         ?>
+                                        
                                     </td> -->
+                                        <?php
+                                        
+                                        ?>
                                     <td>
                                         <button type="button" class="btn btn-success editDesp" data-toggle="modal" id="<?php echo $salidaOut[0] ?>" data-target="#exampleModal">
                                             Actualizar
