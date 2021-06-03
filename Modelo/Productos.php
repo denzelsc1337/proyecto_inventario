@@ -22,7 +22,7 @@ class pProductos
 		FROM productos prod
 		INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
 		INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu
-		where cantidades >0
+		#where cantidades >0
 		ORDER BY 1 desc';
 
 		$resultado = mysqli_query($cadena, $query);
@@ -39,7 +39,7 @@ class pProductos
 	public function selectorProd(){
 		$cnx = new conexion();
 		$cadena = $cnx->abrirConexion();
-		$query = 'SELECT secuence_prod, concat(nom_producto, " - Marca: " ,marca_nom , " (stock: " ,cantidades , ")") 
+		$query = 'SELECT cantidades, secuence_prod , concat(nom_producto, " - Marca: " ,marca_nom , " (stock: " ,cantidades , ")") as Producto
 		FROM productos';
 		$result = mysqli_query($cadena, $query);
 		while ($fila = mysqli_fetch_row($result)) {

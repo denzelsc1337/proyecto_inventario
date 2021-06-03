@@ -1,5 +1,6 @@
 <?php
 require_once('../../config/security.php');
+require_once('../../config/security.php');
 
 /*if(isset($_SESSION['user'])){
         header('Location:Main.php');
@@ -224,6 +225,7 @@ require_once('../../config/security.php');
                     <table class="table table-dark table-sm">
                         <thead>
                             <tr class="text-center roboto-medium">
+                                <th hidden>secuence</th>
                                 <th>Colegio</th>
                                 <th>Categoria</th>
                                 <th>Producto Entregado</th>
@@ -232,7 +234,7 @@ require_once('../../config/security.php');
                                 <th>DNI Contacto</th>
                                 <th>Nombre y Apellido Contacto</th>
                                 <th>Comentario</th>
-                                <th>Editar</th>
+                                <th hidden>Editar</th>
                                 <!-- <button id="btnEnble">Enable</button> -->
                             </tr>
                         </thead>
@@ -248,71 +250,17 @@ require_once('../../config/security.php');
                                     <td><?php echo $salidaOut[4] ?></td>
                                     <td><?php echo $salidaOut[5] ?></td>
                                     <td><?php echo $salidaOut[6] ?></td>
-                                    <td>
-                                        <?php
-                                        if (empty($salidaOut[7])) {
-                                            echo "- - -";
-                                        } else {
-                                           echo $salidaOut[7];
-                                        }
-                                        ?>
-                                    </td>
+                                    <td><?php echo $salidaOut[7]/*if (empty($salidaOut[7])) ? echo "- - -" : echo $salidaOut[7]*/ ?></td>
                                     <td><?php echo $salidaOut[8] ?></td>
 
-
-                                    <!-- <td>
-                                        <?php
-                                        $hide = "";
-                                        if ($_SESSION['id_rol'] == '2') {
-                                            $hide = "style='display:none;'";
-                                        }
-                                        if ($salidaOut[12] == 1) {
-                                        ?>
-                                            <input type="checkbox" name="categoria_estado" value="1" checked="" disabled="">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <!-- <button name="btnUpdt"disabled>Update</button> 
-                                            <!-- Button trigger modal 
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" <?php echo $hide; ?>>
-                                                Update
-                                            </button>
-
-                                            <!-- Modal 
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Dar de Baja</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <input type="checkbox" name="categoria_estado" value="0" disabled>
-                                        <?php
-                                        }
-                                        ?>
-                                        
-                                    </td> -->
-                                        <?php
-                                        
-                                        ?>
-                                    <td>
-                                        <button type="button" class="btn btn-success editDesp" data-toggle="modal" id="<?php echo $salidaOut[0] ?>" data-target="#exampleModal">
+                                    <td hidden>
+                                        <button type="button" class="btn btn-success editDesp" data-toggle="modal" data-target="#exampleModal">
                                             Actualizar
                                         </button>
+                                        <!--                                         <button type="button" class="btn btn-success editDesp" data-toggle="modal" id="<?php //echo $salidaOut[0] 
+                                                                                                                                                                    ?>" data-target="#exampleModal">
+                                            Actualizar
+                                        </button> -->
                                     </td>
 
                                 </tr>
@@ -334,23 +282,19 @@ require_once('../../config/security.php');
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="../../Controlador/ActualizarDespacho.php" method="POST">
-                    <div class="modal-body">
-                        <!--<div class="form-group">
-                           <label>Id categoria</label>
-                            <input type="text" id="idcate" name="idcate" class="form-control" placeholder="test">
-                        </div> -->
+                <div class="modal-body">
+                    <form action="../../Controlador/ActualizarDespacho.php" method="POST">
+                        <input type="text" id="desp_id" name="desp_id" class="form-control" hidden>
                         <div class="container-fluid">
                             <div class="row">
-                                <input type="text" id="desp_id" name="desp_id" class="form-control">
-                                <div class="col-12 col-md-12">
+                                <div class="col-12 col-md-6" hidden>
                                     <div class="form-group">
                                         <label>Encargado de Salida:</label>
                                         <?php
                                         require_once('../../Controlador/controladorListar.php');
                                         ?>
                                         <select class="form-control" name="usuario_cargo" id="usuario_cargo">
-                                            <option value="" selected="">Seleccione una opción</option>
+                                            <option value="" selected>Seleccione una opción</option>
                                             <?php
                                             foreach ($selectorUser as $cboUser) {
                                             ?>
@@ -360,12 +304,9 @@ require_once('../../config/security.php');
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-12">
+                                <div class="col-12 col-md-12" hidden>
                                     <div class="form-group">
                                         <label>Colegio a Entregar:</label>
-                                        <?php
-                                        require_once('../../Controlador/controladorListar.php');
-                                        ?>
                                         <select class="form-control" name="colegio_cod" id="colegio_cod">
                                             <option value="" selected="">Seleccione una opción</option>
                                             <?php
@@ -377,22 +318,32 @@ require_once('../../config/security.php');
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-10">
+                                <div class="col-12 col-md-10" hidden>
                                     <div class="form-group">
                                         <label>Producto a salir:</label>
                                         <?php
                                         //require_once('../../Controlador/controladorListar.php');
                                         ?>
                                         <select class="form-control" name="prod_cod" id="prod_cod">
+                                            <option value="" selected="">Seleccione una opción</option>
                                             <?php
-                                            //foreach ($selectorProd as $cboProd) {
+                                            $dsbl = "";
+                                            foreach ($selectorProd as $cboProd) {
+                                                if ($cboProd[0] == 0) {
+                                                    $dsbl = "disabled";   
                                             ?>
-                                            <?php //}
+                                                <option value="<?php echo $cboProd[1]; ?>" <?php echo $dsbl ?> ><?php echo $cboProd[2]; ?></option>
+                                            <?php 
+                                                }else{
+                                                    ?>
+                                                <option value="<?php echo $cboProd[1]; ?>"><?php echo $cboProd[2]; ?></option>
+                                            <?php
+                                                }
+                                            }
                                             ?>
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Cantidad de Salida</label>
@@ -413,7 +364,7 @@ require_once('../../config/security.php');
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-12">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Recepcionista</label>
                                         <input type="text" class="form-control input-barcode" name="firma" id="firma" maxlength="30">
@@ -423,17 +374,22 @@ require_once('../../config/security.php');
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="actuDespacho" class="btn btn-primary">Actualizar Cambios</button>
+                            <button type="submit" id="actuDespacho" name="actuDespacho" class="btn btn-primary">Actualizar Cambios</button>
                         </div>
+                </div>
                 </form>
             </div>
         </div>
     </div>
+    </div>
+
     <!-----------------------------------------------------------Llamar Modal ----------------------------------------------------------------->
 
 
     <script>
         $(document).ready(function() {
+            var stock_test = document.getElementById("prod_cod");
+            var updt_btn = document.getElementById("actuDespacho");
             $('.editDesp').on('click', function() {
 
                 $('#editDesp').modal('show');
@@ -443,10 +399,7 @@ require_once('../../config/security.php');
                     return $(this).text();
                 }).get();
                 console.log(data);
-                $('#secuence').val(data[0]);
-                $('#usuario_cargo').val(data[1]);
-                $('#colegio_cod').val(data[2]);
-                $('#prod_cod').val(data[3]);
+                $('#desp_id').val(data[0]);
                 $('#cant_sal').val(data[4]);
                 $('#fecha_in').val(data[5]);
                 $('#coment').val(data[8]);

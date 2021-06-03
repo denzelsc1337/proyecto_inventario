@@ -279,7 +279,7 @@ $count = mysqli_num_rows($result);
                                         ?>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-success editCole" data-toggle="modal" data-target="#exampleModal">
+                                            <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModal">
                                                 Actualizar
                                             </button>
                                         </td>

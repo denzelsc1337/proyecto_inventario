@@ -82,6 +82,7 @@
                 if (r==1) {
                     alert("Agregado correctamente");
                     event.returnValue=false;
+                    location.reload();
                     document.getElementById("iduser").value = "";
                     document.getElementById("nomuser").value = "";
                     document.getElementById("usuario_apellido").value = "";

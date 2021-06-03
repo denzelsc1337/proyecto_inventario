@@ -15,7 +15,10 @@ fecha_entrada
 FROM productos prod
 INNER JOIN categorias cat ON prod.id_categoria = cat.secuence_cat
 INNER JOIN usuario usu ON prod.id_usuario = usu.secuence_usu
-WHERE nom_producto LIKE '%" . $search . "%' or marca_nom LIKE '%" . $search . "%' or cat.nom_categoria LIKE '%" . $search . "%' 
+WHERE nom_producto LIKE '%" . $search . "%' 
+or marca_nom LIKE '%" . $search . "%' 
+or cat.nom_categoria LIKE '%" . $search . "%' 
+or razon_social LIKE '%" . $search . "%' 
 ORDER BY 1 desc ";
 
 $result = mysqli_query($connect, $query);
@@ -324,7 +327,7 @@ $count = mysqli_num_rows($result);
         </section>
     </main>
     <!----------------------------------------------------------- Modal SALIDA PRODUCTO----------------------------------------------------------------->
-    <div class="modal fade" id="salidaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="salidaProducto" name="salidaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -334,7 +337,8 @@ $count = mysqli_num_rows($result);
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="frmSalida" method="POST">
+                <h5 class="text-warning" id="warn">SIN STOCK</h5>
+                    <form id="frmSalida" name="frmSalida" method="POST">
 
                         <div class="container-fluid">
                             <input type="text" id="prod_cod" name="prod_cod" class="form-control" hidden>
@@ -368,10 +372,14 @@ $count = mysqli_num_rows($result);
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label>Stock Actual</label>
                                         <input type="text" class="form-control input-barcode" name="stock_ahora" id="stock_ahora" maxlength="97" onkeydown="return false">
+                                        <span class="text-warning" id="error" style="display: none;">
+                                            <p id="stock_warn">stock agotado</p>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -401,7 +409,7 @@ $count = mysqli_num_rows($result);
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" id="btnSave_despacho" name="btnSave_despacho" class="btn btn-primary">uwu</button>
+                                <button type="submit" id="btnSave_despacho" name="btnSave_despacho" class="btn btn-primary" >Añadir Salida</button>
                             </div>
                         </div>
                     </form>
@@ -499,7 +507,12 @@ $count = mysqli_num_rows($result);
 
     <script>
         $(document).ready(function() {
+            var stock_test = document.getElementById("stock_ahora");
+            var stock_agotado = document.getElementById("error");
+            var add_btn = document.getElementById("btnSave_despacho");
+            var warn_titl = document.getElementById("warn");
             $('.editProd').on('click', function() {
+                
 
                 $('#editpro').modal('show');
                 //$('#editpro').modal('toggle')
@@ -512,11 +525,10 @@ $count = mysqli_num_rows($result);
                 $('#secuence').val(data[0]);
                 $('#rsocial').val(data[1]);
                 $('#idecat').val(data[2]);
-                //$('#cat_id').val(data[3]);
-                $('#mar_id').val(data[4]);
-                $('#pro_id').val(data[5]);
-                $('#cant').val(data[6]);
-                $('#date_in').val(data[7]);
+                $('#mar_id').val(data[3]);
+                $('#pro_id').val(data[4]);
+                $('#cant').val(data[5]);
+                $('#date_in').val(data[6]);
             });
 
             $('.editSalida').on('click', function() {
@@ -529,7 +541,20 @@ $count = mysqli_num_rows($result);
                 console.log(data);
                 $('#prod_cod').val(data[0]);
                 $('#stock_ahora').val(data[5]);
-                $('#fecha_in').val(data[6]);
+                if (stock_test.value =="0") {
+                    console.log("wops :c")
+                    stock_test.disabled = true;
+                    stock_agotado.style.display="block";
+                    warn_titl.style.display = "block";
+                    add_btn.disabled = true;
+                }else{
+                    console.log("yup")
+                    stock_test.disabled = false;
+                    add_btn.disabled = false;
+                    stock_agotado.style.display="none";
+                    warn_titl.style.display = "none";
+                }
+                $('#fecha_in').val(data[7]);
             });
 
         });

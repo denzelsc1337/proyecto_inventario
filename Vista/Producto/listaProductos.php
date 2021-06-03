@@ -323,7 +323,7 @@ require_once('../../config/security.php');
                 </div>
                 <div class="modal-body">
                 <h5 class="text-warning" id="warn">SIN STOCK</h5>
-                    <form id="frmSalida" name="frmSalida" method="POST" onsubmit="return validateForm()">
+                    <form id="frmSalida" name="frmSalida" method="POST">
 
                         <div class="container-fluid">
                             <input type="text" id="prod_cod" name="prod_cod" class="form-control" hidden>
@@ -416,7 +416,6 @@ require_once('../../config/security.php');
                 </div>
                 <div class="modal-body">
                     <form action="../../Controlador/ActualizarProducto.php" method="POST">
-
                         <input type="text" id="secuence" name="secuence" class="form-control" hidden>
                         <div class="container-fluid">
                             <div class="row">

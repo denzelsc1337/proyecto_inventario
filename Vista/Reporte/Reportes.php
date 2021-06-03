@@ -208,7 +208,7 @@ require_once('../../config/security.php');
                                             <option value="RxVencimiento">Por Vencimiento</option>
                                             <option value="RxEntrada">Por Ingresos</option>
                                             <option value="RxDespacho">Por Despacho</option>
-                                            <option value="RxNow">Por uwu</option>
+                                            <!-- <option value="RxNow">Por uwu</option> -->
                                         </select>
                                     </div>
                                 </div>
